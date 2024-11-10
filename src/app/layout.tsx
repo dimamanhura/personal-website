@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Providers from "@/components/providers";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,7 +19,9 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       <body>
         <Providers>
           <Header />
-          {children}
+          <div className="container mx-auto">
+            {children}
+          </div>
           <Footer />
         </Providers>
       </body>
