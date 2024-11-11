@@ -3,11 +3,14 @@
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import {
+  NavbarMenuToggle,
   DropdownTrigger,
+  NavbarMenuItem,
   NavbarContent,
   DropdownItem,
   DropdownMenu,
   NavbarItem,
+  NavbarMenu,
   Dropdown,
   Avatar,
   Button,
@@ -19,10 +22,19 @@ import {
 import RouterLink from "next/link";
 import { FaGithub, FaSearch } from "react-icons/fa";
 import { signIn } from "@/actions";
+import { Fragment, useState } from "react";
+
+const menuItems = [
+  { title: 'Home', href: '/' },
+  { title: 'Projects', href: '/projects' },
+  { title: 'Achievements', href: '/achievements' },
+  { title: 'Feedback', href: '/feedback' },
+];
 
 const Header = () => {
   const session = useSession();
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const renderLink = ({
     title,
@@ -45,25 +57,59 @@ const Header = () => {
     );
   };
 
-  return (
-    <Navbar isBordered>
-      <NavbarContent justify="start">
-        <NavbarContent className="hidden sm:flex gap-3">
-          {renderLink({ title: 'Home', href: '/' })}
-          {renderLink({ title: 'Significant Projects', href: '/significant-projects' })}
-          {renderLink({ title: 'Achievements', href: '/achievements' })}
-          {renderLink({ title: 'Feedback', href: '/feedback' })}
-        </NavbarContent>
-      </NavbarContent>
+  const renderMenuLink = ({
+    title,
+    href,
+  }: {
+    title: string;
+    href: string;
+  }) => {
+    const isActive = pathname == href;
+    return (
+      <NavbarMenuItem isActive={isActive}>
+        <Link
+          className="w-full"
+          color={isActive ? 'secondary' : 'foreground'}
+          href={href}
+          size="lg"
+        >
+          {title}
+        </Link>
+      </NavbarMenuItem>
+    );
+  };
 
+  return (
+    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent className="sm:hidden" justify="start">
+        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+      </NavbarContent>
+    
+      <NavbarContent className="hidden sm:flex gap-3" justify="start">
+        {menuItems.map((menuItem, index) => (
+          <Fragment key={index}>
+            {renderLink(menuItem)}
+          </Fragment>
+        ))}
+      </NavbarContent>
+      
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <Fragment key={index}>
+            {renderMenuLink(item)}
+          </Fragment>
+        ))}
+      </NavbarMenu>
+    
       <NavbarContent as="div" className="items-center" justify="end">
         <Input
           classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
+            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
             mainWrapper: "h-full",
             input: "text-small",
-            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+            base: "max-w-full sm:max-w-[10rem] h-10",
           }}
+          className="hidden sm:flex"
           placeholder="Type to search..."
           size="sm"
           startContent={<FaSearch size={18} />}

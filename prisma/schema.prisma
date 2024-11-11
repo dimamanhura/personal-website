@@ -7,15 +7,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Company {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  startAt  DateTime
-  endAt    DateTime?
-  location String
+type Position {
+  title     String
+  startAt   String
+  endAt     String?
 }
-model Account {
+
+model Company {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  startAt          String
+  endAt            String?
+  location         String
+  reasonsOfLeaving String[]
+  position         String 
+  positions        Position[]
+  logo             String
+}
+
+model Feedback {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
+  topic    String
+  reviews  String[]
+}
+
+model Account {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
   userId            String
   type              String
   provider          String
@@ -34,7 +51,7 @@ model Account {
 }
 
 model Session {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -42,7 +59,7 @@ model Session {
 }
 
 model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
   emailVerified DateTime?
