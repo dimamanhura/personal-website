@@ -1,13 +1,13 @@
 import { User } from "@nextui-org/react";
-import { Company } from "@prisma/client";
+import { Education } from "@prisma/client";
 import moment from "moment";
 
-interface CompanyCardProps {
-  company: Company;
+interface UniversityCardProps {
+  university: Education;
 };
 
-const CompanyCard = ({ company }: CompanyCardProps) => {
-  const { position, logo, name, startAt, endAt } = company;
+const UniversityCard = ({ university }: UniversityCardProps) => {
+  const { title, logo, name, startAt, endAt } = university;
 
   const formatDate = (date: string) => {
     return moment(date).format('MMM YYYY');
@@ -16,16 +16,16 @@ const CompanyCard = ({ company }: CompanyCardProps) => {
   const formatDescription = () => {
     const startAtDate = formatDate(startAt);
     const endAtDate = endAt ? formatDate(endAt) : 'Present';
-    return `${position}, ${startAtDate} - ${endAtDate}`;
+    return `${title}, ${startAtDate} - ${endAtDate}`;
   };
 
   return (
     <User
       description={formatDescription()}
-      avatarProps={{ src: logo }}
+      avatarProps={{ src: logo, isBordered: true, radius: 'md' }}
       name={name}
     />
   );
 };
 
-export default CompanyCard;
+export default UniversityCard;

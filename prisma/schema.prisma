@@ -25,6 +25,22 @@ model Company {
   logo             String
 }
 
+type Location {
+  city String
+  country String
+}
+
+model Education {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  location       Location
+  startAt        String
+  endAt          String?
+  name           String
+  logo           String
+  title          String
+  degree         String
+}
+
 model Feedback {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   topic    String
