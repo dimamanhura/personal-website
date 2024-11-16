@@ -41,6 +41,72 @@ model Education {
   degree         String
 }
 
+enum TechnologySectionType {
+  ReactJS
+  NodeJS
+  Database
+  AWS
+  ContinuousIntegrationAndContinuousDeployment
+  Docker
+  ExternalService
+  Bot
+}
+
+enum TechnologySubSectionType {
+  ReactJSVersion
+  ReactJSFramework
+  Testing
+  Styling
+  StylingLibrary
+  StateManagement
+  NodeJSVersion
+  NodeJSFramework
+  TemplatingEngine
+  DatabaseType
+  DatabaseORM
+}
+
+model TechnologySubSection {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  type       TechnologySubSectionType
+  title      String
+}
+
+model Technology {
+  id                  String @id @default(auto()) @map("_id") @db.ObjectId
+  title               String
+  section             TechnologySectionType
+  subSection          TechnologySubSectionType?
+  featured            Boolean
+  technologySection   TechnologySection  @relation(fields: [section], references: [type])
+}
+
+model TechnologySection {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  type          TechnologySectionType @unique
+  title         String
+  logo          String
+  technologies  Technology[]
+}
+
+type Contacts {
+  phone      String
+  email      String
+  linkedin   String
+  github     String
+}
+
+model Meta {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  contacts      Contacts
+  location      Location
+  title         String
+  description   String
+  firstName     String
+  lastName      String
+  avatar        String
+}
+
 model Feedback {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   topic    String

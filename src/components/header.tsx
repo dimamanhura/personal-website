@@ -23,12 +23,13 @@ import RouterLink from "next/link";
 import { FaGithub, FaSearch } from "react-icons/fa";
 import { signIn } from "@/actions";
 import { Fragment, useState } from "react";
+import paths from "@/paths";
 
 const menuItems = [
-  { title: 'Home', href: '/' },
-  { title: 'Projects', href: '/projects' },
-  { title: 'Achievements', href: '/achievements' },
-  { title: 'Feedback', href: '/feedback' },
+  { title: 'Home', href: paths.home() },
+  { title: 'Projects', href: paths.projects() },
+  { title: 'Achievements', href: paths.achievements() },
+  { title: 'Feedback', href: paths.feedback() },
 ];
 
 const Header = () => {
