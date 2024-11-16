@@ -12,7 +12,7 @@ const UniversitiesList = ({ universities }: UniversitiesListProps) => {
     return (
       <User
         description={`${title}, ${formatDateRange(startAt, endAt)}`}
-        avatarProps={{ src: logo, isBordered: true, radius: 'md' }}
+        avatarProps={{ src: logo, radius: 'md' }}
         name={name}
         key={id}
       />

@@ -29,7 +29,7 @@ const Header = () => {
     return (
       <NavbarItem isActive={isActive}>
         <Link
-          color={isActive ? 'secondary' : 'foreground'}
+          color="foreground"
           href={path}
           as={RouterLink}
         >
@@ -51,9 +51,10 @@ const Header = () => {
       <NavbarMenuItem isActive={isActive}>
         <Link
           className="w-full"
-          color={isActive ? 'secondary' : 'foreground'}
+          color="foreground"
           href={path}
           size="lg"
+          as={RouterLink}
         >
           {title}
         </Link>

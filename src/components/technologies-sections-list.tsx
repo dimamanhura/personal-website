@@ -11,7 +11,7 @@ const TechnologiesSectionsList = ({ technologiesSections }: TechnologiesSections
     return (
       <User
         description={`${technologies.map(technology => technology.title).join(', ')}`}
-        avatarProps={{ src: logo, isBordered: true, radius: 'md' }}
+        avatarProps={{ src: logo, radius: 'md' }}
         name={title}
         key={id}
       />

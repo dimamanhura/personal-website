@@ -1,29 +1,25 @@
 'use client';
 
-import { Input, Textarea } from "@nextui-org/react";
+import { Button, Input, Textarea } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 import * as actions from '@/actions';
 import SubmitButton from "./submit-button";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
-interface ContactFormProps {
-  handleSuccess?: () => void;
-};
-
-const ContactForm = ({ handleSuccess }: ContactFormProps) => {
+const ContactForm = () => {
   const ref = useRef<HTMLFormElement | null>(null);
   const [formState, action] = useFormState(actions.contactRequest, {
     errors: {},
   });
-
-  console.log('formState', formState);
+  const [isSuccessMessageShown, setIsSuccessMessageShown] = useState(false);
 
   useEffect(() => {
     if (formState.success) {
+      setIsSuccessMessageShown(true);
       ref.current?.reset();
-      handleSuccess && handleSuccess();
     }
-  }, [formState, handleSuccess]);
+  }, [formState.success]);
 
   return (
     <form action={action} ref={ref}>
@@ -34,9 +30,14 @@ const ContactForm = ({ handleSuccess }: ContactFormProps) => {
           </div>
         )}
 
-        {formState.success && (
-          <div className="text-xs rounded-md p-4 bg-green-100 border border-green-200">
-            Your submission has been sent.
+        {isSuccessMessageShown && (
+          <div className="flex justify-between items-center rounded-md px-4 py-2 bg-green-100 border border-green-200">
+            <p className="text-xs">
+              Your submission has been sent.
+            </p>
+           <Button isIconOnly variant="flat" radius="full" size="sm" onClick={() => setIsSuccessMessageShown(false)}>
+            <FaTimes />
+          </Button>
           </div>
         )}
 
