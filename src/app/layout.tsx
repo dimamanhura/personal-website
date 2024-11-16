@@ -19,9 +19,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       <body>
         <Providers>
           <Header />
-          <div className="container mx-auto">
-            {children}
-          </div>
+          {children}
           <Footer />
         </Providers>
       </body>

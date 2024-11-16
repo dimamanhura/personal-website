@@ -1,0 +1,1 @@
+export { notifyAboutContactRequest } from './notify-about-contact-request';

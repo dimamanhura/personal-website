@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fetchMeta } from "@/db/queries/meta";
 import Contacts from "@/components/contacts";
 import pages from "@/pages";
+import ContactForm from "./contact-form";
 
 const Footer = async () => {
   const meta = await fetchMeta();
@@ -12,8 +13,8 @@ const Footer = async () => {
         <div className="container py-12 mx-auto grid grid-cols-3 gap-8">
           <section className="flex flex-col gap-2">
             <h2 className="text-2xl">Pages</h2>
-            {pages.map(page => (
-              <Link href={page.path} className="underline">
+            {pages.map((page, index) => (
+              <Link href={page.path} key={index} className="underline">
                 {page.title}
               </Link>
             ))}
@@ -27,13 +28,14 @@ const Footer = async () => {
               />
             </section>
           )}
-          <section>
+          <section className="flex flex-col gap-2">
             <h2 className="text-2xl">Contact Me</h2>
+            <ContactForm />
           </section>
         </div>
       </div>
-      <div className="w-full bg-zinc-400">
-        <div className="container py-6 mx-auto text-white text-center">
+      <div className="w-full bg-zinc-200">
+        <div className="container py-6 mx-auto text-center">
           © 2024 Copyright: {meta?.firstName} {meta?.lastName}
         </div>
       </div>

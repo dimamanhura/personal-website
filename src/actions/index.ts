@@ -1,1 +1,1 @@
-'use server';
+export { contactRequest } from './contact-request'
