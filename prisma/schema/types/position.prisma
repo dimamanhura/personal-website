@@ -1,0 +1,5 @@
+type Position {
+  title     String
+  startAt   String
+  endAt     String?
+}

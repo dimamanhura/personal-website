@@ -1,0 +1,8 @@
+model Technology {
+  id                  String @id @default(auto()) @map("_id") @db.ObjectId
+  title               String
+  section             TechnologySectionType
+  subSection          TechnologySubSectionType?
+  featured            Boolean
+  technologySection   TechnologySection  @relation(fields: [section], references: [type])
+}

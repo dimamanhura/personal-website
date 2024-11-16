@@ -1,0 +1,5 @@
+model FeedbackSection {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  type        FeedbackSectionType
+  title       String
+}

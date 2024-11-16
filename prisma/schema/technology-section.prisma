@@ -1,0 +1,7 @@
+model TechnologySection {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  type          TechnologySectionType @unique
+  title         String
+  logo          String
+  technologies  Technology[]
+}

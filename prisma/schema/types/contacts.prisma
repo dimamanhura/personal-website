@@ -1,0 +1,6 @@
+type Contacts {
+  phone      String
+  email      String
+  linkedin   String
+  github     String
+}

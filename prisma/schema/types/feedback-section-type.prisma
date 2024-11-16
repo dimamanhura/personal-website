@@ -1,0 +1,11 @@
+enum FeedbackSectionType {
+  ProfessionalKnowledge
+  QualityOfWork
+  WorkCommunication
+  TeamWork
+  PersonalQualities
+  ProactivenessAndEngagement
+  PositivePoints
+  ImprovementRecommendations
+  PossibleWorkTogether
+}

@@ -1,0 +1,13 @@
+enum TechnologySubSectionType {
+  ReactJSVersion
+  ReactJSFramework
+  Testing
+  Styling
+  StylingLibrary
+  StateManagement
+  NodeJSVersion
+  NodeJSFramework
+  TemplatingEngine
+  DatabaseType
+  DatabaseORM
+}

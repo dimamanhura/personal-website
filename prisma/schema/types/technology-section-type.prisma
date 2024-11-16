@@ -1,0 +1,10 @@
+enum TechnologySectionType {
+  ReactJS
+  NodeJS
+  Database
+  AWS
+  ContinuousIntegrationAndContinuousDeployment
+  Docker
+  ExternalService
+  Bot
+}

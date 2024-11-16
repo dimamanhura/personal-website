@@ -1,0 +1,5 @@
+model TechnologySubSection {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  type       TechnologySubSectionType
+  title      String
+}

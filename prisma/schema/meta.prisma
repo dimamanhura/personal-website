@@ -1,0 +1,10 @@
+model Meta {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  contacts      Contacts
+  location      Location
+  title         String
+  description   String
+  firstName     String
+  lastName      String
+  avatar        String
+}
