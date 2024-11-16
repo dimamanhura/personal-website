@@ -12,15 +12,7 @@ import {
 } from "@nextui-org/react";
 import RouterLink from "next/link";
 import { Fragment, useState } from "react";
-import paths from "@/paths";
-
-const menuItems = [
-  { title: 'Home', href: paths.home() },
-  { title: 'Technologies', href: paths.technologies() },
-  { title: 'Projects', href: paths.projects() },
-  { title: 'Achievements', href: paths.achievements() },
-  { title: 'Feedback', href: paths.feedback() },
-];
+import pages from "@/pages";
 
 const Header = () => {
   const pathname = usePathname();
@@ -28,17 +20,17 @@ const Header = () => {
 
   const renderLink = ({
     title,
-    href,
+    path,
   }: {
     title: string;
-    href: string;
+    path: string;
   }) => {
-    const isActive = pathname == href;
+    const isActive = pathname == path;
     return (
       <NavbarItem isActive={isActive}>
         <Link
           color={isActive ? 'secondary' : 'foreground'}
-          href={href}
+          href={path}
           as={RouterLink}
         >
           {title}
@@ -49,18 +41,18 @@ const Header = () => {
 
   const renderMenuLink = ({
     title,
-    href,
+    path,
   }: {
     title: string;
-    href: string;
+    path: string;
   }) => {
-    const isActive = pathname == href;
+    const isActive = pathname == path;
     return (
       <NavbarMenuItem isActive={isActive}>
         <Link
           className="w-full"
           color={isActive ? 'secondary' : 'foreground'}
-          href={href}
+          href={path}
           size="lg"
         >
           {title}
@@ -76,22 +68,22 @@ const Header = () => {
       </NavbarContent>
     
       <NavbarContent className="hidden sm:flex gap-3" justify="start">
-        {menuItems.map((menuItem, index) => (
+        {pages.map((page, index) => (
           <Fragment key={index}>
-            {renderLink(menuItem)}
+            {renderLink(page)}
           </Fragment>
         ))}
       </NavbarContent>
       
       <NavbarMenu>
-        {menuItems.map((item, index) => (
+        {pages.map((page, index) => (
           <Fragment key={index}>
-            {renderMenuLink(item)}
+            {renderMenuLink(page)}
           </Fragment>
         ))}
       </NavbarMenu>
     </Navbar>
-  )
+  );
 };
 
 export default Header;

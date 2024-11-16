@@ -9,6 +9,7 @@ import UniversitiesList from "@/components/universities-list";
 import CompaniesList from "@/components/companies-list";
 import Contacts from "@/components/contacts";
 import Section from "@/components/section";
+import Banner from "@/components/banner";
 import Hero from "@/components/hero";
 import paths from "@/paths";
 
@@ -38,10 +39,12 @@ const HomePage = async () => {
             avatar={meta.avatar}
             title={meta.title}
           />
-          <Contacts
-            contacts={meta.contacts}
-            location={meta.location}
-          />
+          <Banner>
+            <Contacts
+              contacts={meta.contacts}
+              location={meta.location}
+            />
+          </Banner>
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

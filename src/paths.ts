@@ -9,7 +9,7 @@ const paths = {
     return '/achievements';
   },
   feedback() {
-    return '/achievements';
+    return '/feedback';
   },
   projects() {
     return '/projects';
