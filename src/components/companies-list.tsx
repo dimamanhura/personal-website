@@ -12,7 +12,7 @@ const CompaniesList = ({ companies }: CompaniesListProps) => {
     return (
       <User
         description={`${position}, ${formatDateRange(startAt, endAt)}`}
-        avatarProps={{ src: logo }}
+        avatarProps={{ src: logo, isBordered: true, radius: 'md' }}
         name={name}
         key={id}
       />
