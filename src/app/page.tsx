@@ -38,7 +38,7 @@ const HomePage = async () => {
     <>
       {meta && <Hero meta={meta} />}
       <div className="container mx-auto py-12 px-8 md:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           <div className="col-span-1 lg:col-span-1 flex flex-col gap-12">
             <Section title="Technologies" link={paths.technologies()}>
               <TechnologiesSectionsList technologiesSections={technologiesSections} />
