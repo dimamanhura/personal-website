@@ -1,9 +1,11 @@
 import { fetchTechnologiesSections } from "@/db/queries/technologies";
+import { fetchSignificantProjects } from "@/db/queries/projects";
 import { fetchFeaturedReviews } from "@/db/queries/feedback";
 import { fetchUniversities } from "@/db/queries/education";
 import { fetchCompanies } from "@/db/queries/companies";
 import { fetchMeta } from "@/db/queries/meta";
 import TechnologiesSectionsList from "@/components/technologies-sections-list";
+import SignificantProjectsList from "@/components/significant-projects-list";
 import FeaturedReviewsList from "@/components/reviews-list";
 import UniversitiesList from "@/components/universities-list";
 import CompaniesList from "@/components/companies-list";
@@ -14,12 +16,14 @@ import paths from "@/paths";
 const HomePage = async () => {
   const [
     technologiesSections,
+    significantProjects,
     featuredReviews,
     universities,
     companies,
     meta,
   ] = await Promise.all([
     fetchTechnologiesSections(),
+    fetchSignificantProjects(),
     fetchFeaturedReviews(),
     fetchUniversities(),
     fetchCompanies(),
@@ -44,7 +48,7 @@ const HomePage = async () => {
           </div>
           <div className="col-span-2 flex flex-col gap-12">
             <Section title="Significant Projects" link={paths.projects()}>
-              Significant Projects
+              <SignificantProjectsList significantProjects={significantProjects} />
             </Section>
             <Section title="Achievements" link={paths.achievements()}>
               Achievements

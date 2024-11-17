@@ -1,0 +1,4 @@
+type ProjectAchievement {
+  title       String
+  points      String[]
+}

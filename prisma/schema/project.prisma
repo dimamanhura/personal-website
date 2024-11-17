@@ -1,0 +1,19 @@
+model Project {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  slug                 String
+  shortDescription     String
+  longDescription      String
+  features             String[]
+  startAt              String
+  endAt                String?
+  logo                 String
+  position             String
+  team                 String[]
+  featured             Boolean
+  responsibilities     String[] 
+  integrations         String[]
+  stack                String[]
+  technologies         ProjectTechnologySection
+  achievements         ProjectAchievement[]
+}
