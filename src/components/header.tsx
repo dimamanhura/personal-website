@@ -64,11 +64,11 @@ const Header = () => {
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent className="sm:hidden" justify="start">
+      <NavbarContent className="md:hidden" justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
     
-      <NavbarContent className="hidden sm:flex gap-3" justify="start">
+      <NavbarContent className="hidden md:flex gap-3" justify="start">
         {pages.map((page, index) => (
           <Fragment key={index}>
             {renderLink(page)}

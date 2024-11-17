@@ -10,9 +10,9 @@ const Footer = async () => {
   return (
     <footer className="w-full">
       <div className="w-full bg-zinc-100">
-        <div className="container py-12 mx-auto grid grid-cols-3 gap-8">
-          <section className="flex flex-col gap-2">
-            <h2 className="text-2xl">Pages</h2>
+        <div className="container py-12 px-8 md:px-16 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <section className="flex flex-col col-span-1 gap-2">
+            <h2 className="text-xl md:text-2xl">Pages</h2>
             {pages.map((page, index) => (
               <Link href={page.path} key={index} className="underline">
                 {page.title}
@@ -20,16 +20,16 @@ const Footer = async () => {
             ))}
           </section>
           {meta && (
-            <section className="flex flex-col gap-2">
-              <h2 className="text-2xl">Contacts</h2>
+            <section className="flex flex-col col-span-1 gap-2">
+              <h2 className="text-xl md:text-2xl">Contacts</h2>
               <Contacts
                 contacts={meta?.contacts}
                 location={meta?.location}
               />
             </section>
           )}
-          <section className="flex flex-col gap-2">
-            <h2 className="text-2xl">Contact Me</h2>
+          <section className="flex flex-col col-span-1 md:col-span-2 lg:col-span-1 gap-2">
+            <h2 className="text-xl md:text-2xl">Contact Me</h2>
             <ContactForm />
           </section>
         </div>

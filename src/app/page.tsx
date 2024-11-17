@@ -37,9 +37,9 @@ const HomePage = async () => {
   return (
     <>
       {meta && <Hero meta={meta} />}
-      <div className="container mx-auto py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="col-span-1 flex flex-col gap-12">
+      <div className="container mx-auto py-12 px-8 md:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="col-span-1 lg:col-span-1 flex flex-col gap-12">
             <Section title="Technologies" link={paths.technologies()}>
               <TechnologiesSectionsList technologiesSections={technologiesSections} />
             </Section>
@@ -53,7 +53,7 @@ const HomePage = async () => {
               <FeaturedReviewsList featuredReviews={featuredReviews} />
             </Section>
           </div>
-          <div className="col-span-2 flex flex-col gap-12">
+          <div className="col-span-1 lg:col-span-2 flex flex-col gap-12">
             <Section title="Significant Projects" link={paths.projects()}>
               <SignificantProjectsList significantProjects={significantProjects} />
             </Section>

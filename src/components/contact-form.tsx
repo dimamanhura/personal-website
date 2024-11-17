@@ -23,7 +23,7 @@ const ContactForm = () => {
 
   return (
     <form action={action} ref={ref}>
-      <div className="text-xs flex flex-col gap-4 p-4 w-80 bg-white rounded-md">
+      <div className="text-xs flex flex-col gap-4 p-4 w-full bg-white rounded-md">
         {formState.errors._form && (
           <div className="rounded-md p-4 bg-red-100 border border-red-200">
             {formState.errors._form.join(', ')}

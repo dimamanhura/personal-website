@@ -1,4 +1,4 @@
-import { Divider } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -16,15 +16,31 @@ const Section = ({
   return (
     <section>
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl">
+        <h2 className="text-xl md:text-2xl">
           {title}
         </h2>
 
         {link && (
-          <Link href={link} className="underline flex items-center text-blue-500">
-            More Details 
-            <FaArrowRight className="ml-1" />
-          </Link>
+          <>
+            <Link
+              className="underline items-center text-blue-500 hidden md:flex"
+              href={link}
+            >
+              More Details 
+              <FaArrowRight className="ml-1" />
+            </Link>
+            <Button 
+              isIconOnly
+              className="md:hidden"
+              variant="light"
+              radius="full"
+              color="primary"
+              href={link}
+              as={Link}
+            >
+              <FaArrowRight className="ml-1" />
+            </Button>
+          </>
         )}
       </div>
       
