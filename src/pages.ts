@@ -14,7 +14,7 @@ const pages = [
     path: paths.projects(),
   },
   {
-    title: 'Achievements',
+    title: 'Challenges & Achievements',
     path: paths.achievements(),
   },
   {

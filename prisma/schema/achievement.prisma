@@ -1,0 +1,9 @@
+model Achievement {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  description      String
+  solution         String[]
+  result           String[]
+  notes            String[]
+  featured         Boolean
+}
