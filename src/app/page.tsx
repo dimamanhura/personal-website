@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { fetchTechnologiesSections } from "@/db/queries/technologies";
 import { fetchFeaturedAchievements } from "@/db/queries/achievements";
 import { fetchFeaturedSignificantProjects } from "@/db/queries/projects";
@@ -14,6 +15,12 @@ import CompaniesList from "@/components/companies-list";
 import Section from "@/components/section";
 import Hero from "@/components/hero";
 import paths from "@/paths";
+
+export const metadata: Metadata = {
+  title: 'My Personal Website',
+  description: 'My personal website with an overview of my career',
+  keywords: ['Personal', 'Private', 'Website'],
+};
 
 const HomePage = async () => {
   const [

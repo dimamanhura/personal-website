@@ -1,6 +1,13 @@
 import { fetchReviewsBySection } from "@/db/queries/feedback";
 import FeedbackCard from "@/components/feedback-card";
 import Header from "@/components/header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Feedback',
+  description: 'Feedback from my colleagues and clients with whom I worked during my professional career',
+  keywords: ['Feedback', 'Reviews'],
+};
 
 const FeedbackPage = async () => {
   const reviewsBySections = await fetchReviewsBySection();

@@ -7,12 +7,30 @@ import { Avatar, Chip } from "@nextui-org/react";
 import { formatDateRange } from "@/utils/format-date-range";
 import ItemsList from "@/components/items-list";
 import ChipsList from "@/components/chips-list";
+import { Metadata } from "next";
 
 interface ProjectBySlugPageProps {
   params: {
     slug: string;
   };
-}
+};
+
+export async function generateMetadata({ params: { slug } }: ProjectBySlugPageProps): Promise<Metadata> {
+  const project = await fetchSignificantProjectBySlug(slug);
+  
+  if (!project) {
+    return {};
+  }
+ 
+  return {
+    title: project.name,
+    description: project.shortDescription,
+    keywords: [
+      project.name,
+      ...project.stack,
+    ],
+  };
+};
 
 const ProjectBySlugPage = async ({ params }: ProjectBySlugPageProps) => {
   const project = await fetchSignificantProjectBySlug(params.slug);
@@ -23,10 +41,12 @@ const ProjectBySlugPage = async ({ params }: ProjectBySlugPageProps) => {
 
   return (
     <>
-      <Link className="underline items-center text-blue-500 flex mb-6" href={paths.projects()}>
-        <FaArrowLeft className="mr-1" />
-        Back
-      </Link>
+      <div className="mb-6">
+        <Link className="flex underline items-center text-blue-500" href={paths.projects()}>
+          <FaArrowLeft className="mr-1" />
+          Back
+        </Link>
+      </div>
       <div className="flex flex-col gap-6">
         <header className="flex flex-col md:flex-row justify-between items-start gap-6">
           <div className="flex items-center gap-6">
