@@ -2,9 +2,6 @@ const paths = {
   home() {
     return '/';
   },
-  technologies() {
-    return '/technologies';
-  },
   projects() {
     return '/projects';
   },

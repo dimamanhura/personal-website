@@ -6,10 +6,6 @@ const pages = [
     path: paths.home(),
   },
   {
-    title: 'Technologies',
-    path: paths.technologies(),
-  },
-  {
     title: 'Significant Projects',
     path: paths.projects(),
   },

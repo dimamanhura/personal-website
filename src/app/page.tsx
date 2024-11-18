@@ -48,7 +48,7 @@ const HomePage = async () => {
             </Section>
           </div>
           <div className="col-span-1 lg:col-span-1 flex flex-col gap-12">
-            <Section title="Technologies" link={paths.technologies()}>
+            <Section title="Technologies">
               <TechnologiesSectionsList technologiesSections={technologiesSections} />
             </Section>
             <Section title="Employment History">
