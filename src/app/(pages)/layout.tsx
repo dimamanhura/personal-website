@@ -4,7 +4,7 @@ export interface PagesLayout {
 
 const PagesLayout = ({ children }: Readonly<PagesLayout>) => {
   return (
-    <div className="container mx-auto py-12 px-8 md:px-32">
+    <div className="container mx-auto py-12 px-8 md:24 lg:px-48">
       {children}
     </div>
   );

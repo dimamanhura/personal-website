@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { formatDateRange } from "@/utils/format-date-range";
-import { Button, Chip, User } from "@nextui-org/react";
+import { Button, User } from "@nextui-org/react";
 import { Project } from "@prisma/client";
-import { FaCircle } from "react-icons/fa";
 import paths from "@/paths";
+import ItemsList from "./items-list";
+import ChipsList from "./chips-list";
 
 interface SignificantProjectCardProps {
   significantProject: Project;
@@ -39,21 +40,14 @@ const SignificantProjectCard = ({ significantProject }: SignificantProjectCardPr
       <p className="font-medium">
         {shortDescription}
       </p>
-      {achievements.length > 0 && (
-        <ul className="mt-2">
-          {achievements.map((achievement, index) => (
-            <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-              <FaCircle className="text-black mr-2 text-[4px] flex-shrink-0" />
-              <span>{achievement.title}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-      <div className="flex gap-4 mt-2">
-        {stack.map((technology, index) => (
-          <Chip key={index} size="sm" variant="flat">{technology}</Chip>
-        ))}
+      <div className="my-2">
+        {achievements.length > 0 && (
+          <ItemsList
+            items={achievements.map(achievement => achievement.title)}
+          />
+        )}
       </div>
+      <ChipsList chips={stack} />
       <div className="block sm:hidden mt-2 w-full">
         {renderLinkToProjectDetails()}
       </div>

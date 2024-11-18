@@ -10,6 +10,14 @@ export const fetchFeaturedSignificantProjects = cache((): Promise<Project[]> => 
   });
 });
 
+export const fetchSignificantProjectBySlug = cache((slug: string): Promise<Project | null> => {
+  return db.project.findFirst({
+    where: {
+      slug,
+    },
+  });
+});
+
 export const fetchSignificantProjects = cache((): Promise<Project[]> => {
   return db.project.findMany();
 });
