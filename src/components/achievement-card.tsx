@@ -22,7 +22,7 @@ const AchievementCard = ({
         <ul>
           {items.map((text, index) => (
             <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-              <FaCircle className="text-black mr-2 text-[4px]" />
+              <FaCircle className="text-black mr-2 text-[4px] flex-shrink-0" />
               <span>{text}</span>
             </li>
           ))}

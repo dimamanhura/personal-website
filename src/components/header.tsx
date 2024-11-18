@@ -9,7 +9,7 @@ interface HeaderProps {
 const Header = ({ title }: HeaderProps) => {
   return (
     <div className="flex flex-col gap-6 mb-6">
-      <Link className="underline items-center text-blue-500 hidden md:flex" href={paths.home()}>
+      <Link className="underline items-center text-blue-500 flex" href={paths.home()}>
         <FaArrowLeft className="mr-1" />
         Back
       </Link>

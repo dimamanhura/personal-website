@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from "next/navigation";
+import { usePathname, redirect } from "next/navigation";
 import {
   NavbarMenuToggle,
   NavbarMenuItem,
@@ -18,6 +18,11 @@ const Nav = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleChangePage = (path: string) => {
+    setIsMenuOpen(false);
+    redirect(path);
+  };
+
   const renderLink = ({
     title,
     path,
@@ -32,6 +37,7 @@ const Nav = () => {
           color="foreground"
           href={path}
           as={RouterLink}
+          onClick={() => handleChangePage(path)}
         >
           {title}
         </Link>
@@ -55,6 +61,7 @@ const Nav = () => {
           href={path}
           size="lg"
           as={RouterLink}
+          onClick={() => handleChangePage(path)}
         >
           {title}
         </Link>

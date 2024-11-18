@@ -27,7 +27,7 @@ const SignificantProjectsList = ({ significantProjects }: SignificantProjectsLis
         <ul className="mt-2">
           {achievements.map((achievement, index) => (
             <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-              <FaCircle className="text-black mr-2 text-[4px]" />
+              <FaCircle className="text-black mr-2 text-[4px] flex-shrink-0" />
               <span>{achievement.title}</span>
             </li>
           ))}
