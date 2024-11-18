@@ -16,4 +16,5 @@ model Project {
   stack                String[]
   technologies         ProjectTechnologySection
   achievements         ProjectAchievement[]
+  images               String[]
 }
