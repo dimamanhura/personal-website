@@ -2,14 +2,8 @@ const paths = {
   home() {
     return '/';
   },
-  search(term: string) {
-    return `/search/?term=${term}`;
-  },
-  achievements() {
-    return '/achievements';
-  },
-  feedback() {
-    return '/feedback';
+  technologies() {
+    return '/technologies';
   },
   projects() {
     return '/projects';
@@ -17,9 +11,13 @@ const paths = {
   projectBySlug(projectSlug: string) {
     return `/projects/${projectSlug}`;
   },
-  technologies() {
-    return '/technologies';
+  achievements() {
+    return '/achievements';
   },
+  feedback() {
+    return '/feedback';
+  },
+  
 };
 
 export default paths;

@@ -9,3 +9,7 @@ export const fetchFeaturedAchievements = cache((): Promise<Achievement[]> => {
     },
   });
 });
+
+export const fetchAchievements = cache((): Promise<Achievement[]> => {
+  return db.achievement.findMany();
+});

@@ -1,5 +1,6 @@
 model FeedbackSection {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
-  type        FeedbackSectionType
+  type        FeedbackSectionType @unique
   title       String
+  reviews     Feedback[]
 }
