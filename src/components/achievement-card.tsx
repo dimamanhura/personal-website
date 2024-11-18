@@ -15,6 +15,22 @@ const AchievementCard = ({
   result,
   notes,
 }: AchievementCardProps) => {
+  const renderItems = (title: string, items: string[]): React.ReactElement => {
+    return (
+      <>
+        <h4 className="font-medium">{title}:</h4>
+        <ul>
+          {items.map((text, index) => (
+            <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
+              <FaCircle className="text-black mr-2 text-[4px]" />
+              <span>{text}</span>
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  };
+
   return (
     <div className="w-full flex flex-col gap-2 py-4 px-6 bg-zinc-100 rounded-lg">
       <h3 className="font-medium text-xl">
@@ -23,45 +39,9 @@ const AchievementCard = ({
       <p className="text-sm">
         {description}
       </p>
-      {solution && solution.length && (
-        <>
-          <h4 className="font-medium">Solution:</h4>
-          <ul>
-            {solution.map((text, index) => (
-              <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-                <FaCircle className="text-black mr-2 text-[4px]" />
-                <span>{text}</span>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-      {result && result.length && (
-        <>
-          <h4 className="font-medium">Result:</h4>
-          <ul>
-            {result.map((text, index) => (
-              <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-                <FaCircle className="text-black mr-2 text-[4px]" />
-                <span>{text}</span>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-      {notes && notes.length && (
-        <>
-          <h4 className="font-medium">Notes:</h4>
-          <ul>
-            {notes.map((text, index) => (
-              <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-                <FaCircle className="text-black mr-2 text-[4px]" />
-                <span>{text}</span>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      {solution && solution.length && renderItems('Solution', solution)}
+      {result && result.length && renderItems('Result', result)}
+      {notes && notes.length && renderItems('Notes', notes)}
     </div>
   );
 };

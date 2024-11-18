@@ -15,7 +15,7 @@ const FeedbackPage = async () => {
               <h2 className="text-xl mb-6">
                 {reviewsBySection.title}
               </h2>
-              <div className="w-full flex flex-col gap-2">
+              <div className="w-full flex flex-col gap-4">
                 {reviewsBySection.reviews.map(feedback => (
                   <FeedbackCard
                     feedback={feedback}

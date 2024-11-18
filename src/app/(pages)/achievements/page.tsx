@@ -7,7 +7,7 @@ const AchievementsPage = async () => {
   return (
     <>
       <Header title="Challenges & Achievements" />
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-4">
         {achievements.map(achievement => (
           <AchievementCard
             description={achievement.description}

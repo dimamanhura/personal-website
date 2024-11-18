@@ -4,4 +4,6 @@ model Feedback {
   review              String
   featured            Boolean
   feedbackSection     FeedbackSection @relation(fields: [section], references: [type])
+  author              String
+  createdAt           String
 }
