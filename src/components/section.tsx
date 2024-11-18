@@ -26,7 +26,7 @@ const Section = ({
               className="underline items-center text-blue-500 hidden md:flex"
               href={link}
             >
-              More Details 
+              See All 
               <FaArrowRight className="ml-1" />
             </Link>
             <Button 
