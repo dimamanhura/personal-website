@@ -7,21 +7,25 @@ import { useEffect, useState } from "react";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
-  const [isSelected, setIsSelected] = useState(false);
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   const handleChangeTheme = (value: boolean) => {
     setTheme(value ? 'dark' : 'light')
   };
 
-  useEffect(() => {
-    setIsSelected(theme === 'dark');
-  }, [theme]);
-
   return (
     <Switch
       startContent={<FaSun />}
       endContent={<FaMoon />}
-      isSelected={isSelected}
+      isSelected={theme === 'dark'}
       size="lg"
       onValueChange={handleChangeTheme}
     />
