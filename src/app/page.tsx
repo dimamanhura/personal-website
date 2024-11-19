@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords: ['Personal', 'Private', 'Website'],
 };
 
-export const revalidate = 60;
+export const revalidate = 60 * 60;
 
 const HomePage = async () => {
   const [
