@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from 'next/font/google';
 import Providers from "@/components/providers";
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
@@ -13,10 +14,14 @@ interface RootLayoutProps {
   children: React.ReactNode;
 };
 
+const inter = Inter({
+  subsets: ['latin'],
+});
+
 const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <Providers>
           <Nav />
           {children}
