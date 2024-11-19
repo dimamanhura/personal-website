@@ -9,7 +9,7 @@ const Footer = async () => {
 
   return (
     <footer className="w-full">
-      <div className="w-full bg-zinc-100">
+      <div className="w-full bg-zinc-100 dark:bg-zinc-800">
         <div className="container py-12 px-8 md:px-16 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <section className="flex flex-col col-span-1 gap-2">
             <h2 className="text-xl md:text-2xl">Pages</h2>
@@ -34,7 +34,7 @@ const Footer = async () => {
           </section>
         </div>
       </div>
-      <div className="w-full bg-zinc-200">
+      <div className="w-full bg-zinc-200 dark:bg-zinc-700">
         <div className="container py-6 mx-auto text-center">
           © 2024 Copyright: {meta?.firstName} {meta?.lastName}
         </div>

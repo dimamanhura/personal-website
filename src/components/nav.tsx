@@ -13,6 +13,7 @@ import {
 import RouterLink from "next/link";
 import { Fragment, useState } from "react";
 import pages from "@/pages";
+import ThemeSwitcher from "./theme-switcher";
 
 const Nav = () => {
   const pathname = usePathname();
@@ -81,6 +82,10 @@ const Nav = () => {
             {renderLink(page)}
           </Fragment>
         ))}
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <ThemeSwitcher />
       </NavbarContent>
       
       <NavbarMenu>

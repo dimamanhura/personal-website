@@ -1,11 +1,11 @@
 'use client';
 
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Chip, Input, Textarea } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 import * as actions from '@/actions';
 import SubmitButton from "./submit-button";
 import { useEffect, useRef, useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 const ContactForm = () => {
   const ref = useRef<HTMLFormElement | null>(null);
@@ -23,22 +23,31 @@ const ContactForm = () => {
 
   return (
     <form action={action} ref={ref}>
-      <div className="text-xs flex flex-col gap-4 p-4 w-full bg-white rounded-md">
+      <div className="text-xs flex flex-col gap-4 p-4 w-full bg-white dark:bg-black rounded-md">
         {formState.errors._form && (
-          <div className="rounded-md p-4 bg-red-100 border border-red-200">
+          <Chip
+            startContent={<FaExclamationTriangle size={14} className="mr-1" />}
+            className="w-full max-w-full"
+            variant="flat"
+            radius="sm"
+            size="lg"
+            color="danger"
+          >
             {formState.errors._form.join(', ')}
-          </div>
+          </Chip>
         )}
 
         {isSuccessMessageShown && (
-          <div className="flex justify-between items-center rounded-md px-4 py-2 bg-green-100 border border-green-200">
-            <p className="text-xs">
-              Your submission has been sent.
-            </p>
-           <Button isIconOnly variant="flat" radius="full" size="sm" onClick={() => setIsSuccessMessageShown(false)}>
-            <FaTimes />
-          </Button>
-          </div>
+          <Chip
+            className="w-full max-w-full"
+            variant="flat"
+            radius="sm"
+            color="success"
+            size="lg"
+            onClose={() => setIsSuccessMessageShown(false)}
+          >
+            Your submission has been sent
+          </Chip>
         )}
 
         <Input

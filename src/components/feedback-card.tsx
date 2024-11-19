@@ -7,7 +7,7 @@ interface FeedbackCardProps {
 
 const FeedbackCard = ({ feedback }: FeedbackCardProps) => {
   return (
-    <div className="w-full flex flex-col gap-2 py-4 px-6 bg-zinc-100 rounded-lg">
+    <div className="w-full flex flex-col gap-2 py-4 px-6 bg-zinc-100 dark:bg-zinc-800 rounded-lg">
       <div className="flex flex-col gap-1">
         <h4 className="text-lg font-medium">
           {feedback.author}
