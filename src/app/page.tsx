@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   keywords: ['Personal', 'Private', 'Website'],
 };
 
+export const revalidate = 60;
+
 const HomePage = async () => {
   const [
     featuredSignificantProjects,
