@@ -23,7 +23,7 @@ const Section = ({
         {link && (
           <>
             <Link
-              className="underline items-center text-blue-500 hidden md:flex"
+              className="underline items-center text-blue-500 hidden md:flex print:hidden"
               href={link}
             >
               See All 
@@ -31,7 +31,7 @@ const Section = ({
             </Link>
             <Button 
               isIconOnly
-              className="md:hidden"
+              className="md:hidden print:hidden"
               variant="light"
               radius="full"
               color="primary"

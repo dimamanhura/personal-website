@@ -8,7 +8,7 @@ const Footer = async () => {
   const meta = await fetchMeta();
 
   return (
-    <footer className="w-full">
+    <footer className="w-full print:hidden">
       <div className="w-full bg-zinc-100 dark:bg-zinc-800">
         <div className="container py-12 px-8 md:px-16 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <section className="flex flex-col col-span-1 gap-2">

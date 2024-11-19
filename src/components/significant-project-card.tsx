@@ -15,7 +15,7 @@ const SignificantProjectCard = ({ significantProject }: SignificantProjectCardPr
 
   const renderLinkToProjectDetails = () => (
     <Button
-      className="w-full"
+      className="w-full print:hidden"
       color="primary"
       variant="flat"
       href={paths.projectBySlug(slug)}
