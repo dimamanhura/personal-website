@@ -1,10 +1,7 @@
 import paths from "./paths";
+import { Page } from "./types/Page";
 
-const pages = [
-  {
-    title: 'Home',
-    path: paths.home(),
-  },
+const pages: Page[] = [
   {
     title: 'Significant Projects',
     path: paths.projects(),

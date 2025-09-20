@@ -14,7 +14,6 @@ const paths = {
   feedback() {
     return '/feedback';
   },
-  
 };
 
 export default paths;

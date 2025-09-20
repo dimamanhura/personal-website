@@ -12,10 +12,14 @@ import {
 } from "@nextui-org/react";
 import RouterLink from "next/link";
 import { Fragment, useState } from "react";
-import pages from "@/pages";
 import ThemeSwitcher from "./theme-switcher";
+import { Page } from "@/types/Page";
 
-const Nav = () => {
+interface NavProps {
+  pages: Page[];
+};
+
+const Nav = ({ pages }: NavProps) => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

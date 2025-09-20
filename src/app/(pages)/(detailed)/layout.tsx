@@ -1,18 +1,12 @@
-import Footer from "@/components/footer";
-import Nav from "@/components/nav";
-import pages from "@/pages";
-
 export interface PagesLayout {
   children: React.ReactElement;
 };
 
 const PagesLayout = ({ children }: Readonly<PagesLayout>) => {
   return (
-    <>
-      <Nav pages={pages} />
+    <div className="container mx-auto py-12 px-8 md:24 lg:px-48">
       {children}
-      <Footer />
-    </>
+    </div>
   );
 };
 

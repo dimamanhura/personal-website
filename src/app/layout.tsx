@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import Providers from "@/components/providers";
-import Footer from "@/components/footer";
-import Nav from "@/components/nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,9 +21,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Nav />
           {children}
-          <Footer />
         </Providers>
       </body>
     </html>
