@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { fetchMeta } from "@/db/queries/meta";
 import Contacts from "@/components/contacts";
-import pages from "@/pages";
+import { pages } from "@/pages";
 import ContactForm from "./contact-form";
 
 const Footer = async () => {

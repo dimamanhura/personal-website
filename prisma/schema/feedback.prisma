@@ -1,9 +1,9 @@
 model Feedback {
-  id                  String @id @default(auto()) @map("_id") @db.ObjectId
-  section             FeedbackSectionType
-  review              String
-  featured            Boolean
-  feedbackSection     FeedbackSection @relation(fields: [section], references: [type])
-  author              String
-  createdAt           String
+  id              String              @id @default(auto()) @map("_id") @db.ObjectId
+  section         FeedbackSectionType
+  review          String
+  featured        Boolean
+  feedbackSection FeedbackSection     @relation(fields: [section], references: [type])
+  author          String
+  createdAt       String
 }

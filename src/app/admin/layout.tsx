@@ -1,6 +1,6 @@
 
 
-import adminPages from "@/admin-pages";
+import { adminPages } from "@/pages";
 import Nav from "@/components/nav";
 import { Metadata } from "next";
 

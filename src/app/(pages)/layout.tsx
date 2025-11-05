@@ -1,6 +1,6 @@
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
-import pages from "@/pages";
+import { pages } from "@/pages";
 
 export interface PagesLayout {
   children: React.ReactElement;

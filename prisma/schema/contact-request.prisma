@@ -1,7 +1,7 @@
 model ContactRequest {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  email          String
-  name           String
-  message        String
-  createdAt      DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  name      String
+  message   String
+  createdAt DateTime @default(now())
 }

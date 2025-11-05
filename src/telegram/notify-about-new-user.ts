@@ -2,20 +2,21 @@
 
 import { sendMessage } from "./send-message";
 
-export const notifyAboutContactRequest = async ({
-  message,
+export const notifyAboutNewUser = async ({
   email,
   name,
+  id,
 }: {
-  message: string;
   email: string;
   name: string;
+  id: string;
 }) => {
   const text = [
-    '*New contact request*\n',
+    '*New user*\n',
     `*Name:* ${name}`,
-    `*Email:* ${email}\n`,
-    `_${message}_`,
+    `*Email:* ${email}`,
+    `*ID:* ${id}\n`,
+    `_Please activate the user if needed._`,
   ];
   return sendMessage(text.join('\n'));
 };

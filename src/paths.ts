@@ -1,4 +1,5 @@
 const paths = {
+  // public
   home() {
     return '/';
   },
@@ -13,6 +14,41 @@ const paths = {
   },
   feedback() {
     return '/feedback';
+  },
+  // admin
+  achievementsAdmin() {
+    return '/admin/achievements';
+  },
+  companiesAdmin() {
+    return '/admin/companies';
+  },
+  contactRequestsAdmin() {
+    return '/admin/contact-requests';
+  },
+  educationAdmin() {
+    return '/admin/education';
+  },
+  feedbackAdmin() {
+    return '/admin/feedback';
+  },
+  profileAdmin() {
+    return '/admin/profile';
+  },
+  projectsAdmin() {
+    return '/admin/projects';
+  },
+  technologiesAdmin() {
+    return '/admin/technologies';
+  },
+  technologySectionsAdmin() {
+    return '/admin/technology-sections';
+  },
+  // auth
+  signIn() {
+    return '/sign-in';
+  },
+  signUp() {
+    return '/sign-up';
   },
 };
 
