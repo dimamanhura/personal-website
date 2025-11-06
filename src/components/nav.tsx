@@ -23,6 +23,7 @@ import RouterLink from "next/link";
 import ThemeSwitcher from "./theme-switcher";
 import { Page } from "@/types/Page";
 import paths from "@/paths";
+import UserMenu from "./user-menu";
 
 interface NavProps {
   pages: Page[];
@@ -141,7 +142,10 @@ const Nav = ({ pages }: NavProps) => {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <ThemeSwitcher />
+        <div className="flex gap-2">
+          <ThemeSwitcher />
+          <UserMenu />
+        </div>
       </NavbarContent>
       
       <NavbarMenu>
