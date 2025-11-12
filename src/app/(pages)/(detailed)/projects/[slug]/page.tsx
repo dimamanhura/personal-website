@@ -54,6 +54,7 @@ const ProjectBySlugPage = async ({ params }: ProjectBySlugPageProps) => {
               isBordered
               className="w-20 h-20 text-large flex-shrink-0"
               radius="sm"
+              name={project.logo ? project.name : 'N/A'}
               src={project.logo}
             />
             <div>
