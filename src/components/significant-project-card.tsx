@@ -30,7 +30,7 @@ const SignificantProjectCard = ({ significantProject }: SignificantProjectCardPr
       <div className="flex justify-between items-center">
         <User
           description={`${name}, ${formatDateRange(startAt, endAt)}`}
-          avatarProps={{ src: logo, radius: 'md', size: 'lg' }}
+          avatarProps={{ src: logo, radius: 'md', size: 'lg', name: logo ? name : 'N/A' }}
           name={position}
         />
         <div className="hidden sm:block">
