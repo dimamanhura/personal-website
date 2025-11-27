@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/react';
 
 interface SubmitButtonProps {
   children: React.ReactNode;
-}
+};
  
 const SubmitButton = ({ children }: SubmitButtonProps) => {
   const status = useFormStatus();

@@ -66,6 +66,7 @@ const ItemsTable: FunctionComponent<ItemsTableProps> = ({
     <Table
       isHeaderSticky
       removeWrapper
+      isStriped
       aria-labelledby={title}
       sortDescriptor={sortBy && order ? { column: sortBy, direction: order } : null}
       onSortChange={handleChangeSort}
@@ -79,7 +80,7 @@ const ItemsTable: FunctionComponent<ItemsTableProps> = ({
     >
       <TableHeader>
         {columns.map((column: Column) =>
-          <TableColumn key={column.key} allowsSorting>
+          <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
             {column.label}
           </TableColumn>
         )}
@@ -91,7 +92,6 @@ const ItemsTable: FunctionComponent<ItemsTableProps> = ({
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
-        
       </TableBody>
     </Table>
   );

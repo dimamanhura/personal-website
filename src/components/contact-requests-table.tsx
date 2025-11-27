@@ -1,10 +1,13 @@
 'use client'
 
-import ItemsTable from "@/components/items-table";
-import { Column } from "@/types/Column";
-import { formatId } from "@/utils/format-id";
-import type { ContactRequest } from "@prisma/client";
 import { FunctionComponent, useCallback, useMemo } from "react";
+import type { ContactRequest } from "@prisma/client";
+import ItemsTable from "@/components/items-table";
+import TableActions from "@/components/table-actions";
+import { deleteContactRequest } from "@/actions/contact-request";
+import { formatId } from "@/utils/format-id";
+import { Column } from "@/types/Column";
+import paths from "@/paths";
 
 interface ContactRequestsTableProps {
   items: ContactRequest[];
@@ -18,24 +21,30 @@ const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
   const title = 'Contact Requests';
 
   const columns: Column[] = useMemo(() => ([
-    { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'Email' },
-    { key: 'message', label: 'Message' },
-    { key: 'createdAt', label: 'Requested At' },
+    { key: 'id', label: 'ID', allowsSorting: true },
+    { key: 'name', label: 'Name', allowsSorting: true },
+    { key: 'email', label: 'Email', allowsSorting: true },
+    { key: 'message', label: 'Message', allowsSorting: true },
+    { key: 'createdAt', label: 'Requested At', allowsSorting: true },
+    { key: "actions", label: "Actions", allowsSorting: false },
   ]), []);
 
   const renderCell = useCallback((contactRequest: any, columnKey: any) => {
     const cellValue = contactRequest[columnKey];
 
     switch (columnKey) {
-      case "id":
+      case 'id':
+        return formatId(cellValue);
+      case 'createdAt':
+        return cellValue.toLocaleDateString();
+      case 'actions':
         return (
-          <>{formatId(cellValue)}</>
-        );
-      case "createdAt":
-        return (
-          <>{cellValue.toLocaleDateString()}</>
+          <TableActions
+            showPath={paths.contactRequestDetails}
+            editPath={paths.editContactRequest}
+            itemId={contactRequest.id}
+            onDelete={deleteContactRequest}
+          />
         );
       default:
         return cellValue;

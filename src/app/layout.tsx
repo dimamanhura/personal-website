@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import Providers from "@/components/providers";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Personal website",
@@ -22,6 +23,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       <body className={inter.className}>
         <Providers>
           {children}
+          <Toaster richColors /> 
         </Providers>
       </body>
     </html>

@@ -25,6 +25,12 @@ const paths = {
   contactRequestsAdmin() {
     return '/admin/contact-requests';
   },
+  contactRequestDetails(id: string) {
+    return `/admin/contact-requests/${id}`;
+  },
+  editContactRequest(id: string) {
+    return `/admin/contact-requests/${id}/edit`;
+  },
   educationAdmin() {
     return '/admin/education';
   },
