@@ -1,21 +1,38 @@
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { fetchContactRequestById } from "@/db/queries/contact-requests";
+import ContactRequestOverviewHeader from "@/components/contact-request-overview-header";
+import ContactRequestCard from "@/components/contact-request-card";
 
-export const metadata: Metadata = {
-  title: 'Contact Requests Show',
+interface ContactRequestShowPageProps {
+  params: {
+    id: string;
+  };
 };
 
-interface ContactRequestsShowPageProps {
-  params: Promise<{ id: string; }>
+export function generateMetadata({ params: { id } }: ContactRequestShowPageProps): Metadata {
+  return {
+    title: `Contact Requests - ${id}`,
+  };
 };
 
-const ContactRequestsShowPage = async ({ params }: ContactRequestsShowPageProps) => {
-  const { id } = await params;
+const ContactRequestShowPage = async ({ params }: ContactRequestShowPageProps) => {
+  const contactRequest = await fetchContactRequestById(params.id);
+
+  if (!contactRequest) {
+    return notFound();
+  }
 
   return (
-    <div>
-      Show: {id}
-    </div>
+    <>
+      <ContactRequestOverviewHeader
+        itemId={params.id}
+      />
+      <ContactRequestCard
+        contactRequest={contactRequest}
+      />
+    </>
   );
-};
+}
 
-export default ContactRequestsShowPage;
+export default ContactRequestShowPage;

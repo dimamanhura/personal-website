@@ -5,9 +5,10 @@ import type { ContactRequest } from "@prisma/client";
 import ItemsTable from "@/components/items-table";
 import TableActions from "@/components/table-actions";
 import { deleteContactRequest } from "@/actions/contact-request";
-import { formatId } from "@/utils/format-id";
 import { Column } from "@/types/Column";
 import paths from "@/paths";
+import ContactRequestStatus from "@/components/contact-request-status";
+import TruncatedText from "./truncated-text";
 
 interface ContactRequestsTableProps {
   items: ContactRequest[];
@@ -26,6 +27,8 @@ const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
     { key: 'email', label: 'Email', allowsSorting: true },
     { key: 'message', label: 'Message', allowsSorting: true },
     { key: 'createdAt', label: 'Requested At', allowsSorting: true },
+    { key: 'resolved', label: 'Resolved', allowsSorting: true },
+    { key: 'resolution', label: 'Resolution', allowsSorting: true },
     { key: "actions", label: "Actions", allowsSorting: false },
   ]), []);
 
@@ -34,9 +37,16 @@ const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
 
     switch (columnKey) {
       case 'id':
-        return formatId(cellValue);
+      case 'message':
+      case 'resolution':
+        return <TruncatedText text={cellValue} />;
+      
       case 'createdAt':
         return cellValue.toLocaleDateString();
+
+      case 'resolved':
+        return <ContactRequestStatus resolved={cellValue} />;
+
       case 'actions':
         return (
           <TableActions
@@ -46,6 +56,7 @@ const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
             onDelete={deleteContactRequest}
           />
         );
+
       default:
         return cellValue;
     }

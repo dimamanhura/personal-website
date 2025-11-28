@@ -5,6 +5,7 @@ import { db } from '@/db';
 import * as telegram from '@/telegram';
 import { revalidatePath } from 'next/cache';
 import paths from '@/paths';
+import { redirect } from 'next/navigation';
 
 const createContactRequestSchema = z.object({
   message: z.string().min(3).max(1000),
@@ -73,11 +74,12 @@ export async function contactRequest(
   };
 };
 
-export async function deleteContactRequest(id: string) {
+export const deleteContactRequest = async (id: string) => {
   await db.contactRequest.delete({
     where: {
       id,
     },
   });
   revalidatePath(paths.contactRequestsAdmin());
+  redirect(paths.contactRequestsAdmin());
 };

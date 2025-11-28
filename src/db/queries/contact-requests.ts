@@ -23,3 +23,11 @@ export const fetchContactRequests = cache(async (params?: {
 
   return { items, count };
 });
+
+export const fetchContactRequestById = cache(async (id: string): Promise<ContactRequest | null> => {
+  return await db.contactRequest.findFirst({
+    where: {
+      id: id
+    },
+  });
+});

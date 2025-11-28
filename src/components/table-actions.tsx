@@ -1,9 +1,9 @@
 'use client'
 
 import { FunctionComponent } from "react";
-import DeleteTableItemButton from "@/components/delete-table-item-button";
-import EditTableItemButton from "@/components/edit-table-item-button";
-import ShowTableItemButton from "@/components/show-table-item-button";
+import DeleteItemButton from "@/components/delete-item-button";
+import EditItemButton from "@/components/edit-item-button";
+import ShowItemButton from "@/components/show-item-button";
 
 interface TableActionsProps {
   itemId: string;
@@ -20,9 +20,9 @@ const TableActions: FunctionComponent<TableActionsProps> = ({
 }) => {
   return (
     <div className="relative flex items-center gap-2">
-      <ShowTableItemButton path={showPath(itemId)} />
-      <EditTableItemButton path={editPath(itemId)} />
-      <DeleteTableItemButton onDelete={() => onDelete(itemId)} />
+      <ShowItemButton path={showPath(itemId)} />
+      <EditItemButton path={editPath(itemId)} />
+      <DeleteItemButton onDelete={() => onDelete(itemId)} />
     </div>
   );
 };

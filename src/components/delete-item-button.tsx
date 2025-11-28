@@ -14,11 +14,12 @@ import { useTransition } from "react";
 import { FaTrash } from "react-icons/fa";
 import { toast } from "sonner";
 
-interface DeleteTableItemButtonProps {
+interface DeleteItemButtonProps {
+  isIconOnly?: boolean;
   onDelete: () => Promise<void>;
 };
 
-const DeleteTableItemButton = ({ onDelete }: DeleteTableItemButtonProps) => {
+const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButtonProps) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [isPending, startTransition] = useTransition();
 
@@ -36,8 +37,8 @@ const DeleteTableItemButton = ({ onDelete }: DeleteTableItemButtonProps) => {
 
   return (
     <>
-      <Button isIconOnly color="danger" variant="flat" onClick={onOpen}>
-        <FaTrash />
+      <Button isIconOnly={isIconOnly} color="danger" variant="flat" onClick={onOpen}>
+        {isIconOnly ? <FaTrash /> : 'Delete'}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
@@ -61,4 +62,4 @@ const DeleteTableItemButton = ({ onDelete }: DeleteTableItemButtonProps) => {
   );
 };
 
-export default DeleteTableItemButton;
+export default DeleteItemButton;
