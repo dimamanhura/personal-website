@@ -12,7 +12,7 @@ interface ContactRequestShowPageProps {
 
 export function generateMetadata({ params: { id } }: ContactRequestShowPageProps): Metadata {
   return {
-    title: `Contact Requests - ${id}`,
+    title: `Contact Requests - Details - ${id}`,
   };
 };
 

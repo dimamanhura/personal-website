@@ -1,20 +1,36 @@
+import ContactRequestOverviewHeader from "@/components/contact-request-overview-header";
+import EditContactRequestForm from "@/components/edit-contact-request-form";
+import { fetchContactRequestById } from "@/db/queries/contact-requests";
 import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: 'Contact Requests Edit',
-};
+import { notFound } from "next/navigation";
 
 interface ContactRequestsEditPageProps {
-  params: Promise<{ id: string }>
+  params: { id: string };
+};
+
+export function generateMetadata({ params: { id } }: ContactRequestsEditPageProps): Metadata {
+  return {
+    title: `Contact Requests - Edit - ${id}`,
+  };
 };
 
 const ContactRequestsEditPage = async ({ params }: ContactRequestsEditPageProps) => {
-  const { id } = await params;
+  const contactRequest = await fetchContactRequestById(params.id);
+
+  if (!contactRequest) {
+    return notFound();
+  }
 
   return (
-    <div>
-      Edit: {id}
-    </div>
+    <>
+      <ContactRequestOverviewHeader
+        withEdit={false}
+        itemId={params.id}
+      />
+      <EditContactRequestForm
+        contactRequest={contactRequest}
+      />
+    </>
   );
 };
 

@@ -4,14 +4,16 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import EditItemButton from "@/components/edit-item-button";
 import DeleteItemButton from "@/components/delete-item-button";
-import { deleteContactRequest } from "@/actions/contact-request";
+import { deleteContactRequest } from "@/actions/delete-contact-request";
 import paths from "@/paths";
 
 interface ItemOverviewHeaderProps {
+  withEdit?: boolean; 
   itemId: string;
 };
 
 const ContactRequestOverviewHeader = ({
+  withEdit = true,
   itemId,
 }: ItemOverviewHeaderProps) => {
   return (
@@ -22,8 +24,16 @@ const ContactRequestOverviewHeader = ({
       </Link>
 
       <div className="flex gap-2">
-        <EditItemButton isIconOnly={false} path={paths.editContactRequest(itemId)} />
-        <DeleteItemButton isIconOnly={false} onDelete={() => deleteContactRequest(itemId)} />
+        {withEdit && (
+          <EditItemButton
+            isIconOnly={false}
+            path={paths.editContactRequest(itemId)}
+          />
+        )}
+        <DeleteItemButton
+          isIconOnly={false}
+          onDelete={() => deleteContactRequest(itemId)}
+        />
       </div>
     </div>
   );

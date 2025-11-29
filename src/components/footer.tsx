@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { fetchMeta } from "@/db/queries/meta";
+import CreateContactRequestForm from "@/components/create-contact-request-form";
 import Contacts from "@/components/contacts";
 import { pages } from "@/pages";
-import ContactForm from "./contact-form";
 
 const Footer = async () => {
   const meta = await fetchMeta();
@@ -30,7 +30,7 @@ const Footer = async () => {
           )}
           <section className="flex flex-col col-span-1 md:col-span-2 lg:col-span-1 gap-2">
             <h2 className="text-xl md:text-2xl">Contact Me</h2>
-            <ContactForm />
+            <CreateContactRequestForm />
           </section>
         </div>
       </div>

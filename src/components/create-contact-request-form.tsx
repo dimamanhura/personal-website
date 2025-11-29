@@ -3,13 +3,13 @@
 import { Chip, Input, Textarea } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 import * as actions from '@/actions';
-import SubmitButton from "./submit-button";
+import SubmitButton from "@/components/submit-button";
 import { useEffect, useRef, useState } from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
 
-const ContactForm = () => {
+const CreateContactRequestForm = () => {
   const ref = useRef<HTMLFormElement | null>(null);
-  const [formState, action] = useFormState(actions.contactRequest, {
+  const [formState, action] = useFormState(actions.createContactRequest, {
     errors: {},
   });
   const [isSuccessMessageShown, setIsSuccessMessageShown] = useState(false);
@@ -77,4 +77,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default CreateContactRequestForm;

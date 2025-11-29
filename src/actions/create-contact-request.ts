@@ -5,7 +5,6 @@ import { db } from '@/db';
 import * as telegram from '@/telegram';
 import { revalidatePath } from 'next/cache';
 import paths from '@/paths';
-import { redirect } from 'next/navigation';
 
 const createContactRequestSchema = z.object({
   message: z.string().min(3).max(1000),
@@ -23,7 +22,7 @@ interface CreateContactRequestFormState {
   };
 };
 
-export async function contactRequest(
+export async function createContactRequest(
   formState: CreateContactRequestFormState,
   formData: FormData
 ): Promise<CreateContactRequestFormState> {
@@ -52,6 +51,7 @@ export async function contactRequest(
       email: result.data.email,
       name: result.data.name,
     });
+    revalidatePath(paths.contactRequestsAdmin());
   } catch (err: unknown) {
     if (err instanceof Error) {
       return {
@@ -72,14 +72,4 @@ export async function contactRequest(
     success: true,
     errors: {},
   };
-};
-
-export const deleteContactRequest = async (id: string) => {
-  await db.contactRequest.delete({
-    where: {
-      id,
-    },
-  });
-  revalidatePath(paths.contactRequestsAdmin());
-  redirect(paths.contactRequestsAdmin());
 };

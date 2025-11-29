@@ -4,7 +4,7 @@ import { FunctionComponent, useCallback, useMemo } from "react";
 import type { ContactRequest } from "@prisma/client";
 import ItemsTable from "@/components/items-table";
 import TableActions from "@/components/table-actions";
-import { deleteContactRequest } from "@/actions/contact-request";
+import { deleteContactRequest } from "@/actions/delete-contact-request";
 import { Column } from "@/types/Column";
 import paths from "@/paths";
 import ContactRequestStatus from "@/components/contact-request-status";
