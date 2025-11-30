@@ -37,6 +37,15 @@ const paths = {
   feedbackAdmin() {
     return '/admin/feedback';
   },
+  addFeedback() {
+    return '/admin/feedback/new';
+  },
+  feedbackDetails(id: string) {
+    return `/admin/feedback/${id}`;
+  },
+  editFeedback(id: string) {
+    return `/admin/feedback/${id}/edit`;
+  },
   profileAdmin() {
     return '/admin/profile';
   },

@@ -1,16 +1,20 @@
-import Header from "@/components/header";
+import CreateFeedbackForm from "@/components/create-feedback-form";
+import FeedbackOverviewHeader from "@/components/feedback-overview-header";
+import { fetchReviewSections } from "@/db/queries/feedback";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Add feedback',
+  title: 'Feedback - New',
 };
 
-const AddFeedbackPage = async () => {
+const FeedbackAddPage = async () => {
+  const sections = await fetchReviewSections();
   return (
     <>
-      <Header title="Add feedback" />
+      <FeedbackOverviewHeader withEdit={false} withDelete={false} />
+      <CreateFeedbackForm sections={sections} />
     </>
   );
-}
+};
 
-export default AddFeedbackPage;
+export default FeedbackAddPage;

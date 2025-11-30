@@ -25,7 +25,7 @@ const FeedbackPage = async () => {
               <div className="w-full flex flex-col gap-4">
                 {reviewsBySection.reviews.map(feedback => (
                   <FeedbackCard
-                    feedback={feedback}
+                    feedback={{ ...feedback, feedbackSection: reviewsBySection }}
                     key={feedback.id}
                   />
                 ))}

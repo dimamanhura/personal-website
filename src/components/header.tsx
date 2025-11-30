@@ -1,13 +1,16 @@
 interface HeaderProps {
   title: string;
-}
+  renderActions?: () => JSX.Element;
+};
 
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title, renderActions }: HeaderProps) => {
   return (
-    <div className="flex flex-col gap-6 mb-6">
+    <div className="flex justify-between align-top gap-6 mb-6">
       <h1 className="text-2xl">
         {title}
       </h1>
+
+      {renderActions && renderActions()}
     </div>
   );
 };

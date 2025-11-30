@@ -1,6 +1,9 @@
 export { createContactRequest } from './create-contact-request';
 export { editContactRequest } from './edit-contact-request';
 export { deleteContactRequest } from './delete-contact-request';
+export { deleteFeedback } from './delete-feedback';
+export { editFeedback } from './edit-feedback';
+export { createFeedback } from './create-feedback';
 export { signInWithCredentials } from './sign-in';
 export { signUpUser } from './sign-up';
 export { signOutUser } from './sign-out';

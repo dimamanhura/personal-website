@@ -2,20 +2,19 @@
 
 import { z } from 'zod';
 import { db } from '@/db';
-import { editContactRequestSchema } from '@/types/EditContactRequestSchema';
+import { contactRequestInputSchema } from '@/types/ContactRequestInputSchema';
 import { formatErrors } from '@/utils/format-errors';
 import { revalidatePath } from 'next/cache';
 import paths from '@/paths';
-import { redirect } from 'next/navigation';
 
 interface EditContactRequestFormState {
   success?: boolean;
   message?: string;
 };
 
-export async function editContactRequest(id: string, contactRequest: z.infer<typeof editContactRequestSchema>): Promise<EditContactRequestFormState> {
+export async function editContactRequest(id: string, contactRequest: z.infer<typeof contactRequestInputSchema>): Promise<EditContactRequestFormState> {
   try {
-    const result = editContactRequestSchema.parse({
+    const result = contactRequestInputSchema.parse({
       resolution: contactRequest.resolution,
       resolved: contactRequest.resolved,
       message: contactRequest.message,

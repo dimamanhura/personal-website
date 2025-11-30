@@ -1,22 +1,22 @@
 'use client';
 
 import { useTransition } from "react";
+import { z } from "zod";
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Checkbox, Input, Textarea } from "@nextui-org/react";
 import { toast } from "sonner";
 import * as actions from '@/actions';
 import { ContactRequest } from "@prisma/client";
-import { z } from "zod";
-import { editContactRequestSchema } from "@/types/EditContactRequestSchema";
+import { contactRequestInputSchema } from "@/types/ContactRequestInputSchema";
 
 interface EditContactRequestFormProps {
   contactRequest: ContactRequest;
 };
 
 const EditContactRequestForm = ({ contactRequest }: EditContactRequestFormProps) => {
-  const form = useForm<z.infer<typeof editContactRequestSchema>>({
-    resolver: zodResolver(editContactRequestSchema),
+  const form = useForm<z.infer<typeof contactRequestInputSchema>>({
+    resolver: zodResolver(contactRequestInputSchema),
     defaultValues: {
       resolution: contactRequest.resolution || '',
       resolved: !!contactRequest.resolved,
@@ -28,7 +28,7 @@ const EditContactRequestForm = ({ contactRequest }: EditContactRequestFormProps)
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof editContactRequestSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<z.infer<typeof contactRequestInputSchema>> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editContactRequest(contactRequest.id, values);
 
@@ -126,7 +126,7 @@ const EditContactRequestForm = ({ contactRequest }: EditContactRequestFormProps)
           )}
         />
 
-        <Button className="max-w-fit" type="submit" color="primary" disabled={isPending} variant="flat">
+        <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
           {isPending ? 'Loading...' : 'Save'}
         </Button>
       </div>

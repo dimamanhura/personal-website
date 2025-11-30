@@ -1,17 +1,49 @@
+import FeedbackTable from "@/components/feedback-table";
 import Header from "@/components/header";
+import { fetchReviews } from "@/db/queries/feedback";
+import paths from "@/paths";
+import { Order } from "@/types/Order";
+import { Button } from "@nextui-org/react";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: 'Feedback',
 };
 
-const FeedbackAdminPage = async () => {
+interface FeedbackAdminPageProps {
+  searchParams: Promise<{
+    page?: string;
+    sortBy?: string;
+    order?: Order; 
+  }>
+};
+
+const FeedbackAdminPage = async ({ searchParams }: FeedbackAdminPageProps) => {
+  const { page, sortBy, order } = await searchParams;
+
+  const { count, items } = await fetchReviews({
+    orderBy: sortBy && order ? { column: sortBy, direction: order } : undefined,
+    page: page ? parseInt(page) : 1,
+  });
 
   return (
     <>
-      <Header title="Feedback" />
+      <Header
+        title={metadata.title as string}
+        renderActions={() => (
+          <Button color="primary" variant="flat" as={Link} href={paths.addFeedback()}>
+            Add Feedback
+          </Button>
+        )}
+      />
+
+      <FeedbackTable
+        items={items}
+        count={count}
+      />
     </>
   );
-}
+};
 
 export default FeedbackAdminPage;

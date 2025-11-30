@@ -1,8 +1,8 @@
-import { Feedback } from "@prisma/client";
 import FeedbackCard from "./feedback-card";
+import { ReviewWithFeedbackSection } from "@/db/queries/feedback";
 
 interface FeaturedReviewsListProps {
-  featuredReviews: Feedback[];
+  featuredReviews: ReviewWithFeedbackSection[];
 };
 
 const FeaturedReviewsList = ({ featuredReviews }: FeaturedReviewsListProps) => {
