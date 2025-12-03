@@ -4,18 +4,18 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import EditItemButton from "@/components/edit-item-button";
 import DeleteItemButton from "@/components/delete-item-button";
-import { deleteFeedback } from "@/actions/delete-feedback";
-import { ItemOverviewHeaderProps } from "@/types/ItemOverviewHeaderProps";
 import paths from "@/paths";
+import { ItemOverviewHeaderProps } from "@/types/ItemOverviewHeaderProps";
+import { deleteAchievement } from "@/actions/delete-achievement";
 
-const FeedbackOverviewHeader = ({
+const AchievementOverviewHeader = ({
   withDelete = true,
   withEdit = true,
   itemId,
 }: ItemOverviewHeaderProps) => {
   return (
     <div className="flex justify-between mb-6">
-      <Link className="flex underline items-center text-blue-500" href={paths.feedbackAdmin()}>
+      <Link className="flex underline items-center text-blue-500" href={paths.achievementsAdmin()}>
         <FaArrowLeft className="mr-1" />
         Back
       </Link>
@@ -24,13 +24,13 @@ const FeedbackOverviewHeader = ({
         {withEdit && itemId && (
           <EditItemButton
             isIconOnly={false}
-            path={paths.editFeedback(itemId)}
+            path={paths.editAchievement(itemId)}
           />
         )}
         {withDelete && itemId && (
           <DeleteItemButton
             isIconOnly={false}
-            onDelete={() => deleteFeedback(itemId)}
+            onDelete={() => deleteAchievement(itemId)}
           />
         )}
       </div>
@@ -38,4 +38,4 @@ const FeedbackOverviewHeader = ({
   );
 }
 
-export default FeedbackOverviewHeader;
+export default AchievementOverviewHeader;

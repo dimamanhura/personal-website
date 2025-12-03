@@ -16,14 +16,7 @@ const AchievementsPage = async () => {
       <Header title="Challenges & Achievements" />
       <div className="w-full flex flex-col gap-4">
         {items.map(achievement => (
-          <AchievementCard
-            description={achievement.description}
-            title={achievement.title}
-            solution={achievement.solution}
-            result={achievement.result}
-            notes={achievement.notes}
-            key={achievement.id}
-          />
+          <AchievementCard {...achievement} key={achievement.id} />
         ))}
       </div>
     </>

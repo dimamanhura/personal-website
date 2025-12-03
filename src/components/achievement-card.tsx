@@ -1,7 +1,10 @@
 import ItemsList from "@/components/items-list";
+import FeaturedFlag from "./featured-flag";
 
 interface AchievementCardProps {
+  withFeaturedFlag?: boolean;
   description: string;
+  featured?: boolean;
   title: string;
   solution?: string[];
   result?: string[];
@@ -9,7 +12,9 @@ interface AchievementCardProps {
 };
 
 const AchievementCard = ({
+  withFeaturedFlag,
   description,
+  featured,
   title,
   solution,
   result,
@@ -17,9 +22,15 @@ const AchievementCard = ({
 }: AchievementCardProps) => {
   return (
     <div className="w-full flex flex-col gap-2 py-4 px-6 bg-zinc-100 dark:bg-zinc-800 rounded-lg">
-      <h3 className="font-medium text-xl">
-        {title}
-      </h3>
+      <div className="flex justify-between">
+        <h3 className="font-medium text-xl">
+          {title}
+        </h3>
+        {withFeaturedFlag && (
+          <FeaturedFlag featured={!!(featured)} />
+        )}
+      </div>
+      
       <p className="text-sm">
         {description}
       </p>

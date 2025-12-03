@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import FeedbackOverviewHeader from "@/components/feedback-overview-header";
 import AchievementCard from "@/components/achievement-card";
 import { fetchAchievementById } from "@/db/queries/achievements";
+import AchievementOverviewHeader from "@/components/achievement-overview-header";
 
 interface AchievementShowPageProps {
   params: {
@@ -25,8 +25,8 @@ const AchievementShowPage = async ({ params }: AchievementShowPageProps) => {
 
   return (
     <>
-      <FeedbackOverviewHeader itemId={params.id} />
-      <AchievementCard {...achievement} />
+      <AchievementOverviewHeader itemId={params.id} />
+      <AchievementCard {...achievement} withFeaturedFlag />
     </>
   );
 };

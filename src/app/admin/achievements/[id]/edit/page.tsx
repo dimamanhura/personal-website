@@ -1,5 +1,5 @@
+import AchievementOverviewHeader from "@/components/achievement-overview-header";
 import EditFeedbackForm from "@/components/edit-feedback-form";
-import FeedbackOverviewHeader from "@/components/feedback-overview-header";
 import { fetchFeedbackById, fetchReviewSections } from "@/db/queries/feedback";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -25,14 +25,8 @@ const FeedbackEditPage = async ({ params }: FeedbackEditPageProps) => {
 
   return (
     <>
-      <FeedbackOverviewHeader
-        withEdit={false}
-        itemId={params.id}
-      />
-      <EditFeedbackForm
-        feedback={feedback}
-        sections={sections}
-      />
+      <AchievementOverviewHeader withEdit={false} itemId={params.id} />
+      <EditFeedbackForm feedback={feedback} sections={sections} />
     </>
   );
 };
