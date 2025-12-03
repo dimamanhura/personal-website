@@ -6,10 +6,10 @@ import TableActions from "@/components/table-actions";
 import { Column } from "@/types/Column";
 import paths from "@/paths";
 import TruncatedText from "./truncated-text";
-import { deleteFeedback } from "@/actions/delete-feedback";
 import FeaturedFlag from "./featured-flag";
 import { Achievement } from "@prisma/client";
 import ItemsCount from "./ItemsCount";
+import { deleteAchievement } from "@/actions";
 
 interface AchievementsTableProps {
   items: Achievement[];
@@ -42,7 +42,7 @@ const AchievementsTable: FunctionComponent<AchievementsTableProps> = ({
           showPath={paths.achievementsDetails}
           editPath={paths.editAchievement}
           itemId={achievement.id}
-          onDelete={deleteFeedback}
+          onDelete={deleteAchievement}
         />
       );
     }

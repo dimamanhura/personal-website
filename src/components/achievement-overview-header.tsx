@@ -6,7 +6,7 @@ import EditItemButton from "@/components/edit-item-button";
 import DeleteItemButton from "@/components/delete-item-button";
 import paths from "@/paths";
 import { ItemOverviewHeaderProps } from "@/types/ItemOverviewHeaderProps";
-import { deleteAchievement } from "@/actions/delete-achievement";
+import { deleteAchievement } from "@/actions";
 
 const AchievementOverviewHeader = ({
   withDelete = true,

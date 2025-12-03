@@ -102,7 +102,7 @@ const EditContactRequestForm = ({ contactRequest }: EditContactRequestFormProps)
                 </Checkbox>
             
                 {fieldState.error && (
-                  <span className="text-danger text-small">
+                  <span className="text-danger text-tiny">
                     {fieldState.error?.message}
                   </span>
                 )}

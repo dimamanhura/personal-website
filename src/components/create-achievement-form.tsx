@@ -4,40 +4,38 @@ import { useTransition } from "react";
 import { z } from "zod";
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
+import { Button, Checkbox, Input, Textarea } from "@nextui-org/react";
 import { toast } from "sonner";
 import * as actions from '@/actions';
-import { feedbackInputSchema } from "@/types/FeedbackInputSchema";
-import { FeedbackSection } from "@prisma/client";
+import { achievementInputSchema } from "@/types/AchievementInputSchema";
 import { useRouter } from "next/navigation";
 import paths from "@/paths";
+import MultiItemField from "./MultuItemField";
 
-interface CreateFeedbackFormProps {
-  sections: FeedbackSection[];
-};
-
-const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
+const CreateAchievementForm = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof feedbackInputSchema>>({
-    resolver: zodResolver(feedbackInputSchema),
+
+  const form = useForm<z.infer<typeof achievementInputSchema>>({
+    resolver: zodResolver(achievementInputSchema),
     defaultValues: {
-      createdAt: undefined,
+      title: '',
+      description: '',
+      notes: [],
+      result: [],
+      solution: [],
       featured: false,
-      section: undefined,
-      author: '',
-      review: '',
     },
   });
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof feedbackInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<z.infer<typeof achievementInputSchema>> = async (values) => {
     startTransition(async () => {
-      const { success, message, id } = await actions.createFeedback(values);
+      const { success, message, id } = await actions.createAchievement(values);
 
       if (success && id) {
         toast.success('Successfully created');
-        router.push(paths.feedbackDetails(id));
+        router.push(paths.achievementsDetails(id));
       } else {
         toast.error(message);
       }
@@ -49,65 +47,48 @@ const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
       <div className="text-xs flex flex-col gap-4 w-full rounded-md">
         <Controller
           control={form.control}
-          name="author"
+          name="title"
           render={({ field, fieldState }) => (
             <Input
               {...field}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
-              placeholder="Author"
-              label="Author"
+              placeholder="Title"
+              label="Title"
             />
           )}
         />
-
+  
         <Controller
           control={form.control}
-          name="section"
-          render={({ field, fieldState }) => (
-            <Select
-              {...field}
-              isInvalid={!!fieldState.error}
-              errorMessage={fieldState.error?.message}
-              placeholder="Section"
-              label="Section"
-            >
-              {sections.map(section => (
-                <SelectItem key={section.type} value={section.type}>
-                  {section.title}
-                </SelectItem>
-              ))}
-            </Select>
-          )}
-        />
-
-        <Controller
-          control={form.control}
-          name="createdAt"
-          render={({ field, fieldState }) => (
-            <Input
-              {...field}
-              isInvalid={!!fieldState.error}
-              errorMessage={fieldState.error?.message}
-              placeholder="Created At"
-              label="Created At"
-              type="date"
-            />
-          )}
-        />
-
-        <Controller
-          control={form.control}
-          name="review"
+          name="description"
           render={({ field, fieldState }) => (
             <Textarea
               {...field}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
-              placeholder="Review"
-              label="Review"
+              placeholder="Description"
+              label="Description"
             />
           )}
+        />
+
+        <MultiItemField
+          label="Solution"
+          name="solution"
+          form={form} 
+        />
+
+        <MultiItemField
+          label="Result"
+          name="result"
+          form={form}
+        />
+
+        <MultiItemField
+          label="Notes"
+          name="notes"
+          form={form}
         />
 
         <Controller
@@ -139,4 +120,4 @@ const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
   );
 };
 
-export default CreateFeedbackForm;
+export default CreateAchievementForm;
