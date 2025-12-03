@@ -2,7 +2,7 @@ import FeedbackTable from "@/components/feedback-table";
 import Header from "@/components/header";
 import { fetchReviews } from "@/db/queries/feedback";
 import paths from "@/paths";
-import { Order } from "@/types/Order";
+import { SearchParams } from "@/types/SearchParams";
 import { Button } from "@nextui-org/react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -12,11 +12,7 @@ export const metadata: Metadata = {
 };
 
 interface FeedbackAdminPageProps {
-  searchParams: Promise<{
-    page?: string;
-    sortBy?: string;
-    order?: Order; 
-  }>
+  searchParams: Promise<SearchParams>
 };
 
 const FeedbackAdminPage = async ({ searchParams }: FeedbackAdminPageProps) => {

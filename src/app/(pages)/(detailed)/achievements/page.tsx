@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 };
 
 const AchievementsPage = async () => {
-  const achievements = await fetchAchievements();
+  const { items } = await fetchAchievements({ all: true });
   return (
     <>
       <Header title="Challenges & Achievements" />
       <div className="w-full flex flex-col gap-4">
-        {achievements.map(achievement => (
+        {items.map(achievement => (
           <AchievementCard
             description={achievement.description}
             title={achievement.title}

@@ -1,6 +1,6 @@
 'use client'
 
-import { FunctionComponent, useCallback, useMemo } from "react";
+import { FunctionComponent, useCallback } from "react";
 import type { ContactRequest } from "@prisma/client";
 import ItemsTable from "@/components/items-table";
 import TableActions from "@/components/table-actions";
@@ -15,50 +15,55 @@ interface ContactRequestsTableProps {
   count: number;
 };
 
+type ContactRequestKey = Extract<keyof ContactRequest, string>;
+
+type ColumnKey = ContactRequestKey | 'actions';
+
+const columns: Column<ColumnKey>[] = [
+  { key: 'id', label: 'ID', allowsSorting: true },
+  { key: 'name', label: 'Name', allowsSorting: true },
+  { key: 'email', label: 'Email', allowsSorting: true },
+  { key: 'message', label: 'Message', allowsSorting: true },
+  { key: 'createdAt', label: 'Requested At', allowsSorting: true },
+  { key: 'resolved', label: 'Resolved', allowsSorting: true },
+  { key: 'resolution', label: 'Resolution', allowsSorting: true },
+  { key: "actions", label: "Actions", allowsSorting: false },
+];
+
 const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
   items,
   count,
 }) => {
-  const title = 'Contact Requests';
-
-  const columns: Column[] = useMemo(() => ([
-    { key: 'id', label: 'ID', allowsSorting: true },
-    { key: 'name', label: 'Name', allowsSorting: true },
-    { key: 'email', label: 'Email', allowsSorting: true },
-    { key: 'message', label: 'Message', allowsSorting: true },
-    { key: 'createdAt', label: 'Requested At', allowsSorting: true },
-    { key: 'resolved', label: 'Resolved', allowsSorting: true },
-    { key: 'resolution', label: 'Resolution', allowsSorting: true },
-    { key: "actions", label: "Actions", allowsSorting: false },
-  ]), []);
-
-  const renderCell = useCallback((contactRequest: any, columnKey: any) => {
-    const cellValue = contactRequest[columnKey];
+  const renderCell = useCallback((contactRequest: ContactRequest, columnKey: ColumnKey) => {
+    if (columnKey === 'actions') {
+      return (
+        <TableActions
+          showPath={paths.contactRequestDetails}
+          editPath={paths.editContactRequest}
+          itemId={contactRequest.id}
+          onDelete={deleteContactRequest}
+        />
+      );
+    }
 
     switch (columnKey) {
       case 'id':
+        return <TruncatedText text={contactRequest.id} />;
+      
       case 'message':
+        return <TruncatedText text={contactRequest.message} />;
+
       case 'resolution':
-        return <TruncatedText text={cellValue} />;
+        return <TruncatedText text={contactRequest.resolution} />;
       
       case 'createdAt':
-        return cellValue.toLocaleDateString();
+        return contactRequest.createdAt.toLocaleDateString();
 
       case 'resolved':
-        return <ContactRequestStatus resolved={cellValue} />;
-
-      case 'actions':
-        return (
-          <TableActions
-            showPath={paths.contactRequestDetails}
-            editPath={paths.editContactRequest}
-            itemId={contactRequest.id}
-            onDelete={deleteContactRequest}
-          />
-        );
+        return <ContactRequestStatus resolved={contactRequest.resolved} />;
 
       default:
-        return cellValue;
+        return contactRequest[columnKey];
     }
   }, []);
 
@@ -66,9 +71,9 @@ const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
     <ItemsTable
       items={items}
       count={count}
-      title={title}
+      title={'Contact Requests'}
       columns={columns}
-      renderCell={renderCell}
+      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
     />
   );
 };

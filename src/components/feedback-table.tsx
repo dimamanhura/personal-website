@@ -1,6 +1,6 @@
 'use client'
 
-import { FunctionComponent, useCallback, useMemo } from "react";
+import { FunctionComponent, useCallback } from "react";
 import ItemsTable from "@/components/items-table";
 import TableActions from "@/components/table-actions";
 import { Column } from "@/types/Column";
@@ -15,48 +15,51 @@ interface FeedbackTableProps {
   count: number;
 };
 
+type FeedbackKey = Extract<keyof ReviewWithFeedbackSection, string>;
+
+type ColumnKey = FeedbackKey | 'actions';
+
+const columns: Column<ColumnKey>[] = [
+  { key: 'id', label: 'ID', allowsSorting: true },
+  { key: 'author', label: 'Author', allowsSorting: true },
+  { key: 'feedbackSection', label: 'Section', allowsSorting: false },
+  { key: 'review', label: 'Review', allowsSorting: true },
+  { key: 'createdAt', label: 'Requested At', allowsSorting: true },
+  { key: 'featured', label: 'Featured', allowsSorting: true },
+  { key: "actions", label: "Actions", allowsSorting: false },
+];
+
 const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({
   items,
   count,
 }) => {
-  const title = 'Feedback';
-
-  const columns: Column[] = useMemo(() => ([
-    { key: 'id', label: 'ID', allowsSorting: true },
-    { key: 'author', label: 'Author', allowsSorting: true },
-    { key: 'feedbackSection', label: 'Section', allowsSorting: false },
-    { key: 'review', label: 'Review', allowsSorting: true },
-    { key: 'createdAt', label: 'Requested At', allowsSorting: true },
-    { key: 'featured', label: 'Featured', allowsSorting: true },
-    { key: "actions", label: "Actions", allowsSorting: false },
-  ]), []);
-  
-  const renderCell = useCallback((feedback: any, columnKey: any) => {
-    const cellValue = feedback[columnKey];
+  const renderCell = useCallback((feedback: ReviewWithFeedbackSection, columnKey: ColumnKey) => {
+    if (columnKey === 'actions') {
+      return (
+        <TableActions
+          showPath={paths.feedbackDetails}
+          editPath={paths.editFeedback}
+          itemId={feedback.id}
+          onDelete={deleteFeedback}
+        />
+      );
+    }
 
     switch (columnKey) {
       case 'id':
+        return <TruncatedText text={feedback.id} />;
+      
       case 'review':
-        return <TruncatedText text={cellValue} />;
+        return <TruncatedText text={feedback.review} />;
 
       case 'feedbackSection':
-        return cellValue.title;
+        return feedback.feedbackSection.title;
 
       case 'featured':
-        return <FeaturedFlag featured={cellValue} />;
-
-      case 'actions':
-        return (
-          <TableActions
-            showPath={paths.feedbackDetails}
-            editPath={paths.editFeedback}
-            itemId={feedback.id}
-            onDelete={deleteFeedback}
-          />
-        );
+        return <FeaturedFlag featured={feedback.featured} />;
 
       default:
-        return cellValue;
+        return feedback[columnKey];
     }
   }, []);
 
@@ -64,9 +67,9 @@ const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({
     <ItemsTable
       items={items}
       count={count}
-      title={title}
+      title={'Feedback'}
       columns={columns}
-      renderCell={renderCell}
+      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
     />
   );
 };

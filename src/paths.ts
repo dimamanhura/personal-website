@@ -19,6 +19,15 @@ const paths = {
   achievementsAdmin() {
     return '/admin/achievements';
   },
+  addAchievement() {
+    return '/admin/achievements/new';
+  },
+  achievementsDetails(id: string) {
+    return `/admin/achievements/${id}`;
+  },
+  editAchievement(id: string) {
+    return `/admin/achievements/${id}/edit`;
+  },
   companiesAdmin() {
     return '/admin/companies';
   },

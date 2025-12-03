@@ -1,5 +1,5 @@
-export interface Column {
-  key: string;
+export interface Column<T> {
+  key: T;
   label: string;
   allowsSorting: boolean;
 };

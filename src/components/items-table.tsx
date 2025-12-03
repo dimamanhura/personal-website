@@ -18,8 +18,8 @@ interface ItemsTableProps {
   items: any[];
   count: number;
   title: string;
-  columns: Column[];
-  renderCell: (item: any, columnKey: number | string) => JSX.Element | JSX.Element[]; 
+  columns: Column<any>[];
+  renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[]; 
 };
  
 const ItemsTable: FunctionComponent<ItemsTableProps> = ({
@@ -79,7 +79,7 @@ const ItemsTable: FunctionComponent<ItemsTableProps> = ({
       )}
     >
       <TableHeader>
-        {columns.map((column: Column) =>
+        {columns.map((column: Column<any>) =>
           <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
             {column.label}
           </TableColumn>

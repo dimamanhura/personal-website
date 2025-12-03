@@ -1,16 +1,20 @@
-import Header from "@/components/header";
+import CreateFeedbackForm from "@/components/create-feedback-form";
+import FeedbackOverviewHeader from "@/components/feedback-overview-header";
+import { fetchReviewSections } from "@/db/queries/feedback";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Add achievement',
+  title: 'Feedback - New',
 };
 
-const AddAchievementPage = async () => {
+const FeedbackAddPage = async () => {
+  const sections = await fetchReviewSections();
   return (
     <>
-      <Header title="Add achievement" />
+      <FeedbackOverviewHeader withEdit={false} withDelete={false} />
+      <CreateFeedbackForm sections={sections} />
     </>
   );
-}
+};
 
-export default AddAchievementPage;
+export default FeedbackAddPage;

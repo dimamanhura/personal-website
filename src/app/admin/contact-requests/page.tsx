@@ -1,7 +1,7 @@
 import ContactRequestsTable from "@/components/contact-requests-table";
 import Header from "@/components/header";
 import { fetchContactRequests } from "@/db/queries/contact-requests";
-import { Order } from "@/types/Order";
+import { SearchParams } from "@/types/SearchParams";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,11 +9,7 @@ export const metadata: Metadata = {
 };
 
 interface ContactRequestsAdminPageProps {
-  searchParams: Promise<{
-    page?: string;
-    sortBy?: string;
-    order?: Order; 
-  }>
+  searchParams: Promise<SearchParams>
 };
 
 const ContactRequestsAdminPage = async ({ searchParams }: ContactRequestsAdminPageProps) => {
