@@ -1,16 +1,17 @@
-import { Header } from "@/components";
+import { AchievementOverviewHeader, CreateAchievementForm } from "@/components";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Add technology',
+  title: 'Achievement - New',
 };
 
-const AddTechnologyPage = async () => {
+const AchievementAddPage = () => {
   return (
     <>
-      <Header title="Add technology" />
+      <AchievementOverviewHeader withEdit={false} withDelete={false} />
+      <CreateAchievementForm />
     </>
   );
-}
+};
 
-export default AddTechnologyPage;
+export default AchievementAddPage;

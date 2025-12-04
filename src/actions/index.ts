@@ -17,3 +17,6 @@ export { createFeedback } from './feedback/create-feedback';
 export { signInWithCredentials } from './auth/sign-in';
 export { signUpUser } from './auth/sign-up';
 export { signOutUser } from './auth/sign-out';
+
+// technologies
+export { deleteTechnology } from './technologies/delete-technology'

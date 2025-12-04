@@ -64,6 +64,15 @@ const paths = {
   technologiesAdmin() {
     return '/admin/technologies';
   },
+  addTechnology() {
+    return '/admin/technologies/new';
+  },
+  technologyDetails(id: string) {
+    return `/admin/technologies/${id}`;
+  },
+  editTechnology(id: string) {
+    return `/admin/technologies/${id}/edit`;
+  },
   technologySectionsAdmin() {
     return '/admin/technology-sections';
   },

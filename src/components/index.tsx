@@ -26,6 +26,9 @@ export { FeedbackCard } from './feedback/feedback-card'
 export { FeedbackOverviewHeader } from './feedback/feedback-overview-header';
 export { FeedbackTable } from './feedback/feedback-table';
 
+// technologies
+export { TechnologiesTable } from './technologies/technologies-table'
+
 export { Banner } from './banner';
 export { ChipsList } from './chips-list';
 export { CompaniesList } from './companies-list';
