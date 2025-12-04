@@ -10,7 +10,7 @@ interface EditItemButtonProps {
   path: string;
 };
 
-const EditItemButton: FunctionComponent<EditItemButtonProps> = ({
+export const EditItemButton: FunctionComponent<EditItemButtonProps> = ({
   isIconOnly = true,
   path,
 }) => {
@@ -20,5 +20,3 @@ const EditItemButton: FunctionComponent<EditItemButtonProps> = ({
     </Button>
   );
 };
-
-export default EditItemButton;

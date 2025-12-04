@@ -1,5 +1,4 @@
-import Header from "@/components/header";
-import SignificantProjectCard from "@/components/significant-project-card";
+import { SignificantProjectCard, Header } from "@/components";
 import { fetchSignificantProjects } from "@/db/queries/projects";
 import { Metadata } from "next";
 

@@ -6,7 +6,7 @@ interface UniversitiesListProps {
   universities: Education[];
 };
 
-const UniversitiesList = ({ universities }: UniversitiesListProps) => {
+export const UniversitiesList = ({ universities }: UniversitiesListProps) => {
   return universities.map(university => {
     const { title, logo, name, startAt, endAt, id } = university;
     return (
@@ -19,5 +19,3 @@ const UniversitiesList = ({ universities }: UniversitiesListProps) => {
     );
   });
 };
-
-export default UniversitiesList;

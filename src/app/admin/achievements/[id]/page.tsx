@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import AchievementCard from "@/components/achievement-card";
+import { AchievementCard, AchievementOverviewHeader } from "@/components";
 import { fetchAchievementById } from "@/db/queries/achievements";
-import AchievementOverviewHeader from "@/components/achievement-overview-header";
 
 interface AchievementShowPageProps {
   params: {

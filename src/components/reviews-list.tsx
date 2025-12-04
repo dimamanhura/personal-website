@@ -1,11 +1,11 @@
-import FeedbackCard from "./feedback-card";
+import { FeedbackCard } from "@/components";
 import { ReviewWithFeedbackSection } from "@/db/queries/feedback";
 
-interface FeaturedReviewsListProps {
+interface ReviewListProps {
   featuredReviews: ReviewWithFeedbackSection[];
 };
 
-const FeaturedReviewsList = ({ featuredReviews }: FeaturedReviewsListProps) => {
+export const ReviewList = ({ featuredReviews }: ReviewListProps) => {
   return featuredReviews.map(feedback => {
     return (
       <FeedbackCard
@@ -15,5 +15,3 @@ const FeaturedReviewsList = ({ featuredReviews }: FeaturedReviewsListProps) => {
     );
   });
 };
-
-export default FeaturedReviewsList;

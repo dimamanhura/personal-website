@@ -5,7 +5,7 @@ interface TechnologiesSectionsListProps {
   technologiesSections: TechnologySectionWithTechnologies[];
 };
 
-const TechnologiesSectionsList = ({ technologiesSections }: TechnologiesSectionsListProps) => {
+export const TechnologiesSectionsList = ({ technologiesSections }: TechnologiesSectionsListProps) => {
   return technologiesSections.map(technologiesSection => {
     const { technologies, title, logo, id } = technologiesSection;
     return (
@@ -18,5 +18,3 @@ const TechnologiesSectionsList = ({ technologiesSections }: TechnologiesSections
     );
   });
 };
-
-export default TechnologiesSectionsList;

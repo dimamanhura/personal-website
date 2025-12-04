@@ -7,7 +7,7 @@ interface SubmitButtonProps {
   children: React.ReactNode;
 };
  
-const SubmitButton = ({ children }: SubmitButtonProps) => {
+export const SubmitButton = ({ children }: SubmitButtonProps) => {
   const status = useFormStatus();
   return (
     <Button type="submit" isDisabled={status.pending}>
@@ -15,5 +15,3 @@ const SubmitButton = ({ children }: SubmitButtonProps) => {
     </Button>
   );
 };
-
-export default SubmitButton;

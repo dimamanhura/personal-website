@@ -9,10 +9,9 @@ import {
   TableRow,
   Table,
 } from "@nextui-org/react";
-import { Column } from '@/types/Column';
-import TablePagination from './table-pagination';
+import { Column, Sort } from '@/types';
+import { TablePagination } from '@/components';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Sort } from '@/types/Sort';
 
 interface ItemsTableProps {
   items: any[];
@@ -22,7 +21,7 @@ interface ItemsTableProps {
   renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[]; 
 };
  
-const ItemsTable: FunctionComponent<ItemsTableProps> = ({
+export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
   columns,
   items,
   count,
@@ -96,5 +95,3 @@ const ItemsTable: FunctionComponent<ItemsTableProps> = ({
     </Table>
   );
 };
-
-export default ItemsTable;

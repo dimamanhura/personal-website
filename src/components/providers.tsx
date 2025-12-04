@@ -8,7 +8,7 @@ interface ProvidersProps {
   children: React.ReactNode;
 };
 
-const Providers = ({ children }: ProvidersProps) => {
+export const Providers = ({ children }: ProvidersProps) => {
   return (
     <SessionProvider>
       <NextUIProvider>
@@ -19,5 +19,3 @@ const Providers = ({ children }: ProvidersProps) => {
     </SessionProvider>
   );
 };
-
-export default Providers;

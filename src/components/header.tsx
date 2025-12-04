@@ -3,7 +3,7 @@ interface HeaderProps {
   renderActions?: () => JSX.Element;
 };
 
-const Header = ({ title, renderActions }: HeaderProps) => {
+export const Header = ({ title, renderActions }: HeaderProps) => {
   return (
     <div className="flex justify-between align-top gap-6 mb-6">
       <h1 className="text-2xl">
@@ -14,5 +14,3 @@ const Header = ({ title, renderActions }: HeaderProps) => {
     </div>
   );
 };
-
-export default Header;

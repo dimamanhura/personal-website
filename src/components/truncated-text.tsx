@@ -8,7 +8,7 @@ interface TruncatedTextProps {
   maxLength?: number;
 };
 
-const TruncatedText = ({ text, maxLength }: TruncatedTextProps) => {
+export const TruncatedText = ({ text, maxLength }: TruncatedTextProps) => {
   if (!text) {
     return (
       <span>N/A</span>
@@ -23,5 +23,3 @@ const TruncatedText = ({ text, maxLength }: TruncatedTextProps) => {
     </Tooltip>
   );
 };
-
-export default TruncatedText;

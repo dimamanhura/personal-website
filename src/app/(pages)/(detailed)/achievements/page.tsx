@@ -1,5 +1,4 @@
-import AchievementCard from "@/components/achievement-card";
-import Header from "@/components/header";
+import { AchievementCard, Header } from "@/components";
 import { fetchAchievements } from "@/db/queries/achievements";
 import { Metadata } from "next";
 

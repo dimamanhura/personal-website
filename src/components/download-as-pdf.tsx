@@ -3,7 +3,7 @@
 import { Button } from "@nextui-org/react";
 import { FaFilePdf } from "react-icons/fa";
 
-const DownloadAsPdf = () => {
+export const DownloadAsPdf = () => {
   const handleDownload = () => {
     window.print();
   };
@@ -20,5 +20,3 @@ const DownloadAsPdf = () => {
     </Button>
   );
 };
-
-export default DownloadAsPdf;

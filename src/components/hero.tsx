@@ -1,13 +1,12 @@
 import { Avatar } from "@nextui-org/react";
-import Contacts from "@/components/contacts";
+import { Contacts, DownloadAsPdf } from "@/components";
 import { Meta } from "@prisma/client";
-import DownloadAsPdf from "./download-as-pdf";
 
 interface HeroProps {
   meta: Meta;
 }
 
-const Hero = ({ meta }: HeroProps) => {
+export const Hero = ({ meta }: HeroProps) => {
   return (
     <>
       <div className="w-full relative flex flex-col lg:flex-row justify-center items-center gap-4 py-6 px-6 bg-zinc-100 dark:bg-zinc-800">
@@ -39,5 +38,3 @@ const Hero = ({ meta }: HeroProps) => {
     </>
   );
 };
-
-export default Hero;

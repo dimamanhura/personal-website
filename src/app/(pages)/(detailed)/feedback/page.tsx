@@ -1,6 +1,5 @@
 import { fetchReviewsBySection } from "@/db/queries/feedback";
-import FeedbackCard from "@/components/feedback-card";
-import Header from "@/components/header";
+import { FeedbackCard, Header } from "@/components";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

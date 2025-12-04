@@ -1,34 +1,31 @@
-import AchievementOverviewHeader from "@/components/achievement-overview-header";
-import EditFeedbackForm from "@/components/edit-feedback-form";
-import { fetchFeedbackById, fetchReviewSections } from "@/db/queries/feedback";
+import { AchievementOverviewHeader, EditAchievementForm } from "@/components";
+import { fetchAchievementById } from "@/db/queries/achievements";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-interface FeedbackEditPageProps {
+interface AchievementEditPageProps {
   params: { id: string };
 };
 
-export function generateMetadata({ params: { id } }: FeedbackEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: AchievementEditPageProps): Metadata {
   return {
-    title: `Feedback - Edit - ${id}`,
+    title: `Achievement - Edit - ${id}`,
   };
 };
 
-const FeedbackEditPage = async ({ params }: FeedbackEditPageProps) => {
-  const feedback = await fetchFeedbackById(params.id);
+const AchievementEditPage = async ({ params }: AchievementEditPageProps) => {
+  const achievement = await fetchAchievementById(params.id);
 
-  if (!feedback) {
+  if (!achievement) {
     return notFound();
   }
-
-  const sections = await fetchReviewSections();
 
   return (
     <>
       <AchievementOverviewHeader withEdit={false} itemId={params.id} />
-      <EditFeedbackForm feedback={feedback} sections={sections} />
+      <EditAchievementForm achievement={achievement} />
     </>
   );
 };
 
-export default FeedbackEditPage;
+export default AchievementEditPage;

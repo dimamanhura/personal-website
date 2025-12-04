@@ -8,7 +8,7 @@ interface SectionProps {
   link?: string;
 };
 
-const Section = ({
+export const Section = ({
   children,
   title,
   link,
@@ -52,5 +52,3 @@ const Section = ({
     </section>
   );
 };
-
-export default Section;

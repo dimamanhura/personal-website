@@ -10,7 +10,7 @@ interface ShowItemButtonProps {
   path: string;
 };
 
-const ShowItemButton: FunctionComponent<ShowItemButtonProps> = ({
+export const ShowItemButton: FunctionComponent<ShowItemButtonProps> = ({
   isIconOnly = true,
   path,
 }) => {
@@ -20,5 +20,3 @@ const ShowItemButton: FunctionComponent<ShowItemButtonProps> = ({
     </Button>
   );
 };
-
-export default ShowItemButton;

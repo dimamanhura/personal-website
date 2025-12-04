@@ -6,7 +6,7 @@ interface CompaniesListProps {
   companies: Company[];
 };
 
-const CompaniesList = ({ companies }: CompaniesListProps) => {
+export const CompaniesList = ({ companies }: CompaniesListProps) => {
   return companies.map(company => {
     const { position, logo, name, startAt, endAt, id } = company;
     return (
@@ -19,5 +19,3 @@ const CompaniesList = ({ companies }: CompaniesListProps) => {
     );
   });
 };
-
-export default CompaniesList;

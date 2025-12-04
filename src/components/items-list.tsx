@@ -5,7 +5,7 @@ interface ItemsListProps {
   items: string[]
 };
 
-const ItemsList = async ({ title, items }: ItemsListProps) => {
+export const ItemsList = async ({ title, items }: ItemsListProps) => {
   return (
     <div className="flex flex-col gap-2">
       {title && (
@@ -22,5 +22,3 @@ const ItemsList = async ({ title, items }: ItemsListProps) => {
     </div>
   );
 };
-
-export default ItemsList;

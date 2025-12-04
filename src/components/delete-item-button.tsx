@@ -19,7 +19,7 @@ interface DeleteItemButtonProps {
   onDelete: () => Promise<void>;
 };
 
-const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButtonProps) => {
+export const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButtonProps) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [isPending, startTransition] = useTransition();
 
@@ -61,5 +61,3 @@ const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButtonProps
     </>
   );
 };
-
-export default DeleteItemButton;

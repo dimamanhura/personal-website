@@ -1,5 +1,4 @@
-import CreateFeedbackForm from "@/components/create-feedback-form";
-import FeedbackOverviewHeader from "@/components/feedback-overview-header";
+import { CreateFeedbackForm, FeedbackOverviewHeader } from "@/components";
 import { fetchReviewSections } from "@/db/queries/feedback";
 import { Metadata } from "next";
 

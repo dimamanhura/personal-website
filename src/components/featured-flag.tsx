@@ -7,7 +7,7 @@ interface FeatureFlagProps {
   featured: boolean;
 };
 
-const FeaturedFlag: FunctionComponent<FeatureFlagProps> = ({
+export const FeaturedFlag: FunctionComponent<FeatureFlagProps> = ({
   featured,
 }) => {
   return (
@@ -16,5 +16,3 @@ const FeaturedFlag: FunctionComponent<FeatureFlagProps> = ({
     </Chip>
   );
 };
-
-export default FeaturedFlag;

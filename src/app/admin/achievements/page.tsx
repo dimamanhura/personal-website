@@ -1,8 +1,7 @@
-import AchievementsTable from "@/components/achievements-table";
-import Header from "@/components/header";
+import { AchievementsTable, Header } from "@/components";
 import { fetchAchievements } from "@/db/queries/achievements";
 import paths from "@/paths";
-import { SearchParams } from "@/types/SearchParams";
+import { SearchParams } from "@/types";
 import { Button } from "@nextui-org/react";
 import { Metadata } from "next";
 import Link from "next/link";

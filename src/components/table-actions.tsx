@@ -1,9 +1,7 @@
 'use client'
 
 import { FunctionComponent } from "react";
-import DeleteItemButton from "@/components/delete-item-button";
-import EditItemButton from "@/components/edit-item-button";
-import ShowItemButton from "@/components/show-item-button";
+import { DeleteItemButton, EditItemButton, ShowItemButton} from "@/components";
 
 interface TableActionsProps {
   itemId: string;
@@ -12,7 +10,7 @@ interface TableActionsProps {
   onDelete: (itemId: string) => Promise<void>;
 };
 
-const TableActions: FunctionComponent<TableActionsProps> = ({
+export const TableActions: FunctionComponent<TableActionsProps> = ({
   itemId,
   showPath,
   editPath,
@@ -26,5 +24,3 @@ const TableActions: FunctionComponent<TableActionsProps> = ({
     </div>
   );
 };
-
-export default TableActions;

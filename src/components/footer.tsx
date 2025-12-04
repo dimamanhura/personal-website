@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { fetchMeta } from "@/db/queries/meta";
-import CreateContactRequestForm from "@/components/create-contact-request-form";
-import Contacts from "@/components/contacts";
+import { CreateContactRequestForm, Contacts } from "@/components";
 import { pages } from "@/pages";
 
-const Footer = async () => {
+export const Footer = async () => {
   const meta = await fetchMeta();
 
   return (
@@ -42,5 +41,3 @@ const Footer = async () => {
     </footer>
   );
 };
-
-export default Footer;

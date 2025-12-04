@@ -1,5 +1,4 @@
-import ContactRequestOverviewHeader from "@/components/contact-request-overview-header";
-import EditContactRequestForm from "@/components/edit-contact-request-form";
+import { ContactRequestOverviewHeader, EditContactRequestForm } from "@/components";
 import { fetchContactRequestById } from "@/db/queries/contact-requests";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

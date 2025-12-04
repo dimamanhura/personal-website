@@ -1,8 +1,7 @@
 import { cache } from "react";
 import type { FeedbackSection, Prisma } from "@prisma/client";
 import { db } from "@/db";
-import { Sort } from "@/types/Sort";
-import { PaginatedData } from "@/types/PaginatedData";
+import { Sort, PaginatedData } from "@/types";
 import { DEFAULT_LIMIT } from "@/constants";
 
 export type FeedbackSectionWithReviews = Prisma.FeedbackSectionGetPayload<{ include: { reviews: true } }>

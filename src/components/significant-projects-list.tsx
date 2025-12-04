@@ -1,11 +1,11 @@
 import { Project } from "@prisma/client";
-import SignificantProjectCard from "./significant-project-card";
+import { SignificantProjectCard } from "@/components";
 
 interface SignificantProjectsListProps {
   significantProjects: Project[];
 };
 
-const SignificantProjectsList = ({ significantProjects }: SignificantProjectsListProps) => {
+export const SignificantProjectsList = ({ significantProjects }: SignificantProjectsListProps) => {
   return significantProjects.map(significantProject => {
     return (
       <SignificantProjectCard 
@@ -15,5 +15,3 @@ const SignificantProjectsList = ({ significantProjects }: SignificantProjectsLis
     );
   });
 };
-
-export default SignificantProjectsList;

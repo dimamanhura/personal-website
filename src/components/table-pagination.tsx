@@ -10,7 +10,7 @@ interface TablePaginationProps {
   onChange: (page: number) => void; 
 };
  
-const TablePagination: FunctionComponent<TablePaginationProps> = ({
+export const TablePagination: FunctionComponent<TablePaginationProps> = ({
   totalCount,
   page = 1,
   onChange,
@@ -34,4 +34,3 @@ const TablePagination: FunctionComponent<TablePaginationProps> = ({
   ) : null
 };
  
-export default TablePagination;

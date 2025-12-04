@@ -5,7 +5,7 @@ interface ChipsListProps {
   chips: string[];
 };
 
-const ChipsList = async ({ title, chips }: ChipsListProps) => {
+export const ChipsList = async ({ title, chips }: ChipsListProps) => {
   return (
     <div className="flex flex-col md:flex-row gap-2">
       {title && (
@@ -23,5 +23,3 @@ const ChipsList = async ({ title, chips }: ChipsListProps) => {
     </div>
   );
 };
-
-export default ChipsList;

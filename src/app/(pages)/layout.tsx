@@ -1,5 +1,4 @@
-import Footer from "@/components/footer";
-import Nav from "@/components/nav";
+import { Footer, Nav } from "@/components";
 import { pages } from "@/pages";
 
 export interface PagesLayout {

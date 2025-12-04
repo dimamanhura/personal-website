@@ -3,14 +3,13 @@ import { formatDateRange } from "@/utils/format-date-range";
 import { Button, User } from "@nextui-org/react";
 import { Project } from "@prisma/client";
 import paths from "@/paths";
-import ItemsList from "./items-list";
-import ChipsList from "./chips-list";
+import { ItemsList, ChipsList } from "@/components";
 
 interface SignificantProjectCardProps {
   significantProject: Project;
 };
 
-const SignificantProjectCard = ({ significantProject }: SignificantProjectCardProps) => {
+export const SignificantProjectCard = ({ significantProject }: SignificantProjectCardProps) => {
   const { shortDescription, position, achievements, logo, name, slug, startAt, endAt, stack } = significantProject;
 
   const renderLinkToProjectDetails = () => (
@@ -54,5 +53,3 @@ const SignificantProjectCard = ({ significantProject }: SignificantProjectCardPr
     </div>
   );
 };
-
-export default SignificantProjectCard;

@@ -12,9 +12,9 @@ import {
   Dropdown,
   Avatar,
 } from "@nextui-org/react"
-import { Page } from '@/types/Page';
+import { Page } from '@/types';
 
-const UserMenu = () => {
+export const UserMenu = () => {
   const { data, status } = useSession();
 
   const renderLinks = (pagesLinks: Page[]) => {
@@ -65,6 +65,5 @@ const UserMenu = () => {
       </DropdownMenu>
     </Dropdown>
   );
-}
+};
  
-export default UserMenu;

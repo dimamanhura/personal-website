@@ -8,7 +8,7 @@ interface ContactsProps {
   contacts: ContactsType;
 };
 
-const Contacts = ({ location, contacts }: ContactsProps) => {
+export const Contacts = ({ location, contacts }: ContactsProps) => {
   const linkCN = 'flex items-center text-black dark:text-white text-sm';
   return (
     <>
@@ -35,5 +35,3 @@ const Contacts = ({ location, contacts }: ContactsProps) => {
     </>
   );
 };
-
-export default Contacts;

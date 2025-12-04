@@ -20,10 +20,9 @@ import {
   Link,
 } from "@nextui-org/react";
 import RouterLink from "next/link";
-import ThemeSwitcher from "./theme-switcher";
-import { Page } from "@/types/Page";
+import { ThemeSwitcher, UserMenu } from "@/components";
+import { Page } from "@/types";
 import paths from "@/paths";
-import UserMenu from "./user-menu";
 
 interface NavProps {
   pages: Page[];
@@ -31,7 +30,7 @@ interface NavProps {
 
 const MAX_LINK_TO_SHOW_IN_NAV = 4;
 
-const Nav = ({ pages }: NavProps) => {
+export const Nav = ({ pages }: NavProps) => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -158,5 +157,3 @@ const Nav = ({ pages }: NavProps) => {
     </Navbar>
   );
 };
-
-export default Nav;

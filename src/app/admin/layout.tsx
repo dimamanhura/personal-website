@@ -1,7 +1,7 @@
 
 
 import { adminPages } from "@/pages";
-import Nav from "@/components/nav";
+import { Nav } from "@/components";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

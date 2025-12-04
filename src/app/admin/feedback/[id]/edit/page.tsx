@@ -1,5 +1,4 @@
-import EditFeedbackForm from "@/components/edit-feedback-form";
-import FeedbackOverviewHeader from "@/components/feedback-overview-header";
+import { EditFeedbackForm, FeedbackOverviewHeader } from "@/components";
 import { fetchFeedbackById, fetchReviewSections } from "@/db/queries/feedback";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

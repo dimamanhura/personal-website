@@ -6,14 +6,16 @@ import { fetchFeaturedReviews } from "@/db/queries/feedback";
 import { fetchUniversities } from "@/db/queries/education";
 import { fetchCompanies } from "@/db/queries/companies";
 import { fetchMeta } from "@/db/queries/meta";
-import TechnologiesSectionsList from "@/components/technologies-sections-list";
-import FeaturedAchievementsList from "@/components/featured-achievements-list";
-import SignificantProjectsList from "@/components/significant-projects-list";
-import FeaturedReviewsList from "@/components/reviews-list";
-import UniversitiesList from "@/components/universities-list";
-import CompaniesList from "@/components/companies-list";
-import Section from "@/components/section";
-import Hero from "@/components/hero";
+import {
+  TechnologiesSectionsList,
+  FeaturedAchievementsList,
+  SignificantProjectsList,
+  UniversitiesList,
+  CompaniesList,
+  ReviewList,
+  Section,
+  Hero,
+} from "@/components";
 import paths from "@/paths";
 
 export const metadata: Metadata = {
@@ -67,7 +69,7 @@ const HomePage = async () => {
               <UniversitiesList universities={universities} />
             </Section>
             <Section title="Feedback" link={paths.feedback()}>
-              <FeaturedReviewsList featuredReviews={featuredReviews} />
+              <ReviewList featuredReviews={featuredReviews} />
             </Section>
           </div>
         </div>
