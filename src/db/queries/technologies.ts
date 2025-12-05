@@ -42,3 +42,12 @@ export const fetchTechnologies = cache(async (params?: {
 
   return { items, count };
 });
+
+export const fetchTechnologyById = cache(async (id: string): Promise<TechnologyWithSection | null> => {
+  return await db.technology.findFirst({
+    where: { id },
+    include: {
+      technologySection: true,
+    },
+  });
+});

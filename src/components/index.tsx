@@ -27,7 +27,10 @@ export { FeedbackOverviewHeader } from './feedback/feedback-overview-header';
 export { FeedbackTable } from './feedback/feedback-table';
 
 // technologies
-export { TechnologiesTable } from './technologies/technologies-table'
+export { TechnologiesTable } from './technologies/technologies-table';
+export { CreateTechnologyForm } from './technologies/create-technology-form';
+export { EditTechnologyForm } from './technologies/edit-technology-form';
+export { TechnologyOverviewHeader } from './technologies/technology-overview-header';
 
 export { Banner } from './banner';
 export { ChipsList } from './chips-list';

@@ -1,31 +1,33 @@
-import { AchievementOverviewHeader, EditAchievementForm } from "@/components";
-import { fetchAchievementById } from "@/db/queries/achievements";
+import { EditTechnologyForm, TechnologyOverviewHeader } from "@/components";
+import { fetchTechnologiesSections, fetchTechnologyById } from "@/db/queries/technologies";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-interface AchievementEditPageProps {
+interface TechnologyEditPageProps {
   params: { id: string };
 };
 
-export function generateMetadata({ params: { id } }: AchievementEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: TechnologyEditPageProps): Metadata {
   return {
-    title: `Achievement - Edit - ${id}`,
+    title: `Technologies - Edit - ${id}`,
   };
 };
 
-const AchievementEditPage = async ({ params }: AchievementEditPageProps) => {
-  const achievement = await fetchAchievementById(params.id);
+const TechnologyEditPage = async ({ params }: TechnologyEditPageProps) => {
+  const technology = await fetchTechnologyById(params.id);
 
-  if (!achievement) {
+  if (!technology) {
     return notFound();
   }
 
+  const technologySections = await fetchTechnologiesSections();
+
   return (
     <>
-      <AchievementOverviewHeader withEdit={false} itemId={params.id} />
-      <EditAchievementForm achievement={achievement} />
+      <TechnologyOverviewHeader withEdit={false} itemId={params.id} />
+      <EditTechnologyForm technology={technology} technologySections={technologySections} />
     </>
   );
 };
 
-export default AchievementEditPage;
+export default TechnologyEditPage;

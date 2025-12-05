@@ -1,33 +1,32 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { AchievementCard, AchievementOverviewHeader } from "@/components";
-import { fetchAchievementById } from "@/db/queries/achievements";
+import { TechnologyOverviewHeader } from "@/components";
+import { fetchTechnologyById } from "@/db/queries/technologies";
 
-interface AchievementShowPageProps {
+interface TechnologyShowPageProps {
   params: {
     id: string;
   };
 };
 
-export function generateMetadata({ params: { id } }: AchievementShowPageProps): Metadata {
+export function generateMetadata({ params: { id } }: TechnologyShowPageProps): Metadata {
   return {
-    title: `Achievement - Details - ${id}`,
+    title: `Technologies - Details - ${id}`,
   };
 };
 
-const AchievementShowPage = async ({ params }: AchievementShowPageProps) => {
-  const achievement = await fetchAchievementById(params.id);
+const TechnologyShowPage = async ({ params }: TechnologyShowPageProps) => {
+  const technology = await fetchTechnologyById(params.id);
 
-  if (!achievement) {
+  if (!technology) {
     return notFound();
   }
 
   return (
     <>
-      <AchievementOverviewHeader itemId={params.id} />
-      <AchievementCard {...achievement} withFeaturedFlag />
+      <TechnologyOverviewHeader itemId={params.id} />
     </>
   );
 };
 
-export default AchievementShowPage;
+export default TechnologyShowPage;

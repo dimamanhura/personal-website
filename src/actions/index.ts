@@ -19,4 +19,6 @@ export { signUpUser } from './auth/sign-up';
 export { signOutUser } from './auth/sign-out';
 
 // technologies
-export { deleteTechnology } from './technologies/delete-technology'
+export { deleteTechnology } from './technologies/delete-technology';
+export { createTechnology } from './technologies/create-technology';
+export { editTechnology } from './technologies/edit-technology';

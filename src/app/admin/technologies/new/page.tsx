@@ -1,17 +1,20 @@
-import { AchievementOverviewHeader, CreateAchievementForm } from "@/components";
+import { CreateTechnologyForm, TechnologyOverviewHeader } from "@/components";
+import { fetchTechnologiesSections } from "@/db/queries/technologies";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Achievement - New',
+  title: 'Technologies - New',
 };
 
-const AchievementAddPage = () => {
+const TechnologiesAddPage = async () => {
+  const technologySections = await fetchTechnologiesSections();
+
   return (
     <>
-      <AchievementOverviewHeader withEdit={false} withDelete={false} />
-      <CreateAchievementForm />
+      <TechnologyOverviewHeader withEdit={false} withDelete={false} />
+      <CreateTechnologyForm technologySections={technologySections} />
     </>
   );
 };
 
-export default AchievementAddPage;
+export default TechnologiesAddPage;
