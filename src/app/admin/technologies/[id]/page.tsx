@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { TechnologyOverviewHeader } from "@/components";
+import { TechnologyCard, TechnologyOverviewHeader } from "@/components";
 import { fetchTechnologyById } from "@/db/queries/technologies";
 
 interface TechnologyShowPageProps {
@@ -25,6 +25,7 @@ const TechnologyShowPage = async ({ params }: TechnologyShowPageProps) => {
   return (
     <>
       <TechnologyOverviewHeader itemId={params.id} />
+      <TechnologyCard technology={technology} />
     </>
   );
 };
