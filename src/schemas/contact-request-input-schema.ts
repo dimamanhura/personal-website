@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const contactRequestInputSchema = z.object({
   resolution: z.string().max(1000),

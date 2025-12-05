@@ -1,11 +1,11 @@
 'use client';
 
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
-import { EditItemButton, DeleteItemButton } from "@/components";
-import paths from "@/paths";
-import { ItemOverviewHeaderProps } from "@/types";
-import { deleteTechnology } from "@/actions";
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
+import { EditItemButton, DeleteItemButton } from '@/components';
+import paths from '@/paths';
+import { ItemOverviewHeaderProps } from '@/types';
+import { deleteTechnology } from '@/actions';
 
 export const TechnologyOverviewHeader = ({
   withDelete = true,
@@ -21,18 +21,12 @@ export const TechnologyOverviewHeader = ({
 
       <div className="flex gap-2">
         {withEdit && itemId && (
-          <EditItemButton
-            isIconOnly={false}
-            path={paths.editTechnology(itemId)}
-          />
+          <EditItemButton isIconOnly={false} path={paths.editTechnology(itemId)} />
         )}
         {withDelete && itemId && (
-          <DeleteItemButton
-            isIconOnly={false}
-            onDelete={() => deleteTechnology(itemId)}
-          />
+          <DeleteItemButton isIconOnly={false} onDelete={() => deleteTechnology(itemId)} />
         )}
       </div>
     </div>
   );
-}
+};

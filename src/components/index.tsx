@@ -6,12 +6,12 @@ export { CreateAchievementForm } from './achievements/create-achievement-form';
 export { FeaturedAchievementsList } from './achievements/featured-achievements-list';
 export { EditAchievementForm } from './achievements/edit-achievement-form';
 
-// auth 
+// auth
 export { AuthForm } from './auth/auth-form';
 export { SignInForm } from './auth/sign-in-form';
 export { SignUpForm } from './auth/sign-up-form';
 
-// contact requests 
+// contact requests
 export { ContactRequestCard } from './contact-requests/contact-request-card';
 export { ContactRequestOverviewHeader } from './contact-requests/contact-request-overview-header';
 export { ContactRequestStatus } from './contact-requests/contact-request-status';
@@ -22,7 +22,7 @@ export { EditContactRequestForm } from './contact-requests/edit-contact-request-
 // feedback
 export { CreateFeedbackForm } from './feedback/create-feedback-form';
 export { EditFeedbackForm } from './feedback/edit-feedback-form';
-export { FeedbackCard } from './feedback/feedback-card'
+export { FeedbackCard } from './feedback/feedback-card';
 export { FeedbackOverviewHeader } from './feedback/feedback-overview-header';
 export { FeedbackTable } from './feedback/feedback-table';
 

@@ -1,10 +1,11 @@
-import { SignificantProjectCard, Header } from "@/components";
-import { fetchSignificantProjects } from "@/db/queries/projects";
-import { Metadata } from "next";
+import { SignificantProjectCard, Header } from '@/components';
+import { fetchSignificantProjects } from '@/db/queries/projects';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Significant Projects',
-  description: 'Feedback from my colleagues and clients with whom I worked during my professional career',
+  description:
+    'Feedback from my colleagues and clients with whom I worked during my professional career',
   keywords: ['Projects', 'Portfolio', 'Significant', 'Career'],
 };
 
@@ -14,7 +15,7 @@ const ProjectsPage = async () => {
     <>
       <Header title="Significant Projects" />
       <div className="w-full flex flex-col gap-6">
-        {significantProjects.map(significantProject => (
+        {significantProjects.map((significantProject) => (
           <SignificantProjectCard
             significantProject={significantProject}
             key={significantProject.id}
@@ -23,6 +24,6 @@ const ProjectsPage = async () => {
       </div>
     </>
   );
-}
+};
 
 export default ProjectsPage;

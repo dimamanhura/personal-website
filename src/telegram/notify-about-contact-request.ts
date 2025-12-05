@@ -1,6 +1,6 @@
 'use server';
 
-import { sendMessage } from "./send-message";
+import { sendMessage } from './send-message';
 
 export const notifyAboutContactRequest = async ({
   message,

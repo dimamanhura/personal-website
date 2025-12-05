@@ -11,14 +11,14 @@ import {
   DropdownItem,
   Dropdown,
   Avatar,
-} from "@nextui-org/react"
+} from '@nextui-org/react';
 import { Page } from '@/types';
 
 export const UserMenu = () => {
   const { data, status } = useSession();
 
   const renderLinks = (pagesLinks: Page[]) => {
-    return pagesLinks.map(page => (
+    return pagesLinks.map((page) => (
       <DropdownItem key={page.path} href={page.path}>
         {page.title}
       </DropdownItem>
@@ -46,9 +46,7 @@ export const UserMenu = () => {
             {data.user.name}
           </DropdownItem>
         </DropdownSection>
-        <DropdownSection title="Overview">
-          {renderLinks(pages)}
-        </DropdownSection>
+        <DropdownSection title="Overview">{renderLinks(pages)}</DropdownSection>
         <DropdownSection showDivider title="Admin space">
           {renderLinks(adminPages)}
         </DropdownSection>
@@ -66,4 +64,3 @@ export const UserMenu = () => {
     </Dropdown>
   );
 };
- 

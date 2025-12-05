@@ -1,11 +1,11 @@
 'use client';
 
-import { Input } from "@nextui-org/react";
-import { useFormState } from "react-dom";
+import { Input } from '@nextui-org/react';
+import { useFormState } from 'react-dom';
 import * as actions from '@/actions';
-import { AuthForm } from "@/components";
-import Link from "next/link";
-import paths from "@/paths";
+import { AuthForm } from '@/components';
+import Link from 'next/link';
+import paths from '@/paths';
 
 export const SignInForm = () => {
   const [formState, action] = useFormState(actions.signInWithCredentials, {
@@ -38,7 +38,10 @@ export const SignInForm = () => {
       )}
       renderLink={() => (
         <p className="mt-2 text-sm text-center">
-          Need to create an account? <Link href={paths.signUp()} className="text-blue-500">Create Account</Link>
+          Need to create an account?{' '}
+          <Link href={paths.signUp()} className="text-blue-500">
+            Create Account
+          </Link>
         </p>
       )}
     />

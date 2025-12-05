@@ -8,7 +8,10 @@ import { ManageItemFormState } from '@/types';
 import paths from '@/paths';
 import { achievementInputSchema } from '@/schemas';
 
-export async function editAchievement(id: string, values: z.infer<typeof achievementInputSchema>): Promise<ManageItemFormState> {
+export async function editAchievement(
+  id: string,
+  values: z.infer<typeof achievementInputSchema>,
+): Promise<ManageItemFormState> {
   try {
     const result = achievementInputSchema.parse({
       title: values.title,
@@ -38,4 +41,4 @@ export async function editAchievement(id: string, values: z.infer<typeof achieve
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }
-};
+}

@@ -1,54 +1,54 @@
-'use client'
+'use client';
 
-import { FunctionComponent, useCallback } from "react";
-import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from "@/components";
-import paths from "@/paths";
-import { deleteTechnology } from "@/actions";
-import { TechnologyWithSection } from "@/db/queries/technologies";
-import { User } from "@nextui-org/react";
-import { ColumnKey } from "@/types";
-import { technologiesColumns } from "@/columns";
+import { FunctionComponent, useCallback } from 'react';
+import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from '@/components';
+import paths from '@/paths';
+import { deleteTechnology } from '@/actions';
+import { TechnologyWithSection } from '@/db/queries/technologies';
+import { User } from '@nextui-org/react';
+import { ColumnKey } from '@/types';
+import { technologiesColumns } from '@/columns';
 
 interface TechnologiesTableProps {
   items: TechnologyWithSection[];
   count: number;
-};
+}
 
-export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({
-  items,
-  count,
-}) => {
-  const renderCell = useCallback((technology: TechnologyWithSection, columnKey: ColumnKey<TechnologyWithSection>) => {
-    if (columnKey === 'actions') {
-      return (
-        <TableActions
-          showPath={paths.technologyDetails}
-          editPath={paths.editTechnology}
-          itemId={technology.id}
-          onDelete={deleteTechnology}
-        />
-      );
-    }
-
-    switch (columnKey) {
-      case 'id':
-        return <TruncatedText text={technology.id} />;      
-      
-      case 'featured':
-        return <FeaturedFlag featured={technology.featured} />;
-
-      case 'technologySection':
+export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ items, count }) => {
+  const renderCell = useCallback(
+    (technology: TechnologyWithSection, columnKey: ColumnKey<TechnologyWithSection>) => {
+      if (columnKey === 'actions') {
         return (
-          <User
-            avatarProps={{ src: technology.technologySection.logo, size: 'sm', radius: 'md' }}
-            name={technology.technologySection.title}
+          <TableActions
+            showPath={paths.technologyDetails}
+            editPath={paths.editTechnology}
+            itemId={technology.id}
+            onDelete={deleteTechnology}
           />
         );
+      }
 
-      default:
-        return technology[columnKey];
-    }
-  }, []);
+      switch (columnKey) {
+        case 'id':
+          return <TruncatedText text={technology.id} />;
+
+        case 'featured':
+          return <FeaturedFlag featured={technology.featured} />;
+
+        case 'technologySection':
+          return (
+            <User
+              avatarProps={{ src: technology.technologySection.logo, size: 'sm', radius: 'md' }}
+              name={technology.technologySection.title}
+            />
+          );
+
+        default:
+          return technology[columnKey];
+      }
+    },
+    [],
+  );
 
   return (
     <ItemsTable

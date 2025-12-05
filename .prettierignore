@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+build
+dist
+coverage
+.vscode
+public
+*.log
+package-lock.json

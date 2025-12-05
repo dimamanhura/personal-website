@@ -1,20 +1,20 @@
 'use client';
 
-import { useTransition } from "react";
-import { z } from "zod";
+import { useTransition } from 'react';
+import { z } from 'zod';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input, Select, SelectItem } from "@nextui-org/react";
-import { toast } from "sonner";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
+import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { technologyInputSchema } from "@/schemas";
-import { TechnologySection } from "@prisma/client";
-import { TechnologyWithSection } from "@/db/queries/technologies";
+import { technologyInputSchema } from '@/schemas';
+import { TechnologySection } from '@prisma/client';
+import { TechnologyWithSection } from '@/db/queries/technologies';
 
 interface EditTechnologyFormProps {
   technology: TechnologyWithSection;
   technologySections: TechnologySection[];
-};
+}
 
 export const EditTechnologyForm = ({ technology, technologySections }: EditTechnologyFormProps) => {
   const form = useForm<z.infer<typeof technologyInputSchema>>({
@@ -37,7 +37,7 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
       } else {
         toast.error(message);
       }
-    })
+    });
   };
 
   return (
@@ -69,7 +69,7 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
               placeholder="Section"
               label="Section"
             >
-              {technologySections.map(technologySection => (
+              {technologySections.map((technologySection) => (
                 <SelectItem key={technologySection.type} value={technologySection.type}>
                   {technologySection.title}
                 </SelectItem>
@@ -85,15 +85,15 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
             <>
               <Checkbox
                 isSelected={!!field.value}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.checked)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  field.onChange(e.target.checked)
+                }
               >
                 Is Featured
               </Checkbox>
-          
+
               {fieldState.error && (
-                <span className="text-danger text-tiny">
-                  {fieldState.error?.message}
-                </span>
+                <span className="text-danger text-tiny">{fieldState.error?.message}</span>
               )}
             </>
           )}

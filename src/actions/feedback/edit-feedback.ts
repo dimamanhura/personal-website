@@ -8,7 +8,10 @@ import { revalidatePath } from 'next/cache';
 import paths from '@/paths';
 import { ManageItemFormState } from '@/types';
 
-export async function editFeedback(id: string, feedback: z.infer<typeof feedbackInputSchema>): Promise<ManageItemFormState> {
+export async function editFeedback(
+  id: string,
+  feedback: z.infer<typeof feedbackInputSchema>,
+): Promise<ManageItemFormState> {
   try {
     const result = feedbackInputSchema.parse({
       section: feedback.section,
@@ -38,4 +41,4 @@ export async function editFeedback(id: string, feedback: z.infer<typeof feedback
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }
-};
+}

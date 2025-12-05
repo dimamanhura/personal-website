@@ -1,13 +1,13 @@
-import { formatDateRange } from "@/utils";
-import { User } from "@nextui-org/react";
-import { Education } from "@prisma/client";
+import { formatDateRange } from '@/utils';
+import { User } from '@nextui-org/react';
+import { Education } from '@prisma/client';
 
 interface UniversitiesListProps {
   universities: Education[];
-};
+}
 
 export const UniversitiesList = ({ universities }: UniversitiesListProps) => {
-  return universities.map(university => {
+  return universities.map((university) => {
     const { title, logo, name, startAt, endAt, id } = university;
     return (
       <User

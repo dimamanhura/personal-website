@@ -1,6 +1,6 @@
 'use client';
 
-import { getErrorMessage } from "@/utils";
+import { getErrorMessage } from '@/utils';
 import {
   Modal,
   ModalContent,
@@ -9,15 +9,15 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-} from "@nextui-org/react";
-import { useTransition } from "react";
-import { FaTrash } from "react-icons/fa";
-import { toast } from "sonner";
+} from '@nextui-org/react';
+import { useTransition } from 'react';
+import { FaTrash } from 'react-icons/fa';
+import { toast } from 'sonner';
 
 interface DeleteItemButtonProps {
   isIconOnly?: boolean;
   onDelete: () => Promise<void>;
-};
+}
 
 export const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButtonProps) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
@@ -43,19 +43,17 @@ export const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButt
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">Confirm Deletion</ModalHeader>
-            <ModalBody>
-              <p>
-                Are you sure you want to delete?
-              </p>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Cancel
-              </Button>
-              <Button color="primary" disabled={isPending} onPress={handleDelete}>
-                {isPending ? 'Loading...' : 'Confirm'}
-              </Button>
-            </ModalFooter>
+          <ModalBody>
+            <p>Are you sure you want to delete?</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={onClose}>
+              Cancel
+            </Button>
+            <Button color="primary" disabled={isPending} onPress={handleDelete}>
+              {isPending ? 'Loading...' : 'Confirm'}
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

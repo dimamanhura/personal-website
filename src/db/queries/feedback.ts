@@ -1,12 +1,16 @@
-import { cache } from "react";
-import type { FeedbackSection, Prisma } from "@prisma/client";
-import { db } from "@/db";
-import { Sort, PaginatedData } from "@/types";
-import { DEFAULT_LIMIT } from "@/constants";
+import { cache } from 'react';
+import type { FeedbackSection, Prisma } from '@prisma/client';
+import { db } from '@/db';
+import { Sort, PaginatedData } from '@/types';
+import { DEFAULT_LIMIT } from '@/constants';
 
-export type FeedbackSectionWithReviews = Prisma.FeedbackSectionGetPayload<{ include: { reviews: true } }>
+export type FeedbackSectionWithReviews = Prisma.FeedbackSectionGetPayload<{
+  include: { reviews: true };
+}>;
 
-export type ReviewWithFeedbackSection = Prisma.FeedbackGetPayload<{ include: { feedbackSection: true } }>
+export type ReviewWithFeedbackSection = Prisma.FeedbackGetPayload<{
+  include: { feedbackSection: true };
+}>;
 
 export const fetchFeaturedReviews = cache((): Promise<ReviewWithFeedbackSection[]> => {
   return db.feedback.findMany({
@@ -14,7 +18,7 @@ export const fetchFeaturedReviews = cache((): Promise<ReviewWithFeedbackSection[
       featured: true,
     },
     include: {
-      feedbackSection: true
+      feedbackSection: true,
     },
   });
 });
@@ -31,35 +35,39 @@ export const fetchReviewsBySection = cache((): Promise<FeedbackSectionWithReview
   });
 });
 
-export const fetchReviews = cache(async (params?: {
-  orderBy?: Sort,
-  page?: number;
-}): Promise<PaginatedData<ReviewWithFeedbackSection>> => {
-  const { orderBy = { column: 'createdAt', direction: 'descending' }, page = 1 } = params || {};
+export const fetchReviews = cache(
+  async (params?: {
+    orderBy?: Sort;
+    page?: number;
+  }): Promise<PaginatedData<ReviewWithFeedbackSection>> => {
+    const { orderBy = { column: 'createdAt', direction: 'descending' }, page = 1 } = params || {};
 
-  const items = await db.feedback.findMany({
-    orderBy: {
-      [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
-    },
-    include: {
-      feedbackSection: true
-    },
-    take: DEFAULT_LIMIT,
-    skip: (page - 1) * DEFAULT_LIMIT,
-  });
+    const items = await db.feedback.findMany({
+      orderBy: {
+        [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
+      },
+      include: {
+        feedbackSection: true,
+      },
+      take: DEFAULT_LIMIT,
+      skip: (page - 1) * DEFAULT_LIMIT,
+    });
 
-  const count = await db.feedback.count();
+    const count = await db.feedback.count();
 
-  return { items, count };
-});
+    return { items, count };
+  },
+);
 
-export const fetchFeedbackById = cache(async (id: string): Promise<ReviewWithFeedbackSection | null> => {
-  return await db.feedback.findFirst({
-    where: {
-      id: id
-    },
-    include: {
-      feedbackSection: true
-    },
-  });
-});
+export const fetchFeedbackById = cache(
+  async (id: string): Promise<ReviewWithFeedbackSection | null> => {
+    return await db.feedback.findFirst({
+      where: {
+        id: id,
+      },
+      include: {
+        feedbackSection: true,
+      },
+    });
+  },
+);

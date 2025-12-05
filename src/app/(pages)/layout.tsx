@@ -1,9 +1,9 @@
-import { Footer, Nav } from "@/components";
-import { pages } from "@/pages";
+import { Footer, Nav } from '@/components';
+import { pages } from '@/pages';
 
 export interface PagesLayout {
   children: React.ReactElement;
-};
+}
 
 const PagesLayout = ({ children }: Readonly<PagesLayout>) => {
   return (

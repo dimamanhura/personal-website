@@ -1,14 +1,7 @@
 'use client';
 
 import { FunctionComponent } from 'react';
-import {
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableCell,
-  TableRow,
-  Table,
-} from "@nextui-org/react";
+import { TableHeader, TableColumn, TableBody, TableCell, TableRow, Table } from '@nextui-org/react';
 import { Column, Sort } from '@/types';
 import { TablePagination } from '@/components';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -18,9 +11,9 @@ interface ItemsTableProps {
   count: number;
   title: string;
   columns: Column<any>[];
-  renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[]; 
-};
- 
+  renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[];
+}
+
 export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
   columns,
   items,
@@ -37,19 +30,19 @@ export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
 
   const handleChangePage = (nextPage: number) => {
     const params = new URLSearchParams(searchParams);
-  
+
     if (nextPage) {
-      params.set('page', `${nextPage}`)
+      params.set('page', `${nextPage}`);
     } else {
-      params.delete('page')
+      params.delete('page');
     }
 
-    replace(`${pathname}?${params.toString()}`)
+    replace(`${pathname}?${params.toString()}`);
   };
-  
+
   const handleChangeSort = (nextSort: Sort) => {
     const params = new URLSearchParams(searchParams);
-  
+
     if (nextSort) {
       params.set('sortBy', `${nextSort.column}`);
       params.set('order', `${nextSort.direction}`);
@@ -58,7 +51,7 @@ export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
       params.delete('order');
     }
 
-    replace(`${pathname}?${params.toString()}`)
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -69,28 +62,22 @@ export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
       aria-labelledby={title}
       sortDescriptor={sortBy && order ? { column: sortBy, direction: order } : null}
       onSortChange={handleChangeSort}
-      bottomContent={(
-        <TablePagination
-          totalCount={count}
-          page={page}
-          onChange={handleChangePage}
-        />
-      )}
+      bottomContent={<TablePagination totalCount={count} page={page} onChange={handleChangePage} />}
     >
       <TableHeader>
-        {columns.map((column: Column<any>) =>
+        {columns.map((column: Column<any>) => (
           <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
             {column.label}
           </TableColumn>
-        )}
+        ))}
       </TableHeader>
 
-      <TableBody emptyContent={"No rows to display."}>
-        {items.map((item: any) =>
+      <TableBody emptyContent={'No rows to display.'}>
+        {items.map((item: any) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
-        )}
+        ))}
       </TableBody>
     </Table>
   );

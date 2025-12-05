@@ -1,16 +1,16 @@
 'use client';
 
-import { useTransition } from "react";
-import { z } from "zod";
+import { useTransition } from 'react';
+import { z } from 'zod';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input, Textarea } from "@nextui-org/react";
-import { toast } from "sonner";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { achievementInputSchema } from "@/schemas";
-import { useRouter } from "next/navigation";
-import paths from "@/paths";
-import { MultiItemField } from "@/components";
+import { achievementInputSchema } from '@/schemas';
+import { useRouter } from 'next/navigation';
+import paths from '@/paths';
+import { MultiItemField } from '@/components';
 
 export const CreateAchievementForm = () => {
   const router = useRouter();
@@ -39,7 +39,7 @@ export const CreateAchievementForm = () => {
       } else {
         toast.error(message);
       }
-    })
+    });
   };
 
   return (
@@ -58,7 +58,7 @@ export const CreateAchievementForm = () => {
             />
           )}
         />
-  
+
         <Controller
           control={form.control}
           name="description"
@@ -73,23 +73,11 @@ export const CreateAchievementForm = () => {
           )}
         />
 
-        <MultiItemField
-          label="Solution"
-          name="solution"
-          form={form} 
-        />
+        <MultiItemField label="Solution" name="solution" form={form} />
 
-        <MultiItemField
-          label="Result"
-          name="result"
-          form={form}
-        />
+        <MultiItemField label="Result" name="result" form={form} />
 
-        <MultiItemField
-          label="Notes"
-          name="notes"
-          form={form}
-        />
+        <MultiItemField label="Notes" name="notes" form={form} />
 
         <Controller
           control={form.control}
@@ -98,15 +86,15 @@ export const CreateAchievementForm = () => {
             <>
               <Checkbox
                 isSelected={!!field.value}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.checked)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  field.onChange(e.target.checked)
+                }
               >
                 Is Featured
               </Checkbox>
-          
+
               {fieldState.error && (
-                <span className="text-danger text-tiny">
-                  {fieldState.error?.message}
-                </span>
+                <span className="text-danger text-tiny">{fieldState.error?.message}</span>
               )}
             </>
           )}

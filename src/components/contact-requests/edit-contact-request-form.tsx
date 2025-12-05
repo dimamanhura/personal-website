@@ -1,18 +1,18 @@
 'use client';
 
-import { useTransition } from "react";
-import { z } from "zod";
+import { useTransition } from 'react';
+import { z } from 'zod';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input, Textarea } from "@nextui-org/react";
-import { toast } from "sonner";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { ContactRequest } from "@prisma/client";
-import { contactRequestInputSchema } from "@/schemas";
+import { ContactRequest } from '@prisma/client';
+import { contactRequestInputSchema } from '@/schemas';
 
 interface EditContactRequestFormProps {
   contactRequest: ContactRequest;
-};
+}
 
 export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFormProps) => {
   const form = useForm<z.infer<typeof contactRequestInputSchema>>({
@@ -37,7 +37,7 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
       } else {
         toast.error(message);
       }
-    })
+    });
   };
 
   return (
@@ -96,18 +96,18 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
               <>
                 <Checkbox
                   isSelected={!!field.value}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.checked)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    field.onChange(e.target.checked)
+                  }
                 >
                   Resolved
                 </Checkbox>
-            
+
                 {fieldState.error && (
-                  <span className="text-danger text-tiny">
-                    {fieldState.error?.message}
-                  </span>
+                  <span className="text-danger text-tiny">{fieldState.error?.message}</span>
                 )}
               </>
-            )
+            );
           }}
         />
 

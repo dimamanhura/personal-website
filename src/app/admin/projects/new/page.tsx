@@ -1,5 +1,5 @@
-import { Header } from "@/components";
-import { Metadata } from "next";
+import { Header } from '@/components';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Add project',
@@ -11,6 +11,6 @@ const AddProjectPage = async () => {
       <Header title="Add project" />
     </>
   );
-}
+};
 
 export default AddProjectPage;

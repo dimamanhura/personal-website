@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { Button } from "@nextui-org/react";
-import Link from "next/link";
-import { FunctionComponent } from "react";
-import { FaEye } from "react-icons/fa";
+import { Button } from '@nextui-org/react';
+import Link from 'next/link';
+import { FunctionComponent } from 'react';
+import { FaEye } from 'react-icons/fa';
 
 interface ShowItemButtonProps {
-  isIconOnly?: boolean; 
+  isIconOnly?: boolean;
   path: string;
-};
+}
 
 export const ShowItemButton: FunctionComponent<ShowItemButtonProps> = ({
   isIconOnly = true,

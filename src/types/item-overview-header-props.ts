@@ -1,5 +1,5 @@
 export interface ItemOverviewHeaderProps {
   withDelete?: boolean;
-  withEdit?: boolean; 
+  withEdit?: boolean;
   itemId?: string;
-};
+}

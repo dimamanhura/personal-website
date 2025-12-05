@@ -1,7 +1,7 @@
-import { Order } from "@/types";
+import { Order } from '@/types';
 
-export interface SearchParams<> {
+export interface SearchParams {
   page?: string;
   sortBy?: string;
-  order?: Order; 
-};
+  order?: Order;
+}

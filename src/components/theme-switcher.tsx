@@ -1,24 +1,24 @@
 'use client';
 
-import { useTheme } from "next-themes";
-import { Switch } from "@nextui-org/react";
-import { FaMoon, FaSun } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import { Switch } from '@nextui-org/react';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, [])
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   const handleChangeTheme = (value: boolean) => {
-    setTheme(value ? 'dark' : 'light')
+    setTheme(value ? 'dark' : 'light');
   };
 
   return (

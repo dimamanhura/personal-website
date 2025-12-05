@@ -1,18 +1,18 @@
-import { Header, TechnologiesTable } from "@/components";
-import { fetchTechnologies } from "@/db/queries/technologies";
-import paths from "@/paths";
-import { SearchParams } from "@/types";
-import { Button } from "@nextui-org/react";
-import { Metadata } from "next";
-import Link from "next/link";
+import { Header, TechnologiesTable } from '@/components';
+import { fetchTechnologies } from '@/db/queries/technologies';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
+import { Button } from '@nextui-org/react';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Technologies',
 };
 
 interface TechnologiesAdminPageProps {
-  searchParams: Promise<SearchParams>
-};
+  searchParams: Promise<SearchParams>;
+}
 
 const TechnologiesAdminPage = async ({ searchParams }: TechnologiesAdminPageProps) => {
   const { page, sortBy, order } = await searchParams;
@@ -33,10 +33,7 @@ const TechnologiesAdminPage = async ({ searchParams }: TechnologiesAdminPageProp
         )}
       />
 
-      <TechnologiesTable
-        items={items}
-        count={count}
-      />
+      <TechnologiesTable items={items} count={count} />
     </>
   );
 };

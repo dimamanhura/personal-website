@@ -1,10 +1,10 @@
 'use client';
 
-import { Button, Chip } from "@nextui-org/react";
-import { SubmitButton } from "@/components";
-import { FaExclamationTriangle, FaSignInAlt } from "react-icons/fa";
-import Link from "next/link";
-import paths from "@/paths";
+import { Button, Chip } from '@nextui-org/react';
+import { SubmitButton } from '@/components';
+import { FaExclamationTriangle, FaSignInAlt } from 'react-icons/fa';
+import Link from 'next/link';
+import paths from '@/paths';
 
 interface AuthFormProps {
   submitButton: string;
@@ -13,7 +13,7 @@ interface AuthFormProps {
   action: (payload: FormData) => void;
   renderInputs: () => JSX.Element;
   renderLink: () => JSX.Element;
-};
+}
 
 export const AuthForm = ({
   submitButton,
@@ -49,7 +49,7 @@ export const AuthForm = ({
               {formErrors.join(', ')}
             </Chip>
           )}
-          
+
           {renderInputs()}
 
           <SubmitButton>{submitButton}</SubmitButton>

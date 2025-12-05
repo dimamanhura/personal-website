@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { fetchMeta } from "@/db/queries/meta";
-import { CreateContactRequestForm, Contacts } from "@/components";
-import { pages } from "@/pages";
+import Link from 'next/link';
+import { fetchMeta } from '@/db/queries/meta';
+import { CreateContactRequestForm, Contacts } from '@/components';
+import { pages } from '@/pages';
 
 export const Footer = async () => {
   const meta = await fetchMeta();
@@ -21,10 +21,7 @@ export const Footer = async () => {
           {meta && (
             <section className="flex flex-col col-span-1 gap-2">
               <h2 className="text-xl md:text-2xl">Contacts</h2>
-              <Contacts
-                contacts={meta?.contacts}
-                location={meta?.location}
-              />
+              <Contacts contacts={meta?.contacts} location={meta?.location} />
             </section>
           )}
           <section className="flex flex-col col-span-1 md:col-span-2 lg:col-span-1 gap-2">

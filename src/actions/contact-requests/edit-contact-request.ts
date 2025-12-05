@@ -8,7 +8,10 @@ import { formatErrors } from '@/utils';
 import paths from '@/paths';
 import { ManageItemFormState } from '@/types';
 
-export async function editContactRequest(id: string, contactRequest: z.infer<typeof contactRequestInputSchema>): Promise<ManageItemFormState> {
+export async function editContactRequest(
+  id: string,
+  contactRequest: z.infer<typeof contactRequestInputSchema>,
+): Promise<ManageItemFormState> {
   try {
     const result = contactRequestInputSchema.parse({
       resolution: contactRequest.resolution,
@@ -33,9 +36,9 @@ export async function editContactRequest(id: string, contactRequest: z.infer<typ
 
     revalidatePath(paths.contactRequestDetails(id));
     revalidatePath(paths.contactRequestsAdmin());
-  
+
     return { success: true };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }
-};
+}

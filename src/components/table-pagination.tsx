@@ -1,15 +1,15 @@
 'use client';
 
 import { FunctionComponent, useMemo } from 'react';
-import { Pagination } from "@nextui-org/react";
+import { Pagination } from '@nextui-org/react';
 import { DEFAULT_LIMIT } from '@/constants';
 
 interface TablePaginationProps {
   totalCount: number;
   page: number;
-  onChange: (page: number) => void; 
-};
- 
+  onChange: (page: number) => void;
+}
+
 export const TablePagination: FunctionComponent<TablePaginationProps> = ({
   totalCount,
   page = 1,
@@ -31,6 +31,5 @@ export const TablePagination: FunctionComponent<TablePaginationProps> = ({
         onChange={(page) => onChange(page)}
       />
     </div>
-  ) : null
+  ) : null;
 };
- 

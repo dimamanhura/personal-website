@@ -1,5 +1,5 @@
-import { TechnologySectionType } from "@prisma/client";
-import { z } from "zod";
+import { TechnologySectionType } from '@prisma/client';
+import { z } from 'zod';
 
 export const technologyInputSchema = z.object({
   featured: z.boolean(),

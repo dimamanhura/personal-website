@@ -1,18 +1,18 @@
-import { AchievementsTable, Header } from "@/components";
-import { fetchAchievements } from "@/db/queries/achievements";
-import paths from "@/paths";
-import { SearchParams } from "@/types";
-import { Button } from "@nextui-org/react";
-import { Metadata } from "next";
-import Link from "next/link";
+import { AchievementsTable, Header } from '@/components';
+import { fetchAchievements } from '@/db/queries/achievements';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
+import { Button } from '@nextui-org/react';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Achievements',
 };
 
 interface AchievementsAdminPageProps {
-  searchParams: Promise<SearchParams>
-};
+  searchParams: Promise<SearchParams>;
+}
 
 const AchievementsAdminPage = async ({ searchParams }: AchievementsAdminPageProps) => {
   const { page, sortBy, order } = await searchParams;
@@ -33,10 +33,7 @@ const AchievementsAdminPage = async ({ searchParams }: AchievementsAdminPageProp
         )}
       />
 
-      <AchievementsTable
-        items={items}
-        count={count}
-      />
+      <AchievementsTable items={items} count={count} />
     </>
   );
 };

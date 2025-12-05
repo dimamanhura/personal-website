@@ -1,51 +1,51 @@
-'use client'
+'use client';
 
-import { FunctionComponent, useCallback } from "react";
-import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from "@/components";
-import paths from "@/paths";
+import { FunctionComponent, useCallback } from 'react';
+import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from '@/components';
+import paths from '@/paths';
 import { deleteFeedback } from '@/actions';
-import { ReviewWithFeedbackSection } from "@/db/queries/feedback";
-import { feedbackColumns } from "@/columns";
-import { ColumnKey } from "@/types";
+import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
+import { feedbackColumns } from '@/columns';
+import { ColumnKey } from '@/types';
 
 interface FeedbackTableProps {
   items: ReviewWithFeedbackSection[];
   count: number;
-};
+}
 
-export const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({
-  items,
-  count,
-}) => {
-  const renderCell = useCallback((feedback: ReviewWithFeedbackSection, columnKey: ColumnKey<ReviewWithFeedbackSection>) => {
-    if (columnKey === 'actions') {
-      return (
-        <TableActions
-          showPath={paths.feedbackDetails}
-          editPath={paths.editFeedback}
-          itemId={feedback.id}
-          onDelete={deleteFeedback}
-        />
-      );
-    }
+export const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({ items, count }) => {
+  const renderCell = useCallback(
+    (feedback: ReviewWithFeedbackSection, columnKey: ColumnKey<ReviewWithFeedbackSection>) => {
+      if (columnKey === 'actions') {
+        return (
+          <TableActions
+            showPath={paths.feedbackDetails}
+            editPath={paths.editFeedback}
+            itemId={feedback.id}
+            onDelete={deleteFeedback}
+          />
+        );
+      }
 
-    switch (columnKey) {
-      case 'id':
-        return <TruncatedText text={feedback.id} />;
-      
-      case 'review':
-        return <TruncatedText text={feedback.review} />;
+      switch (columnKey) {
+        case 'id':
+          return <TruncatedText text={feedback.id} />;
 
-      case 'feedbackSection':
-        return feedback.feedbackSection.title;
+        case 'review':
+          return <TruncatedText text={feedback.review} />;
 
-      case 'featured':
-        return <FeaturedFlag featured={feedback.featured} />;
+        case 'feedbackSection':
+          return feedback.feedbackSection.title;
 
-      default:
-        return feedback[columnKey];
-    }
-  }, []);
+        case 'featured':
+          return <FeaturedFlag featured={feedback.featured} />;
+
+        default:
+          return feedback[columnKey];
+      }
+    },
+    [],
+  );
 
   return (
     <ItemsTable

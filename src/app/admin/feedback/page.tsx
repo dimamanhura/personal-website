@@ -1,18 +1,18 @@
-import { FeedbackTable, Header } from "@/components";
-import { fetchReviews } from "@/db/queries/feedback";
-import paths from "@/paths";
-import { SearchParams } from "@/types";
-import { Button } from "@nextui-org/react";
-import { Metadata } from "next";
-import Link from "next/link";
+import { FeedbackTable, Header } from '@/components';
+import { fetchReviews } from '@/db/queries/feedback';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
+import { Button } from '@nextui-org/react';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Feedback',
 };
 
 interface FeedbackAdminPageProps {
-  searchParams: Promise<SearchParams>
-};
+  searchParams: Promise<SearchParams>;
+}
 
 const FeedbackAdminPage = async ({ searchParams }: FeedbackAdminPageProps) => {
   const { page, sortBy, order } = await searchParams;
@@ -33,10 +33,7 @@ const FeedbackAdminPage = async ({ searchParams }: FeedbackAdminPageProps) => {
         )}
       />
 
-      <FeedbackTable
-        items={items}
-        count={count}
-      />
+      <FeedbackTable items={items} count={count} />
     </>
   );
 };

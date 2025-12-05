@@ -1,5 +1,5 @@
-import { SignInForm } from "@/components";
-import { Metadata } from "next";
+import { SignInForm } from '@/components';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Sign in',
@@ -11,6 +11,6 @@ const SignInPage = async () => {
       <SignInForm />
     </>
   );
-}
+};
 
 export default SignInPage;

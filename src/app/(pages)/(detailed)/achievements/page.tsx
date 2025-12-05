@@ -1,6 +1,6 @@
-import { AchievementCard, Header } from "@/components";
-import { fetchAchievements } from "@/db/queries/achievements";
-import { Metadata } from "next";
+import { AchievementCard, Header } from '@/components';
+import { fetchAchievements } from '@/db/queries/achievements';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Challenges & Achievements',
@@ -14,7 +14,7 @@ const AchievementsPage = async () => {
     <>
       <Header title="Challenges & Achievements" />
       <div className="w-full flex flex-col gap-4">
-        {items.map(achievement => (
+        {items.map((achievement) => (
           <AchievementCard {...achievement} key={achievement.id} />
         ))}
       </div>

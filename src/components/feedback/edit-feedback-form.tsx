@@ -1,20 +1,20 @@
 'use client';
 
-import { useTransition } from "react";
-import { z } from "zod";
+import { useTransition } from 'react';
+import { z } from 'zod';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
-import { toast } from "sonner";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { ReviewWithFeedbackSection } from "@/db/queries/feedback";
-import { feedbackInputSchema } from "@/schemas";
-import { FeedbackSection } from "@prisma/client";
+import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
+import { feedbackInputSchema } from '@/schemas';
+import { FeedbackSection } from '@prisma/client';
 
 interface EditFeedbackFormProps {
   feedback: ReviewWithFeedbackSection;
   sections: FeedbackSection[];
-};
+}
 
 export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) => {
   const form = useForm<z.infer<typeof feedbackInputSchema>>({
@@ -39,7 +39,7 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
       } else {
         toast.error(message);
       }
-    })
+    });
   };
 
   return (
@@ -71,7 +71,7 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
               placeholder="Section"
               label="Section"
             >
-              {sections.map(section => (
+              {sections.map((section) => (
                 <SelectItem key={section.type} value={section.type}>
                   {section.title}
                 </SelectItem>
@@ -116,15 +116,15 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
             <>
               <Checkbox
                 isSelected={!!field.value}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.checked)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  field.onChange(e.target.checked)
+                }
               >
                 Is Featured
               </Checkbox>
-          
+
               {fieldState.error && (
-                <span className="text-danger text-tiny">
-                  {fieldState.error?.message}
-                </span>
+                <span className="text-danger text-tiny">{fieldState.error?.message}</span>
               )}
             </>
           )}

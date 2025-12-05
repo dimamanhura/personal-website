@@ -11,18 +11,17 @@ interface SignInFormState {
     email?: string[];
     _form?: string[];
   };
-};
+}
 
 const signInFormSchema = z.object({
-  email: z
-    .string()
-    .email('Invalid email address'),
-  password: z
-    .string()
-    .min(6, 'Password must have at 6 least characters'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must have at 6 least characters'),
 });
 
-export async function signInWithCredentials(prevState: SignInFormState, formData: FormData): Promise<SignInFormState> {
+export async function signInWithCredentials(
+  prevState: SignInFormState,
+  formData: FormData,
+): Promise<SignInFormState> {
   try {
     const result = signInFormSchema.safeParse({
       email: formData.get('email'),
@@ -53,4 +52,4 @@ export async function signInWithCredentials(prevState: SignInFormState, formData
       },
     };
   }
-};
+}

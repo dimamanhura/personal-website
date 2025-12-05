@@ -1,11 +1,11 @@
-import { Metadata } from "next";
-import { fetchTechnologiesSections } from "@/db/queries/technologies";
-import { fetchFeaturedAchievements } from "@/db/queries/achievements";
-import { fetchFeaturedSignificantProjects } from "@/db/queries/projects";
-import { fetchFeaturedReviews } from "@/db/queries/feedback";
-import { fetchUniversities } from "@/db/queries/education";
-import { fetchCompanies } from "@/db/queries/companies";
-import { fetchMeta } from "@/db/queries/meta";
+import { Metadata } from 'next';
+import { fetchTechnologiesSections } from '@/db/queries/technologies';
+import { fetchFeaturedAchievements } from '@/db/queries/achievements';
+import { fetchFeaturedSignificantProjects } from '@/db/queries/projects';
+import { fetchFeaturedReviews } from '@/db/queries/feedback';
+import { fetchUniversities } from '@/db/queries/education';
+import { fetchCompanies } from '@/db/queries/companies';
+import { fetchMeta } from '@/db/queries/meta';
 import {
   TechnologiesSectionsList,
   FeaturedAchievementsList,
@@ -15,8 +15,8 @@ import {
   ReviewList,
   Section,
   Hero,
-} from "@/components";
-import paths from "@/paths";
+} from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
   title: 'My Personal Website',
@@ -76,6 +76,6 @@ const HomePage = async () => {
       </div>
     </>
   );
-}
+};
 
 export default HomePage;

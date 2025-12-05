@@ -20,11 +20,11 @@ interface CreateContactRequestFormState {
     name?: string[];
     _form?: string[];
   };
-};
+}
 
 export async function createContactRequest(
   formState: CreateContactRequestFormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<CreateContactRequestFormState> {
   const result = createContactRequestSchema.safeParse({
     message: formData.get('message'),
@@ -72,4 +72,4 @@ export async function createContactRequest(
     success: true,
     errors: {},
   };
-};
+}

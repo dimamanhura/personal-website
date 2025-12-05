@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import { FunctionComponent } from "react";
-import { DeleteItemButton, EditItemButton, ShowItemButton} from "@/components";
+import { FunctionComponent } from 'react';
+import { DeleteItemButton, EditItemButton, ShowItemButton } from '@/components';
 
 interface TableActionsProps {
   itemId: string;
   showPath: (itemId: string) => string;
-  editPath: (itemId: string) =>string;
+  editPath: (itemId: string) => string;
   onDelete: (itemId: string) => Promise<void>;
-};
+}
 
 export const TableActions: FunctionComponent<TableActionsProps> = ({
   itemId,

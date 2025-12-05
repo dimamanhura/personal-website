@@ -8,7 +8,10 @@ import { ManageItemFormState } from '@/types';
 import paths from '@/paths';
 import { technologyInputSchema } from '@/schemas';
 
-export async function editTechnology(id: string, values: z.infer<typeof technologyInputSchema>): Promise<ManageItemFormState> {
+export async function editTechnology(
+  id: string,
+  values: z.infer<typeof technologyInputSchema>,
+): Promise<ManageItemFormState> {
   try {
     const result = technologyInputSchema.parse({
       title: values.title,
@@ -32,4 +35,4 @@ export async function editTechnology(id: string, values: z.infer<typeof technolo
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }
-};
+}

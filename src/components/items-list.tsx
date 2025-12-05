@@ -1,16 +1,14 @@
-import { FaCircle } from "react-icons/fa";
+import { FaCircle } from 'react-icons/fa';
 
 interface ItemsListProps {
   title?: string;
-  items: string[]
-};
+  items: string[];
+}
 
 export const ItemsList = async ({ title, items }: ItemsListProps) => {
   return (
     <div className="flex flex-col gap-2">
-      {title && (
-        <h4 className="font-medium">{title}:</h4>
-      )}
+      {title && <h4 className="font-medium">{title}:</h4>}
       <ul>
         {items.map((text, index) => (
           <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>

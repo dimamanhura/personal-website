@@ -1,11 +1,11 @@
 'use client';
 
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
-import { EditItemButton, DeleteItemButton } from "@/components";
-import paths from "@/paths";
-import { ItemOverviewHeaderProps } from "@/types";
-import { deleteAchievement } from "@/actions";
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
+import { EditItemButton, DeleteItemButton } from '@/components';
+import paths from '@/paths';
+import { ItemOverviewHeaderProps } from '@/types';
+import { deleteAchievement } from '@/actions';
 
 export const AchievementOverviewHeader = ({
   withDelete = true,
@@ -21,18 +21,12 @@ export const AchievementOverviewHeader = ({
 
       <div className="flex gap-2">
         {withEdit && itemId && (
-          <EditItemButton
-            isIconOnly={false}
-            path={paths.editAchievement(itemId)}
-          />
+          <EditItemButton isIconOnly={false} path={paths.editAchievement(itemId)} />
         )}
         {withDelete && itemId && (
-          <DeleteItemButton
-            isIconOnly={false}
-            onDelete={() => deleteAchievement(itemId)}
-          />
+          <DeleteItemButton isIconOnly={false} onDelete={() => deleteAchievement(itemId)} />
         )}
       </div>
     </div>
   );
-}
+};

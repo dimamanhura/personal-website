@@ -1,15 +1,15 @@
-import { ContactRequestsTable, Header } from "@/components";
-import { fetchContactRequests } from "@/db/queries/contact-requests";
-import { SearchParams } from "@/types";
-import { Metadata } from "next";
+import { ContactRequestsTable, Header } from '@/components';
+import { fetchContactRequests } from '@/db/queries/contact-requests';
+import { SearchParams } from '@/types';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Requests',
 };
 
 interface ContactRequestsAdminPageProps {
-  searchParams: Promise<SearchParams>
-};
+  searchParams: Promise<SearchParams>;
+}
 
 const ContactRequestsAdminPage = async ({ searchParams }: ContactRequestsAdminPageProps) => {
   const { page, sortBy, order } = await searchParams;
@@ -23,10 +23,7 @@ const ContactRequestsAdminPage = async ({ searchParams }: ContactRequestsAdminPa
     <>
       <Header title={metadata.title as string} />
 
-      <ContactRequestsTable
-        items={items}
-        count={count}
-      />
+      <ContactRequestsTable items={items} count={count} />
     </>
   );
 };

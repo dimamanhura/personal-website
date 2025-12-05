@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from "@nextui-org/react";
-import { FaFilePdf } from "react-icons/fa";
+import { Button } from '@nextui-org/react';
+import { FaFilePdf } from 'react-icons/fa';
 
 export const DownloadAsPdf = () => {
   const handleDownload = () => {
@@ -9,7 +9,7 @@ export const DownloadAsPdf = () => {
   };
 
   return (
-   <Button
+    <Button
       startContent={<FaFilePdf />}
       className="print:hidden"
       color="primary"
