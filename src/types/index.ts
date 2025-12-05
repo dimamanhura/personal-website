@@ -6,3 +6,4 @@ export { type Page } from './page';
 export { type PaginatedData } from './paginated-data';
 export { type SearchParams } from './search-params';
 export { type Sort } from './sort';
+export { type ColumnKey } from './column-key';

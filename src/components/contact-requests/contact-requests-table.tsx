@@ -4,34 +4,20 @@ import { FunctionComponent, useCallback } from "react";
 import type { ContactRequest } from "@prisma/client";
 import { ItemsTable, TableActions, ContactRequestStatus, TruncatedText } from "@/components";
 import { deleteContactRequest } from "@/actions";
-import { Column } from "@/types";
 import paths from "@/paths";
+import { ColumnKey } from "@/types";
+import { contactRequestsColumns } from "@/columns";
 
 interface ContactRequestsTableProps {
   items: ContactRequest[];
   count: number;
 };
 
-type ContactRequestKey = Extract<keyof ContactRequest, string>;
-
-type ColumnKey = ContactRequestKey | 'actions';
-
-const columns: Column<ColumnKey>[] = [
-  { key: 'id', label: 'ID', allowsSorting: true },
-  { key: 'name', label: 'Name', allowsSorting: true },
-  { key: 'email', label: 'Email', allowsSorting: true },
-  { key: 'message', label: 'Message', allowsSorting: true },
-  { key: 'createdAt', label: 'Requested At', allowsSorting: true },
-  { key: 'resolved', label: 'Resolved', allowsSorting: true },
-  { key: 'resolution', label: 'Resolution', allowsSorting: true },
-  { key: "actions", label: "Actions", allowsSorting: false },
-];
-
 export const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> = ({
   items,
   count,
 }) => {
-  const renderCell = useCallback((contactRequest: ContactRequest, columnKey: ColumnKey) => {
+  const renderCell = useCallback((contactRequest: ContactRequest, columnKey: ColumnKey<ContactRequest>) => {
     if (columnKey === 'actions') {
       return (
         <TableActions
@@ -69,7 +55,7 @@ export const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> 
       items={items}
       count={count}
       title={'Contact Requests'}
-      columns={columns}
+      columns={contactRequestsColumns}
       renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
     />
   );

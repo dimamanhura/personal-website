@@ -2,9 +2,9 @@
 
 import { z } from 'zod';
 import { db } from '@/db';
-import { contactRequestInputSchema } from '@/schemas';
-import { formatErrors } from '@/utils/format-errors';
 import { revalidatePath } from 'next/cache';
+import { contactRequestInputSchema } from '@/schemas';
+import { formatErrors } from '@/utils';
 import paths from '@/paths';
 import { ManageItemFormState } from '@/types';
 

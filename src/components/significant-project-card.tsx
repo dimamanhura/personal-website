@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDateRange } from "@/utils/format-date-range";
+import { formatDateRange } from "@/utils";
 import { Button, User } from "@nextui-org/react";
 import { Project } from "@prisma/client";
 import paths from "@/paths";

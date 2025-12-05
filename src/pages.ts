@@ -1,5 +1,5 @@
-import paths from "./paths";
-import { Page } from "./types/page";
+import paths from "@/paths";
+import { Page } from "@/types";
 
 export const pages: Page[] = [
   {

@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import { db } from '@/db';
 import { revalidatePath } from 'next/cache';
-import { formatErrors } from '@/utils/format-errors';
+import { formatErrors } from '@/utils';
 import { ManageItemFormState } from '@/types';
 import paths from '@/paths';
 import { achievementInputSchema } from '@/schemas';

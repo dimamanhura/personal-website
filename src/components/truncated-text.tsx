@@ -1,6 +1,6 @@
 'use client'
 
-import { truncateText } from "@/utils/truncate-text";
+import { truncateText } from "@/utils";
 import { Tooltip } from "@nextui-org/react";
 
 interface TruncatedTextProps {

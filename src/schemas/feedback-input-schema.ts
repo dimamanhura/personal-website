@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { isRealDate } from "@/utils/is-real-date";
+import { isRealDate } from "@/utils";
 import { FeedbackSectionType } from "@prisma/client";
 
 export const feedbackInputSchema = z.object({

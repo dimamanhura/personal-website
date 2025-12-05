@@ -1,5 +1,5 @@
 import { ReviewWithFeedbackSection } from "@/db/queries/feedback";
-import { formatDateFull } from "@/utils/format-date-full";
+import { formatDateFull } from "@/utils";
 import { Chip } from "@nextui-org/react";
 import { FeaturedFlag } from "@/components";
 

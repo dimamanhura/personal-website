@@ -4,9 +4,9 @@ import { isRedirectError } from 'next/dist/client/components/redirect';
 import { redirect } from 'next/navigation';
 import { hashSync }from 'bcrypt-ts-edge';
 import { db } from '@/db';
-import { formatErrors } from '@/utils/format-errors';
+import { formatErrors } from '@/utils';
 import z from 'zod';
-import { notifyAboutNewUser } from '@/telegram/notify-about-new-user';
+import { notifyAboutNewUser } from '@/telegram';
 
 interface SignUpFormState {
   success?: boolean;

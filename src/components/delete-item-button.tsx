@@ -1,6 +1,6 @@
 'use client';
 
-import { getErrorMessage } from "@/utils/get-error-message";
+import { getErrorMessage } from "@/utils";
 import {
   Modal,
   ModalContent,

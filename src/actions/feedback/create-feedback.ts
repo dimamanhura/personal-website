@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import { db } from '@/db';
 import { feedbackInputSchema } from '@/schemas';
-import { formatErrors } from '@/utils/format-errors';
+import { formatErrors } from '@/utils';
 import { revalidatePath } from 'next/cache';
 import paths from '@/paths';
 import { ManageItemFormState } from '@/types';

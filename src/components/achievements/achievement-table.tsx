@@ -2,36 +2,22 @@
 
 import { FunctionComponent, useCallback } from "react";
 import { ItemsTable, TableActions, TruncatedText, FeaturedFlag, ItemsCount } from "@/components";
-import { Column } from "@/types";
 import paths from "@/paths";
 import { Achievement } from "@prisma/client";
 import { deleteAchievement } from "@/actions";
+import { ColumnKey } from "@/types";
+import { achievementsColumns } from "@/columns";
 
 interface AchievementsTableProps {
   items: Achievement[];
   count: number;
 };
 
-type AchievementKey = Extract<keyof Achievement, string>;
-
-type ColumnKey = AchievementKey | 'actions';
-
-const columns: Column<ColumnKey>[] = [
-  { key: 'id', label: 'ID', allowsSorting: true },
-  { key: 'title', label: 'Title', allowsSorting: true },
-  { key: 'description', label: 'Description', allowsSorting: true },
-  { key: 'solution', label: 'Solution', allowsSorting: true },
-  { key: 'result', label: 'Review', allowsSorting: true },
-  { key: 'notes', label: 'Notes', allowsSorting: true },
-  { key: 'featured', label: 'Featured', allowsSorting: true },
-  { key: 'actions', label: 'Actions', allowsSorting: false },
-];
-
 export const AchievementsTable: FunctionComponent<AchievementsTableProps> = ({
   items,
   count,
 }) => {
-  const renderCell = useCallback((achievement: Achievement, columnKey: ColumnKey) => {
+  const renderCell = useCallback((achievement: Achievement, columnKey: ColumnKey<Achievement>) => {
     if (columnKey === 'actions') {
       return (
         <TableActions
@@ -75,7 +61,7 @@ export const AchievementsTable: FunctionComponent<AchievementsTableProps> = ({
       items={items}
       count={count}
       title={'Achievement'}
-      columns={columns}
+      columns={achievementsColumns}
       renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
     />
   );

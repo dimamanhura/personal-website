@@ -1,4 +1,4 @@
-import { formatDateRange } from "@/utils/format-date-range";
+import { formatDateRange } from "@/utils";
 import { User } from "@nextui-org/react";
 import { Company } from "@prisma/client";
 

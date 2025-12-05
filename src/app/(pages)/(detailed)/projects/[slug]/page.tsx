@@ -4,7 +4,7 @@ import { FaArrowLeft, FaCalendar, FaUser } from "react-icons/fa";
 import paths from "@/paths";
 import { fetchSignificantProjectBySlug } from "@/db/queries/projects";
 import { Avatar, Chip } from "@nextui-org/react";
-import { formatDateRange } from "@/utils/format-date-range";
+import { formatDateRange } from "@/utils";
 import { ItemsList, ChipsList } from "@/components";
 import { Metadata } from "next";
 
