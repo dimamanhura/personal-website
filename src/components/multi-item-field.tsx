@@ -1,13 +1,15 @@
 'use client';
 
-import { Controller, useFieldArray } from 'react-hook-form';
+import { Controller, useFieldArray, type UseFormReturn } from 'react-hook-form';
 import { Button, Input } from '@nextui-org/react';
 import { FaPlus, FaTrash } from 'react-icons/fa';
+import { z } from 'zod';
+import { achievementInputSchema } from '@/schemas';
 
 interface MultiItemFieldProps {
-  form: any;
+  form: UseFormReturn<z.infer<typeof achievementInputSchema>>;
   label: string;
-  name: string;
+  name: 'solution' | 'result' | 'notes';
 }
 
 export const MultiItemField = ({ form, label, name }: MultiItemFieldProps) => {
@@ -19,13 +21,13 @@ export const MultiItemField = ({ form, label, name }: MultiItemFieldProps) => {
   const error = form.formState.errors?.[name]?.message;
 
   return (
-    <div className="flex flex-col gap-4 items-start">
+    <div className="flex flex-col items-start gap-4">
       <p className="text-lg">{label}</p>
 
-      {!!error && <span className="text-danger text-tiny">{error}</span>}
+      {!!error && <span className="text-tiny text-danger">{error}</span>}
 
       {fields.map((field, index) => (
-        <div key={field.id} className="flex items-start gap-4 w-full">
+        <div key={field.id} className="flex w-full items-start gap-4">
           <Controller
             control={form.control}
             name={`${name}.${index}`}

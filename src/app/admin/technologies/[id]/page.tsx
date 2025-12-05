@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { TechnologyCard, TechnologyOverviewHeader } from '@/components';
+import { notFound } from 'next/navigation';
 import { fetchTechnologyById } from '@/db/queries/technologies';
+import { TechnologyCard, TechnologyOverviewHeader } from '@/components';
 
 interface TechnologyShowPageProps {
   params: {

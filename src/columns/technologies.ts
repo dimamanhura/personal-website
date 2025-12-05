@@ -1,6 +1,5 @@
 import { TechnologyWithSection } from '@/db/queries/technologies';
-import { Column } from '@/types';
-import { ColumnKey } from '@/types';
+import { Column, ColumnKey } from '@/types';
 
 export const columns: Column<ColumnKey<TechnologyWithSection>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },

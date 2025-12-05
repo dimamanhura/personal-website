@@ -1,6 +1,5 @@
 import { ContactRequest } from '@prisma/client';
-import { Column } from '@/types';
-import { ColumnKey } from '@/types';
+import { Column, ColumnKey } from '@/types';
 
 export const columns: Column<ColumnKey<ContactRequest>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },

@@ -1,6 +1,6 @@
+import { Metadata } from 'next';
 import { fetchReviewsBySection } from '@/db/queries/feedback';
 import { FeedbackCard, Header } from '@/components';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Feedback',
@@ -15,12 +15,12 @@ const FeedbackPage = async () => {
   return (
     <>
       <Header title="Feedback" />
-      <div className="w-full flex flex-col gap-12">
+      <div className="flex w-full flex-col gap-12">
         {reviewsBySections.map((reviewsBySection) => {
           return (
             <section key={reviewsBySection.id}>
-              <h2 className="text-xl mb-6">{reviewsBySection.title}</h2>
-              <div className="w-full flex flex-col gap-4">
+              <h2 className="mb-6 text-xl">{reviewsBySection.title}</h2>
+              <div className="flex w-full flex-col gap-4">
                 {reviewsBySection.reviews.map((feedback) => (
                   <FeedbackCard
                     feedback={{ ...feedback, feedbackSection: reviewsBySection }}

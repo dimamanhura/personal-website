@@ -1,10 +1,10 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { db } from '@/db';
-import * as telegram from '@/telegram';
-import { revalidatePath } from 'next/cache';
 import paths from '@/paths';
+import * as telegram from '@/telegram';
 
 const createContactRequestSchema = z.object({
   message: z.string().min(3).max(1000),

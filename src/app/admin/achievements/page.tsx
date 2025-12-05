@@ -1,10 +1,10 @@
-import { AchievementsTable, Header } from '@/components';
-import { fetchAchievements } from '@/db/queries/achievements';
-import paths from '@/paths';
-import { SearchParams } from '@/types';
 import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { fetchAchievements } from '@/db/queries/achievements';
+import { AchievementsTable, Header } from '@/components';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Achievements',

@@ -9,8 +9,8 @@ export const Footer = async () => {
   return (
     <footer className="w-full print:hidden">
       <div className="w-full bg-zinc-100 dark:bg-zinc-800">
-        <div className="container py-12 px-8 md:px-16 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <section className="flex flex-col col-span-1 gap-2">
+        <div className="container mx-auto grid grid-cols-1 gap-8 px-8 py-12 md:grid-cols-2 md:px-16 lg:grid-cols-3">
+          <section className="col-span-1 flex flex-col gap-2">
             <h2 className="text-xl md:text-2xl">Pages</h2>
             {pages.map((page, index) => (
               <Link href={page.path} key={index} className="underline">
@@ -19,19 +19,19 @@ export const Footer = async () => {
             ))}
           </section>
           {meta && (
-            <section className="flex flex-col col-span-1 gap-2">
+            <section className="col-span-1 flex flex-col gap-2">
               <h2 className="text-xl md:text-2xl">Contacts</h2>
               <Contacts contacts={meta?.contacts} location={meta?.location} />
             </section>
           )}
-          <section className="flex flex-col col-span-1 md:col-span-2 lg:col-span-1 gap-2">
+          <section className="col-span-1 flex flex-col gap-2 md:col-span-2 lg:col-span-1">
             <h2 className="text-xl md:text-2xl">Contact Me</h2>
             <CreateContactRequestForm />
           </section>
         </div>
       </div>
       <div className="w-full bg-zinc-200 dark:bg-zinc-700">
-        <div className="container py-6 mx-auto text-center">
+        <div className="container mx-auto py-6 text-center">
           © 2024 Copyright: {meta?.firstName} {meta?.lastName}
         </div>
       </div>

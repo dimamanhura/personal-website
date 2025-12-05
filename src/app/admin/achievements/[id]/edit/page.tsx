@@ -1,7 +1,7 @@
-import { AchievementOverviewHeader, EditAchievementForm } from '@/components';
-import { fetchAchievementById } from '@/db/queries/achievements';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchAchievementById } from '@/db/queries/achievements';
+import { AchievementOverviewHeader, EditAchievementForm } from '@/components';
 
 interface AchievementEditPageProps {
   params: { id: string };

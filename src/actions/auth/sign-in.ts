@@ -1,8 +1,8 @@
 'use server';
 
-import { signIn } from '@/auth';
 import { isRedirectError } from 'next/dist/client/components/redirect';
-import z from 'zod';
+import { z } from 'zod';
+import { signIn } from '@/auth';
 
 interface SignInFormState {
   success?: boolean;

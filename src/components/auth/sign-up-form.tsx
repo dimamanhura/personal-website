@@ -1,10 +1,10 @@
 'use client';
 
-import { Input } from '@nextui-org/react';
 import { useFormState } from 'react-dom';
+import { Input } from '@nextui-org/react';
+import Link from 'next/link';
 import * as actions from '@/actions';
 import { AuthForm } from '@/components';
-import Link from 'next/link';
 import paths from '@/paths';
 
 export const SignUpForm = () => {
@@ -52,7 +52,7 @@ export const SignUpForm = () => {
         </>
       )}
       renderLink={() => (
-        <p className="mt-2 text-sm text-center">
+        <p className="mt-2 text-center text-sm">
           Already have an account?{' '}
           <Link href={paths.signIn()} className="text-blue-500">
             Sign in

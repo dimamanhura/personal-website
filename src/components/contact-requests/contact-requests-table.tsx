@@ -2,11 +2,11 @@
 
 import { FunctionComponent, useCallback } from 'react';
 import type { ContactRequest } from '@prisma/client';
-import { ItemsTable, TableActions, ContactRequestStatus, TruncatedText } from '@/components';
 import { deleteContactRequest } from '@/actions';
+import { contactRequestsColumns } from '@/columns';
+import { ItemsTable, TableActions, ContactRequestStatus, TruncatedText } from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
-import { contactRequestsColumns } from '@/columns';
 
 interface ContactRequestsTableProps {
   items: ContactRequest[];

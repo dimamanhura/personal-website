@@ -1,9 +1,9 @@
-import NextAuth, { NextAuthConfig } from 'next-auth';
-import { authConfig } from './auth.config';
-import { db } from '@/db';
 import { compareSync } from 'bcrypt-ts-edge';
+import NextAuth, { type NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { db } from '@/db';
 import paths from '@/paths';
+import { authConfig } from './auth.config';
 
 export const config: NextAuthConfig = {
   pages: {

@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { formatDateRange } from '@/utils';
 import { Button, User } from '@nextui-org/react';
 import { Project } from '@prisma/client';
-import paths from '@/paths';
+import Link from 'next/link';
 import { ItemsList, ChipsList } from '@/components';
+import paths from '@/paths';
+import { formatDateRange } from '@/utils';
 
 interface SignificantProjectCardProps {
   significantProject: Project;
@@ -26,8 +26,8 @@ export const SignificantProjectCard = ({ significantProject }: SignificantProjec
   );
 
   return (
-    <div className="w-full flex flex-col gap-2">
-      <div className="flex justify-between items-center">
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex items-center justify-between">
         <User
           description={`${name}, ${formatDateRange(startAt, endAt)}`}
           avatarProps={{ src: logo, radius: 'md', size: 'lg', name: logo ? name : 'N/A' }}
@@ -42,7 +42,7 @@ export const SignificantProjectCard = ({ significantProject }: SignificantProjec
         )}
       </div>
       <ChipsList chips={stack} />
-      <div className="block sm:hidden mt-2 w-full">{renderLinkToProjectDetails()}</div>
+      <div className="mt-2 block w-full sm:hidden">{renderLinkToProjectDetails()}</div>
     </div>
   );
 };

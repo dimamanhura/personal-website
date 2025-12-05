@@ -1,6 +1,6 @@
-import { formatDateRange } from '@/utils';
 import { User } from '@nextui-org/react';
 import { Company } from '@prisma/client';
+import { formatDateRange } from '@/utils';
 
 interface CompaniesListProps {
   companies: Company[];

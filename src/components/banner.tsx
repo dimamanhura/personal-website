@@ -4,7 +4,7 @@ interface BannerProps {
 
 export const Banner = ({ children }: BannerProps) => {
   return (
-    <div className="w-full flex justify-center gap-4 py-4 px-6 bg-zinc-100 rounded-md">
+    <div className="flex w-full justify-center gap-4 rounded-md bg-zinc-100 px-6 py-4">
       {children}
     </div>
   );

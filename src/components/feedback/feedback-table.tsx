@@ -1,11 +1,11 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
+import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
+import { deleteFeedback } from '@/actions';
+import { feedbackColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from '@/components';
 import paths from '@/paths';
-import { deleteFeedback } from '@/actions';
-import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
-import { feedbackColumns } from '@/columns';
 import { ColumnKey } from '@/types';
 
 interface FeedbackTableProps {

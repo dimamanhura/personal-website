@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { fetchContactRequestById } from '@/db/queries/contact-requests';
 import { ContactRequestOverviewHeader, ContactRequestCard } from '@/components';
 

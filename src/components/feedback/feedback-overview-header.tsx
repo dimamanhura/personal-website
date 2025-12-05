@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
-import { EditItemButton, DeleteItemButton } from '@/components';
 import { deleteFeedback } from '@/actions';
-import { ItemOverviewHeaderProps } from '@/types';
+import { EditItemButton, DeleteItemButton } from '@/components';
 import paths from '@/paths';
+import { ItemOverviewHeaderProps } from '@/types';
 
 export const FeedbackOverviewHeader = ({
   withDelete = true,
@@ -13,8 +13,8 @@ export const FeedbackOverviewHeader = ({
   itemId,
 }: ItemOverviewHeaderProps) => {
   return (
-    <div className="flex justify-between mb-6">
-      <Link className="flex underline items-center text-blue-500" href={paths.feedbackAdmin()}>
+    <div className="mb-6 flex justify-between">
+      <Link className="flex items-center text-blue-500 underline" href={paths.feedbackAdmin()}>
         <FaArrowLeft className="mr-1" />
         Back
       </Link>

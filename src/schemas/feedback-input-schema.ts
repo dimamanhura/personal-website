@@ -1,6 +1,6 @@
+import { FeedbackSectionType } from '@prisma/client';
 import { z } from 'zod';
 import { isRealDate } from '@/utils';
-import { FeedbackSectionType } from '@prisma/client';
 
 export const feedbackInputSchema = z.object({
   featured: z.boolean(),

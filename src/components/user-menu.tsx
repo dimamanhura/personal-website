@@ -1,9 +1,5 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { pages, adminPages } from '@/pages';
-import * as actions from '@/actions';
-
 import {
   DropdownTrigger,
   DropdownSection,
@@ -12,6 +8,10 @@ import {
   Dropdown,
   Avatar,
 } from '@nextui-org/react';
+import { useSession } from 'next-auth/react';
+import * as actions from '@/actions';
+import { pages, adminPages } from '@/pages';
+
 import { Page } from '@/types';
 
 export const UserMenu = () => {

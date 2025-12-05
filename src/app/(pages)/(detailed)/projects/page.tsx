@@ -1,6 +1,6 @@
-import { SignificantProjectCard, Header } from '@/components';
-import { fetchSignificantProjects } from '@/db/queries/projects';
 import { Metadata } from 'next';
+import { fetchSignificantProjects } from '@/db/queries/projects';
+import { SignificantProjectCard, Header } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Significant Projects',
@@ -14,7 +14,7 @@ const ProjectsPage = async () => {
   return (
     <>
       <Header title="Significant Projects" />
-      <div className="w-full flex flex-col gap-6">
+      <div className="flex w-full flex-col gap-6">
         {significantProjects.map((significantProject) => (
           <SignificantProjectCard
             significantProject={significantProject}

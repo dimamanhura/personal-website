@@ -20,9 +20,9 @@ export const AchievementCard = ({
   notes,
 }: AchievementCardProps) => {
   return (
-    <div className="w-full flex flex-col gap-2 py-4 px-6 bg-zinc-100 dark:bg-zinc-800 rounded-lg">
+    <div className="flex w-full flex-col gap-2 rounded-lg bg-zinc-100 px-6 py-4 dark:bg-zinc-800">
       <div className="flex justify-between">
-        <h3 className="font-medium text-xl">{title}</h3>
+        <h3 className="text-xl font-medium">{title}</h3>
         {withFeaturedFlag && <FeaturedFlag featured={!!featured} />}
       </div>
 

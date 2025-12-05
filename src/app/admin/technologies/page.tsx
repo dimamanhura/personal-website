@@ -1,10 +1,10 @@
-import { Header, TechnologiesTable } from '@/components';
-import { fetchTechnologies } from '@/db/queries/technologies';
-import paths from '@/paths';
-import { SearchParams } from '@/types';
 import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { fetchTechnologies } from '@/db/queries/technologies';
+import { Header, TechnologiesTable } from '@/components';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Technologies',

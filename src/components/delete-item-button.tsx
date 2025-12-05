@@ -1,6 +1,6 @@
 'use client';
 
-import { getErrorMessage } from '@/utils';
+import { useTransition } from 'react';
 import {
   Modal,
   ModalContent,
@@ -10,9 +10,9 @@ import {
   Button,
   useDisclosure,
 } from '@nextui-org/react';
-import { useTransition } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { toast } from 'sonner';
+import { getErrorMessage } from '@/utils';
 
 interface DeleteItemButtonProps {
   isIconOnly?: boolean;

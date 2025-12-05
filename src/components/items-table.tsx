@@ -2,15 +2,20 @@
 
 import { FunctionComponent } from 'react';
 import { TableHeader, TableColumn, TableBody, TableCell, TableRow, Table } from '@nextui-org/react';
-import { Column, Sort } from '@/types';
-import { TablePagination } from '@/components';
+import { Achievement, ContactRequest } from '@prisma/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
+import { TechnologyWithSection } from '@/db/queries/technologies';
+import { TablePagination } from '@/components';
+import { Column, ColumnKey, Sort } from '@/types';
 
 interface ItemsTableProps {
-  items: any[];
+  items: Achievement[] | ContactRequest[] | ReviewWithFeedbackSection[] | TechnologyWithSection[];
   count: number;
   title: string;
-  columns: Column<any>[];
+  columns: Column<
+    ColumnKey<Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection>
+  >[];
   renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[];
 }
 
@@ -65,19 +70,31 @@ export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
       bottomContent={<TablePagination totalCount={count} page={page} onChange={handleChangePage} />}
     >
       <TableHeader>
-        {columns.map((column: Column<any>) => (
-          <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
-            {column.label}
-          </TableColumn>
-        ))}
+        {columns.map(
+          (
+            column: Column<
+              ColumnKey<
+                Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection
+              >
+            >,
+          ) => (
+            <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
+              {column.label}
+            </TableColumn>
+          ),
+        )}
       </TableHeader>
 
       <TableBody emptyContent={'No rows to display.'}>
-        {items.map((item: any) => (
-          <TableRow key={item.id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-          </TableRow>
-        ))}
+        {items.map(
+          (
+            item: Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection,
+          ) => (
+            <TableRow key={item.id}>
+              {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+            </TableRow>
+          ),
+        )}
       </TableBody>
     </Table>
   );

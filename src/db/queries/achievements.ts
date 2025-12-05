@@ -1,8 +1,8 @@
 import { cache } from 'react';
 import type { Achievement } from '@prisma/client';
+import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { Sort, PaginatedData } from '@/types';
-import { DEFAULT_LIMIT } from '@/constants';
 
 export const fetchFeaturedAchievements = cache((): Promise<Achievement[]> => {
   return db.achievement.findMany({

@@ -1,15 +1,15 @@
 'use client';
 
 import { useTransition } from 'react';
-import { z } from 'zod';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
-import { toast } from 'sonner';
-import * as actions from '@/actions';
-import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
-import { feedbackInputSchema } from '@/schemas';
 import { FeedbackSection } from '@prisma/client';
+import { toast } from 'sonner';
+import { z } from 'zod';
+import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
+import * as actions from '@/actions';
+import { feedbackInputSchema } from '@/schemas';
 
 interface EditFeedbackFormProps {
   feedback: ReviewWithFeedbackSection;
@@ -44,7 +44,7 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
 
   return (
     <form method="post" onSubmit={form.handleSubmit(onSubmit)}>
-      <div className="text-xs flex flex-col gap-4 w-full rounded-md">
+      <div className="flex w-full flex-col gap-4 rounded-md text-xs">
         <Controller
           control={form.control}
           name="author"
@@ -124,7 +124,7 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
               </Checkbox>
 
               {fieldState.error && (
-                <span className="text-danger text-tiny">{fieldState.error?.message}</span>
+                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
               )}
             </>
           )}

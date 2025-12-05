@@ -1,11 +1,11 @@
 'use client';
 
-import { Chip, Input, Textarea } from '@nextui-org/react';
+import { useEffect, useRef, useState } from 'react';
 import { useFormState } from 'react-dom';
+import { Chip, Input, Textarea } from '@nextui-org/react';
+import { FaExclamationTriangle } from 'react-icons/fa';
 import * as actions from '@/actions';
 import { SubmitButton } from '@/components';
-import { useEffect, useRef, useState } from 'react';
-import { FaExclamationTriangle } from 'react-icons/fa';
 
 export const CreateContactRequestForm = () => {
   const ref = useRef<HTMLFormElement | null>(null);
@@ -23,7 +23,7 @@ export const CreateContactRequestForm = () => {
 
   return (
     <form action={action} ref={ref}>
-      <div className="text-xs flex flex-col gap-4 p-4 w-full bg-white dark:bg-black rounded-md">
+      <div className="flex w-full flex-col gap-4 rounded-md bg-white p-4 text-xs dark:bg-black">
         {formState.errors._form && (
           <Chip
             startContent={<FaExclamationTriangle size={14} className="mr-1" />}

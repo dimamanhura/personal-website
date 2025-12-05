@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { deleteAchievement } from '@/actions';
 import { EditItemButton, DeleteItemButton } from '@/components';
 import paths from '@/paths';
 import { ItemOverviewHeaderProps } from '@/types';
-import { deleteAchievement } from '@/actions';
 
 export const AchievementOverviewHeader = ({
   withDelete = true,
@@ -13,8 +13,8 @@ export const AchievementOverviewHeader = ({
   itemId,
 }: ItemOverviewHeaderProps) => {
   return (
-    <div className="flex justify-between mb-6">
-      <Link className="flex underline items-center text-blue-500" href={paths.achievementsAdmin()}>
+    <div className="mb-6 flex justify-between">
+      <Link className="flex items-center text-blue-500 underline" href={paths.achievementsAdmin()}>
         <FaArrowLeft className="mr-1" />
         Back
       </Link>

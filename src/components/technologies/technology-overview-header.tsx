@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { deleteTechnology } from '@/actions';
 import { EditItemButton, DeleteItemButton } from '@/components';
 import paths from '@/paths';
 import { ItemOverviewHeaderProps } from '@/types';
-import { deleteTechnology } from '@/actions';
 
 export const TechnologyOverviewHeader = ({
   withDelete = true,
@@ -13,8 +13,8 @@ export const TechnologyOverviewHeader = ({
   itemId,
 }: ItemOverviewHeaderProps) => {
   return (
-    <div className="flex justify-between mb-6">
-      <Link className="flex underline items-center text-blue-500" href={paths.technologiesAdmin()}>
+    <div className="mb-6 flex justify-between">
+      <Link className="flex items-center text-blue-500 underline" href={paths.technologiesAdmin()}>
         <FaArrowLeft className="mr-1" />
         Back
       </Link>

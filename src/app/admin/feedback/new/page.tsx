@@ -1,6 +1,6 @@
-import { CreateFeedbackForm, FeedbackOverviewHeader } from '@/components';
-import { fetchReviewSections } from '@/db/queries/feedback';
 import { Metadata } from 'next';
+import { fetchReviewSections } from '@/db/queries/feedback';
+import { CreateFeedbackForm, FeedbackOverviewHeader } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Feedback - New',

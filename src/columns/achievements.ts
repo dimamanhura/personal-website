@@ -1,6 +1,5 @@
-import { Column } from '@/types';
-import { ColumnKey } from '@/types';
 import { Achievement } from '@prisma/client';
+import { Column, ColumnKey } from '@/types';
 
 export const columns: Column<ColumnKey<Achievement>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },

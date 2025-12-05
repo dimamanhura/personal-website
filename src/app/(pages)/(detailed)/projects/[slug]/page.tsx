@@ -1,12 +1,12 @@
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { FaArrowLeft, FaCalendar, FaUser } from 'react-icons/fa';
-import paths from '@/paths';
-import { fetchSignificantProjectBySlug } from '@/db/queries/projects';
 import { Avatar, Chip } from '@nextui-org/react';
-import { formatDateRange } from '@/utils';
-import { ItemsList, ChipsList } from '@/components';
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { FaArrowLeft, FaCalendar, FaUser } from 'react-icons/fa';
+import { fetchSignificantProjectBySlug } from '@/db/queries/projects';
+import { ItemsList, ChipsList } from '@/components';
+import paths from '@/paths';
+import { formatDateRange } from '@/utils';
 
 interface ProjectBySlugPageProps {
   params: {
@@ -40,30 +40,30 @@ const ProjectBySlugPage = async ({ params }: ProjectBySlugPageProps) => {
   return (
     <>
       <div className="mb-6">
-        <Link className="flex underline items-center text-blue-500" href={paths.projects()}>
+        <Link className="flex items-center text-blue-500 underline" href={paths.projects()}>
           <FaArrowLeft className="mr-1" />
           Back
         </Link>
       </div>
       <div className="flex flex-col gap-6">
-        <header className="flex flex-col md:flex-row justify-between items-start gap-6">
+        <header className="flex flex-col items-start justify-between gap-6 md:flex-row">
           <div className="flex items-center gap-6">
             <Avatar
               isBordered
-              className="w-20 h-20 text-large flex-shrink-0"
+              className="h-20 w-20 flex-shrink-0 text-large"
               radius="sm"
               name={project.logo ? project.name : 'N/A'}
               src={project.logo}
             />
             <div>
-              <h1 className="text-xl md:text-2xl lg:text-4xl font-medium">{project.name}</h1>
-              <h2 className="text-base md:text-lg lg:text-xl text-zinc-400">
+              <h1 className="text-xl font-medium md:text-2xl lg:text-4xl">{project.name}</h1>
+              <h2 className="text-base text-zinc-400 md:text-lg lg:text-xl">
                 {project.shortDescription}
               </h2>
             </div>
           </div>
           <Chip className="text-sm" variant="flat" color="primary" size="md">
-            <span className="flex gap-2 items-center">
+            <span className="flex items-center gap-2">
               <FaCalendar size={12} />
               {formatDateRange(project.startAt, project.endAt)}
             </span>
@@ -71,7 +71,7 @@ const ProjectBySlugPage = async ({ params }: ProjectBySlugPageProps) => {
         </header>
 
         <Chip color="primary" variant="flat" radius="md" size="md">
-          <span className="flex gap-2 items-center">
+          <span className="flex items-center gap-2">
             <FaUser size={12} />
             {project.position}
           </span>

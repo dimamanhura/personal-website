@@ -1,5 +1,5 @@
-import { FeedbackCard } from '@/components';
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
+import { FeedbackCard } from '@/components';
 
 interface ReviewListProps {
   featuredReviews: ReviewWithFeedbackSection[];

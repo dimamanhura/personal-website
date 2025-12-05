@@ -1,5 +1,5 @@
-import { AchievementOverviewHeader, CreateAchievementForm } from '@/components';
 import { Metadata } from 'next';
+import { AchievementOverviewHeader, CreateAchievementForm } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Achievement - New',

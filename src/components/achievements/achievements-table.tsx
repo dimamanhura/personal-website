@@ -1,12 +1,12 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
-import { ItemsTable, TableActions, TruncatedText, FeaturedFlag, ItemsCount } from '@/components';
-import paths from '@/paths';
 import { Achievement } from '@prisma/client';
 import { deleteAchievement } from '@/actions';
-import { ColumnKey } from '@/types';
 import { achievementsColumns } from '@/columns';
+import { ItemsTable, TableActions, TruncatedText, FeaturedFlag, ItemsCount } from '@/components';
+import paths from '@/paths';
+import { ColumnKey } from '@/types';
 
 interface AchievementsTableProps {
   items: Achievement[];

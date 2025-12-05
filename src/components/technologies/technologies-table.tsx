@@ -1,13 +1,13 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
+import { User } from '@nextui-org/react';
+import { TechnologyWithSection } from '@/db/queries/technologies';
+import { deleteTechnology } from '@/actions';
+import { technologiesColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from '@/components';
 import paths from '@/paths';
-import { deleteTechnology } from '@/actions';
-import { TechnologyWithSection } from '@/db/queries/technologies';
-import { User } from '@nextui-org/react';
 import { ColumnKey } from '@/types';
-import { technologiesColumns } from '@/columns';
 
 interface TechnologiesTableProps {
   items: TechnologyWithSection[];

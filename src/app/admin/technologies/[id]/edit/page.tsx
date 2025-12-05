@@ -1,7 +1,7 @@
-import { EditTechnologyForm, TechnologyOverviewHeader } from '@/components';
-import { fetchTechnologiesSections, fetchTechnologyById } from '@/db/queries/technologies';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchTechnologiesSections, fetchTechnologyById } from '@/db/queries/technologies';
+import { EditTechnologyForm, TechnologyOverviewHeader } from '@/components';
 
 interface TechnologyEditPageProps {
   params: { id: string };

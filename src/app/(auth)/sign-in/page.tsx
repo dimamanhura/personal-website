@@ -1,5 +1,5 @@
-import { SignInForm } from '@/components';
 import { Metadata } from 'next';
+import { SignInForm } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Sign in',

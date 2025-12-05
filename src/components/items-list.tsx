@@ -11,8 +11,8 @@ export const ItemsList = async ({ title, items }: ItemsListProps) => {
       {title && <h4 className="font-medium">{title}:</h4>}
       <ul>
         {items.map((text, index) => (
-          <li className="pl-4 flex items-center text-sm text-foreground-400" key={index}>
-            <FaCircle className="text-black dark:text-white mr-2 text-[4px] flex-shrink-0" />
+          <li className="flex items-center pl-4 text-sm text-foreground-400" key={index}>
+            <FaCircle className="mr-2 flex-shrink-0 text-[4px] text-black dark:text-white" />
             <span>{text}</span>
           </li>
         ))}

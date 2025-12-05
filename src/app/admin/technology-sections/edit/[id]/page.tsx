@@ -1,5 +1,5 @@
-import { Header } from '@/components';
 import { Metadata } from 'next';
+import { Header } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Edit technology section',

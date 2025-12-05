@@ -1,7 +1,7 @@
-import { ContactRequestOverviewHeader, EditContactRequestForm } from '@/components';
-import { fetchContactRequestById } from '@/db/queries/contact-requests';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchContactRequestById } from '@/db/queries/contact-requests';
+import { ContactRequestOverviewHeader, EditContactRequestForm } from '@/components';
 
 interface ContactRequestsEditPageProps {
   params: { id: string };

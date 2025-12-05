@@ -1,7 +1,7 @@
+import { Link } from '@nextui-org/react';
+import { Contacts as ContactsType, Location } from '@prisma/client';
 import { FaEnvelope, FaGithub, FaLinkedin, FaPhone } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
-import { Contacts as ContactsType, Location } from '@prisma/client';
-import { Link } from '@nextui-org/react';
 
 interface ContactsProps {
   location: Location;

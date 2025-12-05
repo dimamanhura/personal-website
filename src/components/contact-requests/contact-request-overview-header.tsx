@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
-import { EditItemButton, DeleteItemButton } from '@/components';
 import { deleteContactRequest } from '@/actions';
+import { EditItemButton, DeleteItemButton } from '@/components';
 import paths from '@/paths';
 
 interface ItemOverviewHeaderProps {
@@ -16,9 +16,9 @@ export const ContactRequestOverviewHeader = ({
   itemId,
 }: ItemOverviewHeaderProps) => {
   return (
-    <div className="flex justify-between mb-6">
+    <div className="mb-6 flex justify-between">
       <Link
-        className="flex underline items-center text-blue-500"
+        className="flex items-center text-blue-500 underline"
         href={paths.contactRequestsAdmin()}
       >
         <FaArrowLeft className="mr-1" />

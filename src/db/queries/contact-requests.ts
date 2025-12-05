@@ -1,8 +1,8 @@
 import { cache } from 'react';
 import type { ContactRequest } from '@prisma/client';
+import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
-import { DEFAULT_LIMIT } from '@/constants';
 
 export const fetchContactRequests = cache(
   async (params?: { orderBy?: Sort; page?: number }): Promise<PaginatedData<ContactRequest>> => {

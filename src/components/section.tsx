@@ -11,13 +11,13 @@ interface SectionProps {
 export const Section = ({ children, title, link }: SectionProps) => {
   return (
     <section>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <h2 className="text-xl md:text-2xl">{title}</h2>
 
         {link && (
           <>
             <Link
-              className="underline items-center text-blue-500 hidden md:flex print:hidden"
+              className="hidden items-center text-blue-500 underline md:flex print:hidden"
               href={link}
             >
               See All
@@ -40,7 +40,7 @@ export const Section = ({ children, title, link }: SectionProps) => {
 
       <Divider className="my-4" />
 
-      <div className="flex flex-col gap-4 items-start">{children}</div>
+      <div className="flex flex-col items-start gap-4">{children}</div>
     </section>
   );
 };

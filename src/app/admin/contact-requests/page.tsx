@@ -1,7 +1,7 @@
-import { ContactRequestsTable, Header } from '@/components';
-import { fetchContactRequests } from '@/db/queries/contact-requests';
-import { SearchParams } from '@/types';
 import { Metadata } from 'next';
+import { fetchContactRequests } from '@/db/queries/contact-requests';
+import { ContactRequestsTable, Header } from '@/components';
+import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Contact Requests',

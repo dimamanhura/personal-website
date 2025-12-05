@@ -1,16 +1,16 @@
 'use client';
 
 import { useTransition } from 'react';
-import { z } from 'zod';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
-import { toast } from 'sonner';
-import * as actions from '@/actions';
-import { technologyInputSchema } from '@/schemas';
 import { TechnologySection } from '@prisma/client';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { z } from 'zod';
+import * as actions from '@/actions';
 import paths from '@/paths';
+import { technologyInputSchema } from '@/schemas';
 
 interface CreateTechnologyFormProps {
   technologySections: TechnologySection[];
@@ -44,7 +44,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
 
   return (
     <form method="post" onSubmit={form.handleSubmit(onSubmit)}>
-      <div className="text-xs flex flex-col gap-4 w-full rounded-md">
+      <div className="flex w-full flex-col gap-4 rounded-md text-xs">
         <Controller
           control={form.control}
           name="title"
@@ -94,7 +94,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
               </Checkbox>
 
               {fieldState.error && (
-                <span className="text-danger text-tiny">{fieldState.error?.message}</span>
+                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
               )}
             </>
           )}

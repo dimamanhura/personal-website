@@ -1,5 +1,5 @@
-import { ContactRequestStatus } from '@/components';
 import { ContactRequest } from '@prisma/client';
+import { ContactRequestStatus } from '@/components';
 
 interface ContactRequestCardProps {
   contactRequest: ContactRequest;
@@ -7,7 +7,7 @@ interface ContactRequestCardProps {
 
 export const ContactRequestCard = ({ contactRequest }: ContactRequestCardProps) => {
   return (
-    <div className="w-full flex flex-col gap-2 py-4 px-6 bg-zinc-100 dark:bg-zinc-800 rounded-lg">
+    <div className="flex w-full flex-col gap-2 rounded-lg bg-zinc-100 px-6 py-4 dark:bg-zinc-800">
       <div className="flex justify-between align-middle">
         <div className="flex flex-col gap-1">
           <h4 className="text-lg font-medium">
@@ -19,11 +19,11 @@ export const ContactRequestCard = ({ contactRequest }: ContactRequestCardProps) 
         <ContactRequestStatus resolved={contactRequest.resolved} />
       </div>
 
-      <p className="text-sm mt-2">{contactRequest.message}</p>
+      <p className="mt-2 text-sm">{contactRequest.message}</p>
 
       {contactRequest.resolved && contactRequest.resolution && (
         <>
-          <h4 className="font-medium mt-2">Resolution:</h4>
+          <h4 className="mt-2 font-medium">Resolution:</h4>
           <p className="text-sm">{contactRequest.resolution}</p>
         </>
       )}

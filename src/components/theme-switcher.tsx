@@ -1,9 +1,9 @@
 'use client';
 
-import { useTheme } from 'next-themes';
-import { Switch } from '@nextui-org/react';
-import { FaMoon, FaSun } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import { Switch } from '@nextui-org/react';
+import { useTheme } from 'next-themes';
+import { FaMoon, FaSun } from 'react-icons/fa';
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();

@@ -1,9 +1,9 @@
 'use client';
 
 import { Button, Chip } from '@nextui-org/react';
-import { SubmitButton } from '@/components';
-import { FaExclamationTriangle, FaSignInAlt } from 'react-icons/fa';
 import Link from 'next/link';
+import { FaExclamationTriangle, FaSignInAlt } from 'react-icons/fa';
+import { SubmitButton } from '@/components';
 import paths from '@/paths';
 
 interface AuthFormProps {
@@ -25,9 +25,9 @@ export const AuthForm = ({
 }: AuthFormProps) => {
   return (
     <form action={action}>
-      <div className="w-full mt-24">
-        <div className="m-auto max-w-xl flex flex-col gap-4 p-8 text-xs bg-white dark:bg-black shadow-xl rounded-xl">
-          <div className="flex mb-2 justify-between">
+      <div className="mt-24 w-full">
+        <div className="m-auto flex max-w-xl flex-col gap-4 rounded-xl bg-white p-8 text-xs shadow-xl dark:bg-black">
+          <div className="mb-2 flex justify-between">
             <h2 className="text-2xl">{title}</h2>
 
             <Link href={paths.home()}>

@@ -1,9 +1,9 @@
 'use server';
 
-import { db } from '@/db';
 import { revalidatePath } from 'next/cache';
-import paths from '@/paths';
 import { redirect } from 'next/navigation';
+import { db } from '@/db';
+import paths from '@/paths';
 
 export const deleteFeedback = async (id: string) => {
   await db.feedback.delete({

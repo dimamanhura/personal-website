@@ -3,7 +3,7 @@ export interface AuthPagesLayoutProps {
 }
 
 const AuthPagesLayout = ({ children }: Readonly<AuthPagesLayoutProps>) => {
-  return <div className="container mx-auto py-12 px-8 md:24 lg:px-48">{children}</div>;
+  return <div className="md:24 container mx-auto px-8 py-12 lg:px-48">{children}</div>;
 };
 
 export default AuthPagesLayout;

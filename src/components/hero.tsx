@@ -1,6 +1,6 @@
 import { Avatar } from '@nextui-org/react';
-import { Contacts, DownloadAsPdf } from '@/components';
 import { Meta } from '@prisma/client';
+import { Contacts, DownloadAsPdf } from '@/components';
 
 interface HeroProps {
   meta: Meta;
@@ -9,19 +9,19 @@ interface HeroProps {
 export const Hero = ({ meta }: HeroProps) => {
   return (
     <>
-      <div className="w-full relative flex flex-col lg:flex-row justify-center items-center gap-4 py-6 px-6 bg-zinc-100 dark:bg-zinc-800">
+      <div className="relative flex w-full flex-col items-center justify-center gap-4 bg-zinc-100 px-6 py-6 dark:bg-zinc-800 lg:flex-row">
         <Avatar
           src={meta.avatar}
-          className="w-44 h-44 text-large border-white border-2 flex-shrink-0"
+          className="h-44 w-44 flex-shrink-0 border-2 border-white text-large"
         />
         <div className="flex flex-col gap-1 lg:max-w-[600px]">
-          <h1 className="w-full text-2xl text-center md:text-4xl md:text-left">
+          <h1 className="w-full text-center text-2xl md:text-left md:text-4xl">
             {meta.firstName} {meta.lastName}
           </h1>
-          <p className="w-full text-center text-xl md:text-left text-zinc-600 dark:text-zinc-400">
+          <p className="w-full text-center text-xl text-zinc-600 dark:text-zinc-400 md:text-left">
             {meta.title}
           </p>
-          <p className="w-full text-sm text-zinc-500 dark:text-zinc-300 text-justify">
+          <p className="w-full text-justify text-sm text-zinc-500 dark:text-zinc-300">
             {meta.description}
           </p>
         </div>
@@ -29,7 +29,7 @@ export const Hero = ({ meta }: HeroProps) => {
           <DownloadAsPdf />
         </div>
       </div>
-      <div className="w-full flex flex-col md:flex-row justify-center items-center gap-4 py-4 px-6 bg-zinc-200 dark:bg-zinc-900">
+      <div className="flex w-full flex-col items-center justify-center gap-4 bg-zinc-200 px-6 py-4 dark:bg-zinc-900 md:flex-row">
         <Contacts contacts={meta.contacts} location={meta.location} />
       </div>
     </>

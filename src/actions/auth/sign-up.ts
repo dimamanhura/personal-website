@@ -1,12 +1,12 @@
 'use server';
 
+import { hashSync } from 'bcrypt-ts-edge';
 import { isRedirectError } from 'next/dist/client/components/redirect';
 import { redirect } from 'next/navigation';
-import { hashSync } from 'bcrypt-ts-edge';
+import { z } from 'zod';
 import { db } from '@/db';
-import { formatErrors } from '@/utils';
-import z from 'zod';
 import { notifyAboutNewUser } from '@/telegram';
+import { formatErrors } from '@/utils';
 
 interface SignUpFormState {
   success?: boolean;

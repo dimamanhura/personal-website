@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import { fetchTechnologiesSections } from '@/db/queries/technologies';
 import { fetchFeaturedAchievements } from '@/db/queries/achievements';
-import { fetchFeaturedSignificantProjects } from '@/db/queries/projects';
-import { fetchFeaturedReviews } from '@/db/queries/feedback';
-import { fetchUniversities } from '@/db/queries/education';
 import { fetchCompanies } from '@/db/queries/companies';
+import { fetchUniversities } from '@/db/queries/education';
+import { fetchFeaturedReviews } from '@/db/queries/feedback';
 import { fetchMeta } from '@/db/queries/meta';
+import { fetchFeaturedSignificantProjects } from '@/db/queries/projects';
+import { fetchTechnologiesSections } from '@/db/queries/technologies';
 import {
   TechnologiesSectionsList,
   FeaturedAchievementsList,
@@ -48,9 +48,9 @@ const HomePage = async () => {
   return (
     <>
       {meta && <Hero meta={meta} />}
-      <div className="container mx-auto py-12 px-8 md:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-          <div className="col-span-1 lg:col-span-2 flex flex-col gap-12">
+      <div className="container mx-auto px-8 py-12 md:px-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
+          <div className="col-span-1 flex flex-col gap-12 lg:col-span-2">
             <Section title="Significant Projects" link={paths.projects()}>
               <SignificantProjectsList significantProjects={featuredSignificantProjects} />
             </Section>
@@ -58,7 +58,7 @@ const HomePage = async () => {
               <FeaturedAchievementsList featuredAchievements={featuredAchievements} />
             </Section>
           </div>
-          <div className="col-span-1 lg:col-span-1 flex flex-col gap-12">
+          <div className="col-span-1 flex flex-col gap-12 lg:col-span-1">
             <Section title="Technologies">
               <TechnologiesSectionsList technologiesSections={technologiesSections} />
             </Section>

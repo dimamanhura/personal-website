@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { FeedbackOverviewHeader, FeedbackCard } from '@/components';
+import { notFound } from 'next/navigation';
 import { fetchFeedbackById } from '@/db/queries/feedback';
+import { FeedbackOverviewHeader, FeedbackCard } from '@/components';
 
 interface FeedbackShowPageProps {
   params: {

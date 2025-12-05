@@ -1,6 +1,5 @@
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
-import { Column } from '@/types';
-import { ColumnKey } from '@/types';
+import { Column, ColumnKey } from '@/types';
 
 export const columns: Column<ColumnKey<ReviewWithFeedbackSection>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },

@@ -1,8 +1,6 @@
 'use client';
 
 import { Fragment, useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
-import { usePathname, redirect } from 'next/navigation';
 import {
   NavbarMenuToggle,
   DropdownTrigger,
@@ -20,9 +18,11 @@ import {
   Link,
 } from '@nextui-org/react';
 import RouterLink from 'next/link';
+import { usePathname, redirect } from 'next/navigation';
+import { FaChevronDown } from 'react-icons/fa';
 import { ThemeSwitcher, UserMenu } from '@/components';
-import { Page } from '@/types';
 import paths from '@/paths';
+import { Page } from '@/types';
 
 interface NavProps {
   pages: Page[];
@@ -93,7 +93,7 @@ export const Nav = ({ pages }: NavProps) => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden md:flex gap-3" justify="start">
+      <NavbarContent className="hidden gap-3 md:flex" justify="start">
         {linksToShow.map((page, index) => (
           <Fragment key={index}>{renderLink(page)}</Fragment>
         ))}
@@ -103,7 +103,7 @@ export const Nav = ({ pages }: NavProps) => {
               <DropdownTrigger>
                 <Button
                   disableRipple
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                  className="bg-transparent p-0 data-[hover=true]:bg-transparent"
                   endContent={<FaChevronDown />}
                   radius="sm"
                   variant="light"

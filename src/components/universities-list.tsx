@@ -1,6 +1,6 @@
-import { formatDateRange } from '@/utils';
 import { User } from '@nextui-org/react';
 import { Education } from '@prisma/client';
+import { formatDateRange } from '@/utils';
 
 interface UniversitiesListProps {
   universities: Education[];

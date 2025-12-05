@@ -1,6 +1,6 @@
-import { CreateTechnologyForm, TechnologyOverviewHeader } from '@/components';
-import { fetchTechnologiesSections } from '@/db/queries/technologies';
 import { Metadata } from 'next';
+import { fetchTechnologiesSections } from '@/db/queries/technologies';
+import { CreateTechnologyForm, TechnologyOverviewHeader } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Technologies - New',
