@@ -21,7 +21,7 @@ export const TechnologyOverviewHeader = ({
 
       <div className="flex gap-2">
         {withEdit && itemId && (
-          <EditItemButton isIconOnly={false} path={paths.editTechnology(itemId)} />
+          <EditItemButton isIconOnly={false} path={paths.technologiesEditByIdAdmin(itemId)} />
         )}
         {withDelete && itemId && (
           <DeleteItemButton isIconOnly={false} onDelete={() => deleteTechnology(itemId)} />

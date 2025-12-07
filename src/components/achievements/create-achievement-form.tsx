@@ -35,7 +35,7 @@ export const CreateAchievementForm = () => {
 
       if (success && id) {
         toast.success('Successfully created');
-        router.push(paths.achievementsDetails(id));
+        router.push(paths.achievementsDetailsByIdAdmin(id));
       } else {
         toast.error(message);
       }

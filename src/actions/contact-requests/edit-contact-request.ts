@@ -34,7 +34,7 @@ export async function editContactRequest(
       },
     });
 
-    revalidatePath(paths.contactRequestDetails(id));
+    revalidatePath(paths.contactRequestsDetailsByIdAdmin(id));
     revalidatePath(paths.contactRequestsAdmin());
 
     return { success: true };

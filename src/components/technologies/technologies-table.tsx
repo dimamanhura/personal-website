@@ -20,8 +20,8 @@ export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ i
       if (columnKey === 'actions') {
         return (
           <TableActions
-            showPath={paths.technologyDetails}
-            editPath={paths.editTechnology}
+            showPath={paths.technologiesDetailsByIdAdmin}
+            editPath={paths.technologiesEditByIdAdmin}
             itemId={technology.id}
             onDelete={deleteTechnology}
           />

@@ -11,7 +11,7 @@ export const deleteContactRequest = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.contactRequestDetails(id));
+  revalidatePath(paths.contactRequestsDetailsByIdAdmin(id));
   revalidatePath(paths.contactRequestsAdmin());
   redirect(paths.contactRequestsAdmin());
 };

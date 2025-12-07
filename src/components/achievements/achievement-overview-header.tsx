@@ -21,7 +21,7 @@ export const AchievementOverviewHeader = ({
 
       <div className="flex gap-2">
         {withEdit && itemId && (
-          <EditItemButton isIconOnly={false} path={paths.editAchievement(itemId)} />
+          <EditItemButton isIconOnly={false} path={paths.achievementsEditByIdAdmin(itemId)} />
         )}
         {withDelete && itemId && (
           <DeleteItemButton isIconOnly={false} onDelete={() => deleteAchievement(itemId)} />

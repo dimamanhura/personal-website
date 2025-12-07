@@ -11,7 +11,7 @@ export const deleteTechnology = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.technologyDetails(id));
+  revalidatePath(paths.technologiesDetailsByIdAdmin(id));
   revalidatePath(paths.technologiesAdmin());
   redirect(paths.technologiesAdmin());
 };

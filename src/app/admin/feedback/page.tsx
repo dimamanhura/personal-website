@@ -27,7 +27,7 @@ const FeedbackAdminPage = async ({ searchParams }: FeedbackAdminPageProps) => {
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <Button color="primary" variant="flat" as={Link} href={paths.addFeedback()}>
+          <Button color="primary" variant="flat" as={Link} href={paths.feedbackNewAdmin()}>
             Add Feedback
           </Button>
         )}

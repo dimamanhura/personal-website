@@ -36,7 +36,7 @@ export async function editAchievement(
       },
     });
     revalidatePath(paths.achievementsAdmin());
-    revalidatePath(paths.achievementsDetails(id));
+    revalidatePath(paths.achievementsDetailsByIdAdmin(id));
     return { success: true, id: achievement.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };

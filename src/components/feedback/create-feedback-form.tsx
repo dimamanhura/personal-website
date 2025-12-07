@@ -37,7 +37,7 @@ export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
 
       if (success && id) {
         toast.success('Successfully created');
-        router.push(paths.feedbackDetails(id));
+        router.push(paths.feedbackDetailsByIdAdmin(id));
       } else {
         toast.error(message);
       }

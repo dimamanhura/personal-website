@@ -7,3 +7,6 @@ export { type PaginatedData } from './paginated-data';
 export { type SearchParams } from './search-params';
 export { type Sort } from './sort';
 export { type ColumnKey } from './column-key';
+export { type PublicPaths } from './public-paths';
+export { AdminEntity } from './admin-entity';
+export { type AdminPaths } from './admin-paths';

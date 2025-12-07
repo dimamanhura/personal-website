@@ -27,7 +27,7 @@ const AchievementsAdminPage = async ({ searchParams }: AchievementsAdminPageProp
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <Button color="primary" variant="flat" as={Link} href={paths.addAchievement()}>
+          <Button color="primary" variant="flat" as={Link} href={paths.achievementsAdmin()}>
             Add Achievement
           </Button>
         )}

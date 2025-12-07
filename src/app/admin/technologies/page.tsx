@@ -27,7 +27,7 @@ const TechnologiesAdminPage = async ({ searchParams }: TechnologiesAdminPageProp
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <Button color="primary" variant="flat" as={Link} href={paths.addTechnology()}>
+          <Button color="primary" variant="flat" as={Link} href={paths.technologiesNewAdmin()}>
             Add Technology
           </Button>
         )}

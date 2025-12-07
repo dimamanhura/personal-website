@@ -26,7 +26,9 @@ export const ContactRequestOverviewHeader = ({
       </Link>
 
       <div className="flex gap-2">
-        {withEdit && <EditItemButton isIconOnly={false} path={paths.editContactRequest(itemId)} />}
+        {withEdit && (
+          <EditItemButton isIconOnly={false} path={paths.contactRequestsEditByIdAdmin(itemId)} />
+        )}
         <DeleteItemButton isIconOnly={false} onDelete={() => deleteContactRequest(itemId)} />
       </div>
     </div>

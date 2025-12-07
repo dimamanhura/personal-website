@@ -22,8 +22,8 @@ export const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> 
       if (columnKey === 'actions') {
         return (
           <TableActions
-            showPath={paths.contactRequestDetails}
-            editPath={paths.editContactRequest}
+            showPath={paths.contactRequestsDetailsByIdAdmin}
+            editPath={paths.contactRequestsEditByIdAdmin}
             itemId={contactRequest.id}
             onDelete={deleteContactRequest}
           />

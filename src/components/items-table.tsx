@@ -9,23 +9,17 @@ import { TechnologyWithSection } from '@/db/queries/technologies';
 import { TablePagination } from '@/components';
 import { Column, ColumnKey, Sort } from '@/types';
 
-interface ItemsTableProps {
-  items: Achievement[] | ContactRequest[] | ReviewWithFeedbackSection[] | TechnologyWithSection[];
+interface ItemsTableProps<T> {
+  items: T[];
   count: number;
   title: string;
-  columns: Column<
-    ColumnKey<Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection>
-  >[];
+  columns: Column<ColumnKey<T>>[];
   renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[];
 }
 
-export const ItemsTable: FunctionComponent<ItemsTableProps> = ({
-  columns,
-  items,
-  count,
-  title,
-  renderCell,
-}) => {
+export const ItemsTable: FunctionComponent<
+  ItemsTableProps<Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection>
+> = ({ columns, items, count, title, renderCell }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;

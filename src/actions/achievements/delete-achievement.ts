@@ -11,7 +11,7 @@ export const deleteAchievement = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.achievementsDetails(id));
+  revalidatePath(paths.achievementsDetailsByIdAdmin(id));
   revalidatePath(paths.achievementsAdmin());
   redirect(paths.achievementsAdmin());
 };

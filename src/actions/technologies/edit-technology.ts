@@ -30,7 +30,7 @@ export async function editTechnology(
       },
     });
     revalidatePath(paths.technologiesAdmin());
-    revalidatePath(paths.technologyDetails(id));
+    revalidatePath(paths.technologiesDetailsByIdAdmin(id));
     return { success: true, id: technology.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };

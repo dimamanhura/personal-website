@@ -35,7 +35,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
 
       if (success && id) {
         toast.success('Successfully created');
-        router.push(paths.technologyDetails(id));
+        router.push(paths.technologiesDetailsByIdAdmin(id));
       } else {
         toast.error(message);
       }

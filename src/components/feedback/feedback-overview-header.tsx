@@ -21,7 +21,7 @@ export const FeedbackOverviewHeader = ({
 
       <div className="flex gap-2">
         {withEdit && itemId && (
-          <EditItemButton isIconOnly={false} path={paths.editFeedback(itemId)} />
+          <EditItemButton isIconOnly={false} path={paths.feedbackEditByIdAdmin(itemId)} />
         )}
         {withDelete && itemId && (
           <DeleteItemButton isIconOnly={false} onDelete={() => deleteFeedback(itemId)} />

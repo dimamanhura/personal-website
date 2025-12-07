@@ -34,7 +34,7 @@ export async function editFeedback(
       },
     });
 
-    revalidatePath(paths.feedbackDetails(id));
+    revalidatePath(paths.feedbackDetailsByIdAdmin(id));
     revalidatePath(paths.feedbackAdmin());
 
     return { success: true };

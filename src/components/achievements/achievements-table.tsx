@@ -18,8 +18,8 @@ export const AchievementsTable: FunctionComponent<AchievementsTableProps> = ({ i
     if (columnKey === 'actions') {
       return (
         <TableActions
-          showPath={paths.achievementsDetails}
-          editPath={paths.editAchievement}
+          showPath={paths.achievementsDetailsByIdAdmin}
+          editPath={paths.achievementsEditByIdAdmin}
           itemId={achievement.id}
           onDelete={deleteAchievement}
         />

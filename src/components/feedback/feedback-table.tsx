@@ -19,8 +19,8 @@ export const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({ items, co
       if (columnKey === 'actions') {
         return (
           <TableActions
-            showPath={paths.feedbackDetails}
-            editPath={paths.editFeedback}
+            showPath={paths.feedbackDetailsByIdAdmin}
+            editPath={paths.feedbackEditByIdAdmin}
             itemId={feedback.id}
             onDelete={deleteFeedback}
           />
