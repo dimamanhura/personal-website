@@ -33,6 +33,9 @@ export { EditTechnologyForm } from './technologies/edit-technology-form';
 export { TechnologyOverviewHeader } from './technologies/technology-overview-header';
 export { TechnologyCard } from './technologies/technology-card';
 
+// technology sections
+export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
+
 export { Banner } from './banner';
 export { ChipsList } from './chips-list';
 export { CompaniesList } from './companies-list';

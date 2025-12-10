@@ -6,6 +6,7 @@ import { Achievement, ContactRequest } from '@prisma/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
 import { TechnologyWithSection } from '@/db/queries/technologies';
+import { TechnologySectionWithTechnologies } from '@/db/queries/technology-sections';
 import { TablePagination } from '@/components';
 import { Column, ColumnKey, Sort } from '@/types';
 
@@ -17,9 +18,20 @@ interface ItemsTableProps<T> {
   renderCell: <T, K>(item: T, columnKey: K) => JSX.Element | JSX.Element[];
 }
 
-export const ItemsTable: FunctionComponent<
-  ItemsTableProps<Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection>
-> = ({ columns, items, count, title, renderCell }) => {
+type AdminEntity =
+  | Achievement
+  | ContactRequest
+  | ReviewWithFeedbackSection
+  | TechnologyWithSection
+  | TechnologySectionWithTechnologies;
+
+export const ItemsTable: FunctionComponent<ItemsTableProps<AdminEntity>> = ({
+  columns,
+  items,
+  count,
+  title,
+  renderCell,
+}) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
@@ -64,31 +76,19 @@ export const ItemsTable: FunctionComponent<
       bottomContent={<TablePagination totalCount={count} page={page} onChange={handleChangePage} />}
     >
       <TableHeader>
-        {columns.map(
-          (
-            column: Column<
-              ColumnKey<
-                Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection
-              >
-            >,
-          ) => (
-            <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
-              {column.label}
-            </TableColumn>
-          ),
-        )}
+        {columns.map((column: Column<ColumnKey<AdminEntity>>) => (
+          <TableColumn key={column.key} allowsSorting={column.allowsSorting}>
+            {column.label}
+          </TableColumn>
+        ))}
       </TableHeader>
 
       <TableBody emptyContent={'No rows to display.'}>
-        {items.map(
-          (
-            item: Achievement | ContactRequest | ReviewWithFeedbackSection | TechnologyWithSection,
-          ) => (
-            <TableRow key={item.id}>
-              {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-            </TableRow>
-          ),
-        )}
+        {items.map((item: AdminEntity) => (
+          <TableRow key={item.id}>
+            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

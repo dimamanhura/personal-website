@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { fetchTechnologiesSections } from '@/db/queries/technologies';
+import { fetchTechnologySections } from '@/db/queries/technology-sections';
 import { CreateTechnologyForm, TechnologyOverviewHeader } from '@/components';
 
 export const metadata: Metadata = {
@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 };
 
 const TechnologiesAddPage = async () => {
-  const technologySections = await fetchTechnologiesSections();
+  const technologySections = await fetchTechnologySections({ all: true });
 
   return (
     <>
       <TechnologyOverviewHeader withEdit={false} withDelete={false} />
-      <CreateTechnologyForm technologySections={technologySections} />
+      <CreateTechnologyForm technologySections={technologySections.items} />
     </>
   );
 };

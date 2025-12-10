@@ -4,22 +4,6 @@ import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
-export type TechnologySectionWithTechnologies = Prisma.TechnologySectionGetPayload<{
-  include: { technologies: true };
-}>;
-
-export const fetchTechnologiesSections = cache((): Promise<TechnologySectionWithTechnologies[]> => {
-  return db.technologySection.findMany({
-    include: {
-      technologies: {
-        where: {
-          featured: true,
-        },
-      },
-    },
-  });
-});
-
 export type TechnologyWithSection = Prisma.TechnologyGetPayload<{
   include: { technologySection: true };
 }>;

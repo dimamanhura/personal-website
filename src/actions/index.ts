@@ -22,3 +22,6 @@ export { signOutUser } from './auth/sign-out';
 export { deleteTechnology } from './technologies/delete-technology';
 export { createTechnology } from './technologies/create-technology';
 export { editTechnology } from './technologies/edit-technology';
+
+// technology sections
+export { deleteTechnologySection } from './technology-sections/delete-technology-section';
