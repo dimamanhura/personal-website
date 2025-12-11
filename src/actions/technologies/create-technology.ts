@@ -14,14 +14,14 @@ export async function createTechnology(
   try {
     const result = technologyInputSchema.parse({
       title: values.title,
-      section: values.section,
+      sectionId: values.sectionId,
       featured: values.featured,
     });
 
     const technology = await db.technology.create({
       data: {
         title: result.title,
-        section: result.section,
+        sectionId: result.sectionId,
         featured: result.featured,
       },
     });

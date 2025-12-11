@@ -25,6 +25,7 @@ export { EditFeedbackForm } from './feedback/edit-feedback-form';
 export { FeedbackCard } from './feedback/feedback-card';
 export { FeedbackOverviewHeader } from './feedback/feedback-overview-header';
 export { FeedbackTable } from './feedback/feedback-table';
+export { ReviewList } from './feedback/reviews-list';
 
 // technologies
 export { TechnologiesTable } from './technologies/technologies-table';
@@ -35,34 +36,42 @@ export { TechnologyCard } from './technologies/technology-card';
 
 // technology sections
 export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
+export { TechnologiesSectionsList } from './technology-sections/technologies-sections-list';
 
-export { Banner } from './banner';
-export { ChipsList } from './chips-list';
-export { CompaniesList } from './companies-list';
-export { Contacts } from './contacts';
-export { DeleteItemButton } from './delete-item-button';
-export { DownloadAsPdf } from './download-as-pdf';
-export { EditItemButton } from './edit-item-button';
-export { FeaturedFlag } from './featured-flag';
-export { Footer } from './footer';
-export { Header } from './header';
-export { Hero } from './hero';
-export { ItemsCount } from './items-count';
-export { ItemsList } from './items-list';
-export { ItemsTable } from './items-table';
-export { MultiItemField } from './multi-item-field';
-export { Nav } from './nav';
-export { Providers } from './providers';
-export { ReviewList } from './reviews-list';
-export { Section } from './section';
-export { ShowItemButton } from './show-item-button';
-export { SignificantProjectCard } from './significant-project-card';
-export { SignificantProjectsList } from './significant-projects-list';
-export { SubmitButton } from './submit-button';
-export { TableActions } from './table-actions';
-export { TablePagination } from './table-pagination';
-export { TechnologiesSectionsList } from './technologies-sections-list';
-export { ThemeSwitcher } from './theme-switcher';
-export { TruncatedText } from './truncated-text';
-export { UniversitiesList } from './universities-list';
-export { UserMenu } from './user-menu';
+// ui
+export { Banner } from './ui/banner';
+export { ChipsList } from './ui/chips-list';
+export { Contacts } from './ui/contacts';
+export { DeleteItemButton } from './ui/delete-item-button';
+export { DownloadAsPdf } from './ui/download-as-pdf';
+export { EditItemButton } from './ui/edit-item-button';
+export { FeaturedFlag } from './ui/featured-flag';
+export { Footer } from './ui/footer';
+export { Header } from './ui/header';
+export { Hero } from './ui/hero';
+export { ItemsCount } from './ui/items-count';
+export { ItemsList } from './ui/items-list';
+export { MultiItemField } from './ui/multi-item-field';
+export { Nav } from './ui/nav';
+export { Providers } from './ui/providers';
+export { ShowItemButton } from './ui/show-item-button';
+export { TruncatedText } from './ui/truncated-text';
+export { ThemeSwitcher } from './ui/theme-switcher';
+export { SubmitButton } from './ui/submit-button';
+export { Section } from './ui/section';
+export { UserMenu } from './ui/user-menu';
+
+// table
+export { ItemsTable } from './table/items-table';
+export { TableActions } from './table/table-actions';
+export { TablePagination } from './table/table-pagination';
+
+// companies
+export { CompaniesList } from './companies/companies-list';
+
+// projects
+export { SignificantProjectCard } from './projects/significant-project-card';
+export { SignificantProjectsList } from './projects/significant-projects-list';
+
+// educations
+export { UniversitiesList } from './educations/universities-list';

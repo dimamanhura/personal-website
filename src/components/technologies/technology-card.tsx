@@ -11,7 +11,7 @@ export const TechnologyCard = ({ technology }: TechnologyCardProps) => {
       <div className="flex justify-between">
         <div className="flex flex-col">
           <h4 className="text-lg font-medium">{technology.title}</h4>
-          <p className="text-xs text-foreground-400">{technology.technologySection.title}</p>
+          <p className="text-xs text-foreground-400">{technology?.section?.title || 'N/A'}</p>
         </div>
 
         <FeaturedFlag featured={technology.featured} />

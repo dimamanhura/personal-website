@@ -35,11 +35,11 @@ export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ i
         case 'featured':
           return <FeaturedFlag featured={technology.featured} />;
 
-        case 'technologySection':
+        case 'section':
           return (
             <User
-              avatarProps={{ src: technology.technologySection.logo, size: 'sm', radius: 'md' }}
-              name={technology.technologySection.title}
+              avatarProps={{ src: technology?.section?.logo, size: 'sm', radius: 'md' }}
+              name={technology?.section?.title}
             />
           );
 

@@ -1,5 +1,5 @@
 import { User } from '@nextui-org/react';
-import { TechnologySectionWithTechnologies } from '@/db/queries/technologies';
+import { TechnologySectionWithTechnologies } from '@/db/queries/technology-sections';
 
 interface TechnologiesSectionsListProps {
   technologiesSections: TechnologySectionWithTechnologies[];

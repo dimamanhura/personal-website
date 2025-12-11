@@ -25,3 +25,5 @@ export { editTechnology } from './technologies/edit-technology';
 
 // technology sections
 export { deleteTechnologySection } from './technology-sections/delete-technology-section';
+export { createTechnologySection } from './technology-sections/create-technology-section';
+export { editTechnologySection } from './technology-sections/edit-technology-section';

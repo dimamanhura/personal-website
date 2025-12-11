@@ -20,8 +20,8 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
   const form = useForm<z.infer<typeof technologyInputSchema>>({
     resolver: zodResolver(technologyInputSchema),
     defaultValues: {
+      sectionId: technology.sectionId || undefined,
       featured: !!technology.featured,
-      section: technology.section || undefined,
       title: technology.title,
     },
   });
@@ -59,18 +59,18 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
 
         <Controller
           control={form.control}
-          name="section"
+          name="sectionId"
           render={({ field, fieldState }) => (
             <Select
               {...field}
-              defaultSelectedKeys={[technology.section]}
+              defaultSelectedKeys={technology.sectionId ? [technology.sectionId] : []}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
               placeholder="Section"
               label="Section"
             >
               {technologySections.map((technologySection) => (
-                <SelectItem key={technologySection.type} value={technologySection.type}>
+                <SelectItem key={technologySection.id} value={technologySection.id}>
                   {technologySection.title}
                 </SelectItem>
               ))}

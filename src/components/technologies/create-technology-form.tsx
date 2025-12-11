@@ -22,7 +22,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
     resolver: zodResolver(technologyInputSchema),
     defaultValues: {
       featured: false,
-      section: undefined,
+      sectionId: undefined,
       title: '',
     },
   });
@@ -61,7 +61,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
 
         <Controller
           control={form.control}
-          name="section"
+          name="sectionId"
           render={({ field, fieldState }) => (
             <Select
               {...field}
@@ -71,7 +71,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
               label="Section"
             >
               {technologySections.map((technologySection) => (
-                <SelectItem key={technologySection.type} value={technologySection.type}>
+                <SelectItem key={technologySection.id} value={technologySection.id}>
                   {technologySection.title}
                 </SelectItem>
               ))}

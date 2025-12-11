@@ -5,7 +5,7 @@ import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
 export type TechnologyWithSection = Prisma.TechnologyGetPayload<{
-  include: { technologySection: true };
+  include: { section: true };
 }>;
 
 export const fetchTechnologies = cache(
@@ -22,7 +22,7 @@ export const fetchTechnologies = cache(
 
     const items = await db.technology.findMany({
       include: {
-        technologySection: true,
+        section: true,
       },
       orderBy: {
         [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
@@ -42,7 +42,7 @@ export const fetchTechnologyById = cache(
     return await db.technology.findFirst({
       where: { id },
       include: {
-        technologySection: true,
+        section: true,
       },
     });
   },
