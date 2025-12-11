@@ -21,7 +21,7 @@ export async function createTechnology(
     const technology = await db.technology.create({
       data: {
         title: result.title,
-        sectionId: result.sectionId,
+        sectionId: result.sectionId || null,
         featured: result.featured,
       },
     });

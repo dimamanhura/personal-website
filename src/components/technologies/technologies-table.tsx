@@ -36,11 +36,13 @@ export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ i
           return <FeaturedFlag featured={technology.featured} />;
 
         case 'section':
-          return (
+          return technology?.section ? (
             <User
-              avatarProps={{ src: technology?.section?.logo, size: 'sm', radius: 'md' }}
-              name={technology?.section?.title}
+              avatarProps={{ src: technology.section.logo, size: 'sm', radius: 'md' }}
+              name={technology.section.title}
             />
+          ) : (
+            'N/A'
           );
 
         default:
