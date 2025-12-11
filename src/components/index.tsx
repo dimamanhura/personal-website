@@ -39,6 +39,7 @@ export { TechnologySectionsTable } from './technology-sections/technology-sectio
 export { TechnologiesSectionsList } from './technology-sections/technologies-sections-list';
 export { TechnologySectionCard } from './technology-sections/technology-section-card';
 export { TechnologySectionOverviewHeader } from './technology-sections/technology-section-overview-header';
+export { CreateTechnologySectionForm } from './technology-sections/create-technology-section-form';
 
 // ui
 export { Banner } from './ui/banner';
@@ -62,6 +63,7 @@ export { ThemeSwitcher } from './ui/theme-switcher';
 export { SubmitButton } from './ui/submit-button';
 export { Section } from './ui/section';
 export { UserMenu } from './ui/user-menu';
+export { UploadImageButton } from './ui/upload-image-button';
 
 // table
 export { ItemsTable } from './table/items-table';
