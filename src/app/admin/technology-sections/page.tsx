@@ -18,6 +18,7 @@ const TechnologySectionsAdminPage = async ({ searchParams }: TechnologySectionsA
   const { page, sortBy, order } = await searchParams;
 
   const { count, items } = await fetchTechnologySections({
+    onlyFeatured: false,
     orderBy: sortBy && order ? { column: sortBy, direction: order } : undefined,
     page: page ? parseInt(page) : 1,
   });

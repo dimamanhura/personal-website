@@ -37,6 +37,8 @@ export { TechnologyCard } from './technologies/technology-card';
 // technology sections
 export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
 export { TechnologiesSectionsList } from './technology-sections/technologies-sections-list';
+export { TechnologySectionCard } from './technology-sections/technology-section-card';
+export { TechnologySectionOverviewHeader } from './technology-sections/technology-section-overview-header';
 
 // ui
 export { Banner } from './ui/banner';

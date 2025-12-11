@@ -10,11 +10,13 @@ export type TechnologySectionWithTechnologies = Prisma.TechnologySectionGetPaylo
 
 export const fetchTechnologySections = cache(
   async (params?: {
+    onlyFeatured?: boolean;
     orderBy?: Sort;
     page?: number;
     all?: boolean;
   }): Promise<PaginatedData<TechnologySectionWithTechnologies>> => {
     const {
+      onlyFeatured = true,
       orderBy = { column: 'id', direction: 'descending' },
       page = 1,
       all = false,
@@ -28,9 +30,11 @@ export const fetchTechnologySections = cache(
       skip: all ? 0 : (page - 1) * DEFAULT_LIMIT,
       include: {
         technologies: {
-          where: {
-            featured: true,
-          },
+          where: onlyFeatured
+            ? {
+                featured: onlyFeatured || undefined,
+              }
+            : undefined,
         },
       },
     });
@@ -46,11 +50,7 @@ export const fetchTechnologySectionById = cache(
     return await db.technologySection.findFirst({
       where: { id },
       include: {
-        technologies: {
-          where: {
-            featured: true,
-          },
-        },
+        technologies: true,
       },
     });
   },

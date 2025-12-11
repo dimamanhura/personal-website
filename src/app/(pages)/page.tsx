@@ -37,7 +37,7 @@ const HomePage = async () => {
     meta,
   ] = await Promise.all([
     fetchFeaturedSignificantProjects(),
-    fetchTechnologySections({ all: true }),
+    fetchTechnologySections({ onlyFeatured: true, all: true }),
     fetchFeaturedAchievements(),
     fetchFeaturedReviews(),
     fetchUniversities(),

@@ -1,33 +1,33 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchTechnologyById } from '@/db/queries/technologies';
-import { TechnologyCard, TechnologyOverviewHeader } from '@/components';
+import { fetchTechnologySectionById } from '@/db/queries/technology-sections';
+import { TechnologySectionOverviewHeader, TechnologySectionCard } from '@/components';
 
-interface TechnologyShowPageProps {
+interface TechnologySectionShowPageProps {
   params: {
     id: string;
   };
 }
 
-export function generateMetadata({ params: { id } }: TechnologyShowPageProps): Metadata {
+export function generateMetadata({ params: { id } }: TechnologySectionShowPageProps): Metadata {
   return {
-    title: `Technologies - Details - ${id}`,
+    title: `Technology Sections - Details - ${id}`,
   };
 }
 
-const TechnologyShowPage = async ({ params }: TechnologyShowPageProps) => {
-  const technology = await fetchTechnologyById(params.id);
+const TechnologySectionShowPage = async ({ params }: TechnologySectionShowPageProps) => {
+  const section = await fetchTechnologySectionById(params.id);
 
-  if (!technology) {
+  if (!section) {
     return notFound();
   }
 
   return (
     <>
-      <TechnologyOverviewHeader itemId={params.id} />
-      <TechnologyCard technology={technology} />
+      <TechnologySectionOverviewHeader itemId={params.id} />
+      <TechnologySectionCard section={section} />
     </>
   );
 };
 
-export default TechnologyShowPage;
+export default TechnologySectionShowPage;
