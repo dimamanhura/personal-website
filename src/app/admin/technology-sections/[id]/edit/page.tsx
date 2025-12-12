@@ -1,34 +1,31 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchTechnologyById } from '@/db/queries/technologies';
-import { fetchTechnologySections } from '@/db/queries/technology-sections';
-import { EditTechnologyForm, TechnologyOverviewHeader } from '@/components';
+import { fetchTechnologySectionById } from '@/db/queries/technology-sections';
+import { EditTechnologySectionForm, TechnologySectionOverviewHeader } from '@/components';
 
-interface TechnologyEditPageProps {
+interface TechnologySectionEditPageProps {
   params: { id: string };
 }
 
-export function generateMetadata({ params: { id } }: TechnologyEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: TechnologySectionEditPageProps): Metadata {
   return {
-    title: `Technologies - Edit - ${id}`,
+    title: `Technology Sections - Edit - ${id}`,
   };
 }
 
-const TechnologyEditPage = async ({ params }: TechnologyEditPageProps) => {
-  const technology = await fetchTechnologyById(params.id);
+const TechnologySectionEditPage = async ({ params }: TechnologySectionEditPageProps) => {
+  const technologySection = await fetchTechnologySectionById(params.id);
 
-  if (!technology) {
+  if (!technologySection) {
     return notFound();
   }
 
-  const technologySections = await fetchTechnologySections({ all: true });
-
   return (
     <>
-      <TechnologyOverviewHeader withEdit={false} itemId={params.id} />
-      <EditTechnologyForm technology={technology} technologySections={technologySections.items} />
+      <TechnologySectionOverviewHeader withEdit={false} itemId={params.id} />
+      <EditTechnologySectionForm technologySection={technologySection} />
     </>
   );
 };
 
-export default TechnologyEditPage;
+export default TechnologySectionEditPage;

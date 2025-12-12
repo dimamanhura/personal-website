@@ -11,6 +11,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { technologyInputSchema } from '@/schemas';
+import { ErrorMessage } from '../ui/error-message';
 
 interface CreateTechnologyFormProps {
   technologySections: TechnologySection[];
@@ -93,9 +94,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
                 Is Featured
               </Checkbox>
 
-              {fieldState.error && (
-                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
-              )}
+              {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
             </>
           )}
         />

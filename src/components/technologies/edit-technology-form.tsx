@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { TechnologyWithSection } from '@/db/queries/technologies';
 import * as actions from '@/actions';
 import { technologyInputSchema } from '@/schemas';
+import { ErrorMessage } from '../ui/error-message';
 
 interface EditTechnologyFormProps {
   technology: TechnologyWithSection;
@@ -92,9 +93,7 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
                 Is Featured
               </Checkbox>
 
-              {fieldState.error && (
-                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
-              )}
+              {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
             </>
           )}
         />

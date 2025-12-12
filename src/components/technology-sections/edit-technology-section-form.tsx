@@ -4,21 +4,26 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
+import { TechnologySection } from '@prisma/client';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
-import { ErrorMessage, UploadImageButton } from '@/components';
-import paths from '@/paths';
 import { technologySectionInputSchema } from '@/schemas';
+import { UploadImageButton } from '../ui/upload-image-button';
+import { ErrorMessage } from '../ui/error-message';
 
-export const CreateTechnologySectionForm = () => {
-  const router = useRouter();
+interface EditTechnologySectionFormProps {
+  technologySection: TechnologySection;
+}
+
+export const EditTechnologySectionForm = ({
+  technologySection,
+}: EditTechnologySectionFormProps) => {
   const form = useForm<z.infer<typeof technologySectionInputSchema>>({
     resolver: zodResolver(technologySectionInputSchema),
     defaultValues: {
-      title: '',
-      logo: '',
+      title: technologySection.title,
+      logo: technologySection.logo,
     },
   });
   const logoUrl = form.watch('logo');
@@ -27,11 +32,13 @@ export const CreateTechnologySectionForm = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof technologySectionInputSchema>> = async (values) => {
     startTransition(async () => {
-      const { success, message, id } = await actions.createTechnologySection(values);
+      const { success, message } = await actions.editTechnologySection(
+        technologySection.id,
+        values,
+      );
 
-      if (success && id) {
-        toast.success('Successfully created');
-        router.push(paths.technologySectionsDetailsByIdAdmin(id));
+      if (success) {
+        toast.success('Successfully updated');
       } else {
         toast.error(message);
       }
@@ -71,7 +78,7 @@ export const CreateTechnologySectionForm = () => {
         </div>
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Create'}
+          {isPending ? 'Loading...' : 'Update'}
         </Button>
       </div>
     </form>

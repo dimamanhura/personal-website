@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
 import { contactRequestInputSchema } from '@/schemas';
+import { ErrorMessage } from '../ui/error-message';
 
 interface EditContactRequestFormProps {
   contactRequest: ContactRequest;
@@ -103,9 +104,7 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
                   Resolved
                 </Checkbox>
 
-                {fieldState.error && (
-                  <span className="text-tiny text-danger">{fieldState.error?.message}</span>
-                )}
+                {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
               </>
             );
           }}

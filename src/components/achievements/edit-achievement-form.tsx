@@ -8,7 +8,7 @@ import { Achievement } from '@prisma/client';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
-import { MultiItemField } from '@/components';
+import { ErrorMessage, MultiItemField } from '@/components';
 import { achievementInputSchema } from '@/schemas';
 
 interface EditAchievementFormProps {
@@ -93,9 +93,7 @@ export const EditAchievementForm = ({ achievement }: EditAchievementFormProps) =
                 Is Featured
               </Checkbox>
 
-              {fieldState.error && (
-                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
-              )}
+              {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
             </>
           )}
         />

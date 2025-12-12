@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
 import * as actions from '@/actions';
 import { feedbackInputSchema } from '@/schemas';
+import { ErrorMessage } from '../ui/error-message';
 
 interface EditFeedbackFormProps {
   feedback: ReviewWithFeedbackSection;
@@ -123,9 +124,7 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
                 Is Featured
               </Checkbox>
 
-              {fieldState.error && (
-                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
-              )}
+              {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
             </>
           )}
         />

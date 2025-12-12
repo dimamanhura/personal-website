@@ -5,6 +5,7 @@ import { Button, Input } from '@nextui-org/react';
 import { FaPlus, FaTrash } from 'react-icons/fa';
 import { z } from 'zod';
 import { achievementInputSchema } from '@/schemas';
+import { ErrorMessage } from './error-message';
 
 interface MultiItemFieldProps {
   form: UseFormReturn<z.infer<typeof achievementInputSchema>>;
@@ -24,7 +25,7 @@ export const MultiItemField = ({ form, label, name }: MultiItemFieldProps) => {
     <div className="flex flex-col items-start gap-4">
       <p className="text-lg">{label}</p>
 
-      {!!error && <span className="text-tiny text-danger">{error}</span>}
+      {!!error && <ErrorMessage message={error} />}
 
       {fields.map((field, index) => (
         <div key={field.id} className="flex w-full items-start gap-4">

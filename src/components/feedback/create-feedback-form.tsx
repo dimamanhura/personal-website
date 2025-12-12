@@ -11,6 +11,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { feedbackInputSchema } from '@/schemas';
+import { ErrorMessage } from '../ui/error-message';
 
 interface CreateFeedbackFormProps {
   sections: FeedbackSection[];
@@ -124,9 +125,7 @@ export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
                 Is Featured
               </Checkbox>
 
-              {fieldState.error && (
-                <span className="text-tiny text-danger">{fieldState.error?.message}</span>
-              )}
+              {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
             </>
           )}
         />
