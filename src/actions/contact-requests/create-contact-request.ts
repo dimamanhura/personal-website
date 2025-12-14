@@ -5,12 +5,7 @@ import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
 import * as telegram from '@/telegram';
-
-const createContactRequestSchema = z.object({
-  message: z.string().min(3).max(1000),
-  email: z.string().email().min(10).max(255),
-  name: z.string().min(3).max(255),
-});
+import { createContactRequestSchema } from '@/schemas';
 
 interface CreateContactRequestFormState {
   success?: boolean;

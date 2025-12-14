@@ -40,7 +40,7 @@ const HomePage = async () => {
     fetchTechnologySections({ onlyFeatured: true, all: true }),
     fetchFeaturedAchievements(),
     fetchFeaturedReviews(),
-    fetchUniversities(),
+    fetchUniversities({ all: true }),
     fetchCompanies(),
     fetchMeta(),
   ]);
@@ -66,7 +66,7 @@ const HomePage = async () => {
               <CompaniesList companies={companies} />
             </Section>
             <Section title="Education">
-              <UniversitiesList universities={universities} />
+              <UniversitiesList universities={universities.items} />
             </Section>
             <Section title="Feedback" link={paths.feedback()}>
               <ReviewList featuredReviews={featuredReviews} />

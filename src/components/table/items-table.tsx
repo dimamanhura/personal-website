@@ -2,7 +2,7 @@
 
 import { FunctionComponent } from 'react';
 import { TableHeader, TableColumn, TableBody, TableCell, TableRow, Table } from '@nextui-org/react';
-import { Achievement, ContactRequest } from '@prisma/client';
+import { Achievement, ContactRequest, Education } from '@prisma/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
 import { TechnologyWithSection } from '@/db/queries/technologies';
@@ -23,7 +23,8 @@ type AdminEntity =
   | ContactRequest
   | ReviewWithFeedbackSection
   | TechnologyWithSection
-  | TechnologySectionWithTechnologies;
+  | TechnologySectionWithTechnologies
+  | Education;
 
 export const ItemsTable: FunctionComponent<ItemsTableProps<AdminEntity>> = ({
   columns,

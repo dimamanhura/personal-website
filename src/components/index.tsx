@@ -80,4 +80,5 @@ export { SignificantProjectCard } from './projects/significant-project-card';
 export { SignificantProjectsList } from './projects/significant-projects-list';
 
 // educations
-export { UniversitiesList } from './educations/universities-list';
+export { UniversitiesList } from './education/universities-list';
+export { EducationTable } from './education/education-table';
