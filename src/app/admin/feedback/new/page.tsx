@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { fetchReviewSections } from '@/db/queries/feedback';
-import { CreateFeedbackForm, FeedbackOverviewHeader } from '@/components';
+import { CreateFeedbackForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
   title: 'Feedback - New',
@@ -10,7 +11,7 @@ const FeedbackAddPage = async () => {
   const sections = await fetchReviewSections();
   return (
     <>
-      <FeedbackOverviewHeader withEdit={false} withDelete={false} />
+      <OverviewHeader backPath={paths.feedbackAdmin()} />
       <CreateFeedbackForm sections={sections} />
     </>
   );

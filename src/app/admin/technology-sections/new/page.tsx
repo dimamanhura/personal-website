@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { TechnologySectionOverviewHeader, CreateTechnologySectionForm } from '@/components';
+import { OverviewHeader, CreateTechnologySectionForm } from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
   title: 'Technologies - New',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 const TechnologySectionsAddPage = () => {
   return (
     <>
-      <TechnologySectionOverviewHeader withEdit={false} withDelete={false} />
+      <OverviewHeader backPath={paths.technologySectionsAdmin()} />
       <CreateTechnologySectionForm />
     </>
   );

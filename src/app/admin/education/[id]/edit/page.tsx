@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchTechnologySectionById } from '@/db/queries/technology-sections';
 import { EditTechnologySectionForm, OverviewHeader } from '@/components';
-import { deleteTechnologySection } from '@/actions';
+import { deleteEducation, deleteTechnologySection } from '@/actions';
 import paths from '@/paths';
 
 interface TechnologySectionEditPageProps {
@@ -25,9 +25,9 @@ const TechnologySectionEditPage = async ({ params }: TechnologySectionEditPagePr
   return (
     <>
       <OverviewHeader
+        backPath={paths.educationAdmin()}
         itemId={params.id}
-        backPath={paths.technologySectionsAdmin()}
-        onDelete={deleteTechnologySection}
+        onDelete={deleteEducation}
       />
       <EditTechnologySectionForm technologySection={technologySection} />
     </>

@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchFeedbackById } from '@/db/queries/feedback';
-import { FeedbackOverviewHeader, FeedbackCard } from '@/components';
+import { FeedbackCard, OverviewHeader } from '@/components';
+import paths from '@/paths';
+import { deleteFeedback } from '@/actions';
 
 interface FeedbackShowPageProps {
   params: {
@@ -24,7 +26,12 @@ const FeedbackShowPage = async ({ params }: FeedbackShowPageProps) => {
 
   return (
     <>
-      <FeedbackOverviewHeader itemId={params.id} />
+      <OverviewHeader
+        backPath={paths.feedbackAdmin()}
+        itemId={params.id}
+        editPath={paths.feedbackEditByIdAdmin(params.id)}
+        onDelete={deleteFeedback}
+      />
       <FeedbackCard feedback={feedback} withFeaturedFlag withSection />
     </>
   );

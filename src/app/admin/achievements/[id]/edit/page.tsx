@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchAchievementById } from '@/db/queries/achievements';
-import { AchievementOverviewHeader, EditAchievementForm } from '@/components';
+import { EditAchievementForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
+import { deleteAchievement } from '@/actions';
 
 interface AchievementEditPageProps {
   params: { id: string };
@@ -22,7 +24,11 @@ const AchievementEditPage = async ({ params }: AchievementEditPageProps) => {
 
   return (
     <>
-      <AchievementOverviewHeader withEdit={false} itemId={params.id} />
+      <OverviewHeader
+        itemId={params.id}
+        backPath={paths.achievementsAdmin()}
+        onDelete={deleteAchievement}
+      />
       <EditAchievementForm achievement={achievement} />
     </>
   );

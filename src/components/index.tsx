@@ -1,6 +1,5 @@
 // achievement
 export { AchievementCard } from './achievements/achievement-card';
-export { AchievementOverviewHeader } from './achievements/achievement-overview-header';
 export { AchievementsTable } from './achievements/achievements-table';
 export { CreateAchievementForm } from './achievements/create-achievement-form';
 export { FeaturedAchievementsList } from './achievements/featured-achievements-list';
@@ -13,7 +12,6 @@ export { SignUpForm } from './auth/sign-up-form';
 
 // contact requests
 export { ContactRequestCard } from './contact-requests/contact-request-card';
-export { ContactRequestOverviewHeader } from './contact-requests/contact-request-overview-header';
 export { ContactRequestStatus } from './contact-requests/contact-request-status';
 export { ContactRequestsTable } from './contact-requests/contact-requests-table';
 export { CreateContactRequestForm } from './contact-requests/create-contact-request-form';
@@ -23,7 +21,6 @@ export { EditContactRequestForm } from './contact-requests/edit-contact-request-
 export { CreateFeedbackForm } from './feedback/create-feedback-form';
 export { EditFeedbackForm } from './feedback/edit-feedback-form';
 export { FeedbackCard } from './feedback/feedback-card';
-export { FeedbackOverviewHeader } from './feedback/feedback-overview-header';
 export { FeedbackTable } from './feedback/feedback-table';
 export { ReviewList } from './feedback/reviews-list';
 
@@ -38,7 +35,6 @@ export { TechnologyCard } from './technologies/technology-card';
 export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
 export { TechnologiesSectionsList } from './technology-sections/technologies-sections-list';
 export { TechnologySectionCard } from './technology-sections/technology-section-card';
-export { TechnologySectionOverviewHeader } from './technology-sections/technology-section-overview-header';
 export { CreateTechnologySectionForm } from './technology-sections/create-technology-section-form';
 export { EditTechnologySectionForm } from './technology-sections/edit-technology-section-form';
 
@@ -66,6 +62,7 @@ export { Section } from './ui/section';
 export { UserMenu } from './ui/user-menu';
 export { UploadImageButton } from './ui/upload-image-button';
 export { ErrorMessage } from './ui/error-message';
+export { OverviewHeader } from './ui/overview-header';
 
 // table
 export { ItemsTable } from './table/items-table';
@@ -82,3 +79,4 @@ export { SignificantProjectsList } from './projects/significant-projects-list';
 // educations
 export { UniversitiesList } from './education/universities-list';
 export { EducationTable } from './education/education-table';
+export { UniversityCard } from './education/university-card';

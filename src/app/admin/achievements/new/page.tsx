@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { AchievementOverviewHeader, CreateAchievementForm } from '@/components';
+import { CreateAchievementForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
   title: 'Achievement - New',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 const AchievementAddPage = () => {
   return (
     <>
-      <AchievementOverviewHeader withEdit={false} withDelete={false} />
+      <OverviewHeader backPath={paths.achievementsAdmin()} />
       <CreateAchievementForm />
     </>
   );

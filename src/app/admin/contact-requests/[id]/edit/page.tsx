@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchContactRequestById } from '@/db/queries/contact-requests';
-import { ContactRequestOverviewHeader, EditContactRequestForm } from '@/components';
+import { EditContactRequestForm, OverviewHeader } from '@/components';
+import { deleteContactRequest } from '@/actions';
+import paths from '@/paths';
 
 interface ContactRequestsEditPageProps {
   params: { id: string };
@@ -22,7 +24,11 @@ const ContactRequestsEditPage = async ({ params }: ContactRequestsEditPageProps)
 
   return (
     <>
-      <ContactRequestOverviewHeader withEdit={false} itemId={params.id} />
+      <OverviewHeader
+        backPath={paths.contactRequestsAdmin()}
+        itemId={params.id}
+        onDelete={deleteContactRequest}
+      />
       <EditContactRequestForm contactRequest={contactRequest} />
     </>
   );

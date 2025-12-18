@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchFeedbackById, fetchReviewSections } from '@/db/queries/feedback';
-import { EditFeedbackForm, FeedbackOverviewHeader } from '@/components';
+import { EditFeedbackForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
+import { deleteFeedback } from '@/actions';
 
 interface FeedbackEditPageProps {
   params: { id: string };
@@ -24,7 +26,11 @@ const FeedbackEditPage = async ({ params }: FeedbackEditPageProps) => {
 
   return (
     <>
-      <FeedbackOverviewHeader withEdit={false} itemId={params.id} />
+      <OverviewHeader
+        itemId={params.id}
+        backPath={paths.feedbackAdmin()}
+        onDelete={deleteFeedback}
+      />
       <EditFeedbackForm feedback={feedback} sections={sections} />
     </>
   );
