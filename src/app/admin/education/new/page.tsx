@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Education - New',
 };
 
-const TechnologySectionsAddPage = () => {
+const EducationAddPage = () => {
   return (
     <>
       <OverviewHeader backPath={paths.educationAdmin()} />
@@ -15,4 +15,4 @@ const TechnologySectionsAddPage = () => {
   );
 };
 
-export default TechnologySectionsAddPage;
+export default EducationAddPage;

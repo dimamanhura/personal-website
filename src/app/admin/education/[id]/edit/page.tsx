@@ -1,24 +1,24 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchTechnologySectionById } from '@/db/queries/technology-sections';
-import { EditTechnologySectionForm, OverviewHeader } from '@/components';
-import { deleteEducation, deleteTechnologySection } from '@/actions';
+import { EditEducationForm, OverviewHeader } from '@/components';
+import { deleteEducation } from '@/actions';
 import paths from '@/paths';
+import { fetchUniversityById } from '@/db/queries/education';
 
-interface TechnologySectionEditPageProps {
+interface EducationEditPageProps {
   params: { id: string };
 }
 
-export function generateMetadata({ params: { id } }: TechnologySectionEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: EducationEditPageProps): Metadata {
   return {
-    title: `Technology Sections - Edit - ${id}`,
+    title: `Education - Edit - ${id}`,
   };
 }
 
-const TechnologySectionEditPage = async ({ params }: TechnologySectionEditPageProps) => {
-  const technologySection = await fetchTechnologySectionById(params.id);
+const EducationEditPage = async ({ params }: EducationEditPageProps) => {
+  const education = await fetchUniversityById(params.id);
 
-  if (!technologySection) {
+  if (!education) {
     return notFound();
   }
 
@@ -29,9 +29,9 @@ const TechnologySectionEditPage = async ({ params }: TechnologySectionEditPagePr
         itemId={params.id}
         onDelete={deleteEducation}
       />
-      <EditTechnologySectionForm technologySection={technologySection} />
+      <EditEducationForm education={education} />
     </>
   );
 };
 
-export default TechnologySectionEditPage;
+export default EducationEditPage;

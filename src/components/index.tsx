@@ -81,3 +81,4 @@ export { UniversitiesList } from './education/universities-list';
 export { EducationTable } from './education/education-table';
 export { UniversityCard } from './education/university-card';
 export { CreateEducationForm } from './education/create-education-form';
+export { EditEducationForm } from './education/edit-education-form';
