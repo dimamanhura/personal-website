@@ -80,3 +80,4 @@ export { SignificantProjectsList } from './projects/significant-projects-list';
 export { UniversitiesList } from './education/universities-list';
 export { EducationTable } from './education/education-table';
 export { UniversityCard } from './education/university-card';
+export { CreateEducationForm } from './education/create-education-form';
