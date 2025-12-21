@@ -72,6 +72,7 @@ export { TablePagination } from './table/table-pagination';
 // companies
 export { CompaniesList } from './companies/companies-list';
 export { CompaniesTable } from './companies/companies-table';
+export { CompanyCard } from './companies/company-card';
 
 // projects
 export { SignificantProjectCard } from './projects/significant-project-card';

@@ -21,5 +21,5 @@ export const companyInputSchema = z.object({
     )
     .min(1)
     .max(10),
-  reasonsOfLeaving: z.array(z.string().min(2).max(255)).min(1).max(10),
+  reasonsOfLeaving: z.array(z.string().min(2).max(255)).max(10),
 });

@@ -35,7 +35,7 @@ export const CompaniesTable: FunctionComponent<CompaniesTableTableProps> = ({ it
       case 'name':
         return (
           <User
-            description={company.name}
+            description={`${company.location.city}, ${company.location.country}`}
             avatarProps={{
               src: company.logo,
               size: 'sm',
@@ -43,13 +43,6 @@ export const CompaniesTable: FunctionComponent<CompaniesTableTableProps> = ({ it
             }}
             name={company.name}
           />
-        );
-
-      case 'location':
-        return (
-          <span>
-            {company.location.city}, {company.location.country}
-          </span>
         );
 
       case 'startAt':
