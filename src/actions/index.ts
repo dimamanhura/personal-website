@@ -32,3 +32,8 @@ export { editTechnologySection } from './technology-sections/edit-technology-sec
 export { createEducation } from './education/create-education';
 export { deleteEducation } from './education/delete-education';
 export { editEducation } from './education/edit-education';
+
+// education
+export { createCompany } from './companies/create-company';
+export { deleteCompany } from './companies/delete-company';
+export { editCompany } from './companies/edit-company';

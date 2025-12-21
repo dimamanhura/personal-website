@@ -5,3 +5,4 @@ export { feedbackInputSchema } from './feedback-input-schema';
 export { technologyInputSchema } from './technology-input-schema';
 export { technologySectionInputSchema } from './technology-section-input.schema';
 export { educationInputSchema } from './education-input-schema';
+export { companyInputSchema } from './company-input-schema';

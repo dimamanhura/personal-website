@@ -3,7 +3,7 @@ model Company {
   name             String
   startAt          String
   endAt            String?
-  location         String
+  location         Location
   reasonsOfLeaving String[]
   position         String
   positions        Position[]

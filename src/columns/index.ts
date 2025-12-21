@@ -4,3 +4,4 @@ export { columns as feedbackColumns } from './feedback';
 export { columns as technologiesColumns } from './technologies';
 export { columns as technologySectionsColumns } from './technology-sections';
 export { columns as educationColumns } from './education';
+export { columns as companiesColumns } from './companies';

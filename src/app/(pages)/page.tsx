@@ -63,7 +63,7 @@ const HomePage = async () => {
               <TechnologiesSectionsList technologiesSections={technologiesSections.items} />
             </Section>
             <Section title="Employment History">
-              <CompaniesList companies={companies} />
+              <CompaniesList companies={companies.items} />
             </Section>
             <Section title="Education">
               <UniversitiesList universities={universities.items} />
