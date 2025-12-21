@@ -3,17 +3,23 @@
 import { Controller, useFieldArray, type UseFormReturn } from 'react-hook-form';
 import { Button, Input } from '@nextui-org/react';
 import { FaPlus, FaTrash } from 'react-icons/fa';
-import { z } from 'zod';
-import { achievementInputSchema } from '@/schemas';
 import { ErrorMessage } from './error-message';
 
 interface MultiItemFieldProps {
-  form: UseFormReturn<z.infer<typeof achievementInputSchema>>;
+  maxLength?: number;
+  form: UseFormReturn<any>;
   label: string;
-  name: 'solution' | 'result' | 'notes';
+  name: string;
+  renderField?: (index: number) => JSX.Element;
 }
 
-export const MultiItemField = ({ form, label, name }: MultiItemFieldProps) => {
+export const MultiItemField = ({
+  form,
+  label,
+  name,
+  maxLength = 10,
+  renderField,
+}: MultiItemFieldProps) => {
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: name as never,
@@ -25,23 +31,32 @@ export const MultiItemField = ({ form, label, name }: MultiItemFieldProps) => {
     <div className="flex flex-col items-start gap-4">
       <p className="text-lg">{label}</p>
 
-      {!!error && <ErrorMessage message={error} />}
+      {!!error && <ErrorMessage message={error as string} />}
 
       {fields.map((field, index) => (
         <div key={field.id} className="flex w-full items-start gap-4">
-          <Controller
-            control={form.control}
-            name={`${name}.${index}`}
-            render={({ field, fieldState }) => (
-              <Input
-                {...field}
-                isInvalid={!!fieldState.error}
-                errorMessage={fieldState.error?.message}
-                placeholder={`${label} ${index + 1}`}
-                size="sm"
-              />
-            )}
-          />
+          {renderField ? (
+            renderField(index)
+          ) : (
+            <Controller
+              control={form.control}
+              name={`${name}.${index}`}
+              render={({ field, fieldState }) => {
+                const isInvalid = !!fieldState.error;
+                const errorMessage = fieldState.error?.message;
+
+                return (
+                  <Input
+                    {...field}
+                    isInvalid={isInvalid}
+                    errorMessage={errorMessage}
+                    placeholder={`${label} ${index + 1}`}
+                    size="sm"
+                  />
+                );
+              }}
+            />
+          )}
 
           <Button
             color="danger"
@@ -62,7 +77,7 @@ export const MultiItemField = ({ form, label, name }: MultiItemFieldProps) => {
         color="primary"
         variant="flat"
         onClick={() => append('')}
-        disabled={fields.length >= 10}
+        disabled={fields.length >= maxLength}
       >
         <FaPlus />
         Add more

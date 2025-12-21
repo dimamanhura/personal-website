@@ -1,16 +1,16 @@
 import { Metadata } from 'next';
-import { OverviewHeader, CreateEducationForm } from '@/components';
+import { OverviewHeader, CreateCompanyForm } from '@/components';
 import paths from '@/paths';
 
 export const metadata: Metadata = {
-  title: 'Education - New',
+  title: 'Company - New',
 };
 
 const EducationAddPage = () => {
   return (
     <>
-      <OverviewHeader backPath={paths.educationAdmin()} />
-      <CreateEducationForm />
+      <OverviewHeader backPath={paths.companiesAdmin()} />
+      <CreateCompanyForm />
     </>
   );
 };
