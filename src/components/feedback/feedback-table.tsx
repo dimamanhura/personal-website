@@ -48,12 +48,12 @@ export const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({ items, co
   );
 
   return (
-    <ItemsTable
+    <ItemsTable<ReviewWithFeedbackSection>
       items={items}
       count={count}
       title={'Feedback'}
       columns={feedbackColumns}
-      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
+      renderCell={renderCell}
     />
   );
 };

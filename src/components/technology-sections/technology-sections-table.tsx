@@ -61,12 +61,12 @@ export const TechnologySectionsTable: FunctionComponent<TechnologySectionsTableP
   );
 
   return (
-    <ItemsTable
+    <ItemsTable<TechnologySectionWithTechnologies>
       items={items}
       count={count}
       title={'Technology Sections'}
       columns={technologySectionsColumns}
-      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
+      renderCell={renderCell}
     />
   );
 };

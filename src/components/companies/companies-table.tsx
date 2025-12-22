@@ -49,17 +49,18 @@ export const CompaniesTable: FunctionComponent<CompaniesTableTableProps> = ({ it
         return formatDateRange(company.startAt, company.endAt);
 
       default:
-        return company[columnKey];
+        const value = company[columnKey];
+        return typeof value === 'string' ? value : null;
     }
   }, []);
 
   return (
-    <ItemsTable
+    <ItemsTable<Company>
       items={items}
       count={count}
       title={'Feedback'}
       columns={companiesColumns}
-      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
+      renderCell={renderCell}
     />
   );
 };

@@ -54,12 +54,12 @@ export const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> 
   );
 
   return (
-    <ItemsTable
+    <ItemsTable<ContactRequest>
       items={items}
       count={count}
       title={'Contact Requests'}
       columns={contactRequestsColumns}
-      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
+      renderCell={renderCell}
     />
   );
 };

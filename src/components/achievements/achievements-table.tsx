@@ -54,12 +54,12 @@ export const AchievementsTable: FunctionComponent<AchievementsTableProps> = ({ i
   }, []);
 
   return (
-    <ItemsTable
+    <ItemsTable<Achievement>
       items={items}
       count={count}
       title={'Achievement'}
       columns={achievementsColumns}
-      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
+      renderCell={renderCell}
     />
   );
 };

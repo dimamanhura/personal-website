@@ -14,8 +14,8 @@ interface MultiItemFieldProps {
 }
 
 export const MultiItemField = ({
-  form,
   label,
+  form,
   name,
   maxLength = 10,
   renderField,
@@ -64,7 +64,6 @@ export const MultiItemField = ({
             type="button"
             variant="flat"
             onClick={() => remove(index)}
-            disabled={fields.length <= 1}
             isIconOnly
           >
             <FaTrash />

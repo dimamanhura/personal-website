@@ -8,7 +8,7 @@ export const companyInputSchema = z.object({
     country: z.string().min(2).max(255),
   }),
   startAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
-  endAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
+  endAt: z.string().refine(isRealDate, { message: 'Invalid date' }).optional(),
   logo: z.url().min(2).max(255),
   position: z.string().min(2).max(255),
   positions: z
@@ -16,10 +16,10 @@ export const companyInputSchema = z.object({
       z.object({
         title: z.string().min(2).max(255),
         startAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
-        endAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
+        endAt: z.string().refine(isRealDate, { message: 'Invalid date' }).optional(),
       }),
     )
     .min(1)
     .max(10),
-  reasonsOfLeaving: z.array(z.string().min(2).max(255)).max(10),
+  reasonsOfLeaving: z.array(z.string().min(2).max(255)).min(0).max(10).optional(),
 });

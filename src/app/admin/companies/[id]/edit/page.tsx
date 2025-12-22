@@ -1,37 +1,37 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { EditEducationForm, OverviewHeader } from '@/components';
-import { deleteEducation } from '@/actions';
+import { EditCompanyForm, OverviewHeader } from '@/components';
+import { deleteCompany } from '@/actions';
 import paths from '@/paths';
-import { fetchUniversityById } from '@/db/queries/education';
+import { fetchCompanyById } from '@/db/queries/companies';
 
-interface EducationEditPageProps {
+interface CompanyEditPageProps {
   params: { id: string };
 }
 
-export function generateMetadata({ params: { id } }: EducationEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: CompanyEditPageProps): Metadata {
   return {
-    title: `Education - Edit - ${id}`,
+    title: `Company - Edit - ${id}`,
   };
 }
 
-const EducationEditPage = async ({ params }: EducationEditPageProps) => {
-  const education = await fetchUniversityById(params.id);
+const CompanyEditPage = async ({ params }: CompanyEditPageProps) => {
+  const company = await fetchCompanyById(params.id);
 
-  if (!education) {
+  if (!company) {
     return notFound();
   }
 
   return (
     <>
       <OverviewHeader
-        backPath={paths.educationAdmin()}
+        backPath={paths.companiesAdmin()}
         itemId={params.id}
-        onDelete={deleteEducation}
+        onDelete={deleteCompany}
       />
-      <EditEducationForm education={education} />
+      <EditCompanyForm company={company} />
     </>
   );
 };
 
-export default EducationEditPage;
+export default CompanyEditPage;

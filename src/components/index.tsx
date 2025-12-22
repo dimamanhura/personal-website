@@ -74,6 +74,7 @@ export { CompaniesList } from './companies/companies-list';
 export { CompaniesTable } from './companies/companies-table';
 export { CompanyCard } from './companies/company-card';
 export { CreateCompanyForm } from './companies/create-company-form';
+export { EditCompanyForm } from './companies/edit-company-table';
 
 // projects
 export { SignificantProjectCard } from './projects/significant-project-card';

@@ -61,12 +61,12 @@ export const EducationTable: FunctionComponent<EducationTableProps> = ({ items, 
   }, []);
 
   return (
-    <ItemsTable
+    <ItemsTable<Education>
       items={items}
       count={count}
       title={'Feedback'}
       columns={educationColumns}
-      renderCell={renderCell as unknown as <T, K>(item: T, columnKey: K) => JSX.Element}
+      renderCell={renderCell}
     />
   );
 };

@@ -4,29 +4,33 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
+import { Company } from '@prisma/client';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
-import paths from '@/paths';
 import { companyInputSchema } from '@/schemas';
 import { ErrorMessage } from '../ui/error-message';
 import { UploadImageButton } from '../ui/upload-image-button';
 import { MultiItemField } from '../ui/multi-item-field';
 
-export const CreateCompanyForm = () => {
-  const router = useRouter();
+interface EditCompanyFormProps {
+  company: Company;
+}
+
+export const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
   const form = useForm<z.infer<typeof companyInputSchema>>({
     resolver: zodResolver(companyInputSchema),
     defaultValues: {
-      name: '',
-      location: { city: '', country: '' },
-      logo: '',
-      startAt: undefined,
-      endAt: undefined,
-      position: '',
-      positions: [],
-      reasonsOfLeaving: [],
+      name: company.name,
+      location: company.location,
+      logo: company.logo,
+      startAt: company.startAt,
+      endAt: company.endAt || undefined,
+      position: company.position,
+      positions: company.positions
+        ? company.positions.map((position) => ({ ...position, endAt: position.endAt || undefined }))
+        : [],
+      reasonsOfLeaving: company.reasonsOfLeaving || [],
     },
   });
   const logoUrl = form.watch('logo');
@@ -35,11 +39,10 @@ export const CreateCompanyForm = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof companyInputSchema>> = async (values) => {
     startTransition(async () => {
-      const { success, message, id } = await actions.createCompany(values);
+      const { success, message } = await actions.editCompany(company.id, values);
 
-      if (success && id) {
-        toast.success('Successfully created');
-        router.push(paths.companiesDetailsByIdAdmin(id));
+      if (success) {
+        toast.success('Successfully updated');
       } else {
         toast.error(message);
       }
@@ -207,7 +210,7 @@ export const CreateCompanyForm = () => {
         <MultiItemField label="Reasons of Leaving" name="reasonsOfLeaving" form={form} />
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Create'}
+          {isPending ? 'Loading...' : 'Update'}
         </Button>
       </div>
     </form>
