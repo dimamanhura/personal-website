@@ -64,7 +64,7 @@ export const EducationTable: FunctionComponent<EducationTableProps> = ({ items, 
     <ItemsTable<Education>
       items={items}
       count={count}
-      title={'Feedback'}
+      title={'Education'}
       columns={educationColumns}
       renderCell={renderCell}
     />

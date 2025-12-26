@@ -58,7 +58,7 @@ export const CompaniesTable: FunctionComponent<CompaniesTableTableProps> = ({ it
     <ItemsTable<Company>
       items={items}
       count={count}
-      title={'Feedback'}
+      title={'Companies'}
       columns={companiesColumns}
       renderCell={renderCell}
     />

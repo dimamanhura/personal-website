@@ -37,3 +37,8 @@ export { editEducation } from './education/edit-education';
 export { createCompany } from './companies/create-company';
 export { deleteCompany } from './companies/delete-company';
 export { editCompany } from './companies/edit-company';
+
+// projects
+export { createProject } from './projects/create-project';
+export { deleteProject } from './projects/delete-project';
+export { editProject } from './projects/edit-project';

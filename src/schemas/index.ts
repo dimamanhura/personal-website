@@ -6,3 +6,6 @@ export { technologyInputSchema } from './technology-input-schema';
 export { technologySectionInputSchema } from './technology-section-input.schema';
 export { educationInputSchema } from './education-input-schema';
 export { companyInputSchema } from './company-input-schema';
+export { projectAchievementSchema } from './project-achievement-schema';
+export { projectTechnologySectionSchema } from './project-technology-section-schema';
+export { projectInputSchema } from './project-input-schema';

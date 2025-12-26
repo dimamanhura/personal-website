@@ -76,13 +76,14 @@ export { CompanyCard } from './companies/company-card';
 export { CreateCompanyForm } from './companies/create-company-form';
 export { EditCompanyForm } from './companies/edit-company-table';
 
-// projects
-export { SignificantProjectCard } from './projects/significant-project-card';
-export { SignificantProjectsList } from './projects/significant-projects-list';
-
 // educations
 export { UniversitiesList } from './education/universities-list';
 export { EducationTable } from './education/education-table';
 export { UniversityCard } from './education/university-card';
 export { CreateEducationForm } from './education/create-education-form';
 export { EditEducationForm } from './education/edit-education-form';
+
+// projects
+export { SignificantProjectCard } from './projects/significant-project-card';
+export { SignificantProjectsList } from './projects/significant-projects-list';
+export { ProjectsTable } from './projects/projects-table';
