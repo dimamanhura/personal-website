@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
-import { Header } from '@/components';
+import { OverviewHeader, CreateCompanyForm } from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
-  title: 'Add project',
+  title: 'Company - New',
 };
 
-const AddProjectPage = async () => {
+const EducationAddPage = () => {
   return (
     <>
-      <Header title="Add project" />
+      <OverviewHeader backPath={paths.companiesAdmin()} />
+      <CreateCompanyForm />
     </>
   );
 };
 
-export default AddProjectPage;
+export default EducationAddPage;
