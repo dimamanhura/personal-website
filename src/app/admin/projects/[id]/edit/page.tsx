@@ -1,37 +1,38 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { EditCompanyForm, OverviewHeader } from '@/components';
-import { deleteCompany } from '@/actions';
+import { OverviewHeader } from '@/components';
+import { deleteProject } from '@/actions';
 import paths from '@/paths';
-import { fetchCompanyById } from '@/db/queries/companies';
+import { EditProjectForm } from '@/components/projects/edit-project-form';
+import { fetchProjectsById } from '@/db/queries/projects';
 
-interface CompanyEditPageProps {
+interface ProjectEditPageProps {
   params: { id: string };
 }
 
-export function generateMetadata({ params: { id } }: CompanyEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: ProjectEditPageProps): Metadata {
   return {
-    title: `Company - Edit - ${id}`,
+    title: `Project - Edit - ${id}`,
   };
 }
 
-const CompanyEditPage = async ({ params }: CompanyEditPageProps) => {
-  const company = await fetchCompanyById(params.id);
+const ProjectEditPage = async ({ params }: ProjectEditPageProps) => {
+  const project = await fetchProjectsById(params.id);
 
-  if (!company) {
+  if (!project) {
     return notFound();
   }
 
   return (
     <>
       <OverviewHeader
-        backPath={paths.companiesAdmin()}
+        backPath={paths.projectsAdmin()}
         itemId={params.id}
-        onDelete={deleteCompany}
+        onDelete={deleteProject}
       />
-      <EditCompanyForm company={company} />
+      <EditProjectForm project={project} />
     </>
   );
 };
 
-export default CompanyEditPage;
+export default ProjectEditPage;
