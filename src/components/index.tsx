@@ -88,3 +88,5 @@ export { SignificantProjectCard } from './projects/significant-project-card';
 export { SignificantProjectsList } from './projects/significant-projects-list';
 export { ProjectDetailed } from './projects/project-detailed';
 export { ProjectsTable } from './projects/projects-table';
+export { CreateProjectForm } from './projects/create-project-form';
+export { EditProjectForm } from './projects/edit-project-form';

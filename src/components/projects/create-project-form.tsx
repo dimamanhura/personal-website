@@ -4,44 +4,42 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
-import { Project } from '@prisma/client';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
+import paths from '@/paths';
 import { projectInputSchema } from '@/schemas';
 import { ErrorMessage } from '../ui/error-message';
 import { UploadImageButton } from '../ui/upload-image-button';
 import { MultiItemField } from '../ui/multi-item-field';
 
-interface EditProjectFormProps {
-  project: Project;
-}
-
-export const EditProjectForm = ({ project }: EditProjectFormProps) => {
+export const CreateProjectForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof projectInputSchema>>({
     resolver: zodResolver(projectInputSchema),
     defaultValues: {
-      name: project.name,
-      slug: project.slug,
-      shortDescription: project.shortDescription,
-      longDescription: project.longDescription,
-      features: project.features || [],
-      startAt: project.startAt,
-      endAt: project.endAt || undefined,
-      logo: project.logo || undefined,
-      position: project.position,
-      team: project.team,
-      featured: !!project.featured,
-      responsibilities: project.responsibilities,
-      integrations: project.integrations,
-      stack: project.stack,
+      name: '',
+      slug: '',
+      shortDescription: '',
+      longDescription: '',
+      features: [],
+      startAt: undefined,
+      endAt: undefined,
+      logo: undefined,
+      position: '',
+      team: [],
+      featured: false,
+      responsibilities: [],
+      integrations: [],
+      stack: [],
       technologies: {
-        frontEnd: project.technologies.frontEnd || [],
-        backEnd: project.technologies.backEnd || [],
-        testing: project.technologies.testing || [],
-        deployment: project.technologies.deployment || [],
+        frontEnd: [],
+        backEnd: [],
+        testing: [],
+        deployment: [],
       },
-      achievements: project.achievements || [],
+      achievements: [],
     },
   });
   const logoUrl = form.watch('logo');
@@ -50,10 +48,11 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
 
   const onSubmit: SubmitHandler<z.infer<typeof projectInputSchema>> = async (values) => {
     startTransition(async () => {
-      const { success, message } = await actions.editProject(project.id, values);
+      const { success, message, id } = await actions.createProject(values);
 
-      if (success) {
-        toast.success('Successfully updated');
+      if (success && id) {
+        toast.success('Successfully created');
+        router.push(paths.projectsDetailsByIdAdmin(id));
       } else {
         toast.error(message);
       }
@@ -247,7 +246,7 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
         />
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Update'}
+          {isPending ? 'Loading...' : 'Create'}
         </Button>
       </div>
     </form>
