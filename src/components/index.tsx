@@ -94,3 +94,4 @@ export { EditProjectForm } from './projects/edit-project-form';
 // profile
 export { ProfileTable } from './profile/profile-table';
 export { ProfileCard } from './profile/profile-card';
+export { EditProfileForm } from './profile/edit-profile-form';

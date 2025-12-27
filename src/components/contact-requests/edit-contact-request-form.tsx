@@ -92,7 +92,6 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
           control={form.control}
           name="resolved"
           render={({ field, fieldState }) => {
-            console.log('field', field);
             return (
               <>
                 <Checkbox

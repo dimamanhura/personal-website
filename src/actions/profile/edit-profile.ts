@@ -16,10 +16,11 @@ export async function editProfile(
     const result = profileInputSchema.parse({
       firstName: profile.firstName,
       lastName: profile.lastName,
-      location: profile.location,
-      avatar: profile.avatar,
+      title: profile.title,
       description: profile.description,
+      avatar: profile.avatar,
       contacts: profile.contacts,
+      location: profile.location,
     });
 
     await db.meta.update({
@@ -29,10 +30,11 @@ export async function editProfile(
       data: {
         firstName: result.firstName,
         lastName: result.lastName,
-        location: result.location,
-        avatar: result.avatar,
+        title: profile.title,
         description: result.description,
+        avatar: result.avatar,
         contacts: result.contacts,
+        location: result.location,
       },
     });
 

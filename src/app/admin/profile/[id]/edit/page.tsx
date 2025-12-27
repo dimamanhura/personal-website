@@ -1,37 +1,33 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { OverviewHeader, EditProjectForm } from '@/components';
-import { deleteProject } from '@/actions';
+import { OverviewHeader, EditProfileForm } from '@/components';
+import { deleteProfile } from '@/actions';
 import paths from '@/paths';
-import { fetchProjectsById } from '@/db/queries/projects';
+import { fetchProfileById } from '@/db/queries/meta';
 
-interface ProjectEditPageProps {
+interface ProfileEditPageProps {
   params: { id: string };
 }
 
-export function generateMetadata({ params: { id } }: ProjectEditPageProps): Metadata {
+export function generateMetadata({ params: { id } }: ProfileEditPageProps): Metadata {
   return {
-    title: `Project - Edit - ${id}`,
+    title: `Profile - Edit - ${id}`,
   };
 }
 
-const ProjectEditPage = async ({ params }: ProjectEditPageProps) => {
-  const project = await fetchProjectsById(params.id);
+const ProfileEditPage = async ({ params }: ProfileEditPageProps) => {
+  const profile = await fetchProfileById(params.id);
 
-  if (!project) {
+  if (!profile) {
     return notFound();
   }
 
   return (
     <>
-      <OverviewHeader
-        backPath={paths.projectsAdmin()}
-        itemId={params.id}
-        onDelete={deleteProject}
-      />
-      <EditProjectForm project={project} />
+      <OverviewHeader backPath={paths.profileAdmin()} itemId={params.id} onDelete={deleteProfile} />
+      <EditProfileForm profile={profile} />
     </>
   );
 };
 
-export default ProjectEditPage;
+export default ProfileEditPage;
