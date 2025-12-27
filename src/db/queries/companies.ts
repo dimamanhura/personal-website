@@ -25,7 +25,7 @@ export const fetchCompanies = cache(
 export const fetchCompanyById = cache(async (id: string): Promise<Company | null> => {
   return await db.company.findFirst({
     where: {
-      id: id,
+      id,
     },
   });
 });

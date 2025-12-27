@@ -29,6 +29,14 @@ export const fetchProfiles = cache(
   },
 );
 
+export const fetchProfileById = cache(async (id: string): Promise<Meta | null> => {
+  return await db.meta.findFirst({
+    where: {
+      id,
+    },
+  });
+});
+
 export const fetchMeta = cache((): Promise<Meta | null> => {
   return db.meta.findFirst();
 });
