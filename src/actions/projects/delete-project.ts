@@ -11,7 +11,7 @@ export const deleteProject = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.profileDetailsByIdAdmin(id));
+  revalidatePath(paths.projectsDetailsByIdAdmin(id));
   revalidatePath(paths.projectsAdmin());
   redirect(paths.projectsAdmin());
 };

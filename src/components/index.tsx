@@ -90,3 +90,6 @@ export { ProjectDetailed } from './projects/project-detailed';
 export { ProjectsTable } from './projects/projects-table';
 export { CreateProjectForm } from './projects/create-project-form';
 export { EditProjectForm } from './projects/edit-project-form';
+
+// profile
+export { ProfileTable } from './profile/profile-table';

@@ -9,3 +9,4 @@ export { companyInputSchema } from './company-input-schema';
 export { projectAchievementSchema } from './project-achievement-schema';
 export { projectTechnologySectionSchema } from './project-technology-section-schema';
 export { projectInputSchema } from './project-input-schema';
+export { profileInputSchema } from './profile-input-schema';

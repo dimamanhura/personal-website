@@ -42,3 +42,7 @@ export { editCompany } from './companies/edit-company';
 export { createProject } from './projects/create-project';
 export { deleteProject } from './projects/delete-project';
 export { editProject } from './projects/edit-project';
+
+// profile
+export { editProfile } from './profile/edit-profile';
+export { deleteProfile } from './profile/delete-profile';

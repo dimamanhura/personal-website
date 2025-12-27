@@ -19,6 +19,10 @@ export const TablePagination: FunctionComponent<TablePaginationProps> = ({
     return totalCount ? Math.ceil(totalCount / DEFAULT_LIMIT) : 0;
   }, [totalCount]);
 
+  if (pages <= 1) {
+    return null;
+  }
+
   return pages > 0 ? (
     <div className="flex w-full justify-center">
       <Pagination
