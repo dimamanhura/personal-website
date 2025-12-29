@@ -11,7 +11,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { feedbackInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
+import { ErrorMessage } from '@/components';
 
 interface CreateFeedbackFormProps {
   sections: FeedbackSection[];

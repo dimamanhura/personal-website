@@ -1,6 +1,6 @@
 import { User } from '@nextui-org/react';
 import { Meta } from '@prisma/client';
-import { Contacts } from '../ui/contacts';
+import { Contacts } from '@/components';
 
 interface UProfileCardProps {
   profile: Meta;

@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
 import { contactRequestInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
+import { ErrorMessage } from '@/components';
 
 interface EditContactRequestFormProps {
   contactRequest: ContactRequest;

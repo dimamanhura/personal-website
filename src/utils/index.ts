@@ -5,3 +5,5 @@ export { formatErrors } from './format-errors';
 export { getErrorMessage } from './get-error-message';
 export { isRealDate } from './is-real-date';
 export { truncateText } from './truncate-text';
+export { generateSlug } from './generate-slug';
+export { getReadableField } from './generate-readable-field';

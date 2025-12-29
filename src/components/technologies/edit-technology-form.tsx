@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { TechnologyWithSection } from '@/db/queries/technologies';
 import * as actions from '@/actions';
 import { technologyInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
+import { ErrorMessage } from '@/components';
 
 interface EditTechnologyFormProps {
   technology: TechnologyWithSection;

@@ -20,6 +20,6 @@ export const companyInputSchema = z.object({
       }),
     )
     .min(1)
-    .max(10),
-  reasonsOfLeaving: z.array(z.string().min(2).max(255)).min(0).max(10).optional(),
+    .max(100),
+  reasonsOfLeaving: z.array(z.string().min(2).max(255)).min(0).max(100).optional(),
 });

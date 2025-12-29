@@ -10,8 +10,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { educationInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
-import { UploadImageButton } from '../ui/upload-image-button';
+import { ErrorMessage, UploadImageButton } from '@/components';
 
 export const CreateEducationForm = () => {
   const router = useRouter();

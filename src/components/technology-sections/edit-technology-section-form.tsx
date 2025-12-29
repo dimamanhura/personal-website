@@ -9,8 +9,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
 import { technologySectionInputSchema } from '@/schemas';
-import { UploadImageButton } from '../ui/upload-image-button';
-import { ErrorMessage } from '../ui/error-message';
+import { ErrorMessage, UploadImageButton } from '@/components';
 
 interface EditTechnologySectionFormProps {
   technologySection: TechnologySection;

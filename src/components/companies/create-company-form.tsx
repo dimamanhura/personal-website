@@ -10,9 +10,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { companyInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
-import { UploadImageButton } from '../ui/upload-image-button';
-import { MultiItemField } from '../ui/multi-item-field';
+import { ErrorMessage, UploadImageButton, MultiItemField } from '@/components';
 
 export const CreateCompanyForm = () => {
   const router = useRouter();

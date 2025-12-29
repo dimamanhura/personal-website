@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
 import * as actions from '@/actions';
 import { feedbackInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
+import { ErrorMessage } from '@/components';
 
 interface EditFeedbackFormProps {
   feedback: ReviewWithFeedbackSection;

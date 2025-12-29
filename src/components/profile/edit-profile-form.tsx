@@ -9,8 +9,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 import * as actions from '@/actions';
 import { profileInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
-import { UploadImageButton } from '../ui/upload-image-button';
+import { ErrorMessage, UploadImageButton } from '@/components';
 
 interface EditProfileFormProps {
   profile: Meta;

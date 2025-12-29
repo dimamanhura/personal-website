@@ -11,7 +11,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { technologyInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
+import { ErrorMessage } from '@/components';
 
 interface CreateTechnologyFormProps {
   technologySections: TechnologySection[];

@@ -51,8 +51,16 @@ export async function editProject(
         responsibilities: result.responsibilities,
         integrations: result.integrations,
         stack: result.stack,
-        technologies: result.technologies,
-        achievements: result.achievements,
+        technologies: {
+          deployment: result.technologies?.deployment || [],
+          frontEnd: result.technologies?.frontEnd || [],
+          backEnd: result.technologies?.backEnd || [],
+          testing: result.technologies?.testing || [],
+        },
+        achievements: result.achievements?.map((achievement) => ({
+          title: achievement.title,
+          description: achievement.description || '',
+        })),
       },
     });
 

@@ -10,9 +10,7 @@ import { z } from 'zod';
 import * as actions from '@/actions';
 import paths from '@/paths';
 import { projectInputSchema } from '@/schemas';
-import { ErrorMessage } from '../ui/error-message';
-import { UploadImageButton } from '../ui/upload-image-button';
-import { MultiItemField } from '../ui/multi-item-field';
+import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } from '@/components';
 
 export const CreateProjectForm = () => {
   const router = useRouter();
@@ -43,6 +41,7 @@ export const CreateProjectForm = () => {
     },
   });
   const logoUrl = form.watch('logo');
+  const name = form.watch('name');
 
   const [isPending, startTransition] = useTransition();
 
@@ -76,7 +75,21 @@ export const CreateProjectForm = () => {
           )}
         />
 
-        {/* Slug */}
+        <SlugGeneratorField text={name} onChange={(value) => form.setValue('slug', value)}>
+          <Controller
+            control={form.control}
+            name="slug"
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                isInvalid={!!fieldState.error}
+                errorMessage={fieldState.error?.message}
+                placeholder="Slug"
+                label="Slug"
+              />
+            )}
+          />
+        </SlugGeneratorField>
 
         <Controller
           control={form.control}

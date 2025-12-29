@@ -63,6 +63,7 @@ export { UserMenu } from './ui/user-menu';
 export { UploadImageButton } from './ui/upload-image-button';
 export { ErrorMessage } from './ui/error-message';
 export { OverviewHeader } from './ui/overview-header';
+export { SlugGeneratorField } from './ui/slug-generator-field';
 
 // table
 export { ItemsTable } from './table/items-table';
