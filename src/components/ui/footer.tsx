@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { fetchMeta } from '@/db/queries/meta';
-import { CreateContactRequestForm, Contacts } from '@/components';
+import { CreateContactRequestForm, Contacts, Copyright } from '@/components';
 import { pages } from '@/pages';
 
 export const Footer = async () => {
@@ -30,11 +30,7 @@ export const Footer = async () => {
           </section>
         </div>
       </div>
-      <div className="w-full bg-zinc-200 dark:bg-zinc-700">
-        <div className="container mx-auto py-6 text-center">
-          © 2024 Copyright: {meta?.firstName} {meta?.lastName}
-        </div>
-      </div>
+      <Copyright name={`${meta?.firstName} ${meta?.lastName}`} />
     </footer>
   );
 };
