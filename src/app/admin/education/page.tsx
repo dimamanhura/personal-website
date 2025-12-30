@@ -1,10 +1,10 @@
 import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { fetchUniversities } from '@/db/queries/education';
 import { EducationTable, Header } from '@/components';
 import paths from '@/paths';
 import { SearchParams } from '@/types';
-import { fetchUniversities } from '@/db/queries/education';
 
 export const metadata: Metadata = {
   title: 'Education',

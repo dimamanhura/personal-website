@@ -1,13 +1,13 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
+import { User } from '@nextui-org/react';
+import { Education } from '@prisma/client';
 import { deleteEducation } from '@/actions';
 import { educationColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText } from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
-import { Education } from '@prisma/client';
-import { User } from '@nextui-org/react';
 import { formatDateRange } from '@/utils';
 
 interface EducationTableProps {

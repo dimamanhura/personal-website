@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchAchievementById } from '@/db/queries/achievements';
+import { deleteAchievement } from '@/actions';
 import { EditAchievementForm, OverviewHeader } from '@/components';
 import paths from '@/paths';
-import { deleteAchievement } from '@/actions';
 
 interface AchievementEditPageProps {
   params: { id: string };

@@ -1,5 +1,5 @@
-import { z } from 'zod';
 import { isValidPhoneNumber } from 'libphonenumber-js';
+import { z } from 'zod';
 
 export const profileInputSchema = z.object({
   firstName: z.string().min(2).max(255),
@@ -20,3 +20,7 @@ export const profileInputSchema = z.object({
     github: z.url().min(2).max(255),
   }),
 });
+
+export type ProfileInput = z.input<typeof profileInputSchema>;
+
+export type ProfileOutput = z.output<typeof profileInputSchema>;

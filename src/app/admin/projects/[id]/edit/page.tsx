@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { OverviewHeader, EditProjectForm } from '@/components';
-import { deleteProject } from '@/actions';
-import paths from '@/paths';
 import { fetchProjectsById } from '@/db/queries/projects';
+import { deleteProject } from '@/actions';
+import { OverviewHeader, EditProjectForm } from '@/components';
+import paths from '@/paths';
 
 interface ProjectEditPageProps {
   params: { id: string };

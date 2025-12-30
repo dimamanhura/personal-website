@@ -1,19 +1,18 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { contactRequestInputSchema } from '@/schemas';
+import { contactRequestInputSchema, ContactRequestInput, ContactRequestOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors } from '@/utils';
 
 export async function editContactRequest(
   id: string,
-  contactRequest: z.infer<typeof contactRequestInputSchema>,
+  contactRequest: ContactRequestInput,
 ): Promise<ManageItemFormState> {
   try {
-    const result = contactRequestInputSchema.parse({
+    const result: ContactRequestOutput = contactRequestInputSchema.parse({
       resolution: contactRequest.resolution,
       resolved: contactRequest.resolved,
       message: contactRequest.message,

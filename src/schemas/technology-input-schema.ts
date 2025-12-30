@@ -5,3 +5,7 @@ export const technologyInputSchema = z.object({
   featured: z.boolean(),
   title: z.string().min(2).max(255),
 });
+
+export type TechnologyInput = z.input<typeof technologyInputSchema>;
+
+export type TechnologyOutput = z.output<typeof technologyInputSchema>;

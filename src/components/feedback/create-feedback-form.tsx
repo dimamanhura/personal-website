@@ -1,17 +1,16 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import { FeedbackSection } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import paths from '@/paths';
-import { feedbackInputSchema } from '@/schemas';
 import { ErrorMessage } from '@/components';
+import paths from '@/paths';
+import { FeedbackInput, feedbackInputSchema } from '@/schemas';
 
 interface CreateFeedbackFormProps {
   sections: FeedbackSection[];
@@ -19,10 +18,10 @@ interface CreateFeedbackFormProps {
 
 export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof feedbackInputSchema>>({
+  const form = useForm<FeedbackInput>({
     resolver: zodResolver(feedbackInputSchema),
     defaultValues: {
-      createdAt: undefined,
+      receivedAt: undefined,
       featured: false,
       section: undefined,
       author: '',
@@ -32,7 +31,7 @@ export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof feedbackInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<FeedbackInput> = async (values) => {
     startTransition(async () => {
       const { success, message, id } = await actions.createFeedback(values);
 
@@ -84,14 +83,14 @@ export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
 
         <Controller
           control={form.control}
-          name="createdAt"
+          name="receivedAt"
           render={({ field, fieldState }) => (
             <Input
               {...field}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
-              placeholder="Created At"
-              label="Created At"
+              placeholder="Received At"
+              label="Received At"
               type="date"
             />
           )}

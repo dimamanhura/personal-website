@@ -5,5 +5,5 @@ model Feedback {
   featured        Boolean
   feedbackSection FeedbackSection     @relation(fields: [section], references: [type])
   author          String
-  createdAt       String
+  receivedAt      DateTime
 }

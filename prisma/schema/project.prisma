@@ -5,8 +5,8 @@ model Project {
   shortDescription String
   longDescription  String
   features         String[]
-  startAt          String
-  endAt            String?
+  startAt          DateTime
+  endAt            DateTime?
   logo             String?
   position         String
   team             String[]

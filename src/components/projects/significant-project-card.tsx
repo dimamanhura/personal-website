@@ -30,7 +30,12 @@ export const SignificantProjectCard = ({ significantProject }: SignificantProjec
       <div className="flex items-center justify-between">
         <User
           description={`${name}, ${formatDateRange(startAt, endAt)}`}
-          avatarProps={{ src: logo, radius: 'md', size: 'lg', name: logo ? name : 'N/A' }}
+          avatarProps={{
+            src: logo || undefined,
+            radius: 'md',
+            size: 'lg',
+            name: logo ? name : 'N/A',
+          }}
           name={position}
         />
         <div className="hidden sm:block">{renderLinkToProjectDetails()}</div>

@@ -1,32 +1,36 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
 import { Company } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import { companyInputSchema } from '@/schemas';
 import { ErrorMessage, UploadImageButton, MultiItemField } from '@/components';
+import { CompanyInput, companyInputSchema } from '@/schemas';
+import { formatDateForInput } from '@/utils';
 
 interface EditCompanyFormProps {
   company: Company;
 }
 
 export const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
-  const form = useForm<z.infer<typeof companyInputSchema>>({
+  const form = useForm<CompanyInput>({
     resolver: zodResolver(companyInputSchema),
     defaultValues: {
       name: company.name,
       location: company.location,
       logo: company.logo,
-      startAt: company.startAt,
-      endAt: company.endAt || undefined,
+      startAt: formatDateForInput(company.startAt),
+      endAt: formatDateForInput(company.endAt),
       position: company.position,
       positions: company.positions
-        ? company.positions.map((position) => ({ ...position, endAt: position.endAt || undefined }))
+        ? company.positions.map((position) => ({
+            ...position,
+            startAt: formatDateForInput(position.startAt),
+            endAt: formatDateForInput(position.endAt),
+          }))
         : [],
       reasonsOfLeaving: company.reasonsOfLeaving || [],
     },
@@ -35,7 +39,7 @@ export const EditCompanyForm = ({ company }: EditCompanyFormProps) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof companyInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<CompanyInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editCompany(company.id, values);
 

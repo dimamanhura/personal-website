@@ -1,19 +1,15 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { profileInputSchema } from '@/schemas';
+import { profileInputSchema, ProfileInput, ProfileOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors } from '@/utils';
 
-export async function editProfile(
-  id: string,
-  profile: z.infer<typeof profileInputSchema>,
-): Promise<ManageItemFormState> {
+export async function editProfile(id: string, profile: ProfileInput): Promise<ManageItemFormState> {
   try {
-    const result = profileInputSchema.parse({
+    const result: ProfileOutput = profileInputSchema.parse({
       firstName: profile.firstName,
       lastName: profile.lastName,
       title: profile.title,

@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchFeedbackById } from '@/db/queries/feedback';
+import { deleteFeedback } from '@/actions';
 import { FeedbackCard, OverviewHeader } from '@/components';
 import paths from '@/paths';
-import { deleteFeedback } from '@/actions';
 
 interface FeedbackShowPageProps {
   params: {

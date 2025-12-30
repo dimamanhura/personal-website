@@ -16,10 +16,18 @@ export const companyInputSchema = z.object({
       z.object({
         title: z.string().min(2).max(255),
         startAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
-        endAt: z.string().refine(isRealDate, { message: 'Invalid date' }).optional(),
+        endAt: z
+          .string()
+          .refine(isRealDate, { message: 'Invalid date' })
+
+          .optional(),
       }),
     )
     .min(1)
     .max(100),
   reasonsOfLeaving: z.array(z.string().min(2).max(255)).min(0).max(100).optional(),
 });
+
+export type CompanyInput = z.input<typeof companyInputSchema>;
+
+export type CompanyOutput = z.output<typeof companyInputSchema>;

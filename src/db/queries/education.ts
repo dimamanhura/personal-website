@@ -1,8 +1,8 @@
 import { cache } from 'react';
 import type { Education } from '@prisma/client';
+import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
-import { DEFAULT_LIMIT } from '@/constants';
 
 export const fetchUniversities = cache(
   async (params?: {

@@ -1,10 +1,10 @@
-import { Metadata } from 'next';
-import { Header, ProjectsTable } from '@/components';
-import { SearchParams } from '@/types';
 import { Button } from '@nextui-org/react';
-import paths from '@/paths';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchProjects } from '@/db/queries/projects';
+import { Header, ProjectsTable } from '@/components';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Projects',

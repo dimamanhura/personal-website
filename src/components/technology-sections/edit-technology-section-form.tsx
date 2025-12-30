@@ -6,10 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
 import { TechnologySection } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import { technologySectionInputSchema } from '@/schemas';
 import { ErrorMessage, UploadImageButton } from '@/components';
+import { TechnologySectionInput, technologySectionInputSchema } from '@/schemas';
 
 interface EditTechnologySectionFormProps {
   technologySection: TechnologySection;
@@ -18,7 +17,7 @@ interface EditTechnologySectionFormProps {
 export const EditTechnologySectionForm = ({
   technologySection,
 }: EditTechnologySectionFormProps) => {
-  const form = useForm<z.infer<typeof technologySectionInputSchema>>({
+  const form = useForm<TechnologySectionInput>({
     resolver: zodResolver(technologySectionInputSchema),
     defaultValues: {
       title: technologySection.title,
@@ -29,7 +28,7 @@ export const EditTechnologySectionForm = ({
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof technologySectionInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<TechnologySectionInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editTechnologySection(
         technologySection.id,

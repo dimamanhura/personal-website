@@ -6,15 +6,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
 import { ErrorMessage, UploadImageButton } from '@/components';
 import paths from '@/paths';
-import { technologySectionInputSchema } from '@/schemas';
+import { TechnologySectionInput, technologySectionInputSchema } from '@/schemas';
 
 export const CreateTechnologySectionForm = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof technologySectionInputSchema>>({
+  const form = useForm<TechnologySectionInput>({
     resolver: zodResolver(technologySectionInputSchema),
     defaultValues: {
       title: '',
@@ -25,7 +24,7 @@ export const CreateTechnologySectionForm = () => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof technologySectionInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<TechnologySectionInput> = async (values) => {
     startTransition(async () => {
       const { success, message, id } = await actions.createTechnologySection(values);
 

@@ -6,16 +6,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
 import { ErrorMessage, MultiItemField } from '@/components';
 import paths from '@/paths';
-import { achievementInputSchema } from '@/schemas';
+import { AchievementInput, achievementInputSchema } from '@/schemas';
 
 export const CreateAchievementForm = () => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof achievementInputSchema>>({
+  const form = useForm<AchievementInput>({
     resolver: zodResolver(achievementInputSchema),
     defaultValues: {
       title: '',
@@ -29,7 +28,7 @@ export const CreateAchievementForm = () => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof achievementInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<AchievementInput> = async (values) => {
     startTransition(async () => {
       const { success, message, id } = await actions.createAchievement(values);
 

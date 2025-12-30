@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { OverviewHeader, EditProfileForm } from '@/components';
-import { deleteProfile } from '@/actions';
-import paths from '@/paths';
 import { fetchProfileById } from '@/db/queries/meta';
+import { deleteProfile } from '@/actions';
+import { OverviewHeader, EditProfileForm } from '@/components';
+import paths from '@/paths';
 
 interface ProfileEditPageProps {
   params: { id: string };

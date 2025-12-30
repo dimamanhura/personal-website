@@ -1,8 +1,8 @@
-import { formatDateRange } from '@/utils';
 import { Chip, User } from '@nextui-org/react';
 import { Company, Position } from '@prisma/client';
 import { FaBriefcase, FaCalendar } from 'react-icons/fa';
 import { ItemsList } from '@/components';
+import { formatDateRange } from '@/utils';
 
 interface CompanyCardProps {
   company: Company;

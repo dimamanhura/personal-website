@@ -1,8 +1,8 @@
 'use client';
 
-import { generateSlug } from '@/utils';
 import { Button } from '@nextui-org/react';
 import { FaWandMagicSparkles } from 'react-icons/fa6';
+import { generateSlug } from '@/utils';
 
 interface SubmitButtonProps {
   children: React.ReactNode;

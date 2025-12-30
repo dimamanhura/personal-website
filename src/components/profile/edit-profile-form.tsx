@@ -6,17 +6,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { Meta } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import { profileInputSchema } from '@/schemas';
 import { ErrorMessage, UploadImageButton } from '@/components';
+import { ProfileInput, profileInputSchema } from '@/schemas';
 
 interface EditProfileFormProps {
   profile: Meta;
 }
 
 export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
-  const form = useForm<z.infer<typeof profileInputSchema>>({
+  const form = useForm<ProfileInput>({
     resolver: zodResolver(profileInputSchema),
     defaultValues: {
       firstName: profile.firstName,
@@ -32,7 +31,7 @@ export const EditProfileForm = ({ profile }: EditProfileFormProps) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof profileInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<ProfileInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editProfile(profile.id, values);
 

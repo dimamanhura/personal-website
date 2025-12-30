@@ -7,5 +7,9 @@ export const feedbackInputSchema = z.object({
   review: z.string().min(2).max(1000),
   section: z.enum(FeedbackSectionType, { message: 'Invalid input: required' }),
   author: z.string().min(2).max(255),
-  createdAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
+  receivedAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
 });
+
+export type FeedbackInput = z.input<typeof feedbackInputSchema>;
+
+export type FeedbackOutput = z.output<typeof feedbackInputSchema>;

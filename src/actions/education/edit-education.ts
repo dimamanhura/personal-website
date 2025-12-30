@@ -1,19 +1,18 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { educationInputSchema } from '@/schemas';
+import { educationInputSchema, EducationInput, EducationOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, normalizeToMidnight } from '@/utils';
 
 export async function editEducation(
   id: string,
-  education: z.infer<typeof educationInputSchema>,
+  education: EducationInput,
 ): Promise<ManageItemFormState> {
   try {
-    const result = educationInputSchema.parse({
+    const result: EducationOutput = educationInputSchema.parse({
       location: education.location,
       name: education.name,
       title: education.title,
@@ -33,8 +32,8 @@ export async function editEducation(
         title: result.title,
         degree: result.degree,
         logo: result.logo,
-        startAt: result.startAt,
-        endAt: result.endAt,
+        startAt: normalizeToMidnight(result.startAt),
+        endAt: result.endAt ? normalizeToMidnight(result.endAt) : null,
       },
     });
 

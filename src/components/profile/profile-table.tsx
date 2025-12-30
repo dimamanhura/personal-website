@@ -1,13 +1,13 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
+import { User } from '@nextui-org/react';
+import { Meta } from '@prisma/client';
 import { deleteProfile } from '@/actions';
 import { profileColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText } from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
-import { Meta } from '@prisma/client';
-import { User } from '@nextui-org/react';
 
 interface ProfileTableTableProps {
   items: Meta[];

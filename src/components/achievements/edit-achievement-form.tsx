@@ -6,17 +6,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
 import { Achievement } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
 import { ErrorMessage, MultiItemField } from '@/components';
-import { achievementInputSchema } from '@/schemas';
+import { AchievementInput, achievementInputSchema } from '@/schemas';
 
 interface EditAchievementFormProps {
   achievement: Achievement;
 }
 
 export const EditAchievementForm = ({ achievement }: EditAchievementFormProps) => {
-  const form = useForm<z.infer<typeof achievementInputSchema>>({
+  const form = useForm<AchievementInput>({
     resolver: zodResolver(achievementInputSchema),
     defaultValues: {
       title: achievement.title,
@@ -30,7 +29,7 @@ export const EditAchievementForm = ({ achievement }: EditAchievementFormProps) =
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof achievementInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<AchievementInput> = async (values) => {
     startTransition(async () => {
       const { success, message, id } = await actions.editAchievement(achievement.id, values);
 

@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchTechnologySectionById } from '@/db/queries/technology-sections';
-import { OverviewHeader, TechnologySectionCard } from '@/components';
 import { deleteTechnologySection } from '@/actions';
+import { OverviewHeader, TechnologySectionCard } from '@/components';
 import paths from '@/paths';
 
 interface TechnologySectionShowPageProps {

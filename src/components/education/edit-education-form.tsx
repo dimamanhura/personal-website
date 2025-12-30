@@ -1,30 +1,30 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
 import { Education } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import { educationInputSchema } from '@/schemas';
 import { ErrorMessage, UploadImageButton } from '@/components';
+import { EducationInput, educationInputSchema } from '@/schemas';
+import { formatDateForInput } from '@/utils';
 
 interface EditEducationFormProps {
   education: Education;
 }
 
 export const EditEducationForm = ({ education }: EditEducationFormProps) => {
-  const form = useForm<z.infer<typeof educationInputSchema>>({
+  const form = useForm<EducationInput>({
     resolver: zodResolver(educationInputSchema),
     defaultValues: {
       name: education.name,
       title: education.title,
       logo: education.logo,
       degree: education.degree,
-      startAt: education.startAt,
-      endAt: education.endAt || undefined,
+      startAt: formatDateForInput(education.startAt),
+      endAt: formatDateForInput(education.endAt),
       location: education.location,
     },
   });
@@ -32,7 +32,7 @@ export const EditEducationForm = ({ education }: EditEducationFormProps) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof educationInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<EducationInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editEducation(education.id, values);
 

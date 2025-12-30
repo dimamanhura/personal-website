@@ -7,3 +7,7 @@ export const contactRequestInputSchema = z.object({
   email: z.email().min(10).max(255),
   name: z.string().min(2).max(255),
 });
+
+export type ContactRequestInput = z.input<typeof contactRequestInputSchema>;
+
+export type ContactRequestOutput = z.output<typeof contactRequestInputSchema>;

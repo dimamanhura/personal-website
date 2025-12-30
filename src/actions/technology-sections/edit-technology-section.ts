@@ -1,19 +1,22 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { technologySectionInputSchema } from '@/schemas';
+import {
+  technologySectionInputSchema,
+  TechnologySectionInput,
+  TechnologySectionOutput,
+} from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors } from '@/utils';
 
 export async function editTechnologySection(
   id: string,
-  values: z.infer<typeof technologySectionInputSchema>,
+  values: TechnologySectionInput,
 ): Promise<ManageItemFormState> {
   try {
-    const result = technologySectionInputSchema.parse({
+    const result: TechnologySectionOutput = technologySectionInputSchema.parse({
       title: values.title,
       logo: values.logo,
     });

@@ -1,20 +1,19 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import paths from '@/paths';
-import { projectInputSchema } from '@/schemas';
 import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } from '@/components';
+import paths from '@/paths';
+import { ProjectInput, projectInputSchema } from '@/schemas';
 
 export const CreateProjectForm = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof projectInputSchema>>({
+  const form = useForm<ProjectInput>({
     resolver: zodResolver(projectInputSchema),
     defaultValues: {
       name: '',
@@ -45,7 +44,7 @@ export const CreateProjectForm = () => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof projectInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<ProjectInput> = async (values) => {
     startTransition(async () => {
       const { success, message, id } = await actions.createProject(values);
 

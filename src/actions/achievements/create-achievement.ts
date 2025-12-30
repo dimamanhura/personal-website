@@ -1,18 +1,15 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { achievementInputSchema } from '@/schemas';
+import { achievementInputSchema, AchievementInput, AchievementOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors } from '@/utils';
 
-export async function createAchievement(
-  values: z.infer<typeof achievementInputSchema>,
-): Promise<ManageItemFormState> {
+export async function createAchievement(values: AchievementInput): Promise<ManageItemFormState> {
   try {
-    const result = achievementInputSchema.parse({
+    const result: AchievementOutput = achievementInputSchema.parse({
       title: values.title,
       featured: values.featured,
       description: values.description,

@@ -1,8 +1,8 @@
 import { cache } from 'react';
 import type { Meta } from '@prisma/client';
+import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
-import { DEFAULT_LIMIT } from '@/constants';
 
 export const fetchProfiles = cache(
   async (params?: {

@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { EditEducationForm, OverviewHeader } from '@/components';
-import { deleteEducation } from '@/actions';
-import paths from '@/paths';
 import { fetchUniversityById } from '@/db/queries/education';
+import { deleteEducation } from '@/actions';
+import { EditEducationForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 interface EducationEditPageProps {
   params: { id: string };

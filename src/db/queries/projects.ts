@@ -1,13 +1,16 @@
 import { cache } from 'react';
 import type { Project } from '@prisma/client';
+import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
-import { DEFAULT_LIMIT } from '@/constants';
 
 export const fetchFeaturedSignificantProjects = cache((): Promise<Project[]> => {
   return db.project.findMany({
     where: {
       featured: true,
+    },
+    orderBy: {
+      startAt: 'desc',
     },
   });
 });
@@ -21,7 +24,11 @@ export const fetchSignificantProjectBySlug = cache((slug: string): Promise<Proje
 });
 
 export const fetchSignificantProjects = cache((): Promise<Project[]> => {
-  return db.project.findMany();
+  return db.project.findMany({
+    orderBy: {
+      startAt: 'desc',
+    },
+  });
 });
 
 export const fetchProjectsById = cache((id: string): Promise<Project | null> => {

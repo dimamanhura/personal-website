@@ -6,17 +6,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
 import { ContactRequest } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import { contactRequestInputSchema } from '@/schemas';
 import { ErrorMessage } from '@/components';
+import { ContactRequestInput, contactRequestInputSchema } from '@/schemas';
 
 interface EditContactRequestFormProps {
   contactRequest: ContactRequest;
 }
 
 export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFormProps) => {
-  const form = useForm<z.infer<typeof contactRequestInputSchema>>({
+  const form = useForm<ContactRequestInput>({
     resolver: zodResolver(contactRequestInputSchema),
     defaultValues: {
       resolution: contactRequest.resolution || '',
@@ -29,7 +28,7 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof contactRequestInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<ContactRequestInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editContactRequest(contactRequest.id, values);
 

@@ -1,8 +1,8 @@
 import { Avatar, Chip, cn } from '@nextui-org/react';
+import { Project } from '@prisma/client';
 import { FaCalendar, FaUser } from 'react-icons/fa';
 import { ItemsList, ChipsList, FeaturedFlag } from '@/components';
 import { formatDateRange } from '@/utils';
-import { Project } from '@prisma/client';
 
 interface ProjectDetailedProps {
   withFeaturedFlag?: boolean;

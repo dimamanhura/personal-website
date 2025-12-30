@@ -1,8 +1,8 @@
 model Education {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   location Location
-  startAt  String
-  endAt    String?
+  startAt  DateTime
+  endAt    DateTime?
   name     String
   logo     String
   title    String

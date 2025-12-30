@@ -1,22 +1,22 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
 import { Project } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import { projectInputSchema } from '@/schemas';
 import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } from '@/components';
+import { ProjectInput, projectInputSchema } from '@/schemas';
+import { formatDateForInput } from '@/utils';
 
 interface EditProjectFormProps {
   project: Project;
 }
 
 export const EditProjectForm = ({ project }: EditProjectFormProps) => {
-  const form = useForm<z.infer<typeof projectInputSchema>>({
+  const form = useForm<ProjectInput>({
     resolver: zodResolver(projectInputSchema),
     defaultValues: {
       name: project.name,
@@ -24,8 +24,8 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
       shortDescription: project.shortDescription,
       longDescription: project.longDescription,
       features: project.features || [],
-      startAt: project.startAt,
-      endAt: project.endAt || undefined,
+      startAt: formatDateForInput(project.startAt),
+      endAt: formatDateForInput(project.endAt),
       logo: project.logo || undefined,
       position: project.position,
       team: project.team,
@@ -47,7 +47,7 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof projectInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<ProjectInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editProject(project.id, values);
 

@@ -6,7 +6,7 @@ export const columns: Column<ColumnKey<ReviewWithFeedbackSection>>[] = [
   { key: 'author', label: 'Author', allowsSorting: true },
   { key: 'feedbackSection', label: 'Section', allowsSorting: false },
   { key: 'review', label: 'Review', allowsSorting: true },
-  { key: 'createdAt', label: 'Requested At', allowsSorting: true },
+  { key: 'receivedAt', label: 'Received At', allowsSorting: true },
   { key: 'featured', label: 'Featured', allowsSorting: true },
   { key: 'actions', label: 'Actions', allowsSorting: false },
 ];

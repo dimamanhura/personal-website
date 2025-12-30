@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { EditCompanyForm, OverviewHeader } from '@/components';
-import { deleteCompany } from '@/actions';
-import paths from '@/paths';
 import { fetchCompanyById } from '@/db/queries/companies';
+import { deleteCompany } from '@/actions';
+import { EditCompanyForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 interface CompanyEditPageProps {
   params: { id: string };

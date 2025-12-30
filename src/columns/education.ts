@@ -1,5 +1,5 @@
-import { Column, ColumnKey } from '@/types';
 import { Education } from '@prisma/client';
+import { Column, ColumnKey } from '@/types';
 
 export const columns: Column<ColumnKey<Education>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },

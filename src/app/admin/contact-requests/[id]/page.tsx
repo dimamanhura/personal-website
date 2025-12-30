@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchContactRequestById } from '@/db/queries/contact-requests';
+import { deleteContactRequest } from '@/actions';
 import { ContactRequestCard, OverviewHeader } from '@/components';
 import paths from '@/paths';
-import { deleteContactRequest } from '@/actions';
 
 interface ContactRequestShowPageProps {
   params: {

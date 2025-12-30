@@ -1,13 +1,13 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
-import { deleteCompany, deleteProject } from '@/actions';
+import { User } from '@nextui-org/react';
+import { Project } from '@prisma/client';
+import { deleteProject } from '@/actions';
 import { projectsColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText } from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
-import { Project } from '@prisma/client';
-import { User } from '@nextui-org/react';
 import { formatDateRange } from '@/utils';
 
 interface ProjectsTableTableProps {
@@ -36,7 +36,7 @@ export const ProjectsTable: FunctionComponent<ProjectsTableTableProps> = ({ item
         return (
           <User
             avatarProps={{
-              src: project.logo,
+              src: project.logo || undefined,
               size: 'sm',
               radius: 'md',
             }}

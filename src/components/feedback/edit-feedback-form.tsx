@@ -1,16 +1,16 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import { FeedbackSection } from '@prisma/client';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import { ReviewWithFeedbackSection } from '@/db/queries/feedback';
 import * as actions from '@/actions';
-import { feedbackInputSchema } from '@/schemas';
 import { ErrorMessage } from '@/components';
+import { FeedbackInput, feedbackInputSchema } from '@/schemas';
+import { formatDateForInput } from '@/utils';
 
 interface EditFeedbackFormProps {
   feedback: ReviewWithFeedbackSection;
@@ -18,10 +18,10 @@ interface EditFeedbackFormProps {
 }
 
 export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) => {
-  const form = useForm<z.infer<typeof feedbackInputSchema>>({
+  const form = useForm<FeedbackInput>({
     resolver: zodResolver(feedbackInputSchema),
     defaultValues: {
-      createdAt: feedback.createdAt,
+      receivedAt: formatDateForInput(feedback.receivedAt),
       featured: !!feedback.featured,
       section: feedback.section || '',
       author: feedback.author,
@@ -31,7 +31,7 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof feedbackInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<FeedbackInput> = async (values) => {
     startTransition(async () => {
       const { success, message } = await actions.editFeedback(feedback.id, values);
 
@@ -83,14 +83,14 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
 
         <Controller
           control={form.control}
-          name="createdAt"
+          name="receivedAt"
           render={({ field, fieldState }) => (
             <Input
               {...field}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
-              placeholder="Created At"
-              label="Created At"
+              placeholder="Received At"
+              label="Received At"
               type="date"
             />
           )}

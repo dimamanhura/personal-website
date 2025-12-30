@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
+import { fetchProfiles } from '@/db/queries/meta';
 import { Header, ProfileTable } from '@/components';
 import { SearchParams } from '@/types';
-import { fetchProfiles } from '@/db/queries/meta';
 
 export const metadata: Metadata = {
   title: 'Profile',

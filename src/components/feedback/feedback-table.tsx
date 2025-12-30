@@ -7,6 +7,7 @@ import { feedbackColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
+import { formatDateFull } from '@/utils';
 
 interface FeedbackTableProps {
   items: ReviewWithFeedbackSection[];
@@ -39,6 +40,9 @@ export const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({ items, co
 
         case 'featured':
           return <FeaturedFlag featured={feedback.featured} />;
+
+        case 'receivedAt':
+          return formatDateFull(feedback.receivedAt);
 
         default:
           return feedback[columnKey];

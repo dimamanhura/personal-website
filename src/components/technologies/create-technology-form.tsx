@@ -7,11 +7,10 @@ import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { TechnologySection } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { z } from 'zod';
 import * as actions from '@/actions';
-import paths from '@/paths';
-import { technologyInputSchema } from '@/schemas';
 import { ErrorMessage } from '@/components';
+import paths from '@/paths';
+import { TechnologyInput, technologyInputSchema } from '@/schemas';
 
 interface CreateTechnologyFormProps {
   technologySections: TechnologySection[];
@@ -19,7 +18,7 @@ interface CreateTechnologyFormProps {
 
 export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFormProps) => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof technologyInputSchema>>({
+  const form = useForm<TechnologyInput>({
     resolver: zodResolver(technologyInputSchema),
     defaultValues: {
       featured: false,
@@ -30,7 +29,7 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof technologyInputSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<TechnologyInput> = async (values) => {
     startTransition(async () => {
       const { success, message, id } = await actions.createTechnology(values);
 

@@ -40,7 +40,7 @@ export const fetchReviews = cache(
     orderBy?: Sort;
     page?: number;
   }): Promise<PaginatedData<ReviewWithFeedbackSection>> => {
-    const { orderBy = { column: 'createdAt', direction: 'descending' }, page = 1 } = params || {};
+    const { orderBy = { column: 'receivedAt', direction: 'descending' }, page = 1 } = params || {};
 
     const items = await db.feedback.findMany({
       orderBy: {

@@ -8,3 +8,7 @@ export const achievementInputSchema = z.object({
   result: z.array(z.string().min(2).max(255)).min(1).max(100),
   notes: z.array(z.string().min(2).max(255)).min(1).max(100),
 });
+
+export type AchievementInput = z.input<typeof achievementInputSchema>;
+
+export type AchievementOutput = z.output<typeof achievementInputSchema>;

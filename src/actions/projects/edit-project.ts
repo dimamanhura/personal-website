@@ -1,19 +1,15 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { projectInputSchema } from '@/schemas';
+import { projectInputSchema, ProjectInput, ProjectOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, normalizeToMidnight } from '@/utils';
 
-export async function editProject(
-  id: string,
-  project: z.infer<typeof projectInputSchema>,
-): Promise<ManageItemFormState> {
+export async function editProject(id: string, project: ProjectInput): Promise<ManageItemFormState> {
   try {
-    const result = projectInputSchema.parse({
+    const result: ProjectOutput = projectInputSchema.parse({
       name: project.name,
       slug: project.slug,
       shortDescription: project.shortDescription,
@@ -42,8 +38,8 @@ export async function editProject(
         shortDescription: result.shortDescription,
         longDescription: result.longDescription,
         features: result.features,
-        startAt: result.startAt,
-        endAt: result.endAt,
+        startAt: normalizeToMidnight(result.startAt),
+        endAt: result.endAt ? normalizeToMidnight(result.endAt) : null,
         logo: result.logo,
         position: result.position,
         team: result.team,

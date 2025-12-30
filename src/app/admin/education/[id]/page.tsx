@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { OverviewHeader, UniversityCard } from '@/components';
 import { fetchUniversityById } from '@/db/queries/education';
-import paths from '@/paths';
 import { deleteEducation } from '@/actions';
+import { OverviewHeader, UniversityCard } from '@/components';
+import paths from '@/paths';
 
 interface EducationShowPageProps {
   params: {

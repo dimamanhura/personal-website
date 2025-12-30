@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchProfileById } from '@/db/queries/meta';
+import { deleteProfile } from '@/actions';
 import { OverviewHeader, ProfileCard } from '@/components';
 import paths from '@/paths';
-import { deleteProfile } from '@/actions';
-import { fetchProfileById } from '@/db/queries/meta';
 
 interface ProfileShowPageProps {
   params: {

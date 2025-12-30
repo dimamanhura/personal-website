@@ -22,7 +22,7 @@ export const FeedbackCard = ({ feedback, withFeaturedFlag, withSection }: Feedba
             </Chip>
           )}
 
-          <p className="text-sm text-foreground-400">{formatDateFull(feedback.createdAt)}</p>
+          <p className="text-sm text-foreground-400">{formatDateFull(feedback.receivedAt)}</p>
         </div>
 
         {withFeaturedFlag && <FeaturedFlag featured={feedback.featured} />}

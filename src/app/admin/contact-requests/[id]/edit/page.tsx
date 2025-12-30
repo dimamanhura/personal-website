@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchContactRequestById } from '@/db/queries/contact-requests';
-import { EditContactRequestForm, OverviewHeader } from '@/components';
 import { deleteContactRequest } from '@/actions';
+import { EditContactRequestForm, OverviewHeader } from '@/components';
 import paths from '@/paths';
 
 interface ContactRequestsEditPageProps {

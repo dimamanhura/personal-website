@@ -1,6 +1,6 @@
-import { isRealDate } from '@/utils';
 import { z } from 'zod';
 import { projectAchievementSchema, projectTechnologySectionSchema } from '@/schemas';
+import { isRealDate } from '@/utils';
 
 export const projectInputSchema = z.object({
   name: z.string().min(2).max(255),
@@ -20,3 +20,7 @@ export const projectInputSchema = z.object({
   technologies: projectTechnologySectionSchema,
   featured: z.boolean(),
 });
+
+export type ProjectInput = z.input<typeof projectInputSchema>;
+
+export type ProjectOutput = z.output<typeof projectInputSchema>;

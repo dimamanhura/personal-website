@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchProjectsById } from '@/db/queries/projects';
+import { deleteProject } from '@/actions';
 import { OverviewHeader, ProjectDetailed } from '@/components';
 import paths from '@/paths';
-import { deleteProject } from '@/actions';
-import { fetchProjectsById } from '@/db/queries/projects';
 
 interface ProjectShowPageProps {
   params: {

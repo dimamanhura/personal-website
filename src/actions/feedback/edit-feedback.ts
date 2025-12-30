@@ -1,22 +1,21 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { feedbackInputSchema } from '@/schemas';
+import { feedbackInputSchema, FeedbackInput, FeedbackOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, normalizeToMidnight } from '@/utils';
 
 export async function editFeedback(
   id: string,
-  feedback: z.infer<typeof feedbackInputSchema>,
+  feedback: FeedbackInput,
 ): Promise<ManageItemFormState> {
   try {
-    const result = feedbackInputSchema.parse({
+    const result: FeedbackOutput = feedbackInputSchema.parse({
       section: feedback.section,
       featured: feedback.featured,
-      createdAt: feedback.createdAt,
+      receivedAt: feedback.receivedAt,
       author: feedback.author,
       review: feedback.review,
     });
@@ -28,7 +27,7 @@ export async function editFeedback(
       data: {
         section: result.section,
         featured: result.featured,
-        createdAt: result.createdAt,
+        receivedAt: normalizeToMidnight(result.receivedAt),
         author: result.author,
         review: result.review,
       },

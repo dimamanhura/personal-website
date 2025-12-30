@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchCompanyById } from '@/db/queries/companies';
+import { deleteCompany } from '@/actions';
 import { CompanyCard, OverviewHeader } from '@/components';
 import paths from '@/paths';
-import { deleteCompany } from '@/actions';
-import { fetchCompanyById } from '@/db/queries/companies';
 
 interface CompanyShowPageProps {
   params: {

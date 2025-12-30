@@ -1,19 +1,15 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
-import { companyInputSchema } from '@/schemas';
+import { companyInputSchema, CompanyInput, CompanyOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, normalizeToMidnight } from '@/utils';
 
-export async function editCompany(
-  id: string,
-  company: z.infer<typeof companyInputSchema>,
-): Promise<ManageItemFormState> {
+export async function editCompany(id: string, company: CompanyInput): Promise<ManageItemFormState> {
   try {
-    const result = companyInputSchema.parse({
+    const result: CompanyOutput = companyInputSchema.parse({
       name: company.name,
       location: company.location,
       startAt: company.startAt,
@@ -31,11 +27,15 @@ export async function editCompany(
       data: {
         name: result.name,
         location: result.location,
-        startAt: result.startAt,
-        endAt: result.endAt,
+        startAt: normalizeToMidnight(result.startAt),
+        endAt: result.endAt ? normalizeToMidnight(result.endAt) : null,
         logo: result.logo,
         position: result.position,
-        positions: result.positions,
+        positions: result.positions.map((position) => ({
+          ...position,
+          startAt: normalizeToMidnight(position.startAt),
+          endAt: position.endAt ? normalizeToMidnight(position.endAt) : null,
+        })),
         reasonsOfLeaving: result.reasonsOfLeaving,
       },
     });

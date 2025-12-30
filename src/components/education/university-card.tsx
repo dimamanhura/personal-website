@@ -1,8 +1,8 @@
-import { formatDateRange } from '@/utils';
 import { Chip, User } from '@nextui-org/react';
 import { Education } from '@prisma/client';
 import { FaCalendar } from 'react-icons/fa';
 import { FaLocationPin } from 'react-icons/fa6';
+import { formatDateRange } from '@/utils';
 
 interface UniversityCardProps {
   university: Education;

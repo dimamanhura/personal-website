@@ -1,8 +1,8 @@
 model Company {
   id               String     @id @default(auto()) @map("_id") @db.ObjectId
   name             String
-  startAt          String
-  endAt            String?
+  startAt          DateTime
+  endAt            DateTime?
   location         Location
   reasonsOfLeaving String[]
   position         String
