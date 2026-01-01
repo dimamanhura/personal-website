@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchTechnologyById } from '@/db/queries/technologies';
 import { fetchTechnologySections } from '@/db/queries/technology-sections';
-import { EditTechnologyForm, TechnologyOverviewHeader } from '@/components';
+import { deleteTechnology } from '@/actions';
+import { EditTechnologyForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 interface TechnologyEditPageProps {
   params: { id: string };
@@ -25,7 +27,11 @@ const TechnologyEditPage = async ({ params }: TechnologyEditPageProps) => {
 
   return (
     <>
-      <TechnologyOverviewHeader withEdit={false} itemId={params.id} />
+      <OverviewHeader
+        backPath={paths.technologiesAdmin()}
+        itemId={params.id}
+        onDelete={deleteTechnology}
+      />
       <EditTechnologyForm technology={technology} technologySections={technologySections.items} />
     </>
   );

@@ -56,7 +56,8 @@ export const EducationTable: FunctionComponent<EducationTableProps> = ({ items, 
         return formatDateRange(education.startAt, education.endAt);
 
       default:
-        return education[columnKey];
+        const value = education[columnKey];
+        return typeof value === 'string' ? value : null;
     }
   }, []);
 

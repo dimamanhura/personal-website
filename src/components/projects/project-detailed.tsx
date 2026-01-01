@@ -29,7 +29,7 @@ export const ProjectDetailed = async ({
             className="h-20 w-20 flex-shrink-0 text-large"
             radius="sm"
             name={project.logo ? project.name : 'N/A'}
-            src={project.logo}
+            src={project.logo || ''}
           />
           <div>
             <h1 className="text-xl font-medium md:text-2xl lg:text-4xl">{project.name}</h1>

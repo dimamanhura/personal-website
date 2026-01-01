@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { fetchTechnologySections } from '@/db/queries/technology-sections';
-import { CreateTechnologyForm, TechnologyOverviewHeader } from '@/components';
+import { CreateTechnologyForm, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
   title: 'Technologies - New',
@@ -11,7 +12,7 @@ const TechnologiesAddPage = async () => {
 
   return (
     <>
-      <TechnologyOverviewHeader withEdit={false} withDelete={false} />
+      <OverviewHeader backPath={paths.technologiesAdmin()} />
       <CreateTechnologyForm technologySections={technologySections.items} />
     </>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTransition } from 'react';
-import { useForm, Controller, type SubmitHandler, type Resolver } from 'react-hook-form';
+import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';

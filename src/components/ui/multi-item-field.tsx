@@ -7,6 +7,7 @@ import { ErrorMessage } from './error-message';
 
 interface MultiItemFieldProps {
   maxLength?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<any>;
   label: string;
   name: string;

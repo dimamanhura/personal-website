@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchTechnologyById } from '@/db/queries/technologies';
-import { TechnologyCard, TechnologyOverviewHeader } from '@/components';
+import { deleteTechnology } from '@/actions';
+import { TechnologyCard, OverviewHeader } from '@/components';
+import paths from '@/paths';
 
 interface TechnologyShowPageProps {
   params: {
@@ -24,7 +26,12 @@ const TechnologyShowPage = async ({ params }: TechnologyShowPageProps) => {
 
   return (
     <>
-      <TechnologyOverviewHeader itemId={params.id} />
+      <OverviewHeader
+        backPath={paths.technologiesAdmin()}
+        editPath={paths.technologiesEditByIdAdmin(params.id)}
+        itemId={params.id}
+        onDelete={deleteTechnology}
+      />
       <TechnologyCard technology={technology} />
     </>
   );

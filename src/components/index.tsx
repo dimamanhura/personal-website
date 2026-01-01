@@ -28,7 +28,6 @@ export { ReviewList } from './feedback/reviews-list';
 export { TechnologiesTable } from './technologies/technologies-table';
 export { CreateTechnologyForm } from './technologies/create-technology-form';
 export { EditTechnologyForm } from './technologies/edit-technology-form';
-export { TechnologyOverviewHeader } from './technologies/technology-overview-header';
 export { TechnologyCard } from './technologies/technology-card';
 
 // technology sections
