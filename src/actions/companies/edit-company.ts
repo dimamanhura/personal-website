@@ -41,6 +41,7 @@ export async function editCompany(id: string, company: CompanyInput): Promise<Ma
     });
 
     revalidatePath(paths.companiesEditByIdAdmin(id));
+    revalidatePath(paths.home());
     revalidatePath(paths.companiesAdmin());
 
     return { success: true };

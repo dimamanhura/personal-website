@@ -39,6 +39,7 @@ export async function editEducation(
 
     revalidatePath(paths.educationEditByIdAdmin(id));
     revalidatePath(paths.educationAdmin());
+    revalidatePath(paths.home());
 
     return { success: true };
   } catch (err: unknown) {

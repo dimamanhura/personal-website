@@ -28,6 +28,8 @@ export async function createFeedback(values: FeedbackInput): Promise<ManageItemF
     });
 
     revalidatePath(paths.feedbackAdmin());
+    revalidatePath(paths.feedback());
+    revalidatePath(paths.home());
 
     return { success: true, id: feedback.id };
   } catch (err: unknown) {

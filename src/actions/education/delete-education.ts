@@ -13,5 +13,6 @@ export const deleteEducation = async (id: string) => {
   });
   revalidatePath(paths.educationDetailsByIdAdmin(id));
   revalidatePath(paths.educationAdmin());
+  revalidatePath(paths.home());
   redirect(paths.educationAdmin());
 };

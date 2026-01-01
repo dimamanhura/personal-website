@@ -13,5 +13,6 @@ export const deleteCompany = async (id: string) => {
   });
   revalidatePath(paths.companiesDetailsByIdAdmin(id));
   revalidatePath(paths.companiesAdmin());
+  revalidatePath(paths.home());
   redirect(paths.companiesAdmin());
 };

@@ -13,5 +13,7 @@ export const deleteFeedback = async (id: string) => {
   });
   revalidatePath(paths.feedbackDetailsByIdAdmin(id));
   revalidatePath(paths.feedbackAdmin());
+  revalidatePath(paths.feedback());
+  revalidatePath(paths.home());
   redirect(paths.feedbackAdmin());
 };

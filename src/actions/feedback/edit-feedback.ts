@@ -35,6 +35,8 @@ export async function editFeedback(
 
     revalidatePath(paths.feedbackDetailsByIdAdmin(id));
     revalidatePath(paths.feedbackAdmin());
+    revalidatePath(paths.feedback());
+    revalidatePath(paths.home());
 
     return { success: true };
   } catch (err: unknown) {

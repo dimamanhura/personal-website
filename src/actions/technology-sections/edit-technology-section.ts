@@ -30,8 +30,12 @@ export async function editTechnologySection(
         logo: result.logo,
       },
     });
+
     revalidatePath(paths.technologySectionsAdmin());
     revalidatePath(paths.technologySectionsDetailsByIdAdmin(id));
+    revalidatePath(paths.technologiesNewAdmin());
+    revalidatePath(paths.home());
+
     return { success: true, id: technologySection.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };

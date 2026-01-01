@@ -32,6 +32,7 @@ export async function createEducation(values: EducationInput): Promise<ManageIte
     });
 
     revalidatePath(paths.educationAdmin());
+    revalidatePath(paths.home());
 
     return { success: true, id: education.id };
   } catch (err: unknown) {

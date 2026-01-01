@@ -20,5 +20,6 @@ export const deleteProfile = async (id: string) => {
 
   revalidatePath(paths.profileDetailsByIdAdmin(id));
   revalidatePath(paths.profileAdmin());
+  revalidatePath(paths.home());
   redirect(paths.profileAdmin());
 };

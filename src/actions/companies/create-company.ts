@@ -38,6 +38,7 @@ export async function createCompany(values: CompanyInput): Promise<ManageItemFor
     });
 
     revalidatePath(paths.companiesAdmin());
+    revalidatePath(paths.home());
 
     return { success: true, id: company.id };
   } catch (err: unknown) {

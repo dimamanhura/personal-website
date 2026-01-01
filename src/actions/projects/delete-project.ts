@@ -13,5 +13,7 @@ export const deleteProject = async (id: string) => {
   });
   revalidatePath(paths.projectsDetailsByIdAdmin(id));
   revalidatePath(paths.projectsAdmin());
+  revalidatePath(paths.projects(), 'layout');
+  revalidatePath(paths.home());
   redirect(paths.projectsAdmin());
 };

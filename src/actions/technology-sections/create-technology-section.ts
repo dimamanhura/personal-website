@@ -28,6 +28,8 @@ export async function createTechnologySection(
     });
 
     revalidatePath(paths.technologySectionsAdmin());
+    revalidatePath(paths.technologiesNewAdmin());
+    revalidatePath(paths.home());
 
     return { success: true, id: technologySection.id };
   } catch (err: unknown) {

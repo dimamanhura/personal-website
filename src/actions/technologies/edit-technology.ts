@@ -28,8 +28,11 @@ export async function editTechnology(
         featured: result.featured,
       },
     });
+
     revalidatePath(paths.technologiesAdmin());
     revalidatePath(paths.technologiesDetailsByIdAdmin(id));
+    revalidatePath(paths.home());
+
     return { success: true, id: technology.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };

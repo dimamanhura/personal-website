@@ -30,6 +30,8 @@ export async function createAchievement(values: AchievementInput): Promise<Manag
     });
 
     revalidatePath(paths.achievementsAdmin());
+    revalidatePath(paths.achievements());
+    revalidatePath(paths.home());
 
     return { success: true, id: achievement.id };
   } catch (err: unknown) {

@@ -62,6 +62,8 @@ export async function editProject(id: string, project: ProjectInput): Promise<Ma
 
     revalidatePath(paths.projectsEditByIdAdmin(id));
     revalidatePath(paths.projectsAdmin());
+    revalidatePath(paths.projects(), 'layout');
+    revalidatePath(paths.home());
 
     return { success: true };
   } catch (err: unknown) {

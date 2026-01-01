@@ -58,6 +58,8 @@ export async function createProject(values: ProjectInput): Promise<ManageItemFor
     });
 
     revalidatePath(paths.projectsAdmin());
+    revalidatePath(paths.projects(), 'layout');
+    revalidatePath(paths.home());
 
     return { success: true, id: project.id };
   } catch (err: unknown) {

@@ -13,5 +13,7 @@ export const deleteTechnologySection = async (id: string) => {
   });
   revalidatePath(paths.technologySectionsDetailsByIdAdmin(id));
   revalidatePath(paths.technologySectionsAdmin());
+  revalidatePath(paths.technologiesNewAdmin());
+  revalidatePath(paths.home());
   redirect(paths.technologySectionsAdmin());
 };

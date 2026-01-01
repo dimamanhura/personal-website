@@ -24,6 +24,7 @@ export async function createTechnology(values: TechnologyInput): Promise<ManageI
     });
 
     revalidatePath(paths.technologiesAdmin());
+    revalidatePath(paths.home());
 
     return { success: true, id: technology.id };
   } catch (err: unknown) {

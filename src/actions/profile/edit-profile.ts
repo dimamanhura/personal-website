@@ -36,6 +36,7 @@ export async function editProfile(id: string, profile: ProfileInput): Promise<Ma
 
     revalidatePath(paths.profileEditByIdAdmin(id));
     revalidatePath(paths.profileAdmin());
+    revalidatePath(paths.home());
 
     return { success: true };
   } catch (err: unknown) {
