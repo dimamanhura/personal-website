@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteProject = async (id: string) => {
   await db.project.delete({
@@ -11,9 +11,8 @@ export const deleteProject = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.projectsDetailsByIdAdmin(id));
-  revalidatePath(paths.projectsAdmin());
-  revalidatePath(paths.projects(), 'layout');
-  revalidatePath(paths.home());
+
+  revalidate.projects(id);
+
   redirect(paths.projectsAdmin());
 };

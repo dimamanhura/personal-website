@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteContactRequest = async (id: string) => {
   await db.contactRequest.delete({
@@ -11,7 +11,8 @@ export const deleteContactRequest = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.contactRequestsDetailsByIdAdmin(id));
-  revalidatePath(paths.contactRequestsAdmin());
+
+  revalidate.contactRequests(id);
+
   redirect(paths.contactRequestsAdmin());
 };

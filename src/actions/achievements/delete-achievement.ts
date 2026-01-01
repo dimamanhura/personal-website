@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteAchievement = async (id: string) => {
   await db.achievement.delete({
@@ -11,9 +11,8 @@ export const deleteAchievement = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.achievementsDetailsByIdAdmin(id));
-  revalidatePath(paths.achievementsAdmin());
-  revalidatePath(paths.achievements());
-  revalidatePath(paths.home());
+
+  revalidate.achievements(id);
+
   redirect(paths.achievementsAdmin());
 };

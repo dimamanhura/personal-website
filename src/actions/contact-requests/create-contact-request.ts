@@ -1,10 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { createContactRequestSchema } from '@/schemas';
 import * as telegram from '@/telegram';
+import { revalidate } from '@/utils';
 
 interface CreateContactRequestFormState {
   success?: boolean;
@@ -45,7 +44,8 @@ export async function createContactRequest(
       email: result.data.email,
       name: result.data.name,
     });
-    revalidatePath(paths.contactRequestsAdmin());
+
+    revalidate.contactRequests();
   } catch (err: unknown) {
     if (err instanceof Error) {
       return {

@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { contactRequestInputSchema, ContactRequestInput, ContactRequestOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function editContactRequest(
   id: string,
@@ -33,8 +31,7 @@ export async function editContactRequest(
       },
     });
 
-    revalidatePath(paths.contactRequestsDetailsByIdAdmin(id));
-    revalidatePath(paths.contactRequestsAdmin());
+    revalidate.contactRequests(id);
 
     return { success: true };
   } catch (err: unknown) {

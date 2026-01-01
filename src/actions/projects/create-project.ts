@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { projectInputSchema, ProjectInput, ProjectOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function createProject(values: ProjectInput): Promise<ManageItemFormState> {
   try {
@@ -57,9 +55,7 @@ export async function createProject(values: ProjectInput): Promise<ManageItemFor
       },
     });
 
-    revalidatePath(paths.projectsAdmin());
-    revalidatePath(paths.projects(), 'layout');
-    revalidatePath(paths.home());
+    revalidate.projects();
 
     return { success: true, id: project.id };
   } catch (err: unknown) {

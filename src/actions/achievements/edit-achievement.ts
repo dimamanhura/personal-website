@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { achievementInputSchema, AchievementInput, AchievementOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function editAchievement(
   id: string,
@@ -34,10 +32,9 @@ export async function editAchievement(
         notes: result.notes,
       },
     });
-    revalidatePath(paths.achievementsAdmin());
-    revalidatePath(paths.achievementsDetailsByIdAdmin(id));
-    revalidatePath(paths.achievements());
-    revalidatePath(paths.home());
+
+    revalidate.achievements(id);
+
     return { success: true, id: achievement.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };

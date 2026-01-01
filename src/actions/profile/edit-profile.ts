@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { profileInputSchema, ProfileInput, ProfileOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function editProfile(id: string, profile: ProfileInput): Promise<ManageItemFormState> {
   try {
@@ -34,9 +32,7 @@ export async function editProfile(id: string, profile: ProfileInput): Promise<Ma
       },
     });
 
-    revalidatePath(paths.profileEditByIdAdmin(id));
-    revalidatePath(paths.profileAdmin());
-    revalidatePath(paths.home());
+    revalidate.profile(id);
 
     return { success: true };
   } catch (err: unknown) {

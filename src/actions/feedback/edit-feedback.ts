@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { feedbackInputSchema, FeedbackInput, FeedbackOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function editFeedback(
   id: string,
@@ -33,10 +31,7 @@ export async function editFeedback(
       },
     });
 
-    revalidatePath(paths.feedbackDetailsByIdAdmin(id));
-    revalidatePath(paths.feedbackAdmin());
-    revalidatePath(paths.feedback());
-    revalidatePath(paths.home());
+    revalidate.feedback(id);
 
     return { success: true };
   } catch (err: unknown) {

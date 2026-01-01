@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { educationInputSchema, EducationInput, EducationOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function createEducation(values: EducationInput): Promise<ManageItemFormState> {
   try {
@@ -31,8 +29,7 @@ export async function createEducation(values: EducationInput): Promise<ManageIte
       },
     });
 
-    revalidatePath(paths.educationAdmin());
-    revalidatePath(paths.home());
+    revalidate.education();
 
     return { success: true, id: education.id };
   } catch (err: unknown) {

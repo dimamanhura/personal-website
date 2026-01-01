@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteTechnologySection = async (id: string) => {
   await db.technologySection.delete({
@@ -11,9 +11,8 @@ export const deleteTechnologySection = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.technologySectionsDetailsByIdAdmin(id));
-  revalidatePath(paths.technologySectionsAdmin());
-  revalidatePath(paths.technologiesNewAdmin());
-  revalidatePath(paths.home());
+
+  revalidate.technologySections(id);
+
   redirect(paths.technologySectionsAdmin());
 };

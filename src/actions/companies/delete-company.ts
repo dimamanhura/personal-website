@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteCompany = async (id: string) => {
   await db.company.delete({
@@ -11,8 +11,8 @@ export const deleteCompany = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.companiesDetailsByIdAdmin(id));
-  revalidatePath(paths.companiesAdmin());
-  revalidatePath(paths.home());
+
+  revalidate.companies(id);
+
   redirect(paths.companiesAdmin());
 };

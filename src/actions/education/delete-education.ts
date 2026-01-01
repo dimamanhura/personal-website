@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteEducation = async (id: string) => {
   await db.education.delete({
@@ -11,8 +11,8 @@ export const deleteEducation = async (id: string) => {
       id,
     },
   });
-  revalidatePath(paths.educationDetailsByIdAdmin(id));
-  revalidatePath(paths.educationAdmin());
-  revalidatePath(paths.home());
+
+  revalidate.education(id);
+
   redirect(paths.educationAdmin());
 };

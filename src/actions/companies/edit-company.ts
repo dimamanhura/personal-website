@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { companyInputSchema, CompanyInput, CompanyOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function editCompany(id: string, company: CompanyInput): Promise<ManageItemFormState> {
   try {
@@ -40,9 +38,7 @@ export async function editCompany(id: string, company: CompanyInput): Promise<Ma
       },
     });
 
-    revalidatePath(paths.companiesEditByIdAdmin(id));
-    revalidatePath(paths.home());
-    revalidatePath(paths.companiesAdmin());
+    revalidate.companies(id);
 
     return { success: true };
   } catch (err: unknown) {

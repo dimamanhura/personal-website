@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { achievementInputSchema, AchievementInput, AchievementOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function createAchievement(values: AchievementInput): Promise<ManageItemFormState> {
   try {
@@ -29,9 +27,7 @@ export async function createAchievement(values: AchievementInput): Promise<Manag
       },
     });
 
-    revalidatePath(paths.achievementsAdmin());
-    revalidatePath(paths.achievements());
-    revalidatePath(paths.home());
+    revalidate.achievements();
 
     return { success: true, id: achievement.id };
   } catch (err: unknown) {

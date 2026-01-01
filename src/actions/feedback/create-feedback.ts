@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { feedbackInputSchema, FeedbackInput, FeedbackOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function createFeedback(values: FeedbackInput): Promise<ManageItemFormState> {
   try {
@@ -27,9 +25,7 @@ export async function createFeedback(values: FeedbackInput): Promise<ManageItemF
       },
     });
 
-    revalidatePath(paths.feedbackAdmin());
-    revalidatePath(paths.feedback());
-    revalidatePath(paths.home());
+    revalidate.feedback();
 
     return { success: true, id: feedback.id };
   } catch (err: unknown) {

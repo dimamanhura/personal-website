@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import paths from '@/paths';
+import { revalidate } from '@/utils';
 
 export const deleteProfile = async (id: string) => {
   const count = await db.meta.count();
@@ -18,8 +18,7 @@ export const deleteProfile = async (id: string) => {
     },
   });
 
-  revalidatePath(paths.profileDetailsByIdAdmin(id));
-  revalidatePath(paths.profileAdmin());
-  revalidatePath(paths.home());
+  revalidate.profile(id);
+
   redirect(paths.profileAdmin());
 };

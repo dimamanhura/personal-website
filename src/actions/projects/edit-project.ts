@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { projectInputSchema, ProjectInput, ProjectOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function editProject(id: string, project: ProjectInput): Promise<ManageItemFormState> {
   try {
@@ -60,10 +58,7 @@ export async function editProject(id: string, project: ProjectInput): Promise<Ma
       },
     });
 
-    revalidatePath(paths.projectsEditByIdAdmin(id));
-    revalidatePath(paths.projectsAdmin());
-    revalidatePath(paths.projects(), 'layout');
-    revalidatePath(paths.home());
+    revalidate.projects(id);
 
     return { success: true };
   } catch (err: unknown) {

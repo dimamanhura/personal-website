@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { technologyInputSchema, TechnologyInput, TechnologyOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function createTechnology(values: TechnologyInput): Promise<ManageItemFormState> {
   try {
@@ -23,8 +21,7 @@ export async function createTechnology(values: TechnologyInput): Promise<ManageI
       },
     });
 
-    revalidatePath(paths.technologiesAdmin());
-    revalidatePath(paths.home());
+    revalidate.technologies();
 
     return { success: true, id: technology.id };
   } catch (err: unknown) {

@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { technologyInputSchema, TechnologyInput, TechnologyOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function editTechnology(
   id: string,
@@ -29,9 +27,7 @@ export async function editTechnology(
       },
     });
 
-    revalidatePath(paths.technologiesAdmin());
-    revalidatePath(paths.technologiesDetailsByIdAdmin(id));
-    revalidatePath(paths.home());
+    revalidate.technologies(id);
 
     return { success: true, id: technology.id };
   } catch (err: unknown) {

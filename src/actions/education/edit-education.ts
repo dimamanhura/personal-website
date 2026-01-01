@@ -1,11 +1,9 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import { educationInputSchema, EducationInput, EducationOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors, normalizeToMidnight } from '@/utils';
+import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 
 export async function editEducation(
   id: string,
@@ -37,9 +35,7 @@ export async function editEducation(
       },
     });
 
-    revalidatePath(paths.educationEditByIdAdmin(id));
-    revalidatePath(paths.educationAdmin());
-    revalidatePath(paths.home());
+    revalidate.education(id);
 
     return { success: true };
   } catch (err: unknown) {

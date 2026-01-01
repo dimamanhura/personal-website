@@ -1,15 +1,13 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { db } from '@/db';
-import paths from '@/paths';
 import {
   technologySectionInputSchema,
   TechnologySectionInput,
   TechnologySectionOutput,
 } from '@/schemas';
 import { ManageItemFormState } from '@/types';
-import { formatErrors } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 export async function editTechnologySection(
   id: string,
@@ -31,10 +29,7 @@ export async function editTechnologySection(
       },
     });
 
-    revalidatePath(paths.technologySectionsAdmin());
-    revalidatePath(paths.technologySectionsDetailsByIdAdmin(id));
-    revalidatePath(paths.technologiesNewAdmin());
-    revalidatePath(paths.home());
+    revalidate.technologySections(id);
 
     return { success: true, id: technologySection.id };
   } catch (err: unknown) {
