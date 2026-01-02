@@ -39,6 +39,7 @@ export { deleteCompany } from './companies/delete-company';
 export { editCompany } from './companies/edit-company';
 
 // projects
+export { createProjectsBulk } from './projects/create-projects-bulk';
 export { createProject } from './projects/create-project';
 export { deleteProject } from './projects/delete-project';
 export { editProject } from './projects/edit-project';

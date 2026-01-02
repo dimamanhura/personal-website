@@ -9,7 +9,7 @@ export const projectInputSchema = z.object({
   longDescription: z.string().min(2).max(1000),
   startAt: z.string().refine(isRealDate, { message: 'Invalid date' }),
   endAt: z.string().refine(isRealDate, { message: 'Invalid date' }).optional(),
-  features: z.array(z.string().min(2).max(255)).min(1).max(100),
+  features: z.array(z.string().min(2).max(255)).max(100).optional(),
   logo: z.url().min(2).max(255).optional(),
   position: z.string().min(2).max(255),
   team: z.array(z.string().min(2).max(255)).max(100).optional(),

@@ -1,8 +1,12 @@
-import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { fetchProjects } from '@/db/queries/projects';
-import { Header, ProjectsTable } from '@/components';
+import {
+  ProjectImportButton,
+  ActionsWrapper,
+  ProjectsTable,
+  AddItemButton,
+  Header,
+} from '@/components';
 import paths from '@/paths';
 import { SearchParams } from '@/types';
 
@@ -27,9 +31,10 @@ const ProjectsAdminPage = async ({ searchParams }: ProjectsAdminPageProps) => {
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <Button color="primary" variant="flat" as={Link} href={paths.projectsNewAdmin()}>
-            Add Project
-          </Button>
+          <ActionsWrapper>
+            <AddItemButton path={paths.projectsNewAdmin()} />
+            <ProjectImportButton />
+          </ActionsWrapper>
         )}
       />
 
