@@ -4,6 +4,7 @@ export { AchievementsTable } from './achievements/achievements-table';
 export { CreateAchievementForm } from './achievements/create-achievement-form';
 export { FeaturedAchievementsList } from './achievements/featured-achievements-list';
 export { EditAchievementForm } from './achievements/edit-achievement-form';
+export { AchievementImportButton } from './achievements/achievement-import-button';
 
 // auth
 export { AuthForm } from './auth/auth-form';

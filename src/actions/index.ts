@@ -1,4 +1,5 @@
 // achievement
+export { createAchievementsBulk } from './achievements/create-achievements-bulk';
 export { deleteAchievement } from './achievements/delete-achievement';
 export { createAchievement } from './achievements/create-achievement';
 export { editAchievement } from './achievements/edit-achievement';
