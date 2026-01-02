@@ -4,7 +4,7 @@ import { createProjectsBulk } from '@/actions';
 import { ImportDataButton } from '@/components';
 import { projectInputSchema } from '@/schemas';
 
-export const ProjectImportButton = () => {
+export const ProjectsImportButton = () => {
   return (
     <ImportDataButton
       title="Projects"

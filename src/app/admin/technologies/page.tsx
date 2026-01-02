@@ -1,8 +1,6 @@
-import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { fetchTechnologies } from '@/db/queries/technologies';
-import { Header, TechnologiesTable } from '@/components';
+import { AddItemButton, Header, TechnologiesImportButton, TechnologiesTable } from '@/components';
 import paths from '@/paths';
 import { SearchParams } from '@/types';
 
@@ -27,9 +25,10 @@ const TechnologiesAdminPage = async ({ searchParams }: TechnologiesAdminPageProp
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <Button color="primary" variant="flat" as={Link} href={paths.technologiesNewAdmin()}>
-            Add Technology
-          </Button>
+          <>
+            <AddItemButton path={paths.technologiesNewAdmin()} />
+            <TechnologiesImportButton />
+          </>
         )}
       />
 

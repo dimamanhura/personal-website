@@ -1,12 +1,6 @@
 import { Metadata } from 'next';
 import { fetchAchievements } from '@/db/queries/achievements';
-import {
-  AchievementImportButton,
-  AchievementsTable,
-  ActionsWrapper,
-  AddItemButton,
-  Header,
-} from '@/components';
+import { AchievementsImportButton, AchievementsTable, AddItemButton, Header } from '@/components';
 import paths from '@/paths';
 import { SearchParams } from '@/types';
 
@@ -31,10 +25,10 @@ const AchievementsAdminPage = async ({ searchParams }: AchievementsAdminPageProp
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <ActionsWrapper>
+          <>
             <AddItemButton path={paths.achievementsNewAdmin()} />
-            <AchievementImportButton />
-          </ActionsWrapper>
+            <AchievementsImportButton />
+          </>
         )}
       />
 

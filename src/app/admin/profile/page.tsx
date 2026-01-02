@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { fetchProfiles } from '@/db/queries/meta';
-import { Header, ProfileTable } from '@/components';
+import { Header, ProfileImportButton, ProfileTable } from '@/components';
 import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ const ProfileAdminPage = async ({ searchParams }: ProfileAdminPageProps) => {
 
   return (
     <>
-      <Header title={metadata.title as string} />
+      <Header title={metadata.title as string} renderActions={() => <ProfileImportButton />} />
       <ProfileTable items={items} count={count} />
     </>
   );

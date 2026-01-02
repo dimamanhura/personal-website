@@ -1,8 +1,6 @@
-import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { fetchReviews } from '@/db/queries/feedback';
-import { FeedbackTable, Header } from '@/components';
+import { AddItemButton, FeedbackImportButton, FeedbackTable, Header } from '@/components';
 import paths from '@/paths';
 import { SearchParams } from '@/types';
 
@@ -27,9 +25,10 @@ const FeedbackAdminPage = async ({ searchParams }: FeedbackAdminPageProps) => {
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <Button color="primary" variant="flat" as={Link} href={paths.feedbackNewAdmin()}>
-            Add Feedback
-          </Button>
+          <>
+            <AddItemButton path={paths.feedbackNewAdmin()} />
+            <FeedbackImportButton />
+          </>
         )}
       />
 

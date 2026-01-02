@@ -4,7 +4,7 @@ export { AchievementsTable } from './achievements/achievements-table';
 export { CreateAchievementForm } from './achievements/create-achievement-form';
 export { FeaturedAchievementsList } from './achievements/featured-achievements-list';
 export { EditAchievementForm } from './achievements/edit-achievement-form';
-export { AchievementImportButton } from './achievements/achievement-import-button';
+export { AchievementsImportButton } from './achievements/achievements-import-button';
 
 // auth
 export { AuthForm } from './auth/auth-form';
@@ -24,12 +24,14 @@ export { EditFeedbackForm } from './feedback/edit-feedback-form';
 export { FeedbackCard } from './feedback/feedback-card';
 export { FeedbackTable } from './feedback/feedback-table';
 export { ReviewList } from './feedback/reviews-list';
+export { FeedbackImportButton } from './feedback/feedback-import-button';
 
 // technologies
 export { TechnologiesTable } from './technologies/technologies-table';
 export { CreateTechnologyForm } from './technologies/create-technology-form';
 export { EditTechnologyForm } from './technologies/edit-technology-form';
 export { TechnologyCard } from './technologies/technology-card';
+export { TechnologiesImportButton } from './technologies/technologies-import-button';
 
 // technology sections
 export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
@@ -37,6 +39,7 @@ export { TechnologiesSectionsList } from './technology-sections/technologies-sec
 export { TechnologySectionCard } from './technology-sections/technology-section-card';
 export { CreateTechnologySectionForm } from './technology-sections/create-technology-section-form';
 export { EditTechnologySectionForm } from './technology-sections/edit-technology-section-form';
+export { TechnologySectionsImportButton } from './technology-sections/technology-sections-import-button';
 
 // ui
 export { Banner } from './ui/banner';
@@ -67,7 +70,6 @@ export { SlugGeneratorField } from './ui/slug-generator-field';
 export { Copyright } from './ui/copyright';
 export { ImportDataButton } from './ui/import-data-button';
 export { AddItemButton } from './ui/add-item-button';
-export { ActionsWrapper } from './ui/actions-wrapper';
 export { ItemError } from './ui/item-error';
 export { ImportInput } from './ui/import-input';
 
@@ -82,6 +84,7 @@ export { CompaniesTable } from './companies/companies-table';
 export { CompanyCard } from './companies/company-card';
 export { CreateCompanyForm } from './companies/create-company-form';
 export { EditCompanyForm } from './companies/edit-company-table';
+export { CompaniesImportButton } from './companies/companies-import-button';
 
 // educations
 export { UniversitiesList } from './education/universities-list';
@@ -89,6 +92,7 @@ export { EducationTable } from './education/education-table';
 export { UniversityCard } from './education/university-card';
 export { CreateEducationForm } from './education/create-education-form';
 export { EditEducationForm } from './education/edit-education-form';
+export { EducationImportButton } from './education/education-import-button';
 
 // projects
 export { SignificantProjectCard } from './projects/significant-project-card';
@@ -97,9 +101,10 @@ export { ProjectDetailed } from './projects/project-detailed';
 export { ProjectsTable } from './projects/projects-table';
 export { CreateProjectForm } from './projects/create-project-form';
 export { EditProjectForm } from './projects/edit-project-form';
-export { ProjectImportButton } from './projects/projects-import-button';
+export { ProjectsImportButton } from './projects/projects-import-button';
 
 // profile
 export { ProfileTable } from './profile/profile-table';
 export { ProfileCard } from './profile/profile-card';
 export { EditProfileForm } from './profile/edit-profile-form';
+export { ProfileImportButton } from './profile/profile-import-button';

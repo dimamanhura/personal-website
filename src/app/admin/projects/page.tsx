@@ -1,12 +1,6 @@
 import { Metadata } from 'next';
 import { fetchProjects } from '@/db/queries/projects';
-import {
-  ProjectImportButton,
-  ActionsWrapper,
-  ProjectsTable,
-  AddItemButton,
-  Header,
-} from '@/components';
+import { ProjectsImportButton, ProjectsTable, AddItemButton, Header } from '@/components';
 import paths from '@/paths';
 import { SearchParams } from '@/types';
 
@@ -31,10 +25,10 @@ const ProjectsAdminPage = async ({ searchParams }: ProjectsAdminPageProps) => {
       <Header
         title={metadata.title as string}
         renderActions={() => (
-          <ActionsWrapper>
-            <AddItemButton path={paths.projectsNewAdmin()} />
-            <ProjectImportButton />
-          </ActionsWrapper>
+          <>
+            <AddItemButton path={paths.projectsNewAdmin()} />,
+            <ProjectsImportButton />
+          </>
         )}
       />
 

@@ -24,7 +24,7 @@ export async function editProfile(id: string, profile: ProfileInput): Promise<Ma
       data: {
         firstName: result.firstName,
         lastName: result.lastName,
-        title: profile.title,
+        title: result.title,
         description: result.description,
         avatar: result.avatar,
         contacts: result.contacts,

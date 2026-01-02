@@ -4,7 +4,7 @@ import { createAchievementsBulk } from '@/actions';
 import { ImportDataButton } from '@/components';
 import { achievementInputSchema } from '@/schemas';
 
-export const AchievementImportButton = () => {
+export const AchievementsImportButton = () => {
   return (
     <ImportDataButton
       title="Achievements"
