@@ -12,7 +12,7 @@ import {
   Tooltip,
   ScrollShadow,
 } from '@nextui-org/react';
-import { FaCheckCircle, FaExclamationCircle, FaSyncAlt, FaUpload } from 'react-icons/fa';
+import { FaCheckCircle, FaExclamationCircle, FaSyncAlt, FaTrash, FaUpload } from 'react-icons/fa';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { ImportInput, ItemError } from '@/components';
@@ -77,6 +77,10 @@ export const ImportDataButton = <T,>({
     });
   };
 
+  const handleRemove = (index: number) => {
+    setStagedData((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const hasErrors = stagedData.some((i) => !i.isValid);
   const canSubmit = stagedData.length > 0 && !hasErrors;
 
@@ -114,15 +118,27 @@ export const ImportDataButton = <T,>({
                           {item.error && <ItemError error={item.error} />}
                         </div>
 
-                        {item.isValid ? (
-                          <FaCheckCircle className="text-success" />
-                        ) : (
-                          <Tooltip className="max-w-56" content={item.error} color="danger">
-                            <div className="cursor-help text-danger">
-                              <FaExclamationCircle />
-                            </div>
-                          </Tooltip>
-                        )}
+                        <div className="flex items-center gap-2">
+                          {item.isValid ? (
+                            <FaCheckCircle className="text-success" />
+                          ) : (
+                            <Tooltip className="max-w-56" content={item.error} color="danger">
+                              <div className="cursor-help text-danger">
+                                <FaExclamationCircle />
+                              </div>
+                            </Tooltip>
+                          )}
+
+                          <Button
+                            isIconOnly
+                            size="sm"
+                            variant="flat"
+                            color="danger"
+                            onClick={() => handleRemove(idx)}
+                          >
+                            <FaTrash size={12} />
+                          </Button>
+                        </div>
                       </div>
                     ))}
 
@@ -153,7 +169,7 @@ export const ImportDataButton = <T,>({
             >
               Cancel
             </Button>
-            <Button color="primary" disabled={!canSubmit || isPending} onPress={handleConfirm}>
+            <Button color="primary" isDisabled={!canSubmit || isPending} onPress={handleConfirm}>
               {isPending ? 'Loading...' : 'Import'}
             </Button>
           </ModalFooter>
