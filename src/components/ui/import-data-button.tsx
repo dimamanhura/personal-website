@@ -35,6 +35,11 @@ export const ImportDataButton = <T,>({
   const [isPending, startTransition] = useTransition();
   const [stagedData, setStagedData] = useState<{ data: T; isValid: boolean; error?: string }[]>([]);
 
+  const handleClose = () => {
+    setStagedData([]);
+    onClose();
+  };
+
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -69,8 +74,7 @@ export const ImportDataButton = <T,>({
       try {
         await onImport(validData);
         toast.success(`Successfully imported ${validData.length} items`);
-        setStagedData([]);
-        onClose();
+        handleClose();
       } catch (err: unknown) {
         toast.error(getErrorMessage(err));
       }
@@ -89,7 +93,7 @@ export const ImportDataButton = <T,>({
       <Button startContent={<FaUpload />} color="default" variant="flat" onClick={onOpen}>
         Import
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onClose={handleClose} onOpenChange={onOpenChange}>
         <ModalContent>
           <ModalHeader className="flex items-center justify-between pr-12">
             Import {title} via JSON
@@ -159,14 +163,7 @@ export const ImportDataButton = <T,>({
             )}
           </ModalBody>
           <ModalFooter>
-            <Button
-              color="danger"
-              variant="light"
-              onPress={() => {
-                setStagedData([]);
-                onClose();
-              }}
-            >
+            <Button color="danger" variant="light" onPress={handleClose}>
               Cancel
             </Button>
             <Button color="primary" isDisabled={!canSubmit || isPending} onPress={handleConfirm}>
