@@ -21,6 +21,7 @@ export async function createTechnologySectionsBulk(values: TechnologySectionInpu
           tx.technologySection.create({
             data: {
               title: item.title,
+              type: item.type,
               logo: item.logo,
             },
           }),

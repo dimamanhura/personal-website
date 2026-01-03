@@ -2,18 +2,18 @@
 
 import { Button } from '@nextui-org/react';
 import { FaWandMagicSparkles } from 'react-icons/fa6';
-import { generateSlug } from '@/utils';
+import { generateType } from '@/utils';
 
-interface SlugGeneratorFieldProps {
+interface TypeGeneratorFieldProps {
   children: React.ReactNode;
   text: string;
   onChange: (value: string) => void;
 }
 
-export const SlugGeneratorField = ({ text, children, onChange }: SlugGeneratorFieldProps) => {
+export const TypeGeneratorField = ({ text, children, onChange }: TypeGeneratorFieldProps) => {
   const handleGenerate = () => {
-    const slug = generateSlug(text);
-    onChange(slug);
+    const type = generateType(text);
+    onChange(type);
   };
 
   return (

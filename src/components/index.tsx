@@ -72,6 +72,7 @@ export { ImportDataButton } from './ui/import-data-button';
 export { AddItemButton } from './ui/add-item-button';
 export { ItemError } from './ui/item-error';
 export { ImportInput } from './ui/import-input';
+export { TypeGeneratorField } from './ui/type-generator-field';
 
 // table
 export { ItemsTable } from './table/items-table';

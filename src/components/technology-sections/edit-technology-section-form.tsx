@@ -7,7 +7,7 @@ import { Button, Input } from '@nextui-org/react';
 import { TechnologySection } from '@prisma/client';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { ErrorMessage, UploadImageButton } from '@/components';
+import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import { TechnologySectionInput, technologySectionInputSchema } from '@/schemas';
 
 interface EditTechnologySectionFormProps {
@@ -21,10 +21,12 @@ export const EditTechnologySectionForm = ({
     resolver: zodResolver(technologySectionInputSchema),
     defaultValues: {
       title: technologySection.title,
+      type: technologySection.type,
       logo: technologySection.logo,
     },
   });
   const logoUrl = form.watch('logo');
+  const title = form.watch('title');
 
   const [isPending, startTransition] = useTransition();
 
@@ -59,6 +61,22 @@ export const EditTechnologySectionForm = ({
             />
           )}
         />
+
+        <TypeGeneratorField text={title} onChange={(value) => form.setValue('type', value)}>
+          <Controller
+            control={form.control}
+            name="type"
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                isInvalid={!!fieldState.error}
+                errorMessage={fieldState.error?.message}
+                placeholder="Type"
+                label="Type"
+              />
+            )}
+          />
+        </TypeGeneratorField>
 
         <div className="flex flex-col">
           <UploadImageButton

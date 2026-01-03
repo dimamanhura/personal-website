@@ -7,7 +7,7 @@ import { Button, Input } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { ErrorMessage, UploadImageButton } from '@/components';
+import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import paths from '@/paths';
 import { TechnologySectionInput, technologySectionInputSchema } from '@/schemas';
 
@@ -17,10 +17,12 @@ export const CreateTechnologySectionForm = () => {
     resolver: zodResolver(technologySectionInputSchema),
     defaultValues: {
       title: '',
+      type: '',
       logo: '',
     },
   });
   const logoUrl = form.watch('logo');
+  const title = form.watch('title');
 
   const [isPending, startTransition] = useTransition();
 
@@ -53,6 +55,22 @@ export const CreateTechnologySectionForm = () => {
             />
           )}
         />
+
+        <TypeGeneratorField text={title} onChange={(value) => form.setValue('type', value)}>
+          <Controller
+            control={form.control}
+            name="type"
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                isInvalid={!!fieldState.error}
+                errorMessage={fieldState.error?.message}
+                placeholder="Type"
+                label="Type"
+              />
+            )}
+          />
+        </TypeGeneratorField>
 
         <div className="flex flex-col">
           <UploadImageButton

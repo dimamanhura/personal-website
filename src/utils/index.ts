@@ -8,4 +8,5 @@ export { generateSlug } from './generate-slug';
 export { getReadableField } from './generate-readable-field';
 export { normalizeToMidnight } from './normalize-to-midnight';
 export { formatDateForInput } from './format-date-for-input';
+export { generateType } from './generate-type';
 export { revalidate } from './revalidate';

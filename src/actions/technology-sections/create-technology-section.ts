@@ -15,12 +15,14 @@ export async function createTechnologySection(
   try {
     const result: TechnologySectionOutput = technologySectionInputSchema.parse({
       title: values.title,
+      type: values.type,
       logo: values.logo,
     });
 
     const technologySection = await db.technologySection.create({
       data: {
         title: result.title,
+        type: result.type,
         logo: result.logo,
       },
     });
