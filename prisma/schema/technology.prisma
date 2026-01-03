@@ -1,7 +1,7 @@
 model Technology {
-  id              String                @id @default(auto()) @map("_id") @db.ObjectId
-  title           String
-  sectionId       String?               @db.ObjectId
-  featured        Boolean
-  section         TechnologySection?    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  id        String             @id @default(auto()) @map("_id") @db.ObjectId
+  title     String             @unique
+  sectionId String?            @db.ObjectId
+  featured  Boolean
+  section   TechnologySection? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 }

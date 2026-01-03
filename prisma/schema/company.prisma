@@ -8,4 +8,6 @@ model Company {
   position         String
   positions        Position[]
   logo             String
+
+  @@unique([name, startAt, endAt])
 }

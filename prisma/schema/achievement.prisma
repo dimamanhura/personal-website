@@ -1,6 +1,6 @@
 model Achievement {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
+  title       String   @unique
   description String
   solution    String[]
   result      String[]

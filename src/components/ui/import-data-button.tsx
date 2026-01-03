@@ -16,7 +16,7 @@ import { FaCheckCircle, FaExclamationCircle, FaSyncAlt, FaTrash, FaUpload } from
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { ImportInput, ItemError } from '@/components';
-import { formatErrors, getErrorMessage } from '@/utils';
+import { formatErrors } from '@/utils';
 
 interface ImportModalProps<T> {
   schema: z.ZodSchema<T>;
@@ -76,7 +76,9 @@ export const ImportDataButton = <T,>({
         toast.success(`Successfully imported ${validData.length} items`);
         handleClose();
       } catch (err: unknown) {
-        toast.error(getErrorMessage(err));
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
       }
     });
   };

@@ -12,7 +12,7 @@ import {
 } from '@nextui-org/react';
 import { FaTrash } from 'react-icons/fa';
 import { toast } from 'sonner';
-import { getErrorMessage } from '@/utils';
+import { formatErrors } from '@/utils';
 
 interface DeleteItemButtonProps {
   isIconOnly?: boolean;
@@ -30,7 +30,7 @@ export const DeleteItemButton = ({ isIconOnly = true, onDelete }: DeleteItemButt
         onClose();
         toast.success('Successfully deleted');
       } catch (err: unknown) {
-        toast.error(getErrorMessage(err));
+        toast.error(formatErrors(err));
       }
     });
   };

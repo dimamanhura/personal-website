@@ -1,6 +1,6 @@
 model TechnologySection {
-  id           String                @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  title        String       @unique
   logo         String
   technologies Technology[]
 }

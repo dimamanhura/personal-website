@@ -1,5 +1,5 @@
 model Education {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
   location Location
   startAt  DateTime
   endAt    DateTime?
@@ -7,4 +7,6 @@ model Education {
   logo     String
   title    String
   degree   String
+
+  @@unique([name, title, degree])
 }

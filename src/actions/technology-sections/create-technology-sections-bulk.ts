@@ -7,26 +7,30 @@ import {
   TechnologySectionInput,
   TechnologySectionOutput,
 } from '@/schemas';
-import { revalidate } from '@/utils';
+import { formatErrors, revalidate } from '@/utils';
 
 const bulkTechnologySectionSchema = z.array(technologySectionInputSchema);
 
 export async function createTechnologySectionsBulk(values: TechnologySectionInput[]) {
-  const validatedData: TechnologySectionOutput[] = bulkTechnologySectionSchema.parse(values);
+  try {
+    const validatedData: TechnologySectionOutput[] = bulkTechnologySectionSchema.parse(values);
 
-  await db.$transaction(async (tx) => {
-    const createdItems = await Promise.all(
-      validatedData.map((item) =>
-        tx.technologySection.create({
-          data: {
-            title: item.title,
-            logo: item.logo,
-          },
-        }),
-      ),
-    );
-    return createdItems;
-  });
+    await db.$transaction(async (tx) => {
+      const createdItems = await Promise.all(
+        validatedData.map((item) =>
+          tx.technologySection.create({
+            data: {
+              title: item.title,
+              logo: item.logo,
+            },
+          }),
+        ),
+      );
+      return createdItems;
+    });
 
-  revalidate.technologySections();
+    revalidate.technologySections();
+  } catch (err: unknown) {
+    throw new Error(formatErrors(err));
+  }
 }

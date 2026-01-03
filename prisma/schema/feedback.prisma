@@ -6,4 +6,6 @@ model Feedback {
   feedbackSection FeedbackSection     @relation(fields: [section], references: [type])
   author          String
   receivedAt      DateTime
+
+  @@unique([author, section, review, receivedAt])
 }

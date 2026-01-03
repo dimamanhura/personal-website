@@ -1,4 +1,4 @@
 type ProjectAchievement {
-  title  String
+  title       String
   description String
 }
