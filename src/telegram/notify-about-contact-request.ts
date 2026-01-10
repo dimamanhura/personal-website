@@ -1,9 +1,6 @@
 'use server';
 
-import axios from 'axios';
-
-const botToken = process.env.TELEGRAM_BOT_TOKEN;
-const chatId = process.env.TELEGRAM_CHAT_ID;
+import { sendMessage } from './send-message';
 
 export const notifyAboutContactRequest = async ({
   message,
@@ -20,12 +17,5 @@ export const notifyAboutContactRequest = async ({
     `*Email:* ${email}\n`,
     `_${message}_`,
   ];
-
-  const response = await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    parse_mode: 'Markdown',
-    chat_id: chatId,
-    text: text.join('\n'),
-  });
-
-  return response;
+  return sendMessage(text.join('\n'));
 };

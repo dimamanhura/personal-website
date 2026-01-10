@@ -1,0 +1,40 @@
+import { Metadata } from 'next';
+import { fetchUniversities } from '@/db/queries/education';
+import { AddItemButton, EducationImportButton, EducationTable, Header } from '@/components';
+import paths from '@/paths';
+import { SearchParams } from '@/types';
+
+export const metadata: Metadata = {
+  title: 'Education',
+};
+
+interface EducationAdminPageProps {
+  searchParams: Promise<SearchParams>;
+}
+
+const EducationAdminPage = async ({ searchParams }: EducationAdminPageProps) => {
+  const { page, sortBy, order } = await searchParams;
+
+  const { count, items } = await fetchUniversities({
+    orderBy: sortBy && order ? { column: sortBy, direction: order } : undefined,
+    page: page ? parseInt(page) : 1,
+  });
+
+  return (
+    <>
+      <Header
+        title={metadata.title as string}
+        renderActions={() => (
+          <>
+            <AddItemButton path={paths.educationNewAdmin()} />
+            <EducationImportButton />
+          </>
+        )}
+      />
+
+      <EducationTable items={items} count={count} />
+    </>
+  );
+};
+
+export default EducationAdminPage;

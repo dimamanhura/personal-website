@@ -1,0 +1,21 @@
+import { User } from '@nextui-org/react';
+import { Company } from '@prisma/client';
+import { formatDateRange } from '@/utils';
+
+interface CompaniesListProps {
+  companies: Company[];
+}
+
+export const CompaniesList = ({ companies }: CompaniesListProps) => {
+  return companies.map((company) => {
+    const { position, logo, name, startAt, endAt, id } = company;
+    return (
+      <User
+        description={`${position}, ${formatDateRange(startAt, endAt)}`}
+        avatarProps={{ src: logo, radius: 'md' }}
+        name={name}
+        key={id}
+      />
+    );
+  });
+};

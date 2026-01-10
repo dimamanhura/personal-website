@@ -1,10 +1,7 @@
-import paths from "./paths";
+import paths from '@/paths';
+import { Page } from '@/types';
 
-const pages = [
-  {
-    title: 'Home',
-    path: paths.home(),
-  },
+export const pages: Page[] = [
   {
     title: 'Significant Projects',
     path: paths.projects(),
@@ -19,4 +16,41 @@ const pages = [
   },
 ];
 
-export default pages;
+export const adminPages: Page[] = [
+  {
+    title: 'Profile',
+    path: paths.profileAdmin(),
+  },
+  {
+    title: 'Projects',
+    path: paths.projectsAdmin(),
+  },
+  {
+    title: 'Achievements',
+    path: paths.achievementsAdmin(),
+  },
+  {
+    title: 'Feedback',
+    path: paths.feedbackAdmin(),
+  },
+  {
+    title: 'Companies',
+    path: paths.companiesAdmin(),
+  },
+  {
+    title: 'Education',
+    path: paths.educationAdmin(),
+  },
+  {
+    title: 'Technologies',
+    path: paths.technologiesAdmin(),
+  },
+  {
+    title: 'Technology Sections',
+    path: paths.technologySectionsAdmin(),
+  },
+  {
+    title: 'Contact Requests',
+    path: paths.contactRequestsAdmin(),
+  },
+];

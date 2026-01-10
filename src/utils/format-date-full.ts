@@ -1,5 +1,10 @@
-import moment from 'moment';
+export const formatDateFull = (date: Date | string) => {
+  if (!date) {
+    return '';
+  }
 
-export const formatDateFull = (date: string) => {
-  return moment(date).format('MMMM YYYY');
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(date));
 };
