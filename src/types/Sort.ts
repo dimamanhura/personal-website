@@ -1,4 +1,4 @@
-import { Order } from './order';
+import { type Order } from '@/types';
 
 export interface Sort {
   column: string;
