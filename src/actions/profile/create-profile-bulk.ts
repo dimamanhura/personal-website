@@ -11,23 +11,16 @@ export async function createProfileBulk(values: ProfileInput[]) {
   try {
     const validatedData: ProfileOutput[] = bulkProfileSchema.parse(values);
 
-    await db.$transaction(async (tx) => {
-      const createdItems = await Promise.all(
-        validatedData.map((item) =>
-          tx.meta.create({
-            data: {
-              firstName: item.firstName,
-              lastName: item.lastName,
-              title: item.title,
-              description: item.description,
-              avatar: item.avatar,
-              contacts: item.contacts,
-              location: item.location,
-            },
-          }),
-        ),
-      );
-      return createdItems;
+    await db.meta.createMany({
+      data: validatedData.map((item) => ({
+        firstName: item.firstName,
+        lastName: item.lastName,
+        title: item.title,
+        description: item.description,
+        avatar: item.avatar,
+        contacts: item.contacts,
+        location: item.location,
+      })),
     });
 
     revalidate.profile();

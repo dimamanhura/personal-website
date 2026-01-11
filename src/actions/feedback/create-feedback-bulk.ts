@@ -11,21 +11,14 @@ export async function createFeedbackBulk(values: FeedbackInput[]) {
   try {
     const validatedData: FeedbackOutput[] = bulkFeedbackSchema.parse(values);
 
-    await db.$transaction(async (tx) => {
-      const createdItems = await Promise.all(
-        validatedData.map((item) =>
-          tx.feedback.create({
-            data: {
-              section: item.section,
-              featured: item.featured,
-              receivedAt: normalizeToMidnight(item.receivedAt),
-              author: item.author,
-              review: item.review,
-            },
-          }),
-        ),
-      );
-      return createdItems;
+    await db.feedback.createMany({
+      data: validatedData.map((item) => ({
+        section: item.section,
+        featured: item.featured,
+        receivedAt: normalizeToMidnight(item.receivedAt),
+        author: item.author,
+        review: item.review,
+      })),
     });
 
     revalidate.feedback();

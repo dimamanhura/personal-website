@@ -11,22 +11,15 @@ export async function createAchievementsBulk(values: AchievementInput[]) {
   try {
     const validatedData: AchievementOutput[] = bulkAchievementSchema.parse(values);
 
-    await db.$transaction(async (tx) => {
-      const createdItems = await Promise.all(
-        validatedData.map((item) =>
-          tx.achievement.create({
-            data: {
-              title: item.title,
-              description: item.description,
-              featured: item.featured,
-              solution: item.solution,
-              result: item.result,
-              notes: item.notes,
-            },
-          }),
-        ),
-      );
-      return createdItems;
+    await db.achievement.createMany({
+      data: validatedData.map((item) => ({
+        title: item.title,
+        description: item.description,
+        featured: item.featured,
+        solution: item.solution,
+        result: item.result,
+        notes: item.notes,
+      })),
     });
 
     revalidate.achievements();
