@@ -22,8 +22,8 @@ export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
     resolver: zodResolver(feedbackInputSchema),
     defaultValues: {
       receivedAt: undefined,
+      sectionId: undefined,
       featured: false,
-      section: undefined,
       author: '',
       review: '',
     },
@@ -63,7 +63,7 @@ export const CreateFeedbackForm = ({ sections }: CreateFeedbackFormProps) => {
 
         <Controller
           control={form.control}
-          name="section"
+          name="sectionId"
           render={({ field, fieldState }) => (
             <Select
               {...field}

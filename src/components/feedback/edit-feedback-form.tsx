@@ -22,8 +22,8 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
     resolver: zodResolver(feedbackInputSchema),
     defaultValues: {
       receivedAt: formatDateForInput(feedback.receivedAt),
+      sectionId: feedback.sectionId || '',
       featured: !!feedback.featured,
-      section: feedback.section || '',
       author: feedback.author,
       review: feedback.review,
     },
@@ -62,18 +62,18 @@ export const EditFeedbackForm = ({ feedback, sections }: EditFeedbackFormProps) 
 
         <Controller
           control={form.control}
-          name="section"
+          name="sectionId"
           render={({ field, fieldState }) => (
             <Select
               {...field}
-              defaultSelectedKeys={[feedback.section]}
+              defaultSelectedKeys={feedback.sectionId ? [feedback.sectionId] : []}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
               placeholder="Section"
               label="Section"
             >
               {sections.map((section) => (
-                <SelectItem key={section.type} value={section.type}>
+                <SelectItem key={section.id} value={section.id}>
                   {section.title}
                 </SelectItem>
               ))}

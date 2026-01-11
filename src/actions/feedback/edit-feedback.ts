@@ -11,7 +11,7 @@ export async function editFeedback(
 ): Promise<ManageItemFormState> {
   try {
     const result: FeedbackOutput = feedbackInputSchema.parse({
-      section: feedback.section,
+      sectionId: feedback.sectionId,
       featured: feedback.featured,
       receivedAt: feedback.receivedAt,
       author: feedback.author,
@@ -23,7 +23,7 @@ export async function editFeedback(
         id,
       },
       data: {
-        section: result.section,
+        sectionId: result.sectionId,
         featured: result.featured,
         receivedAt: normalizeToMidnight(result.receivedAt),
         author: result.author,

@@ -16,7 +16,7 @@ export const FeedbackCard = ({ feedback, withFeaturedFlag, withSection }: Feedba
         <div className="flex flex-col gap-1">
           <h4 className="text-lg font-medium">{feedback.author}</h4>
 
-          {withSection && (
+          {withSection && feedback.feedbackSection && (
             <Chip variant="flat" color="primary">
               {feedback.feedbackSection.title}
             </Chip>

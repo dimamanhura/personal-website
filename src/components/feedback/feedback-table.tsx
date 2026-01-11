@@ -36,7 +36,7 @@ export const FeedbackTable: FunctionComponent<FeedbackTableProps> = ({ items, co
           return <TruncatedText text={feedback.review} />;
 
         case 'feedbackSection':
-          return feedback.feedbackSection.title;
+          return feedback?.feedbackSection?.title || 'N/A';
 
         case 'featured':
           return <FeaturedFlag featured={feedback.featured} />;

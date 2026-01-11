@@ -5,6 +5,7 @@ export enum AdminEntity {
   contactRequests = 'contactRequests',
   education = 'education',
   feedback = 'feedback',
+  feedbackSections = 'feedbackSections',
   projects = 'projects',
   technologies = 'technologies',
   technologySections = 'technologySections',

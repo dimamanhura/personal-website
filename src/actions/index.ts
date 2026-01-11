@@ -15,6 +15,13 @@ export { deleteFeedback } from './feedback/delete-feedback';
 export { editFeedback } from './feedback/edit-feedback';
 export { createFeedback } from './feedback/create-feedback';
 
+// feedback section
+
+export { createFeedbackSectionsBulk } from './feedback-sections/create-feedback-section-bulk';
+export { deleteFeedbackSection } from './feedback-sections/delete-feedback-section';
+export { editFeedbackSection } from './feedback-sections/edit-feedback-section';
+export { createFeedbackSection } from './feedback-sections/create-feedback-section';
+
 // auth
 export { signInWithCredentials } from './auth/sign-in';
 export { signUpUser } from './auth/sign-up';

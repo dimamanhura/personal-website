@@ -3,7 +3,7 @@ import { OverviewHeader, CreateTechnologySectionForm } from '@/components';
 import paths from '@/paths';
 
 export const metadata: Metadata = {
-  title: 'Technologies - New',
+  title: 'Technology Section - New',
 };
 
 const TechnologySectionsAddPage = () => {

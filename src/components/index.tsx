@@ -26,6 +26,13 @@ export { FeedbackTable } from './feedback/feedback-table';
 export { ReviewList } from './feedback/reviews-list';
 export { FeedbackImportButton } from './feedback/feedback-import-button';
 
+// feedback sections
+export { CreateFeedbackSectionForm } from './feedback-sections/create-feedback-section-form';
+export { EditFeedbackSectionForm } from './feedback-sections/edit-feedback-section-form';
+export { FeedbackSectionCard } from './feedback-sections/feedback-section-card';
+export { FeedbackSectionsImportButton } from './feedback-sections/feedback-sections-import-button';
+export { FeedbackSectionsTable } from './feedback-sections/feedback-sections-table';
+
 // technologies
 export { TechnologiesTable } from './technologies/technologies-table';
 export { CreateTechnologyForm } from './technologies/create-technology-form';

@@ -79,6 +79,16 @@ export const revalidate = {
     }
   },
 
+  feedbackSections: (id?: string) => {
+    revalidatePath(paths.feedbackSectionsAdmin());
+    revalidatePath(paths.feedback());
+    revalidatePath(paths.home());
+
+    if (id) {
+      revalidatePath(paths.feedbackSectionsDetailsByIdAdmin(id));
+    }
+  },
+
   contactRequests: (id?: string) => {
     revalidatePath(paths.contactRequestsAdmin());
 

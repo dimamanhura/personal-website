@@ -4,6 +4,11 @@ export {
   type AchievementOutput,
 } from './achievement-input-schema';
 export {
+  feedbackSectionInputSchema,
+  type FeedbackSectionInput,
+  type FeedbackSectionOutput,
+} from './feedback-section-input-schema';
+export {
   contactRequestInputSchema,
   type ContactRequestInput,
   type ContactRequestOutput,

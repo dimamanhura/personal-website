@@ -8,7 +8,7 @@ import { formatErrors, normalizeToMidnight, revalidate } from '@/utils';
 export async function createFeedback(values: FeedbackInput): Promise<ManageItemFormState> {
   try {
     const result: FeedbackOutput = feedbackInputSchema.parse({
-      section: values.section,
+      sectionId: values.sectionId,
       featured: values.featured,
       receivedAt: values.receivedAt,
       author: values.author,
@@ -17,7 +17,7 @@ export async function createFeedback(values: FeedbackInput): Promise<ManageItemF
 
     const feedback = await db.feedback.create({
       data: {
-        section: result.section,
+        sectionId: result.sectionId,
         featured: result.featured,
         receivedAt: normalizeToMidnight(result.receivedAt),
         author: result.author,

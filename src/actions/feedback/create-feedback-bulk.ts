@@ -11,9 +11,15 @@ export async function createFeedbackBulk(values: FeedbackInput[]) {
   try {
     const validatedData: FeedbackOutput[] = bulkFeedbackSchema.parse(values);
 
+    const sections = await db.feedbackSection.findMany({
+      select: { id: true, type: true },
+    });
+
+    const sectionMap = new Map(sections.map((s) => [s.type, s.id]));
+
     await db.feedback.createMany({
       data: validatedData.map((item) => ({
-        section: item.section,
+        sectionId: item.section ? sectionMap.get(item.section) || null : null,
         featured: item.featured,
         receivedAt: normalizeToMidnight(item.receivedAt),
         author: item.author,

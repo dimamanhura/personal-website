@@ -1,11 +1,11 @@
 model Feedback {
-  id              String              @id @default(auto()) @map("_id") @db.ObjectId
-  section         FeedbackSectionType
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  sectionId       String?          @db.ObjectId
   review          String
   featured        Boolean
-  feedbackSection FeedbackSection     @relation(fields: [section], references: [type])
+  feedbackSection FeedbackSection? @relation(fields: [sectionId], references: [id])
   author          String
   receivedAt      DateTime
 
-  @@unique([author, section, review, receivedAt])
+  @@unique([author, sectionId, review, receivedAt])
 }

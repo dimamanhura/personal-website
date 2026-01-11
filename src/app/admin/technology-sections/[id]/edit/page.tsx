@@ -11,7 +11,7 @@ interface TechnologySectionEditPageProps {
 
 export function generateMetadata({ params: { id } }: TechnologySectionEditPageProps): Metadata {
   return {
-    title: `Technology Sections - Edit - ${id}`,
+    title: `Technology Section - Edit - ${id}`,
   };
 }
 

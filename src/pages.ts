@@ -34,6 +34,10 @@ export const adminPages: Page[] = [
     path: paths.feedbackAdmin(),
   },
   {
+    title: 'Feedback Sections',
+    path: paths.feedbackSectionsAdmin(),
+  },
+  {
     title: 'Companies',
     path: paths.companiesAdmin(),
   },

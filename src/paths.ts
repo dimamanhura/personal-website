@@ -30,6 +30,7 @@ const paths: PublicPaths & AdminPaths = {
   ...generateAdminPaths(AdminEntity.contactRequests),
   ...generateAdminPaths(AdminEntity.education),
   ...generateAdminPaths(AdminEntity.feedback),
+  ...generateAdminPaths(AdminEntity.feedbackSections),
   ...generateAdminPaths(AdminEntity.projects),
   ...generateAdminPaths(AdminEntity.technologies),
   ...generateAdminPaths(AdminEntity.technologySections),
