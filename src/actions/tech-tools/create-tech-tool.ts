@@ -1,19 +1,19 @@
 'use server';
 
 import { db } from '@/db';
-import { technologyInputSchema, TechnologyInput, TechnologyOutput } from '@/schemas';
+import { techToolInputSchema, TechToolInput, TechToolOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors, revalidate } from '@/utils';
 
-export async function createTechnology(values: TechnologyInput): Promise<ManageItemFormState> {
+export async function createTechTool(values: TechToolInput): Promise<ManageItemFormState> {
   try {
-    const result: TechnologyOutput = technologyInputSchema.parse({
+    const result: TechToolOutput = techToolInputSchema.parse({
       title: values.title,
       stackId: values.stackId,
       featured: values.featured,
     });
 
-    const technology = await db.technology.create({
+    const techTool = await db.techTool.create({
       data: {
         title: result.title,
         stackId: result.stackId || null,
@@ -21,9 +21,9 @@ export async function createTechnology(values: TechnologyInput): Promise<ManageI
       },
     });
 
-    revalidate.technologies();
+    revalidate.techTools();
 
-    return { success: true, id: technology.id };
+    return { success: true, id: techTool.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }

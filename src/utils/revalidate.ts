@@ -23,25 +23,6 @@ export const revalidate = {
     }
   },
 
-  technologies: (id?: string) => {
-    revalidatePath(paths.technologiesAdmin());
-    revalidatePath(paths.home());
-
-    if (id) {
-      revalidatePath(paths.technologiesDetailsByIdAdmin(id));
-    }
-  },
-
-  techStacks: (id?: string) => {
-    revalidatePath(paths.techStacksAdmin());
-    revalidatePath(paths.technologiesNewAdmin());
-    revalidatePath(paths.home());
-
-    if (id) {
-      revalidatePath(paths.techStacksDetailsByIdAdmin(id));
-    }
-  },
-
   techCategories: (id?: string) => {
     revalidatePath(paths.techCategoriesAdmin());
     revalidatePath(paths.techStacksNewAdmin());
@@ -49,6 +30,25 @@ export const revalidate = {
 
     if (id) {
       revalidatePath(paths.techCategoriesDetailsByIdAdmin(id));
+    }
+  },
+
+  techStacks: (id?: string) => {
+    revalidatePath(paths.techStacksAdmin());
+    revalidatePath(paths.techToolsNewAdmin());
+    revalidatePath(paths.home());
+
+    if (id) {
+      revalidatePath(paths.techStacksDetailsByIdAdmin(id));
+    }
+  },
+
+  techTools: (id?: string) => {
+    revalidatePath(paths.techToolsAdmin());
+    revalidatePath(paths.home());
+
+    if (id) {
+      revalidatePath(paths.techToolsDetailsByIdAdmin(id));
     }
   },
 

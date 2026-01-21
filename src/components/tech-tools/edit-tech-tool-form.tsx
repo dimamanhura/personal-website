@@ -5,37 +5,35 @@ import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { TechStack } from '@prisma/client';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { TechToolWithStack } from '@/db/queries/tech-tools';
 import * as actions from '@/actions';
 import { ErrorMessage } from '@/components';
-import paths from '@/paths';
-import { TechnologyInput, technologyInputSchema } from '@/schemas';
+import { TechToolInput, techToolInputSchema } from '@/schemas';
 
-interface CreateTechnologyFormProps {
+interface EditTechToolFormProps {
+  techTool: TechToolWithStack;
   techStacks: TechStack[];
 }
 
-export const CreateTechnologyForm = ({ techStacks }: CreateTechnologyFormProps) => {
-  const router = useRouter();
-  const form = useForm<TechnologyInput>({
-    resolver: zodResolver(technologyInputSchema),
+export const EditTechToolForm = ({ techTool, techStacks }: EditTechToolFormProps) => {
+  const form = useForm<TechToolInput>({
+    resolver: zodResolver(techToolInputSchema),
     defaultValues: {
-      featured: false,
-      stackId: undefined,
-      title: '',
+      stackId: techTool.stackId || undefined,
+      featured: !!techTool.featured,
+      title: techTool.title,
     },
   });
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<TechnologyInput> = async (values) => {
+  const onSubmit: SubmitHandler<TechToolInput> = async (values) => {
     startTransition(async () => {
-      const { success, message, id } = await actions.createTechnology(values);
+      const { success, message } = await actions.editTechTool(techTool.id, values);
 
-      if (success && id) {
-        toast.success('Successfully created');
-        router.push(paths.technologiesDetailsByIdAdmin(id));
+      if (success) {
+        toast.success('Successfully updated');
       } else {
         toast.error(message);
       }
@@ -65,6 +63,7 @@ export const CreateTechnologyForm = ({ techStacks }: CreateTechnologyFormProps) 
           render={({ field, fieldState }) => (
             <Select
               {...field}
+              defaultSelectedKeys={techTool.stackId ? [techTool.stackId] : []}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
               placeholder="Stack"
@@ -99,7 +98,7 @@ export const CreateTechnologyForm = ({ techStacks }: CreateTechnologyFormProps) 
         />
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Create'}
+          {isPending ? 'Loading...' : 'Update'}
         </Button>
       </div>
     </form>

@@ -26,11 +26,11 @@ export { signInWithCredentials } from './auth/sign-in';
 export { signUpUser } from './auth/sign-up';
 export { signOutUser } from './auth/sign-out';
 
-// technologies
-export { createTechnologiesBulk } from './technologies/create-technologies-bulk';
-export { deleteTechnology } from './technologies/delete-technology';
-export { createTechnology } from './technologies/create-technology';
-export { editTechnology } from './technologies/edit-technology';
+// tech tools
+export { createTechToolsBulk } from './tech-tools/create-tech-tools-bulk';
+export { deleteTechTool } from './tech-tools/delete-tech-tool';
+export { createTechTool } from './tech-tools/create-tech-tool';
+export { editTechTool } from './tech-tools/edit-tech-tool';
 
 // tech stacks
 export { createTechStacksBulk } from './tech-stacks/create-tech-stacks-bulk';

@@ -4,8 +4,8 @@ import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
-export type TechStackWithTechnologies = Prisma.TechStackGetPayload<{
-  include: { technologies: true };
+export type TechStackWithTools = Prisma.TechStackGetPayload<{
+  include: { tools: true };
 }>;
 
 export const fetchTechStacks = cache(
@@ -14,7 +14,7 @@ export const fetchTechStacks = cache(
     orderBy?: Sort;
     page?: number;
     all?: boolean;
-  }): Promise<PaginatedData<TechStackWithTechnologies>> => {
+  }): Promise<PaginatedData<TechStackWithTools>> => {
     const {
       onlyFeatured = true,
       orderBy = { column: 'id', direction: 'descending' },
@@ -29,7 +29,7 @@ export const fetchTechStacks = cache(
       take: all ? undefined : DEFAULT_LIMIT,
       skip: all ? 0 : (page - 1) * DEFAULT_LIMIT,
       include: {
-        technologies: {
+        tools: {
           where: onlyFeatured
             ? {
                 featured: onlyFeatured || undefined,
@@ -45,13 +45,11 @@ export const fetchTechStacks = cache(
   },
 );
 
-export const fetchTechStackById = cache(
-  async (id: string): Promise<TechStackWithTechnologies | null> => {
-    return await db.techStack.findFirst({
-      where: { id },
-      include: {
-        technologies: true,
-      },
-    });
-  },
-);
+export const fetchTechStackById = cache(async (id: string): Promise<TechStackWithTools | null> => {
+  return await db.techStack.findFirst({
+    where: { id },
+    include: {
+      tools: true,
+    },
+  });
+});

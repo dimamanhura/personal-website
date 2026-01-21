@@ -24,10 +24,10 @@ export {
   type FeedbackOutput,
 } from './feedback-input-schema';
 export {
-  technologyInputSchema,
-  type TechnologyInput,
-  type TechnologyOutput,
-} from './technology-input-schema';
+  techToolInputSchema,
+  type TechToolInput,
+  type TechToolOutput,
+} from './tech-tool-input-schema';
 export {
   techStackInputSchema,
   type TechStackInput,

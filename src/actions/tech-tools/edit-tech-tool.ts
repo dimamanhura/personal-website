@@ -1,22 +1,22 @@
 'use server';
 
 import { db } from '@/db';
-import { technologyInputSchema, TechnologyInput, TechnologyOutput } from '@/schemas';
+import { techToolInputSchema, TechToolInput, TechToolOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors, revalidate } from '@/utils';
 
-export async function editTechnology(
+export async function editTechTool(
   id: string,
-  values: TechnologyInput,
+  values: TechToolInput,
 ): Promise<ManageItemFormState> {
   try {
-    const result: TechnologyOutput = technologyInputSchema.parse({
+    const result: TechToolOutput = techToolInputSchema.parse({
       title: values.title,
       featured: values.featured,
       stackId: values.stackId,
     });
 
-    const technology = await db.technology.update({
+    const techTool = await db.techTool.update({
       where: {
         id,
       },
@@ -27,9 +27,9 @@ export async function editTechnology(
       },
     });
 
-    revalidate.technologies(id);
+    revalidate.techTools(id);
 
-    return { success: true, id: technology.id };
+    return { success: true, id: techTool.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }

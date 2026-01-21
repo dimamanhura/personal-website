@@ -1,9 +1,9 @@
-import { TechStackWithTechnologies } from '@/db/queries/tech-stacks';
+import { TechStackWithTools } from '@/db/queries/tech-stacks';
 import { Column, ColumnKey } from '@/types';
 
-export const columns: Column<ColumnKey<TechStackWithTechnologies>>[] = [
+export const columns: Column<ColumnKey<TechStackWithTools>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },
   { key: 'title', label: 'Stack', allowsSorting: true },
-  { key: 'technologies', label: 'Technologies', allowsSorting: false },
+  { key: 'tools', label: 'Tools', allowsSorting: false },
   { key: 'actions', label: 'Actions', allowsSorting: false },
 ];

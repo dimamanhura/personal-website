@@ -8,10 +8,10 @@ import { toast } from 'sonner';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import { TechStackInput, techStackInputSchema } from '@/schemas';
-import { TechStackWithTechnologies } from '@/db/queries/tech-stacks';
+import { TechStackWithTools } from '@/db/queries/tech-stacks';
 
 interface EditTechStackFormProps {
-  techStack: TechStackWithTechnologies;
+  techStack: TechStackWithTools;
 }
 
 export const EditTechStackForm = ({ techStack }: EditTechStackFormProps) => {

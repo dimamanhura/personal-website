@@ -2,7 +2,7 @@
 
 import { FunctionComponent, useCallback } from 'react';
 import { User } from '@nextui-org/react';
-import { TechStackWithTechnologies } from '@/db/queries/tech-stacks';
+import { TechStackWithTools } from '@/db/queries/tech-stacks';
 import { deleteTechStack } from '@/actions';
 import { techStacksColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText } from '@/components';
@@ -10,13 +10,13 @@ import paths from '@/paths';
 import { ColumnKey } from '@/types';
 
 interface TechStacksTableProps {
-  items: TechStackWithTechnologies[];
+  items: TechStackWithTools[];
   count: number;
 }
 
 export const TechStacksTable: FunctionComponent<TechStacksTableProps> = ({ items, count }) => {
   const renderCell = useCallback(
-    (techStack: TechStackWithTechnologies, columnKey: ColumnKey<TechStackWithTechnologies>) => {
+    (techStack: TechStackWithTools, columnKey: ColumnKey<TechStackWithTools>) => {
       if (columnKey === 'actions') {
         return (
           <TableActions
@@ -44,8 +44,8 @@ export const TechStacksTable: FunctionComponent<TechStacksTableProps> = ({ items
             />
           );
 
-        case 'technologies':
-          return techStack.technologies.length;
+        case 'tools':
+          return techStack.tools.length;
 
         default:
           return techStack[columnKey];
@@ -55,7 +55,7 @@ export const TechStacksTable: FunctionComponent<TechStacksTableProps> = ({ items
   );
 
   return (
-    <ItemsTable<TechStackWithTechnologies>
+    <ItemsTable<TechStackWithTools>
       items={items}
       count={count}
       title={'Tech Stack'}

@@ -1,16 +1,16 @@
 import { User } from '@nextui-org/react';
-import { TechStackWithTechnologies } from '@/db/queries/tech-stacks';
+import { TechStackWithTools } from '@/db/queries/tech-stacks';
 
 interface TechStacksListProps {
-  techStacks: TechStackWithTechnologies[];
+  techStacks: TechStackWithTools[];
 }
 
 export const TechStacksList = ({ techStacks }: TechStacksListProps) => {
   return techStacks.map((techStack) => {
-    const { technologies, title, logo, id } = techStack;
+    const { tools, title, logo, id } = techStack;
     return (
       <User
-        description={`${technologies.map((technology) => technology.title).join(', ')}`}
+        description={`${tools.map((tool) => tool.title).join(', ')}`}
         avatarProps={{ src: logo, radius: 'md' }}
         name={title}
         key={id}

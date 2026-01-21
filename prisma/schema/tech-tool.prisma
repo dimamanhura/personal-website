@@ -1,4 +1,4 @@
-model Technology {
+model TechTool {
   id       String     @id @default(auto()) @map("_id") @db.ObjectId
   title    String     @unique
   featured Boolean

@@ -2,14 +2,14 @@
 
 import { z } from 'zod';
 import { db } from '@/db';
-import { technologyInputSchema, TechnologyInput, TechnologyOutput } from '@/schemas';
+import { techToolInputSchema, TechToolInput, TechToolOutput } from '@/schemas';
 import { formatErrors, revalidate } from '@/utils';
 
-const bulkTechnologiesSchema = z.array(technologyInputSchema);
+const bulkTechToolSchema = z.array(techToolInputSchema);
 
-export async function createTechnologiesBulk(values: TechnologyInput[]) {
+export async function createTechToolsBulk(values: TechToolInput[]) {
   try {
-    const validatedData: TechnologyOutput[] = bulkTechnologiesSchema.parse(values);
+    const validatedData: TechToolOutput[] = bulkTechToolSchema.parse(values);
 
     const stacks = await db.techStack.findMany({
       select: { id: true, type: true },
@@ -17,7 +17,7 @@ export async function createTechnologiesBulk(values: TechnologyInput[]) {
 
     const stackMap = new Map(stacks.map((s) => [s.type, s.id]));
 
-    await db.technology.createMany({
+    await db.techTool.createMany({
       data: validatedData.map((item) => ({
         title: item.title,
         stackId: item.stack ? stackMap.get(item.stack) || null : null,
@@ -25,7 +25,7 @@ export async function createTechnologiesBulk(values: TechnologyInput[]) {
       })),
     });
 
-    revalidate.technologies();
+    revalidate.techTools();
   } catch (err: unknown) {
     throw new Error(formatErrors(err));
   }

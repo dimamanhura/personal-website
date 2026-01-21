@@ -1,9 +1,9 @@
 model TechStack {
-  id           String        @id @default(auto()) @map("_id") @db.ObjectId
-  title        String        @unique
-  logo         String
-  type         String        @unique
-  technologies Technology[]
-  categoryId   String?       @db.ObjectId
-  category     TechCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  id         String        @id @default(auto()) @map("_id") @db.ObjectId
+  title      String        @unique
+  logo       String
+  type       String        @unique
+  tools      TechTool[]
+  categoryId String?       @db.ObjectId
+  category   TechCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
