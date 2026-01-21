@@ -1,0 +1,5 @@
+model TechCategory {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String @unique
+  type  String
+}
