@@ -3,7 +3,7 @@ model Technology {
   title     String
   sectionId String?            @db.ObjectId
   featured  Boolean
-  section   TechnologySection? @relation(fields: [sectionId], references: [id])
+  section   TechnologySection? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 
   @@unique([title, sectionId])
 }
