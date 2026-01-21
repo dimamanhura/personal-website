@@ -48,6 +48,13 @@ export { CreateTechnologySectionForm } from './technology-sections/create-techno
 export { EditTechnologySectionForm } from './technology-sections/edit-technology-section-form';
 export { TechnologySectionsImportButton } from './technology-sections/technology-sections-import-button';
 
+// tech categories
+export { CreateTechCategoryForm } from './tech-categories/create-tech-category-form';
+export { EditTechCategoryForm } from './tech-categories/edit-tech-category-form';
+export { TechCategoriesImportButton } from './tech-categories/tech-categories-import-button';
+export { TechCategoriesTable } from './tech-categories/tech-categories-table';
+export { TechCategoryCard } from './tech-categories/tech-category-card';
+
 // ui
 export { Banner } from './ui/banner';
 export { ChipsList } from './ui/chips-list';

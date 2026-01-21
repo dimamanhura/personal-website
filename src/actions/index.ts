@@ -16,7 +16,6 @@ export { editFeedback } from './feedback/edit-feedback';
 export { createFeedback } from './feedback/create-feedback';
 
 // feedback section
-
 export { createFeedbackSectionsBulk } from './feedback-sections/create-feedback-section-bulk';
 export { deleteFeedbackSection } from './feedback-sections/delete-feedback-section';
 export { editFeedbackSection } from './feedback-sections/edit-feedback-section';
@@ -38,6 +37,12 @@ export { createTechnologySectionsBulk } from './technology-sections/create-techn
 export { deleteTechnologySection } from './technology-sections/delete-technology-section';
 export { createTechnologySection } from './technology-sections/create-technology-section';
 export { editTechnologySection } from './technology-sections/edit-technology-section';
+
+// technology sections
+export { createTechCategoriesBulk } from './tech-category/create-tech-categories-bulk';
+export { deleteTechCategory } from './tech-category/delete-tech-category';
+export { createTechCategory } from './tech-category/create-tech-category';
+export { editTechCategory } from './tech-category/edit-tech-category';
 
 // education
 export { createEducationBulk } from './education/create-education-bulk';

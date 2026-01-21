@@ -42,6 +42,16 @@ export const revalidate = {
     }
   },
 
+  techCategories: (id?: string) => {
+    revalidatePath(paths.techCategoriesAdmin());
+    revalidatePath(paths.technologySectionsNewAdmin());
+    revalidatePath(paths.home());
+
+    if (id) {
+      revalidatePath(paths.techCategoriesDetailsByIdAdmin(id));
+    }
+  },
+
   profile: (id?: string) => {
     revalidatePath(paths.profileAdmin());
     revalidatePath(paths.home());
@@ -65,7 +75,7 @@ export const revalidate = {
     revalidatePath(paths.companiesAdmin());
 
     if (id) {
-      revalidatePath(paths.companiesEditByIdAdmin(id));
+      revalidatePath(paths.companiesDetailsByIdAdmin(id));
     }
   },
 

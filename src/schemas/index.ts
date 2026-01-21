@@ -43,3 +43,8 @@ export { projectAchievementSchema } from './project-achievement-schema';
 export { projectTechnologySectionSchema } from './project-technology-section-schema';
 export { projectInputSchema, type ProjectInput, type ProjectOutput } from './project-input-schema';
 export { profileInputSchema, type ProfileInput, type ProfileOutput } from './profile-input-schema';
+export {
+  techCategoryInputSchema,
+  type TechCategoryInput,
+  type TechCategoryOutput,
+} from './tech-category-input-schema';

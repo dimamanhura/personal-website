@@ -1,7 +1,9 @@
 model TechnologySection {
-  id           String       @id @default(auto()) @map("_id") @db.ObjectId
-  title        String       @unique
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  title        String        @unique
   logo         String
-  type         String
+  type         String        @unique
   technologies Technology[]
+  categoryId   String?       @db.ObjectId
+  category     TechCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }

@@ -9,4 +9,5 @@ export enum AdminEntity {
   projects = 'projects',
   technologies = 'technologies',
   technologySections = 'technologySections',
+  techCategories = 'techCategories',
 }

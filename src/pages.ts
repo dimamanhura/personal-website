@@ -50,6 +50,10 @@ export const adminPages: Page[] = [
     path: paths.technologiesAdmin(),
   },
   {
+    title: 'Tech Categories',
+    path: paths.techCategoriesAdmin(),
+  },
+  {
     title: 'Technology Sections',
     path: paths.technologySectionsAdmin(),
   },

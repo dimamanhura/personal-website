@@ -8,3 +8,4 @@ export { columns as companiesColumns } from './companies';
 export { columns as projectsColumns } from './projects';
 export { columns as profileColumns } from './profile';
 export { columns as feedbackSectionsColumns } from './feedback-sections';
+export { columns as techCategoriesColumns } from './tech-category';
