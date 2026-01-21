@@ -26,7 +26,7 @@ export const fetchTechCategories = cache(
       },
     });
 
-    const count = await db.technologySection.count();
+    const count = await db.techCategory.count();
 
     return { items, count };
   },

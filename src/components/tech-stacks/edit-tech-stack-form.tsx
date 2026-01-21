@@ -4,21 +4,23 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
-import paths from '@/paths';
-import { TechnologySectionInput, technologySectionInputSchema } from '@/schemas';
+import { TechStackInput, techStackInputSchema } from '@/schemas';
+import { TechStackWithTechnologies } from '@/db/queries/tech-stacks';
 
-export const CreateTechnologySectionForm = () => {
-  const router = useRouter();
-  const form = useForm<TechnologySectionInput>({
-    resolver: zodResolver(technologySectionInputSchema),
+interface EditTechStackFormProps {
+  techStack: TechStackWithTechnologies;
+}
+
+export const EditTechStackForm = ({ techStack }: EditTechStackFormProps) => {
+  const form = useForm<TechStackInput>({
+    resolver: zodResolver(techStackInputSchema),
     defaultValues: {
-      title: '',
-      type: '',
-      logo: '',
+      title: techStack.title,
+      type: techStack.type,
+      logo: techStack.logo,
     },
   });
   const logoUrl = form.watch('logo');
@@ -26,13 +28,12 @@ export const CreateTechnologySectionForm = () => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<TechnologySectionInput> = async (values) => {
+  const onSubmit: SubmitHandler<TechStackInput> = async (values) => {
     startTransition(async () => {
-      const { success, message, id } = await actions.createTechnologySection(values);
+      const { success, message } = await actions.editTechStack(techStack.id, values);
 
-      if (success && id) {
-        toast.success('Successfully created');
-        router.push(paths.technologySectionsDetailsByIdAdmin(id));
+      if (success) {
+        toast.success('Successfully updated');
       } else {
         toast.error(message);
       }
@@ -88,7 +89,7 @@ export const CreateTechnologySectionForm = () => {
         </div>
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Create'}
+          {isPending ? 'Loading...' : 'Update'}
         </Button>
       </div>
     </form>

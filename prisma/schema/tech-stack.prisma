@@ -1,4 +1,4 @@
-model TechnologySection {
+model TechStack {
   id           String        @id @default(auto()) @map("_id") @db.ObjectId
   title        String        @unique
   logo         String

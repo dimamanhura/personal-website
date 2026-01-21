@@ -5,12 +5,12 @@ import { fetchUniversities } from '@/db/queries/education';
 import { fetchFeaturedReviews } from '@/db/queries/feedback';
 import { fetchMeta } from '@/db/queries/meta';
 import { fetchFeaturedSignificantProjects } from '@/db/queries/projects';
-import { fetchTechnologySections } from '@/db/queries/technology-sections';
+import { fetchTechStacks } from '@/db/queries/tech-stacks';
 import {
-  TechnologiesSectionsList,
   FeaturedAchievementsList,
   SignificantProjectsList,
   UniversitiesList,
+  TechStacksList,
   CompaniesList,
   ReviewList,
   Section,
@@ -29,7 +29,7 @@ export const revalidate = 60 * 60;
 const HomePage = async () => {
   const [
     featuredSignificantProjects,
-    technologiesSections,
+    techStacks,
     featuredAchievements,
     featuredReviews,
     universities,
@@ -37,7 +37,7 @@ const HomePage = async () => {
     meta,
   ] = await Promise.all([
     fetchFeaturedSignificantProjects(),
-    fetchTechnologySections({ onlyFeatured: true, all: true }),
+    fetchTechStacks({ onlyFeatured: true, all: true }),
     fetchFeaturedAchievements(),
     fetchFeaturedReviews(),
     fetchUniversities({ all: true }),
@@ -60,7 +60,7 @@ const HomePage = async () => {
           </div>
           <div className="col-span-1 flex flex-col gap-12 lg:col-span-1">
             <Section title="Technologies">
-              <TechnologiesSectionsList technologiesSections={technologiesSections.items} />
+              <TechStacksList techStacks={techStacks.items} />
             </Section>
             <Section title="Employment History">
               <CompaniesList companies={companies.items} />

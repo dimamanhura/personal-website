@@ -32,17 +32,17 @@ export { deleteTechnology } from './technologies/delete-technology';
 export { createTechnology } from './technologies/create-technology';
 export { editTechnology } from './technologies/edit-technology';
 
-// technology sections
-export { createTechnologySectionsBulk } from './technology-sections/create-technology-sections-bulk';
-export { deleteTechnologySection } from './technology-sections/delete-technology-section';
-export { createTechnologySection } from './technology-sections/create-technology-section';
-export { editTechnologySection } from './technology-sections/edit-technology-section';
+// tech stacks
+export { createTechStacksBulk } from './tech-stacks/create-tech-stacks-bulk';
+export { deleteTechStack } from './tech-stacks/delete-tech-stack';
+export { createTechStack } from './tech-stacks/create-tech-stack';
+export { editTechStack } from './tech-stacks/edit-tech-stack';
 
-// technology sections
-export { createTechCategoriesBulk } from './tech-category/create-tech-categories-bulk';
-export { deleteTechCategory } from './tech-category/delete-tech-category';
-export { createTechCategory } from './tech-category/create-tech-category';
-export { editTechCategory } from './tech-category/edit-tech-category';
+// tech categories
+export { createTechCategoriesBulk } from './tech-categories/create-tech-categories-bulk';
+export { deleteTechCategory } from './tech-categories/delete-tech-category';
+export { createTechCategory } from './tech-categories/create-tech-category';
+export { editTechCategory } from './tech-categories/edit-tech-category';
 
 // education
 export { createEducationBulk } from './education/create-education-bulk';

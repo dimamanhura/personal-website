@@ -4,23 +4,23 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
-import { TechnologySection } from '@prisma/client';
+import { TechStack } from '@prisma/client';
 import { toast } from 'sonner';
-import { TechnologyWithSection } from '@/db/queries/technologies';
+import { TechnologyWithStack } from '@/db/queries/technologies';
 import * as actions from '@/actions';
 import { ErrorMessage } from '@/components';
 import { TechnologyInput, technologyInputSchema } from '@/schemas';
 
 interface EditTechnologyFormProps {
-  technology: TechnologyWithSection;
-  technologySections: TechnologySection[];
+  technology: TechnologyWithStack;
+  techStacks: TechStack[];
 }
 
-export const EditTechnologyForm = ({ technology, technologySections }: EditTechnologyFormProps) => {
+export const EditTechnologyForm = ({ technology, techStacks }: EditTechnologyFormProps) => {
   const form = useForm<TechnologyInput>({
     resolver: zodResolver(technologyInputSchema),
     defaultValues: {
-      sectionId: technology.sectionId || undefined,
+      stackId: technology.stackId || undefined,
       featured: !!technology.featured,
       title: technology.title,
     },
@@ -59,19 +59,19 @@ export const EditTechnologyForm = ({ technology, technologySections }: EditTechn
 
         <Controller
           control={form.control}
-          name="sectionId"
+          name="stackId"
           render={({ field, fieldState }) => (
             <Select
               {...field}
-              defaultSelectedKeys={technology.sectionId ? [technology.sectionId] : []}
+              defaultSelectedKeys={technology.stackId ? [technology.stackId] : []}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
-              placeholder="Section"
-              label="Section"
+              placeholder="Stack"
+              label="Stack"
             >
-              {technologySections.map((technologySection) => (
-                <SelectItem key={technologySection.id} value={technologySection.id}>
-                  {technologySection.title}
+              {techStacks.map((techStack) => (
+                <SelectItem key={techStack.id} value={techStack.id}>
+                  {techStack.title}
                 </SelectItem>
               ))}
             </Select>

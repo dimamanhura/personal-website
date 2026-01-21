@@ -13,7 +13,7 @@ export async function editTechnology(
     const result: TechnologyOutput = technologyInputSchema.parse({
       title: values.title,
       featured: values.featured,
-      sectionId: values.sectionId,
+      stackId: values.stackId,
     });
 
     const technology = await db.technology.update({
@@ -22,7 +22,7 @@ export async function editTechnology(
       },
       data: {
         title: result.title,
-        sectionId: result.sectionId || null,
+        stackId: result.stackId || null,
         featured: result.featured,
       },
     });

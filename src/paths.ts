@@ -33,7 +33,7 @@ const paths: PublicPaths & AdminPaths = {
   ...generateAdminPaths(AdminEntity.feedbackSections),
   ...generateAdminPaths(AdminEntity.projects),
   ...generateAdminPaths(AdminEntity.technologies),
-  ...generateAdminPaths(AdminEntity.technologySections),
+  ...generateAdminPaths(AdminEntity.techStacks),
   ...generateAdminPaths(AdminEntity.techCategories),
 };
 

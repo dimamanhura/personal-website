@@ -4,17 +4,17 @@ import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
-export type TechnologySectionWithTechnologies = Prisma.TechnologySectionGetPayload<{
+export type TechStackWithTechnologies = Prisma.TechStackGetPayload<{
   include: { technologies: true };
 }>;
 
-export const fetchTechnologySections = cache(
+export const fetchTechStacks = cache(
   async (params?: {
     onlyFeatured?: boolean;
     orderBy?: Sort;
     page?: number;
     all?: boolean;
-  }): Promise<PaginatedData<TechnologySectionWithTechnologies>> => {
+  }): Promise<PaginatedData<TechStackWithTechnologies>> => {
     const {
       onlyFeatured = true,
       orderBy = { column: 'id', direction: 'descending' },
@@ -22,7 +22,7 @@ export const fetchTechnologySections = cache(
       all = false,
     } = params || {};
 
-    const items = await db.technologySection.findMany({
+    const items = await db.techStack.findMany({
       orderBy: {
         [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
       },
@@ -39,15 +39,15 @@ export const fetchTechnologySections = cache(
       },
     });
 
-    const count = await db.technologySection.count();
+    const count = await db.techStack.count();
 
     return { items, count };
   },
 );
 
-export const fetchTechnologySectionById = cache(
-  async (id: string): Promise<TechnologySectionWithTechnologies | null> => {
-    return await db.technologySection.findFirst({
+export const fetchTechStackById = cache(
+  async (id: string): Promise<TechStackWithTechnologies | null> => {
+    return await db.techStack.findFirst({
       where: { id },
       include: {
         technologies: true,

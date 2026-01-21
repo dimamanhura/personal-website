@@ -40,13 +40,13 @@ export { EditTechnologyForm } from './technologies/edit-technology-form';
 export { TechnologyCard } from './technologies/technology-card';
 export { TechnologiesImportButton } from './technologies/technologies-import-button';
 
-// technology sections
-export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
-export { TechnologiesSectionsList } from './technology-sections/technologies-sections-list';
-export { TechnologySectionCard } from './technology-sections/technology-section-card';
-export { CreateTechnologySectionForm } from './technology-sections/create-technology-section-form';
-export { EditTechnologySectionForm } from './technology-sections/edit-technology-section-form';
-export { TechnologySectionsImportButton } from './technology-sections/technology-sections-import-button';
+// tech stacks
+export { TechStacksTable } from './tech-stacks/tech-stacks-table';
+export { TechStacksList } from './tech-stacks/tech-stacks-list';
+export { TechStackCard } from './tech-stacks/tech-stack-card';
+export { CreateTechStackForm } from './tech-stacks/create-tech-stack-form';
+export { EditTechStackForm } from './tech-stacks/edit-tech-stack-form';
+export { TechStacksImportButton } from './tech-stacks/tech-stacks-import-button';
 
 // tech categories
 export { CreateTechCategoryForm } from './tech-categories/create-tech-category-form';

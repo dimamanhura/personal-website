@@ -32,19 +32,19 @@ export const revalidate = {
     }
   },
 
-  technologySections: (id?: string) => {
-    revalidatePath(paths.technologySectionsAdmin());
+  techStacks: (id?: string) => {
+    revalidatePath(paths.techStacksAdmin());
     revalidatePath(paths.technologiesNewAdmin());
     revalidatePath(paths.home());
 
     if (id) {
-      revalidatePath(paths.technologySectionsDetailsByIdAdmin(id));
+      revalidatePath(paths.techStacksDetailsByIdAdmin(id));
     }
   },
 
   techCategories: (id?: string) => {
     revalidatePath(paths.techCategoriesAdmin());
-    revalidatePath(paths.technologySectionsNewAdmin());
+    revalidatePath(paths.techStacksNewAdmin());
     revalidatePath(paths.home());
 
     if (id) {

@@ -5,14 +5,14 @@ import { db } from '@/db';
 import paths from '@/paths';
 import { revalidate } from '@/utils';
 
-export const deleteTechnologySection = async (id: string) => {
-  await db.technologySection.delete({
+export const deleteTechStack = async (id: string) => {
+  await db.techStack.delete({
     where: {
       id,
     },
   });
 
-  revalidate.technologySections(id);
+  revalidate.techStacks(id);
 
-  redirect(paths.technologySectionsAdmin());
+  redirect(paths.techStacksAdmin());
 };

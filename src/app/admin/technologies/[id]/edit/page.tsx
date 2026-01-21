@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchTechnologyById } from '@/db/queries/technologies';
-import { fetchTechnologySections } from '@/db/queries/technology-sections';
+import { fetchTechStacks } from '@/db/queries/tech-stacks';
 import { deleteTechnology } from '@/actions';
 import { EditTechnologyForm, OverviewHeader } from '@/components';
 import paths from '@/paths';
@@ -23,7 +23,7 @@ const TechnologyEditPage = async ({ params }: TechnologyEditPageProps) => {
     return notFound();
   }
 
-  const technologySections = await fetchTechnologySections({ all: true });
+  const techStacks = await fetchTechStacks({ all: true });
 
   return (
     <>
@@ -32,7 +32,7 @@ const TechnologyEditPage = async ({ params }: TechnologyEditPageProps) => {
         itemId={params.id}
         onDelete={deleteTechnology}
       />
-      <EditTechnologyForm technology={technology} technologySections={technologySections.items} />
+      <EditTechnologyForm technology={technology} techStacks={techStacks.items} />
     </>
   );
 };

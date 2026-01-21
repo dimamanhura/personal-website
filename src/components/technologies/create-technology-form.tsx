@@ -4,7 +4,7 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
-import { TechnologySection } from '@prisma/client';
+import { TechStack } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
@@ -13,16 +13,16 @@ import paths from '@/paths';
 import { TechnologyInput, technologyInputSchema } from '@/schemas';
 
 interface CreateTechnologyFormProps {
-  technologySections: TechnologySection[];
+  techStacks: TechStack[];
 }
 
-export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFormProps) => {
+export const CreateTechnologyForm = ({ techStacks }: CreateTechnologyFormProps) => {
   const router = useRouter();
   const form = useForm<TechnologyInput>({
     resolver: zodResolver(technologyInputSchema),
     defaultValues: {
       featured: false,
-      sectionId: undefined,
+      stackId: undefined,
       title: '',
     },
   });
@@ -61,18 +61,18 @@ export const CreateTechnologyForm = ({ technologySections }: CreateTechnologyFor
 
         <Controller
           control={form.control}
-          name="sectionId"
+          name="stackId"
           render={({ field, fieldState }) => (
             <Select
               {...field}
               isInvalid={!!fieldState.error}
               errorMessage={fieldState.error?.message}
-              placeholder="Section"
-              label="Section"
+              placeholder="Stack"
+              label="Stack"
             >
-              {technologySections.map((technologySection) => (
-                <SelectItem key={technologySection.id} value={technologySection.id}>
-                  {technologySection.title}
+              {techStacks.map((techStack) => (
+                <SelectItem key={techStack.id} value={techStack.id}>
+                  {techStack.title}
                 </SelectItem>
               ))}
             </Select>

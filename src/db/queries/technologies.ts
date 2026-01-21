@@ -4,8 +4,8 @@ import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
-export type TechnologyWithSection = Prisma.TechnologyGetPayload<{
-  include: { section: true };
+export type TechnologyWithStack = Prisma.TechnologyGetPayload<{
+  include: { stack: true };
 }>;
 
 export const fetchTechnologies = cache(
@@ -13,7 +13,7 @@ export const fetchTechnologies = cache(
     orderBy?: Sort;
     page?: number;
     all?: boolean;
-  }): Promise<PaginatedData<TechnologyWithSection>> => {
+  }): Promise<PaginatedData<TechnologyWithStack>> => {
     const {
       orderBy = { column: 'id', direction: 'descending' },
       page = 1,
@@ -22,7 +22,7 @@ export const fetchTechnologies = cache(
 
     const items = await db.technology.findMany({
       include: {
-        section: true,
+        stack: true,
       },
       orderBy: {
         [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
@@ -38,11 +38,11 @@ export const fetchTechnologies = cache(
 );
 
 export const fetchTechnologyById = cache(
-  async (id: string): Promise<TechnologyWithSection | null> => {
+  async (id: string): Promise<TechnologyWithStack | null> => {
     return await db.technology.findFirst({
       where: { id },
       include: {
-        section: true,
+        stack: true,
       },
     });
   },

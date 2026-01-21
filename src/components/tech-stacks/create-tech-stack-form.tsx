@@ -4,25 +4,21 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
-import { TechnologySection } from '@prisma/client';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
-import { TechnologySectionInput, technologySectionInputSchema } from '@/schemas';
+import paths from '@/paths';
+import { TechStackInput, techStackInputSchema } from '@/schemas';
 
-interface EditTechnologySectionFormProps {
-  technologySection: TechnologySection;
-}
-
-export const EditTechnologySectionForm = ({
-  technologySection,
-}: EditTechnologySectionFormProps) => {
-  const form = useForm<TechnologySectionInput>({
-    resolver: zodResolver(technologySectionInputSchema),
+export const CreateTechStackForm = () => {
+  const router = useRouter();
+  const form = useForm<TechStackInput>({
+    resolver: zodResolver(techStackInputSchema),
     defaultValues: {
-      title: technologySection.title,
-      type: technologySection.type,
-      logo: technologySection.logo,
+      title: '',
+      type: '',
+      logo: '',
     },
   });
   const logoUrl = form.watch('logo');
@@ -30,15 +26,13 @@ export const EditTechnologySectionForm = ({
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<TechnologySectionInput> = async (values) => {
+  const onSubmit: SubmitHandler<TechStackInput> = async (values) => {
     startTransition(async () => {
-      const { success, message } = await actions.editTechnologySection(
-        technologySection.id,
-        values,
-      );
+      const { success, message, id } = await actions.createTechStack(values);
 
-      if (success) {
-        toast.success('Successfully updated');
+      if (success && id) {
+        toast.success('Successfully created');
+        router.push(paths.techStacksDetailsByIdAdmin(id));
       } else {
         toast.error(message);
       }
@@ -94,7 +88,7 @@ export const EditTechnologySectionForm = ({
         </div>
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Update'}
+          {isPending ? 'Loading...' : 'Create'}
         </Button>
       </div>
     </form>

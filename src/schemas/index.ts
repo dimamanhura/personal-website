@@ -29,10 +29,10 @@ export {
   type TechnologyOutput,
 } from './technology-input-schema';
 export {
-  technologySectionInputSchema,
-  type TechnologySectionInput,
-  type TechnologySectionOutput,
-} from './technology-section-input.schema';
+  techStackInputSchema,
+  type TechStackInput,
+  type TechStackOutput,
+} from './tech-stack-input.schema';
 export {
   educationInputSchema,
   type EducationInput,

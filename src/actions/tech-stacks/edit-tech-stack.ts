@@ -1,39 +1,37 @@
 'use server';
 
 import { db } from '@/db';
-import {
-  technologySectionInputSchema,
-  TechnologySectionInput,
-  TechnologySectionOutput,
-} from '@/schemas';
+import { techStackInputSchema, TechStackInput, TechStackOutput } from '@/schemas';
 import { ManageItemFormState } from '@/types';
 import { formatErrors, revalidate } from '@/utils';
 
-export async function editTechnologySection(
+export async function editTechStack(
   id: string,
-  values: TechnologySectionInput,
+  values: TechStackInput,
 ): Promise<ManageItemFormState> {
   try {
-    const result: TechnologySectionOutput = technologySectionInputSchema.parse({
+    const result: TechStackOutput = techStackInputSchema.parse({
+      categoryId: values.categoryId,
       title: values.title,
       type: values.type,
       logo: values.logo,
     });
 
-    const technologySection = await db.technologySection.update({
+    const tachStack = await db.techStack.update({
       where: {
         id,
       },
       data: {
+        categoryId: result.categoryId,
         title: result.title,
         type: result.type,
         logo: result.logo,
       },
     });
 
-    revalidate.technologySections(id);
+    revalidate.techStacks(id);
 
-    return { success: true, id: technologySection.id };
+    return { success: true, id: tachStack.id };
   } catch (err: unknown) {
     return { success: false, message: formatErrors(err) };
   }

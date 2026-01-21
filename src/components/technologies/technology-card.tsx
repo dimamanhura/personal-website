@@ -1,8 +1,8 @@
-import { TechnologyWithSection } from '@/db/queries/technologies';
+import { TechnologyWithStack } from '@/db/queries/technologies';
 import { FeaturedFlag } from '@/components';
 
 interface TechnologyCardProps {
-  technology: TechnologyWithSection;
+  technology: TechnologyWithStack;
 }
 
 export const TechnologyCard = ({ technology }: TechnologyCardProps) => {
@@ -11,7 +11,7 @@ export const TechnologyCard = ({ technology }: TechnologyCardProps) => {
       <div className="flex justify-between">
         <div className="flex flex-col">
           <h4 className="text-lg font-medium">{technology.title}</h4>
-          <p className="text-xs text-foreground-400">{technology?.section?.title || 'N/A'}</p>
+          <p className="text-xs text-foreground-400">{technology?.stack?.title || 'N/A'}</p>
         </div>
 
         <FeaturedFlag featured={technology.featured} />

@@ -9,14 +9,14 @@ export async function createTechnology(values: TechnologyInput): Promise<ManageI
   try {
     const result: TechnologyOutput = technologyInputSchema.parse({
       title: values.title,
-      sectionId: values.sectionId,
+      stackId: values.stackId,
       featured: values.featured,
     });
 
     const technology = await db.technology.create({
       data: {
         title: result.title,
-        sectionId: result.sectionId || null,
+        stackId: result.stackId || null,
         featured: result.featured,
       },
     });

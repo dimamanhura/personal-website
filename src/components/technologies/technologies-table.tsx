@@ -2,7 +2,7 @@
 
 import { FunctionComponent, useCallback } from 'react';
 import { User } from '@nextui-org/react';
-import { TechnologyWithSection } from '@/db/queries/technologies';
+import { TechnologyWithStack } from '@/db/queries/technologies';
 import { deleteTechnology } from '@/actions';
 import { technologiesColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText, FeaturedFlag } from '@/components';
@@ -10,13 +10,13 @@ import paths from '@/paths';
 import { ColumnKey } from '@/types';
 
 interface TechnologiesTableProps {
-  items: TechnologyWithSection[];
+  items: TechnologyWithStack[];
   count: number;
 }
 
 export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ items, count }) => {
   const renderCell = useCallback(
-    (technology: TechnologyWithSection, columnKey: ColumnKey<TechnologyWithSection>) => {
+    (technology: TechnologyWithStack, columnKey: ColumnKey<TechnologyWithStack>) => {
       if (columnKey === 'actions') {
         return (
           <TableActions
@@ -35,11 +35,11 @@ export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ i
         case 'featured':
           return <FeaturedFlag featured={technology.featured} />;
 
-        case 'section':
-          return technology?.section ? (
+        case 'stack':
+          return technology?.stack ? (
             <User
-              avatarProps={{ src: technology.section.logo, size: 'sm', radius: 'md' }}
-              name={technology.section.title}
+              avatarProps={{ src: technology.stack.logo, size: 'sm', radius: 'md' }}
+              name={technology.stack.title}
             />
           ) : (
             'N/A'
@@ -53,7 +53,7 @@ export const TechnologiesTable: FunctionComponent<TechnologiesTableProps> = ({ i
   );
 
   return (
-    <ItemsTable<TechnologyWithSection>
+    <ItemsTable<TechnologyWithStack>
       items={items}
       count={count}
       title={'Technologies'}

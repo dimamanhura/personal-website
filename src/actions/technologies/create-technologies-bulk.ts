@@ -11,16 +11,16 @@ export async function createTechnologiesBulk(values: TechnologyInput[]) {
   try {
     const validatedData: TechnologyOutput[] = bulkTechnologiesSchema.parse(values);
 
-    const sections = await db.technologySection.findMany({
+    const stacks = await db.techStack.findMany({
       select: { id: true, type: true },
     });
 
-    const sectionMap = new Map(sections.map((s) => [s.type, s.id]));
+    const stackMap = new Map(stacks.map((s) => [s.type, s.id]));
 
     await db.technology.createMany({
       data: validatedData.map((item) => ({
         title: item.title,
-        sectionId: item.section ? sectionMap.get(item.section) || null : null,
+        stackId: item.stack ? stackMap.get(item.stack) || null : null,
         featured: item.featured,
       })),
     });
