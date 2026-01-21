@@ -5,7 +5,7 @@ import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
 export type TechStackWithTools = Prisma.TechStackGetPayload<{
-  include: { tools: true };
+  include: { tools: true; category: true };
 }>;
 
 export const fetchTechStacks = cache(
@@ -29,6 +29,7 @@ export const fetchTechStacks = cache(
       take: all ? undefined : DEFAULT_LIMIT,
       skip: all ? 0 : (page - 1) * DEFAULT_LIMIT,
       include: {
+        category: true,
         tools: {
           where: onlyFeatured
             ? {
@@ -49,6 +50,7 @@ export const fetchTechStackById = cache(async (id: string): Promise<TechStackWit
   return await db.techStack.findFirst({
     where: { id },
     include: {
+      category: true,
       tools: true,
     },
   });

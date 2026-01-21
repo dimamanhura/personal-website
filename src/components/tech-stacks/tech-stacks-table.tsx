@@ -44,6 +44,9 @@ export const TechStacksTable: FunctionComponent<TechStacksTableProps> = ({ items
             />
           );
 
+        case 'category':
+          return techStack.category ? techStack.category.title : 'N/A';
+
         case 'tools':
           return techStack.tools.length;
 

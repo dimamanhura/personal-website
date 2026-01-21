@@ -4,6 +4,7 @@ import { deleteTechStack } from '@/actions';
 import { EditTechStackForm, OverviewHeader } from '@/components';
 import paths from '@/paths';
 import { fetchTechStackById } from '@/db/queries/tech-stacks';
+import { fetchTechCategories } from '@/db/queries/tech-categories';
 
 interface TechStackEditPageProps {
   params: { id: string };
@@ -22,6 +23,8 @@ const TechStackEditPage = async ({ params }: TechStackEditPageProps) => {
     return notFound();
   }
 
+  const categories = await fetchTechCategories({ all: true });
+
   return (
     <>
       <OverviewHeader
@@ -29,7 +32,7 @@ const TechStackEditPage = async ({ params }: TechStackEditPageProps) => {
         backPath={paths.techStacksAdmin()}
         onDelete={deleteTechStack}
       />
-      <EditTechStackForm techStack={techStack} />
+      <EditTechStackForm categories={categories.items} techStack={techStack} />
     </>
   );
 };

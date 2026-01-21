@@ -3,21 +3,24 @@
 import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input, Select, SelectItem } from '@nextui-org/react';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import { TechStackInput, techStackInputSchema } from '@/schemas';
 import { TechStackWithTools } from '@/db/queries/tech-stacks';
+import { TechCategoryWithStacks } from '@/db/queries/tech-categories';
 
 interface EditTechStackFormProps {
   techStack: TechStackWithTools;
+  categories: TechCategoryWithStacks[];
 }
 
-export const EditTechStackForm = ({ techStack }: EditTechStackFormProps) => {
+export const EditTechStackForm = ({ techStack, categories }: EditTechStackFormProps) => {
   const form = useForm<TechStackInput>({
     resolver: zodResolver(techStackInputSchema),
     defaultValues: {
+      categoryId: techStack.categoryId || undefined,
       title: techStack.title,
       type: techStack.type,
       logo: techStack.logo,
@@ -87,6 +90,27 @@ export const EditTechStackForm = ({ techStack }: EditTechStackFormProps) => {
             <ErrorMessage message={form.formState.errors.logo.message} />
           )}
         </div>
+
+        <Controller
+          control={form.control}
+          name="categoryId"
+          render={({ field, fieldState }) => (
+            <Select
+              {...field}
+              defaultSelectedKeys={techStack.categoryId ? [techStack.categoryId] : []}
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Category"
+              label="Category"
+            >
+              {categories.map((category) => (
+                <SelectItem key={category.id} value={category.id}>
+                  {category.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
           {isPending ? 'Loading...' : 'Update'}

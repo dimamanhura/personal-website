@@ -12,15 +12,20 @@ export const fetchTechCategories = cache(
   async (params?: {
     orderBy?: Sort;
     page?: number;
+    all?: boolean;
   }): Promise<PaginatedData<TechCategoryWithStacks>> => {
-    const { orderBy = { column: 'id', direction: 'descending' }, page = 1 } = params || {};
+    const {
+      orderBy = { column: 'id', direction: 'descending' },
+      page = 1,
+      all = false,
+    } = params || {};
 
     const items = await db.techCategory.findMany({
       orderBy: {
         [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
       },
-      take: DEFAULT_LIMIT,
-      skip: (page - 1) * DEFAULT_LIMIT,
+      take: all ? undefined : DEFAULT_LIMIT,
+      skip: all ? 0 : (page - 1) * DEFAULT_LIMIT,
       include: {
         stacks: true,
       },

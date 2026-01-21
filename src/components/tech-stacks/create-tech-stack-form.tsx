@@ -3,19 +3,25 @@
 import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input, Select, SelectItem } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import paths from '@/paths';
 import { TechStackInput, techStackInputSchema } from '@/schemas';
+import { TechCategoryWithStacks } from '@/db/queries/tech-categories';
 
-export const CreateTechStackForm = () => {
+interface CreateTechStackFormProps {
+  categories: TechCategoryWithStacks[];
+}
+
+export const CreateTechStackForm = ({ categories }: CreateTechStackFormProps) => {
   const router = useRouter();
   const form = useForm<TechStackInput>({
     resolver: zodResolver(techStackInputSchema),
     defaultValues: {
+      categoryId: undefined,
       title: '',
       type: '',
       logo: '',
@@ -86,6 +92,26 @@ export const CreateTechStackForm = () => {
             <ErrorMessage message={form.formState.errors.logo.message} />
           )}
         </div>
+
+        <Controller
+          control={form.control}
+          name="categoryId"
+          render={({ field, fieldState }) => (
+            <Select
+              {...field}
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Category"
+              label="Category"
+            >
+              {categories.map((category) => (
+                <SelectItem key={category.id} value={category.id}>
+                  {category.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
 
         <Button className="max-w-fit" type="submit" color="primary" disabled={isPending}>
           {isPending ? 'Loading...' : 'Create'}
