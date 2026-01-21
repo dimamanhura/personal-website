@@ -37,7 +37,11 @@ const HomePage = async () => {
     meta,
   ] = await Promise.all([
     fetchFeaturedSignificantProjects(),
-    fetchTechStacks({ onlyFeatured: true, all: true }),
+    fetchTechStacks({
+      onlyFeatured: true,
+      all: true,
+      orderBy: { column: 'displayOrder', direction: 'ascending' },
+    }),
     fetchFeaturedAchievements(),
     fetchFeaturedReviews(),
     fetchUniversities({ all: true }),

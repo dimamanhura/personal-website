@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const techStackInputSchema = z.object({
+  displayOrder: z.coerce.number().min(0),
   categoryId: z.string().optional(),
   category: z.string().optional(),
   title: z.string().min(2).max(255),

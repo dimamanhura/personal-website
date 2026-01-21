@@ -11,6 +11,7 @@ export async function editTechStack(
 ): Promise<ManageItemFormState> {
   try {
     const result: TechStackOutput = techStackInputSchema.parse({
+      displayOrder: values.displayOrder,
       categoryId: values.categoryId,
       title: values.title,
       type: values.type,
@@ -22,6 +23,7 @@ export async function editTechStack(
         id,
       },
       data: {
+        displayOrder: result.displayOrder,
         categoryId: result.categoryId,
         title: result.title,
         type: result.type,

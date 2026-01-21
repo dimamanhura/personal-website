@@ -3,5 +3,5 @@ model TechTool {
   title    String     @unique
   featured Boolean
   stackId  String?    @db.ObjectId
-  stack    TechStack? @relation(fields: [stackId], references: [id], onDelete: Cascade)
+  stack    TechStack? @relation(fields: [stackId], references: [id], onDelete: SetNull)
 }

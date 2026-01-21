@@ -21,6 +21,7 @@ export const CreateTechStackForm = ({ categories }: CreateTechStackFormProps) =>
   const form = useForm<TechStackInput>({
     resolver: zodResolver(techStackInputSchema),
     defaultValues: {
+      displayOrder: 0,
       categoryId: undefined,
       title: '',
       type: '',
@@ -110,6 +111,23 @@ export const CreateTechStackForm = ({ categories }: CreateTechStackFormProps) =>
                 </SelectItem>
               ))}
             </Select>
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="displayOrder"
+          render={({ field, fieldState }) => (
+            <Input
+              {...field}
+              value={field.value?.toString() ?? '0'}
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              type="number"
+              placeholder="Order"
+              label="Order"
+              onChange={({ target: { value } }) => field.onChange(value === '' ? 0 : Number(value))}
+            />
           )}
         />
 

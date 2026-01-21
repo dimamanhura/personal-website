@@ -19,6 +19,7 @@ export async function createTechStacksBulk(values: TechStackInput[]) {
 
     await db.techStack.createMany({
       data: validatedData.map((item) => ({
+        displayOrder: item.displayOrder,
         categoryId: item.category ? categoriesMap.get(item.category) || null : null,
         title: item.title,
         type: item.type,
