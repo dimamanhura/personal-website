@@ -3,19 +3,22 @@
 import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import { toast } from 'sonner';
 import { ProjectWithTech } from '@/db/queries/projects';
 import * as actions from '@/actions';
 import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } from '@/components';
 import { ProjectInput, projectInputSchema } from '@/schemas';
 import { formatDateForInput } from '@/utils';
+import { TechStack, TechTool } from '@prisma/client';
 
 interface EditProjectFormProps {
   project: ProjectWithTech;
+  stacks: TechStack[];
+  tools: TechTool[];
 }
 
-export const EditProjectForm = ({ project }: EditProjectFormProps) => {
+export const EditProjectForm = ({ project, stacks, tools }: EditProjectFormProps) => {
   const form = useForm<ProjectInput>({
     resolver: zodResolver(projectInputSchema),
     defaultValues: {
@@ -32,9 +35,9 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
       featured: !!project.featured,
       responsibilities: project.responsibilities,
       achievements: project.achievements || [],
-      integrations: project.integrations.map(({ id }) => id),
-      stacks: project.stacks.map(({ id }) => id),
-      tools: project.tools.map(({ id }) => id),
+      stacks: project.stacks ? project.stacks.map(({ id }) => id) : [],
+      integrations: project.integrations ? project.integrations.map(({ id }) => id) : [],
+      tools: project.tools ? project.tools.map(({ id }) => id) : [],
     },
   });
   const logoUrl = form.watch('logo');
@@ -141,7 +144,9 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
             />
           )}
         />
+
         <MultiItemField label="Features" name="features" form={form} />
+
         <div className="flex flex-col">
           <UploadImageButton
             title="Logo"
@@ -156,6 +161,7 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
             <ErrorMessage message={form.formState.errors.logo.message} />
           )}
         </div>
+
         <Controller
           control={form.control}
           name="position"
@@ -170,9 +176,7 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
           )}
         />
 
-        {/* TODO: Need to add stacks multi select */}
-
-        {/* TODO: Need to add tools multi select */}
+        <MultiItemField label="Responsibilities" name="responsibilities" form={form} />
 
         <MultiItemField
           label="Achievements"
@@ -208,6 +212,81 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
                 )}
               />
             </div>
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="stacks"
+          render={({ field, fieldState }) => (
+            <Select
+              selectionMode="multiple"
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Stacks"
+              label="Stacks"
+              selectedKeys={field.value ? field.value : []}
+              onSelectionChange={(keys) => {
+                field.onChange(Array.from(keys));
+              }}
+              onBlur={field.onBlur}
+            >
+              {stacks.map((stack) => (
+                <SelectItem key={stack.id} value={stack.id}>
+                  {stack.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="integrations"
+          render={({ field, fieldState }) => (
+            <Select
+              selectionMode="multiple"
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Integrations"
+              label="Integrations"
+              selectedKeys={field.value ? field.value : []}
+              onSelectionChange={(keys) => {
+                field.onChange(Array.from(keys));
+              }}
+              onBlur={field.onBlur}
+            >
+              {tools.map((tool) => (
+                <SelectItem key={tool.id} value={tool.id}>
+                  {tool.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="tools"
+          render={({ field, fieldState }) => (
+            <Select
+              selectionMode="multiple"
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Tools"
+              label="Tools"
+              selectedKeys={field.value ? field.value : []}
+              onSelectionChange={(keys) => {
+                field.onChange(Array.from(keys));
+              }}
+              onBlur={field.onBlur}
+            >
+              {tools.map((tool) => (
+                <SelectItem key={tool.id} value={tool.id}>
+                  {tool.title}
+                </SelectItem>
+              ))}
+            </Select>
           )}
         />
 

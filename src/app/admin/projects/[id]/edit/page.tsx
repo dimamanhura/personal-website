@@ -4,6 +4,8 @@ import { fetchProjectsById } from '@/db/queries/projects';
 import { deleteProject } from '@/actions';
 import { OverviewHeader, EditProjectForm } from '@/components';
 import paths from '@/paths';
+import { fetchTechStacks } from '@/db/queries/tech-stacks';
+import { fetchTechTools } from '@/db/queries/tech-tools';
 
 interface ProjectEditPageProps {
   params: { id: string };
@@ -22,6 +24,9 @@ const ProjectEditPage = async ({ params }: ProjectEditPageProps) => {
     return notFound();
   }
 
+  const { items: stacks } = await fetchTechStacks({ all: true });
+  const { items: tools } = await fetchTechTools({ all: true });
+
   return (
     <>
       <OverviewHeader
@@ -29,7 +34,7 @@ const ProjectEditPage = async ({ params }: ProjectEditPageProps) => {
         itemId={params.id}
         onDelete={deleteProject}
       />
-      <EditProjectForm project={project} />
+      <EditProjectForm project={project} stacks={stacks} tools={tools} />
     </>
   );
 };

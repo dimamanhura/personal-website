@@ -19,8 +19,8 @@ export const projectInputSchema = z.object({
   stacks: z.array(z.string().min(2).max(255)).min(1).max(100).optional(),
   integrationIds: z.array(z.string().min(2).max(255)).max(100).optional(),
   integrations: z.array(z.string().min(2).max(255)).max(100).optional(),
-  toolIds: z.array(z.string().min(2).max(255)).min(1).max(100).optional(),
-  tools: z.array(z.string().min(2).max(255)).min(1).max(100).optional(),
+  toolIds: z.array(z.string().min(2).max(255)).max(100).optional(),
+  tools: z.array(z.string().min(2).max(255)).max(100).optional(),
   featured: z.boolean(),
 });
 
