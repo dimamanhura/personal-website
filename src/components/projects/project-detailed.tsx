@@ -1,12 +1,12 @@
 import { Avatar, Chip, cn } from '@nextui-org/react';
-import { Project } from '@prisma/client';
 import { FaCalendar, FaUser } from 'react-icons/fa';
+import { ProjectWithTech } from '@/db/queries/projects';
 import { ItemsList, ChipsList, FeaturedFlag } from '@/components';
 import { formatDateRange } from '@/utils';
 
 interface ProjectDetailedProps {
   withFeaturedFlag?: boolean;
-  project: Project;
+  project: ProjectWithTech;
   asCard?: boolean;
 }
 
@@ -70,10 +70,10 @@ export const ProjectDetailed = async ({
         />
       )}
 
-      <ChipsList title="Stack" chips={project.stack} />
+      <ChipsList title="Stack" chips={project.stacks.map(({ title }) => title)} />
 
       {project.integrations.length > 0 && (
-        <ChipsList title="Integrations" chips={project.integrations} />
+        <ChipsList title="Integrations" chips={project.integrations.map(({ title }) => title)} />
       )}
     </div>
   );

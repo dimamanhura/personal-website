@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
+import { fetchTechCategories } from '@/db/queries/tech-categories';
 import { OverviewHeader, CreateTechStackForm } from '@/components';
 import paths from '@/paths';
-import { fetchTechCategories } from '@/db/queries/tech-categories';
 
 export const metadata: Metadata = {
   title: 'Tech Stack - New',

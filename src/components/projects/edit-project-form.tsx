@@ -4,15 +4,15 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
-import { Project } from '@prisma/client';
 import { toast } from 'sonner';
+import { ProjectWithTech } from '@/db/queries/projects';
 import * as actions from '@/actions';
 import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } from '@/components';
 import { ProjectInput, projectInputSchema } from '@/schemas';
 import { formatDateForInput } from '@/utils';
 
 interface EditProjectFormProps {
-  project: Project;
+  project: ProjectWithTech;
 }
 
 export const EditProjectForm = ({ project }: EditProjectFormProps) => {
@@ -31,15 +31,10 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
       team: project.team,
       featured: !!project.featured,
       responsibilities: project.responsibilities,
-      integrations: project.integrations,
-      stack: project.stack,
-      technologies: {
-        frontEnd: project.technologies.frontEnd || [],
-        backEnd: project.technologies.backEnd || [],
-        testing: project.technologies.testing || [],
-        deployment: project.technologies.deployment || [],
-      },
       achievements: project.achievements || [],
+      integrations: project.integrations.map(({ id }) => id),
+      stacks: project.stacks.map(({ id }) => id),
+      tools: project.tools.map(({ id }) => id),
     },
   });
   const logoUrl = form.watch('logo');
@@ -175,33 +170,9 @@ export const EditProjectForm = ({ project }: EditProjectFormProps) => {
           )}
         />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Stack" name="stack" form={form} />
-          <MultiItemField label="Integrations" name="integrations" form={form} />
-        </div>
+        {/* TODO: Need to add stacks multi select */}
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField
-            label="Technologies (front-end)"
-            name="technologies.frontEnd"
-            form={form}
-          />
-          <MultiItemField label="Technologies (back-end)" name="technologies.backEnd" form={form} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Technologies (testing)" name="technologies.testing" form={form} />
-          <MultiItemField
-            label="Technologies (deployment)"
-            name="technologies.deployment"
-            form={form}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Responsibilities" name="responsibilities" form={form} />
-          <MultiItemField label="Team" name="team" form={form} />
-        </div>
+        {/* TODO: Need to add tools multi select */}
 
         <MultiItemField
           label="Achievements"

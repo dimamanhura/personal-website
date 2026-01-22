@@ -22,6 +22,7 @@ export async function createTechToolsBulk(values: TechToolInput[]) {
         title: item.title,
         stackId: item.stack ? stackMap.get(item.stack) || null : null,
         featured: item.featured,
+        type: item.type,
       })),
     });
 

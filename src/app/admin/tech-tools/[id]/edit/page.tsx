@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchTechToolById } from '@/db/queries/tech-tools';
 import { fetchTechStacks } from '@/db/queries/tech-stacks';
+import { fetchTechToolById } from '@/db/queries/tech-tools';
 import { deleteTechTool } from '@/actions';
 import { EditTechToolForm, OverviewHeader } from '@/components';
 import paths from '@/paths';

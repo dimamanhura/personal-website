@@ -12,6 +12,7 @@ export async function editTechTool(
   try {
     const result: TechToolOutput = techToolInputSchema.parse({
       title: values.title,
+      type: values.type,
       featured: values.featured,
       stackId: values.stackId,
     });
@@ -22,6 +23,7 @@ export async function editTechTool(
       },
       data: {
         title: result.title,
+        type: result.type,
         stackId: result.stackId || null,
         featured: result.featured,
       },

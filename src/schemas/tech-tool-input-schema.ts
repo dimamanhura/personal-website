@@ -5,6 +5,7 @@ export const techToolInputSchema = z.object({
   featured: z.boolean(),
   stack: z.string().optional(),
   title: z.string().min(2).max(255),
+  type: z.string().min(2).max(255),
 });
 
 export type TechToolInput = z.input<typeof techToolInputSchema>;

@@ -38,7 +38,7 @@ export const TechToolsTable: FunctionComponent<TechToolsTableProps> = ({ items, 
         case 'stack':
           return techTool?.stack ? (
             <User
-              avatarProps={{ src: techTool.stack.logo, size: 'sm', radius: 'md' }}
+              avatarProps={{ src: techTool.stack.logo || '', size: 'sm', radius: 'md' }}
               name={techTool.stack.title}
             />
           ) : (

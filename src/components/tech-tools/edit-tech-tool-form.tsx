@@ -8,7 +8,7 @@ import { TechStack } from '@prisma/client';
 import { toast } from 'sonner';
 import { TechToolWithStack } from '@/db/queries/tech-tools';
 import * as actions from '@/actions';
-import { ErrorMessage } from '@/components';
+import { ErrorMessage, TypeGeneratorField } from '@/components';
 import { TechToolInput, techToolInputSchema } from '@/schemas';
 
 interface EditTechToolFormProps {
@@ -23,8 +23,10 @@ export const EditTechToolForm = ({ techTool, techStacks }: EditTechToolFormProps
       stackId: techTool.stackId || undefined,
       featured: !!techTool.featured,
       title: techTool.title,
+      type: techTool.type,
     },
   });
+  const title = form.watch('title');
 
   const [isPending, startTransition] = useTransition();
 
@@ -56,6 +58,22 @@ export const EditTechToolForm = ({ techTool, techStacks }: EditTechToolFormProps
             />
           )}
         />
+
+        <TypeGeneratorField text={title} onChange={(value) => form.setValue('type', value)}>
+          <Controller
+            control={form.control}
+            name="type"
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                isInvalid={!!fieldState.error}
+                errorMessage={fieldState.error?.message}
+                placeholder="Type"
+                label="Type"
+              />
+            )}
+          />
+        </TypeGeneratorField>
 
         <Controller
           control={form.control}

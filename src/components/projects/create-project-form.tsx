@@ -29,13 +29,8 @@ export const CreateProjectForm = () => {
       featured: false,
       responsibilities: [],
       integrations: [],
-      stack: [],
-      technologies: {
-        frontEnd: [],
-        backEnd: [],
-        testing: [],
-        deployment: [],
-      },
+      stacks: [],
+      tools: [],
       achievements: [],
     },
   });
@@ -159,6 +154,7 @@ export const CreateProjectForm = () => {
             <ErrorMessage message={form.formState.errors.logo.message} />
           )}
         </div>
+
         <Controller
           control={form.control}
           name="position"
@@ -173,33 +169,9 @@ export const CreateProjectForm = () => {
           )}
         />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Stack" name="stack" form={form} />
-          <MultiItemField label="Integrations" name="integrations" form={form} />
-        </div>
+        {/* TODO: Need to add stacks multi select */}
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField
-            label="Technologies (front-end)"
-            name="technologies.frontEnd"
-            form={form}
-          />
-          <MultiItemField label="Technologies (back-end)" name="technologies.backEnd" form={form} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Technologies (testing)" name="technologies.testing" form={form} />
-          <MultiItemField
-            label="Technologies (deployment)"
-            name="technologies.deployment"
-            form={form}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Responsibilities" name="responsibilities" form={form} />
-          <MultiItemField label="Team" name="team" form={form} />
-        </div>
+        {/* TODO: Need to add tools multi select */}
 
         <MultiItemField
           label="Achievements"

@@ -1,7 +1,12 @@
 model TechTool {
-  id       String     @id @default(auto()) @map("_id") @db.ObjectId
-  title    String     @unique
-  featured Boolean
-  stackId  String?    @db.ObjectId
-  stack    TechStack? @relation(fields: [stackId], references: [id], onDelete: SetNull)
+  id                    String     @id @default(auto()) @map("_id") @db.ObjectId
+  title                 String     @unique
+  featured              Boolean    @default(false)
+  type                  String     @unique
+  stackId               String?    @db.ObjectId
+  stack                 TechStack? @relation(fields: [stackId], references: [id], onDelete: SetNull)
+  projectIds            String[]   @db.ObjectId
+  projects              Project[]  @relation("ProjectTools", fields: [projectIds], references: [id])
+  integrationProjectIds String[]   @db.ObjectId
+  integrationProjects   Project[]  @relation("ProjectIntegrations", fields: [integrationProjectIds], references: [id])
 }

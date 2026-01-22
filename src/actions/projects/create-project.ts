@@ -21,9 +21,9 @@ export async function createProject(values: ProjectInput): Promise<ManageItemFor
       featured: values.featured,
       responsibilities: values.responsibilities,
       integrations: values.integrations,
-      stack: values.stack,
-      technologies: values.technologies,
       achievements: values.achievements,
+      stacks: values.stacks,
+      tools: values.tools,
     });
 
     const project = await db.project.create({
@@ -40,18 +40,19 @@ export async function createProject(values: ProjectInput): Promise<ManageItemFor
         team: result.team,
         featured: result.featured,
         responsibilities: result.responsibilities,
-        integrations: result.integrations,
-        stack: result.stack,
-        technologies: {
-          deployment: result.technologies?.deployment || [],
-          frontEnd: result.technologies?.frontEnd || [],
-          backEnd: result.technologies?.backEnd || [],
-          testing: result.technologies?.testing || [],
-        },
         achievements: result.achievements?.map((achievement) => ({
           title: achievement.title,
           description: achievement.description || '',
         })),
+        ...(result.stacks
+          ? { stacks: { connect: result.stacks.map((id) => ({ id })) } }
+          : { stacks: { connect: [] } }),
+        ...(result.integrations
+          ? { integrations: { connect: result.integrations.map((id) => ({ id })) } }
+          : { integrations: { connect: [] } }),
+        ...(result.tools
+          ? { tools: { connect: result.tools.map((id) => ({ id })) } }
+          : { tools: { connect: [] } }),
       },
     });
 

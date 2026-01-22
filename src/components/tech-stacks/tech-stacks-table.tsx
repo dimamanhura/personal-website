@@ -5,7 +5,7 @@ import { User } from '@nextui-org/react';
 import { TechStackWithTools } from '@/db/queries/tech-stacks';
 import { deleteTechStack } from '@/actions';
 import { techStacksColumns } from '@/columns';
-import { ItemsTable, TableActions, TruncatedText } from '@/components';
+import { FeaturedFlag, ItemsTable, TableActions, TruncatedText } from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
 
@@ -36,13 +36,16 @@ export const TechStacksTable: FunctionComponent<TechStacksTableProps> = ({ items
           return (
             <User
               avatarProps={{
-                src: techStack.logo,
+                src: techStack.logo || '',
                 size: 'sm',
                 radius: 'md',
               }}
               name={techStack.title}
             />
           );
+
+        case 'featured':
+          return <FeaturedFlag featured={techStack.featured} />;
 
         case 'category':
           return techStack.category ? techStack.category.title : 'N/A';

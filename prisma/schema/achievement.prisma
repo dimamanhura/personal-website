@@ -5,5 +5,5 @@ model Achievement {
   solution    String[]
   result      String[]
   notes       String[]
-  featured    Boolean
+  featured    Boolean  @default(false)
 }

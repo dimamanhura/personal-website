@@ -1,10 +1,13 @@
 model TechStack {
   id           String        @id @default(auto()) @map("_id") @db.ObjectId
   title        String        @unique
-  logo         String
+  logo         String?
   type         String        @unique
   displayOrder Int           @default(0)
+  featured     Boolean       @default(false)
   tools        TechTool[]
   categoryId   String?       @db.ObjectId
   category     TechCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  projectIds   String[]      @db.ObjectId
+  projects     Project[]     @relation(fields: [projectIds], references: [id])
 }

@@ -21,9 +21,9 @@ export async function editProject(id: string, project: ProjectInput): Promise<Ma
       featured: project.featured,
       responsibilities: project.responsibilities,
       integrations: project.integrations,
-      stack: project.stack,
-      technologies: project.technologies,
       achievements: project.achievements,
+      stacks: project.stacks,
+      tools: project.tools,
     });
 
     await db.project.update({
@@ -43,18 +43,19 @@ export async function editProject(id: string, project: ProjectInput): Promise<Ma
         team: result.team,
         featured: result.featured,
         responsibilities: result.responsibilities,
-        integrations: result.integrations,
-        stack: result.stack,
-        technologies: {
-          deployment: result.technologies?.deployment || [],
-          frontEnd: result.technologies?.frontEnd || [],
-          backEnd: result.technologies?.backEnd || [],
-          testing: result.technologies?.testing || [],
-        },
         achievements: result.achievements?.map((achievement) => ({
           title: achievement.title,
           description: achievement.description || '',
         })),
+        ...(result.stacks
+          ? { stacks: { set: result.stacks.map((id) => ({ id })) } }
+          : { stacks: { set: [] } }),
+        ...(result.integrations
+          ? { integrations: { set: result.integrations.map((id) => ({ id })) } }
+          : { integrations: { set: [] } }),
+        ...(result.tools
+          ? { tools: { set: result.tools.map((id) => ({ id })) } }
+          : { tools: { set: [] } }),
       },
     });
 

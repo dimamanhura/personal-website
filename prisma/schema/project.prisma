@@ -1,7 +1,7 @@
 model Project {
-  id               String                   @id @default(auto()) @map("_id") @db.ObjectId
-  name             String                   @unique
-  slug             String                   @unique
+  id               String               @id @default(auto()) @map("_id") @db.ObjectId
+  name             String               @unique
+  slug             String               @unique
   shortDescription String
   longDescription  String
   features         String[]
@@ -10,10 +10,13 @@ model Project {
   logo             String?
   position         String
   team             String[]
-  featured         Boolean
+  featured         Boolean              @default(false)
   responsibilities String[]
-  integrations     String[]
-  stack            String[]
-  technologies     ProjectTechnologySection
   achievements     ProjectAchievement[]
+  stackIds         String[]             @db.ObjectId
+  stacks           TechStack[]          @relation(fields: [stackIds], references: [id])
+  integrationIds   String[]             @db.ObjectId
+  integrations     TechTool[]           @relation("ProjectIntegrations", fields: [integrationIds], references: [id])
+  toolIds          String[]             @db.ObjectId
+  tools            TechTool[]           @relation("ProjectTools", fields: [toolIds], references: [id])
 }

@@ -13,6 +13,7 @@ export async function editTechStack(
     const result: TechStackOutput = techStackInputSchema.parse({
       displayOrder: values.displayOrder,
       categoryId: values.categoryId,
+      featured: values.featured,
       title: values.title,
       type: values.type,
       logo: values.logo,
@@ -25,6 +26,7 @@ export async function editTechStack(
       data: {
         displayOrder: result.displayOrder,
         categoryId: result.categoryId,
+        featured: result.featured,
         title: result.title,
         type: result.type,
         logo: result.logo,

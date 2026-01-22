@@ -11,7 +11,7 @@ export const TechStacksList = ({ techStacks }: TechStacksListProps) => {
     return (
       <User
         description={`${tools.map((tool) => tool.title).join(', ')}`}
-        avatarProps={{ src: logo, radius: 'md' }}
+        avatarProps={{ src: logo || '', radius: 'md' }}
         name={title}
         key={id}
       />

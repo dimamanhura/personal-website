@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { fetchTechCategories } from '@/db/queries/tech-categories';
+import { fetchTechStackById } from '@/db/queries/tech-stacks';
 import { deleteTechStack } from '@/actions';
 import { EditTechStackForm, OverviewHeader } from '@/components';
 import paths from '@/paths';
-import { fetchTechStackById } from '@/db/queries/tech-stacks';
-import { fetchTechCategories } from '@/db/queries/tech-categories';
 
 interface TechStackEditPageProps {
   params: { id: string };

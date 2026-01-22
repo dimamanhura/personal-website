@@ -25,19 +25,20 @@ export async function createProjectsBulk(values: ProjectInput[]) {
         team: item.team,
         featured: item.featured,
         responsibilities: item.responsibilities,
-        integrations: item.integrations,
-        stack: item.stack,
-        technologies: {
-          deployment: item.technologies?.deployment || [],
-          frontEnd: item.technologies?.frontEnd || [],
-          backEnd: item.technologies?.backEnd || [],
-          testing: item.technologies?.testing || [],
-        },
         achievements:
           item.achievements?.map((achievement) => ({
             title: achievement.title,
             description: achievement.description || '',
           })) || [],
+        ...(item.stacks
+          ? { stacks: { connect: item.stacks.map((id) => ({ id })) } }
+          : { stacks: { connect: [] } }),
+        ...(item.integrations
+          ? { integrations: { connect: item.integrations.map((id) => ({ id })) } }
+          : { integrations: { connect: [] } }),
+        ...(item.tools
+          ? { tools: { connect: item.tools.map((id) => ({ id })) } }
+          : { tools: { connect: [] } }),
       })),
     });
 

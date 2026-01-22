@@ -28,6 +28,9 @@ export const fetchTechStacks = cache(
       },
       take: all ? undefined : DEFAULT_LIMIT,
       skip: all ? 0 : (page - 1) * DEFAULT_LIMIT,
+      where: {
+        featured: onlyFeatured || undefined,
+      },
       include: {
         category: true,
         tools: {

@@ -11,6 +11,7 @@ export async function createTechTool(values: TechToolInput): Promise<ManageItemF
       title: values.title,
       stackId: values.stackId,
       featured: values.featured,
+      type: values.type,
     });
 
     const techTool = await db.techTool.create({
@@ -18,6 +19,7 @@ export async function createTechTool(values: TechToolInput): Promise<ManageItemF
         title: result.title,
         stackId: result.stackId || null,
         featured: result.featured,
+        type: result.type,
       },
     });
 

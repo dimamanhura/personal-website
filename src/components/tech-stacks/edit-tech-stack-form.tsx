@@ -3,13 +3,13 @@
 import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input, Select, SelectItem } from '@nextui-org/react';
+import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { toast } from 'sonner';
+import { TechCategoryWithStacks } from '@/db/queries/tech-categories';
+import { TechStackWithTools } from '@/db/queries/tech-stacks';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import { TechStackInput, techStackInputSchema } from '@/schemas';
-import { TechStackWithTools } from '@/db/queries/tech-stacks';
-import { TechCategoryWithStacks } from '@/db/queries/tech-categories';
 
 interface EditTechStackFormProps {
   techStack: TechStackWithTools;
@@ -22,9 +22,10 @@ export const EditTechStackForm = ({ techStack, categories }: EditTechStackFormPr
     defaultValues: {
       displayOrder: techStack.displayOrder,
       categoryId: techStack.categoryId || undefined,
+      featured: !!techStack.featured,
       title: techStack.title,
       type: techStack.type,
-      logo: techStack.logo,
+      logo: techStack.logo || undefined,
     },
   });
   const logoUrl = form.watch('logo');
@@ -127,6 +128,25 @@ export const EditTechStackForm = ({ techStack, categories }: EditTechStackFormPr
               label="Order"
               onChange={({ target: { value } }) => field.onChange(value === '' ? 0 : Number(value))}
             />
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="featured"
+          render={({ field, fieldState }) => (
+            <>
+              <Checkbox
+                isSelected={!!field.value}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  field.onChange(e.target.checked)
+                }
+              >
+                Is Featured
+              </Checkbox>
+
+              {fieldState.error && <ErrorMessage message={fieldState.error?.message} />}
+            </>
           )}
         />
 

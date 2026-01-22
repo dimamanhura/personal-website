@@ -21,6 +21,7 @@ export async function createTechStacksBulk(values: TechStackInput[]) {
       data: validatedData.map((item) => ({
         displayOrder: item.displayOrder,
         categoryId: item.category ? categoriesMap.get(item.category) || null : null,
+        featured: item.featured,
         title: item.title,
         type: item.type,
         logo: item.logo,

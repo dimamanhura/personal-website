@@ -8,7 +8,7 @@ import { TechStack } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { ErrorMessage } from '@/components';
+import { ErrorMessage, TypeGeneratorField } from '@/components';
 import paths from '@/paths';
 import { TechToolInput, techToolInputSchema } from '@/schemas';
 
@@ -24,8 +24,10 @@ export const CreateTechToolForm = ({ techStacks }: CreateTechToolFormProps) => {
       featured: false,
       stackId: undefined,
       title: '',
+      type: '',
     },
   });
+  const title = form.watch('title');
 
   const [isPending, startTransition] = useTransition();
 
@@ -58,6 +60,22 @@ export const CreateTechToolForm = ({ techStacks }: CreateTechToolFormProps) => {
             />
           )}
         />
+
+        <TypeGeneratorField text={title} onChange={(value) => form.setValue('type', value)}>
+          <Controller
+            control={form.control}
+            name="type"
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                isInvalid={!!fieldState.error}
+                errorMessage={fieldState.error?.message}
+                placeholder="Type"
+                label="Type"
+              />
+            )}
+          />
+        </TypeGeneratorField>
 
         <Controller
           control={form.control}

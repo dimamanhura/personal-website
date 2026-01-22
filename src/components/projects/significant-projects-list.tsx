@@ -1,8 +1,8 @@
-import { Project } from '@prisma/client';
+import { ProjectWithTech } from '@/db/queries/projects';
 import { SignificantProjectCard } from '@/components';
 
 interface SignificantProjectsListProps {
-  significantProjects: Project[];
+  significantProjects: ProjectWithTech[];
 }
 
 export const SignificantProjectsList = ({ significantProjects }: SignificantProjectsListProps) => {

@@ -40,7 +40,6 @@ export {
 } from './education-input-schema';
 export { companyInputSchema, type CompanyInput, type CompanyOutput } from './company-input-schema';
 export { projectAchievementSchema } from './project-achievement-schema';
-export { projectTechnologySectionSchema } from './project-technology-section-schema';
 export { projectInputSchema, type ProjectInput, type ProjectOutput } from './project-input-schema';
 export { profileInputSchema, type ProfileInput, type ProfileOutput } from './profile-input-schema';
 export {
