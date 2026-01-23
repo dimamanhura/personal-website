@@ -63,17 +63,21 @@ export const ProjectDetailed = async ({
 
       <ItemsList title="Responsibilities" items={project.responsibilities} />
 
+      <ChipsList title="Stack" chips={project.stacks.map(({ title }) => title)} />
+
+      {project.tools.length > 0 && (
+        <ChipsList title="Tools" chips={project.tools.map(({ title }) => title)} />
+      )}
+
+      {project.integrations.length > 0 && (
+        <ChipsList title="Integrations" chips={project.integrations.map(({ title }) => title)} />
+      )}
+
       {project.achievements.length > 0 && (
         <ItemsList
           title="Challenges & Achievements"
           items={project.achievements.map((achievement) => achievement.title)}
         />
-      )}
-
-      <ChipsList title="Stack" chips={project.stacks.map(({ title }) => title)} />
-
-      {project.integrations.length > 0 && (
-        <ChipsList title="Integrations" chips={project.integrations.map(({ title }) => title)} />
       )}
     </div>
   );

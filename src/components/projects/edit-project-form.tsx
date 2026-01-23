@@ -178,43 +178,6 @@ export const EditProjectForm = ({ project, stacks, tools }: EditProjectFormProps
 
         <MultiItemField label="Responsibilities" name="responsibilities" form={form} />
 
-        <MultiItemField
-          label="Achievements"
-          name="achievements"
-          form={form}
-          renderField={(index) => (
-            <div className="flex w-full flex-col gap-2">
-              <Controller
-                control={form.control}
-                name={`achievements.${index}.title`}
-                render={({ field, fieldState }) => (
-                  <Input
-                    {...field}
-                    labelPlacement="inside"
-                    label="Position"
-                    isInvalid={!!fieldState.error}
-                    errorMessage={fieldState.error?.message}
-                    size="sm"
-                  />
-                )}
-              />
-
-              <Controller
-                control={form.control}
-                name={`achievements.${index}.description`}
-                render={({ field, fieldState }) => (
-                  <Textarea
-                    {...field}
-                    placeholder="Description"
-                    isInvalid={!!fieldState.error}
-                    errorMessage={fieldState.error?.message}
-                  />
-                )}
-              />
-            </div>
-          )}
-        />
-
         <Controller
           control={form.control}
           name="stacks"
@@ -287,6 +250,43 @@ export const EditProjectForm = ({ project, stacks, tools }: EditProjectFormProps
                 </SelectItem>
               ))}
             </Select>
+          )}
+        />
+
+        <MultiItemField
+          label="Achievements"
+          name="achievements"
+          form={form}
+          renderField={(index) => (
+            <div className="flex w-full flex-col gap-2">
+              <Controller
+                control={form.control}
+                name={`achievements.${index}.title`}
+                render={({ field, fieldState }) => (
+                  <Input
+                    {...field}
+                    labelPlacement="inside"
+                    label="Position"
+                    isInvalid={!!fieldState.error}
+                    errorMessage={fieldState.error?.message}
+                    size="sm"
+                  />
+                )}
+              />
+
+              <Controller
+                control={form.control}
+                name={`achievements.${index}.description`}
+                render={({ field, fieldState }) => (
+                  <Textarea
+                    {...field}
+                    placeholder="Description"
+                    isInvalid={!!fieldState.error}
+                    errorMessage={fieldState.error?.message}
+                  />
+                )}
+              />
+            </div>
           )}
         />
 
