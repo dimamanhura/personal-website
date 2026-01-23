@@ -1,18 +1,50 @@
-import { User } from '@nextui-org/react';
-import { TechStackWithTools } from '@/db/queries/tech-stacks';
+import { cn, Tooltip, User } from '@nextui-org/react';
+import { TechStackWithProjectsAndTools } from '@/db/queries/tech-stacks';
+import { TechProjectList } from '@/components';
 
 interface TechStacksListProps {
-  techStacks: TechStackWithTools[];
+  techStacks: TechStackWithProjectsAndTools[];
 }
 
 export const TechStacksList = ({ techStacks }: TechStacksListProps) => {
+  const linkEffectCn = cn(
+    'hover:text-under cursor-pointer transition-all duration-200 hover:underline',
+  );
+
   return techStacks.map((techStack) => {
-    const { tools, title, logo, id } = techStack;
+    const { projects, tools, title, logo, id } = techStack;
     return (
       <User
-        description={`${tools.map((tool) => tool.title).join(', ')}`}
+        description={
+          <div className="flex gap-1">
+            {tools.map((tool, index) => (
+              <Tooltip
+                content={
+                  <TechProjectList
+                    projects={[...tool.projects, ...tool.integrationProjects]}
+                    techTitle={tool.title}
+                  />
+                }
+                key={tool.id}
+              >
+                <div className="flex">
+                  <span className={linkEffectCn}>{tool.title}</span>
+                  {index !== tools.length - 1 && ','}
+                </div>
+              </Tooltip>
+            ))}
+          </div>
+        }
         avatarProps={{ src: logo || '', radius: 'md' }}
-        name={title}
+        name={
+          projects.length ? (
+            <Tooltip content={<TechProjectList projects={projects} techTitle={title} />}>
+              <span className={linkEffectCn}>{title}</span>
+            </Tooltip>
+          ) : (
+            title
+          )
+        }
         key={id}
       />
     );

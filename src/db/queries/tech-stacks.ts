@@ -4,8 +4,17 @@ import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
 
-export type TechStackWithTools = Prisma.TechStackGetPayload<{
-  include: { tools: true; category: true };
+export type TechStackWithProjectsAndTools = Prisma.TechStackGetPayload<{
+  include: {
+    projects: true;
+    tools: {
+      include: {
+        integrationProjects: true;
+        projects: true;
+      };
+    };
+    category: true;
+  };
 }>;
 
 export const fetchTechStacks = cache(
@@ -14,7 +23,7 @@ export const fetchTechStacks = cache(
     orderBy?: Sort;
     page?: number;
     all?: boolean;
-  }): Promise<PaginatedData<TechStackWithTools>> => {
+  }): Promise<PaginatedData<TechStackWithProjectsAndTools>> => {
     const {
       onlyFeatured = true,
       orderBy = { column: 'id', direction: 'descending' },
@@ -32,8 +41,13 @@ export const fetchTechStacks = cache(
         featured: onlyFeatured || undefined,
       },
       include: {
+        projects: true,
         category: true,
         tools: {
+          include: {
+            integrationProjects: true,
+            projects: true,
+          },
           where: onlyFeatured
             ? {
                 featured: onlyFeatured || undefined,
@@ -49,12 +63,20 @@ export const fetchTechStacks = cache(
   },
 );
 
-export const fetchTechStackById = cache(async (id: string): Promise<TechStackWithTools | null> => {
-  return await db.techStack.findFirst({
-    where: { id },
-    include: {
-      category: true,
-      tools: true,
-    },
-  });
-});
+export const fetchTechStackById = cache(
+  async (id: string): Promise<TechStackWithProjectsAndTools | null> => {
+    return await db.techStack.findFirst({
+      where: { id },
+      include: {
+        projects: true,
+        category: true,
+        tools: {
+          include: {
+            integrationProjects: true,
+            projects: true,
+          },
+        },
+      },
+    });
+  },
+);

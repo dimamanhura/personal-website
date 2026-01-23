@@ -1,9 +1,9 @@
 import { User } from '@nextui-org/react';
-import { TechStackWithTools } from '@/db/queries/tech-stacks';
+import { TechStackWithProjectsAndTools } from '@/db/queries/tech-stacks';
 import { ChipsList, FeaturedFlag } from '@/components';
 
 interface TechStackCardProps {
-  techStack: TechStackWithTools;
+  techStack: TechStackWithProjectsAndTools;
 }
 
 export const TechStackCard = ({ techStack }: TechStackCardProps) => {

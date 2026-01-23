@@ -6,13 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { toast } from 'sonner';
 import { TechCategoryWithStacks } from '@/db/queries/tech-categories';
-import { TechStackWithTools } from '@/db/queries/tech-stacks';
+import { TechStackWithProjectsAndTools } from '@/db/queries/tech-stacks';
 import * as actions from '@/actions';
 import { ErrorMessage, TypeGeneratorField, UploadImageButton } from '@/components';
 import { TechStackInput, techStackInputSchema } from '@/schemas';
 
 interface EditTechStackFormProps {
-  techStack: TechStackWithTools;
+  techStack: TechStackWithProjectsAndTools;
   categories: TechCategoryWithStacks[];
 }
 
