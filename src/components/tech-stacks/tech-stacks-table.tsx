@@ -54,10 +54,11 @@ export const TechStacksTable: FunctionComponent<TechStacksTableProps> = ({ items
           return techStack.category ? techStack.category.title : 'N/A';
 
         case 'tools':
-          return techStack.tools.length;
+          return techStack.tools?.length || 0;
 
         default:
-          return techStack[columnKey];
+          const value = techStack[columnKey];
+          return typeof value === 'string' ? value : null;
       }
     },
     [],
