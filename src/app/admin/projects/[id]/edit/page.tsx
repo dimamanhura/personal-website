@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchProjectsById } from '@/db/queries/projects';
+import { fetchTechStacks } from '@/db/queries/tech-stacks';
+import { fetchTechTools } from '@/db/queries/tech-tools';
 import { deleteProject } from '@/actions';
 import { OverviewHeader, EditProjectForm } from '@/components';
 import paths from '@/paths';
-import { fetchTechStacks } from '@/db/queries/tech-stacks';
-import { fetchTechTools } from '@/db/queries/tech-tools';
 
 interface ProjectEditPageProps {
   params: { id: string };

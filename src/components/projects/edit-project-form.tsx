@@ -4,13 +4,13 @@ import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { TechStack, TechTool } from '@prisma/client';
 import { toast } from 'sonner';
 import { ProjectWithTech } from '@/db/queries/projects';
 import * as actions from '@/actions';
 import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } from '@/components';
 import { ProjectInput, projectInputSchema } from '@/schemas';
 import { formatDateForInput } from '@/utils';
-import { TechStack, TechTool } from '@prisma/client';
 
 interface EditProjectFormProps {
   project: ProjectWithTech;

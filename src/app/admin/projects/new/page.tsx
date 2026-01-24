@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { OverviewHeader, CreateProjectForm } from '@/components';
-import paths from '@/paths';
 import { fetchTechStacks } from '@/db/queries/tech-stacks';
 import { fetchTechTools } from '@/db/queries/tech-tools';
+import { OverviewHeader, CreateProjectForm } from '@/components';
+import paths from '@/paths';
 
 export const metadata: Metadata = {
   title: 'Project - New',

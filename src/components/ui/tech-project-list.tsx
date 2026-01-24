@@ -1,11 +1,11 @@
 'use client';
 
 import { Chip, Listbox, ListboxItem } from '@nextui-org/react';
-import Link from 'next/link';
 import { Project } from '@prisma/client';
-import { formatDateRange, getDurationInYears } from '@/utils';
+import Link from 'next/link';
 import { FaInbox } from 'react-icons/fa';
 import paths from '@/paths';
+import { formatDateRange, getDurationInYears } from '@/utils';
 
 interface TechProjectListProps {
   techTitle: string;
