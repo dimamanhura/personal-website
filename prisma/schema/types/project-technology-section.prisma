@@ -1,6 +1,0 @@
-type ProjectTechnologySection {
-  frontEnd   String[]
-  backEnd    String[]
-  testing    String[]
-  deployment String[]
-}

@@ -24,15 +24,15 @@ export {
   type FeedbackOutput,
 } from './feedback-input-schema';
 export {
-  technologyInputSchema,
-  type TechnologyInput,
-  type TechnologyOutput,
-} from './technology-input-schema';
+  techToolInputSchema,
+  type TechToolInput,
+  type TechToolOutput,
+} from './tech-tool-input-schema';
 export {
-  technologySectionInputSchema,
-  type TechnologySectionInput,
-  type TechnologySectionOutput,
-} from './technology-section-input.schema';
+  techStackInputSchema,
+  type TechStackInput,
+  type TechStackOutput,
+} from './tech-stack-input.schema';
 export {
   educationInputSchema,
   type EducationInput,
@@ -40,6 +40,10 @@ export {
 } from './education-input-schema';
 export { companyInputSchema, type CompanyInput, type CompanyOutput } from './company-input-schema';
 export { projectAchievementSchema } from './project-achievement-schema';
-export { projectTechnologySectionSchema } from './project-technology-section-schema';
 export { projectInputSchema, type ProjectInput, type ProjectOutput } from './project-input-schema';
 export { profileInputSchema, type ProfileInput, type ProfileOutput } from './profile-input-schema';
+export {
+  techCategoryInputSchema,
+  type TechCategoryInput,
+  type TechCategoryOutput,
+} from './tech-category-input-schema';

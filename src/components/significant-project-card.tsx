@@ -1,16 +1,16 @@
 import { Button, User } from '@nextui-org/react';
-import { Project } from '@prisma/client';
 import Link from 'next/link';
+import { ProjectWithTech } from '@/db/queries/projects';
 import { formatDateRange } from '@/utils/format-date-range';
 import { ChipsList, ItemsList } from '@/components';
 import paths from '@/paths';
 
 interface SignificantProjectCardProps {
-  significantProject: Project;
+  significantProject: ProjectWithTech;
 }
 
 const SignificantProjectCard = ({ significantProject }: SignificantProjectCardProps) => {
-  const { shortDescription, position, achievements, logo, name, slug, startAt, endAt, stack } =
+  const { shortDescription, position, achievements, logo, name, slug, startAt, endAt, stacks } =
     significantProject;
 
   const renderLinkToProjectDetails = () => (
@@ -41,7 +41,7 @@ const SignificantProjectCard = ({ significantProject }: SignificantProjectCardPr
           <ItemsList items={achievements.map((achievement) => achievement.title)} />
         )}
       </div>
-      <ChipsList chips={stack} />
+      <ChipsList chips={stacks.map(({ title }) => title)} />
       <div className="mt-2 block w-full sm:hidden">{renderLinkToProjectDetails()}</div>
     </div>
   );

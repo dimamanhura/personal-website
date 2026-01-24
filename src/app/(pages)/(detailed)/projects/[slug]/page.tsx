@@ -24,7 +24,7 @@ export async function generateMetadata({
   return {
     title: project.name,
     description: project.shortDescription,
-    keywords: [project.name, ...project.stack],
+    keywords: [project.name, ...project.stacks.map(({ title }) => title)],
   };
 }
 

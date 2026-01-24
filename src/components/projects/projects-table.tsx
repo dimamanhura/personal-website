@@ -2,7 +2,7 @@
 
 import { FunctionComponent, useCallback } from 'react';
 import { User } from '@nextui-org/react';
-import { Project } from '@prisma/client';
+import { ProjectWithTech } from '@/db/queries/projects';
 import { deleteProject } from '@/actions';
 import { projectsColumns } from '@/columns';
 import { ItemsTable, TableActions, TruncatedText } from '@/components';
@@ -11,53 +11,56 @@ import { ColumnKey } from '@/types';
 import { formatDateRange } from '@/utils';
 
 interface ProjectsTableTableProps {
-  items: Project[];
+  items: ProjectWithTech[];
   count: number;
 }
 
 export const ProjectsTable: FunctionComponent<ProjectsTableTableProps> = ({ items, count }) => {
-  const renderCell = useCallback((project: Project, columnKey: ColumnKey<Project>) => {
-    if (columnKey === 'actions') {
-      return (
-        <TableActions
-          showPath={paths.projectsDetailsByIdAdmin}
-          editPath={paths.projectsEditByIdAdmin}
-          itemId={project.id}
-          onDelete={deleteProject}
-        />
-      );
-    }
-
-    switch (columnKey) {
-      case 'id':
-        return <TruncatedText text={project.id} />;
-
-      case 'name':
+  const renderCell = useCallback(
+    (project: ProjectWithTech, columnKey: ColumnKey<ProjectWithTech>) => {
+      if (columnKey === 'actions') {
         return (
-          <User
-            avatarProps={{
-              src: project.logo || undefined,
-              size: 'sm',
-              radius: 'md',
-            }}
-            name={project.name}
+          <TableActions
+            showPath={paths.projectsDetailsByIdAdmin}
+            editPath={paths.projectsEditByIdAdmin}
+            itemId={project.id}
+            onDelete={deleteProject}
           />
         );
+      }
 
-      case 'shortDescription':
-        return <TruncatedText text={project.shortDescription} />;
+      switch (columnKey) {
+        case 'id':
+          return <TruncatedText text={project.id} />;
 
-      case 'startAt':
-        return formatDateRange(project.startAt, project.endAt);
+        case 'name':
+          return (
+            <User
+              avatarProps={{
+                src: project.logo || undefined,
+                size: 'sm',
+                radius: 'md',
+              }}
+              name={project.name}
+            />
+          );
 
-      default:
-        const value = project[columnKey];
-        return typeof value === 'string' ? value : null;
-    }
-  }, []);
+        case 'shortDescription':
+          return <TruncatedText text={project.shortDescription} />;
+
+        case 'startAt':
+          return formatDateRange(project.startAt, project.endAt);
+
+        default:
+          const value = project[columnKey];
+          return typeof value === 'string' ? value : null;
+      }
+    },
+    [],
+  );
 
   return (
-    <ItemsTable<Project>
+    <ItemsTable<ProjectWithTech>
       items={items}
       count={count}
       title={'Projects'}

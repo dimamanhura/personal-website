@@ -3,7 +3,8 @@
 import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { TechStack, TechTool } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
@@ -11,7 +12,12 @@ import { ErrorMessage, UploadImageButton, MultiItemField, SlugGeneratorField } f
 import paths from '@/paths';
 import { ProjectInput, projectInputSchema } from '@/schemas';
 
-export const CreateProjectForm = () => {
+interface CreateProjectFormProps {
+  stacks: TechStack[];
+  tools: TechTool[];
+}
+
+export const CreateProjectForm = ({ stacks, tools }: CreateProjectFormProps) => {
   const router = useRouter();
   const form = useForm<ProjectInput>({
     resolver: zodResolver(projectInputSchema),
@@ -28,14 +34,9 @@ export const CreateProjectForm = () => {
       team: [],
       featured: false,
       responsibilities: [],
+      stacks: [],
       integrations: [],
-      stack: [],
-      technologies: {
-        frontEnd: [],
-        backEnd: [],
-        testing: [],
-        deployment: [],
-      },
+      tools: [],
       achievements: [],
     },
   });
@@ -56,6 +57,8 @@ export const CreateProjectForm = () => {
       }
     });
   };
+
+  console.log('Form Errors:', form.formState.errors);
 
   return (
     <form method="post" onSubmit={form.handleSubmit(onSubmit)}>
@@ -144,7 +147,9 @@ export const CreateProjectForm = () => {
             />
           )}
         />
+
         <MultiItemField label="Features" name="features" form={form} />
+
         <div className="flex flex-col">
           <UploadImageButton
             title="Logo"
@@ -159,6 +164,7 @@ export const CreateProjectForm = () => {
             <ErrorMessage message={form.formState.errors.logo.message} />
           )}
         </div>
+
         <Controller
           control={form.control}
           name="position"
@@ -173,33 +179,82 @@ export const CreateProjectForm = () => {
           )}
         />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Stack" name="stack" form={form} />
-          <MultiItemField label="Integrations" name="integrations" form={form} />
-        </div>
+        <MultiItemField label="Responsibilities" name="responsibilities" form={form} />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField
-            label="Technologies (front-end)"
-            name="technologies.frontEnd"
-            form={form}
-          />
-          <MultiItemField label="Technologies (back-end)" name="technologies.backEnd" form={form} />
-        </div>
+        <Controller
+          control={form.control}
+          name="stacks"
+          render={({ field, fieldState }) => (
+            <Select
+              selectionMode="multiple"
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Stacks"
+              label="Stacks"
+              selectedKeys={field.value ? field.value : []}
+              onSelectionChange={(keys) => {
+                field.onChange(Array.from(keys));
+              }}
+              onBlur={field.onBlur}
+            >
+              {stacks.map((stack) => (
+                <SelectItem key={stack.id} value={stack.id}>
+                  {stack.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Technologies (testing)" name="technologies.testing" form={form} />
-          <MultiItemField
-            label="Technologies (deployment)"
-            name="technologies.deployment"
-            form={form}
-          />
-        </div>
+        <Controller
+          control={form.control}
+          name="integrations"
+          render={({ field, fieldState }) => (
+            <Select
+              selectionMode="multiple"
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Integrations"
+              label="Integrations"
+              selectedKeys={field.value ? field.value : []}
+              onSelectionChange={(keys) => {
+                field.onChange(Array.from(keys));
+              }}
+              onBlur={field.onBlur}
+            >
+              {tools.map((tool) => (
+                <SelectItem key={tool.id} value={tool.id}>
+                  {tool.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
 
-        <div className="grid grid-cols-2 gap-4">
-          <MultiItemField label="Responsibilities" name="responsibilities" form={form} />
-          <MultiItemField label="Team" name="team" form={form} />
-        </div>
+        <Controller
+          control={form.control}
+          name="tools"
+          render={({ field, fieldState }) => (
+            <Select
+              selectionMode="multiple"
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Tools"
+              label="Tools"
+              selectedKeys={field.value ? field.value : []}
+              onSelectionChange={(keys) => {
+                field.onChange(Array.from(keys));
+              }}
+              onBlur={field.onBlur}
+            >
+              {tools.map((tool) => (
+                <SelectItem key={tool.id} value={tool.id}>
+                  {tool.title}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
 
         <MultiItemField
           label="Achievements"

@@ -33,20 +33,27 @@ export { FeedbackSectionCard } from './feedback-sections/feedback-section-card';
 export { FeedbackSectionsImportButton } from './feedback-sections/feedback-sections-import-button';
 export { FeedbackSectionsTable } from './feedback-sections/feedback-sections-table';
 
-// technologies
-export { TechnologiesTable } from './technologies/technologies-table';
-export { CreateTechnologyForm } from './technologies/create-technology-form';
-export { EditTechnologyForm } from './technologies/edit-technology-form';
-export { TechnologyCard } from './technologies/technology-card';
-export { TechnologiesImportButton } from './technologies/technologies-import-button';
+// tech tools
+export { TechToolsTable } from './tech-tools/tech-tools-table';
+export { CreateTechToolForm } from './tech-tools/create-tech-tool-form';
+export { EditTechToolForm } from './tech-tools/edit-tech-tool-form';
+export { TechToolCard } from './tech-tools/tech-tool-card';
+export { TechToolsImportButton } from './tech-tools/tech-tool-import-button';
 
-// technology sections
-export { TechnologySectionsTable } from './technology-sections/technology-sections-table';
-export { TechnologiesSectionsList } from './technology-sections/technologies-sections-list';
-export { TechnologySectionCard } from './technology-sections/technology-section-card';
-export { CreateTechnologySectionForm } from './technology-sections/create-technology-section-form';
-export { EditTechnologySectionForm } from './technology-sections/edit-technology-section-form';
-export { TechnologySectionsImportButton } from './technology-sections/technology-sections-import-button';
+// tech stacks
+export { TechStacksTable } from './tech-stacks/tech-stacks-table';
+export { TechStacksList } from './tech-stacks/tech-stacks-list';
+export { TechStackCard } from './tech-stacks/tech-stack-card';
+export { CreateTechStackForm } from './tech-stacks/create-tech-stack-form';
+export { EditTechStackForm } from './tech-stacks/edit-tech-stack-form';
+export { TechStacksImportButton } from './tech-stacks/tech-stacks-import-button';
+
+// tech categories
+export { CreateTechCategoryForm } from './tech-categories/create-tech-category-form';
+export { EditTechCategoryForm } from './tech-categories/edit-tech-category-form';
+export { TechCategoriesImportButton } from './tech-categories/tech-categories-import-button';
+export { TechCategoriesTable } from './tech-categories/tech-categories-table';
+export { TechCategoryCard } from './tech-categories/tech-category-card';
 
 // ui
 export { Banner } from './ui/banner';
@@ -80,6 +87,7 @@ export { AddItemButton } from './ui/add-item-button';
 export { ItemError } from './ui/item-error';
 export { ImportInput } from './ui/import-input';
 export { TypeGeneratorField } from './ui/type-generator-field';
+export { TechProjectList } from './ui/tech-project-list';
 
 // table
 export { ItemsTable } from './table/items-table';

@@ -2,7 +2,7 @@ model Feedback {
   id              String           @id @default(auto()) @map("_id") @db.ObjectId
   sectionId       String?          @db.ObjectId
   review          String
-  featured        Boolean
+  featured        Boolean          @default(false)
   feedbackSection FeedbackSection? @relation(fields: [sectionId], references: [id])
   author          String
   receivedAt      DateTime

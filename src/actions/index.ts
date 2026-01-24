@@ -16,7 +16,6 @@ export { editFeedback } from './feedback/edit-feedback';
 export { createFeedback } from './feedback/create-feedback';
 
 // feedback section
-
 export { createFeedbackSectionsBulk } from './feedback-sections/create-feedback-section-bulk';
 export { deleteFeedbackSection } from './feedback-sections/delete-feedback-section';
 export { editFeedbackSection } from './feedback-sections/edit-feedback-section';
@@ -27,17 +26,23 @@ export { signInWithCredentials } from './auth/sign-in';
 export { signUpUser } from './auth/sign-up';
 export { signOutUser } from './auth/sign-out';
 
-// technologies
-export { createTechnologiesBulk } from './technologies/create-technologies-bulk';
-export { deleteTechnology } from './technologies/delete-technology';
-export { createTechnology } from './technologies/create-technology';
-export { editTechnology } from './technologies/edit-technology';
+// tech tools
+export { createTechToolsBulk } from './tech-tools/create-tech-tools-bulk';
+export { deleteTechTool } from './tech-tools/delete-tech-tool';
+export { createTechTool } from './tech-tools/create-tech-tool';
+export { editTechTool } from './tech-tools/edit-tech-tool';
 
-// technology sections
-export { createTechnologySectionsBulk } from './technology-sections/create-technology-sections-bulk';
-export { deleteTechnologySection } from './technology-sections/delete-technology-section';
-export { createTechnologySection } from './technology-sections/create-technology-section';
-export { editTechnologySection } from './technology-sections/edit-technology-section';
+// tech stacks
+export { createTechStacksBulk } from './tech-stacks/create-tech-stacks-bulk';
+export { deleteTechStack } from './tech-stacks/delete-tech-stack';
+export { createTechStack } from './tech-stacks/create-tech-stack';
+export { editTechStack } from './tech-stacks/edit-tech-stack';
+
+// tech categories
+export { createTechCategoriesBulk } from './tech-categories/create-tech-categories-bulk';
+export { deleteTechCategory } from './tech-categories/delete-tech-category';
+export { createTechCategory } from './tech-categories/create-tech-category';
+export { editTechCategory } from './tech-categories/edit-tech-category';
 
 // education
 export { createEducationBulk } from './education/create-education-bulk';

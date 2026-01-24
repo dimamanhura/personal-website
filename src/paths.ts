@@ -32,8 +32,9 @@ const paths: PublicPaths & AdminPaths = {
   ...generateAdminPaths(AdminEntity.feedback),
   ...generateAdminPaths(AdminEntity.feedbackSections),
   ...generateAdminPaths(AdminEntity.projects),
-  ...generateAdminPaths(AdminEntity.technologies),
-  ...generateAdminPaths(AdminEntity.technologySections),
+  ...generateAdminPaths(AdminEntity.techCategories),
+  ...generateAdminPaths(AdminEntity.techStacks),
+  ...generateAdminPaths(AdminEntity.techTools),
 };
 
 export default paths;

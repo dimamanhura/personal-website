@@ -1,7 +1,7 @@
-import { Project } from '@prisma/client';
+import { ProjectWithTech } from '@/db/queries/projects';
 import { Column, ColumnKey } from '@/types';
 
-export const columns: Column<ColumnKey<Project>>[] = [
+export const columns: Column<ColumnKey<ProjectWithTech>>[] = [
   { key: 'id', label: 'ID', allowsSorting: true },
   { key: 'name', label: 'Name', allowsSorting: true },
   { key: 'shortDescription', label: 'Description', allowsSorting: true },

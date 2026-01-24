@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { projectAchievementSchema, projectTechnologySectionSchema } from '@/schemas';
+import { projectAchievementSchema } from '@/schemas';
 import { isRealDate } from '@/utils';
 
 export const projectInputSchema = z.object({
@@ -14,10 +14,13 @@ export const projectInputSchema = z.object({
   position: z.string().min(2).max(255),
   team: z.array(z.string().min(2).max(255)).max(100).optional(),
   responsibilities: z.array(z.string().min(2).max(255)).min(1).max(100),
-  integrations: z.array(z.string().min(2).max(255)).max(100).optional(),
-  stack: z.array(z.string().min(2).max(255)).min(1).max(100),
   achievements: z.array(projectAchievementSchema).max(100).optional(),
-  technologies: projectTechnologySectionSchema,
+  stackIds: z.array(z.string().min(2).max(255)).min(1).max(100).optional(),
+  stacks: z.array(z.string().min(2).max(255)).min(1).max(100).optional(),
+  integrationIds: z.array(z.string().min(2).max(255)).max(100).optional(),
+  integrations: z.array(z.string().min(2).max(255)).max(100).optional(),
+  toolIds: z.array(z.string().min(2).max(255)).max(100).optional(),
+  tools: z.array(z.string().min(2).max(255)).max(100).optional(),
   featured: z.boolean(),
 });
 
