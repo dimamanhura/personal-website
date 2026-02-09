@@ -1,0 +1,5 @@
+type ProjectTradeOff {
+  chosen      String
+  alternative String
+  reason      String
+}

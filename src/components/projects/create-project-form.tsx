@@ -38,6 +38,7 @@ export const CreateProjectForm = ({ stacks, tools }: CreateProjectFormProps) => 
       integrations: [],
       tools: [],
       achievements: [],
+      tradeOffs: [],
     },
   });
   const logoUrl = form.watch('logo');
@@ -286,6 +287,60 @@ export const CreateProjectForm = ({ stacks, tools }: CreateProjectFormProps) => 
                     placeholder="Description"
                     isInvalid={!!fieldState.error}
                     errorMessage={fieldState.error?.message}
+                  />
+                )}
+              />
+            </div>
+          )}
+        />
+
+        <MultiItemField
+          label="Trade-offs"
+          name="tradeOffs"
+          form={form}
+          renderField={(index) => (
+            <div className="flex w-full flex-col gap-2">
+              <div className="flex gap-2">
+                <Controller
+                  control={form.control}
+                  name={`tradeOffs.${index}.chosen`}
+                  render={({ field, fieldState }) => (
+                    <Input
+                      {...field}
+                      label="Chosen"
+                      isInvalid={!!fieldState.error}
+                      errorMessage={fieldState.error?.message}
+                      size="sm"
+                    />
+                  )}
+                />
+                <Controller
+                  control={form.control}
+                  name={`tradeOffs.${index}.alternative`}
+                  render={({ field, fieldState }) => (
+                    <Input
+                      {...field}
+                      label="Alternative"
+                      isInvalid={!!fieldState.error}
+                      errorMessage={fieldState.error?.message}
+                      size="sm"
+                    />
+                  )}
+                />
+              </div>
+
+              <Controller
+                control={form.control}
+                name={`tradeOffs.${index}.reason`}
+                render={({ field, fieldState }) => (
+                  <Textarea
+                    {...field}
+                    label="Reasoning"
+                    placeholder="Why was this choice made?"
+                    isInvalid={!!fieldState.error}
+                    errorMessage={fieldState.error?.message}
+                    size="sm"
+                    minRows={2}
                   />
                 )}
               />

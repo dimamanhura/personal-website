@@ -35,6 +35,7 @@ export const EditProjectForm = ({ project, stacks, tools }: EditProjectFormProps
       featured: !!project.featured,
       responsibilities: project.responsibilities,
       achievements: project.achievements || [],
+      tradeOffs: project.tradeOffs || [],
       stacks: project.stacks ? project.stacks.map(({ id }) => id) : [],
       integrations: project.integrations ? project.integrations.map(({ id }) => id) : [],
       tools: project.tools ? project.tools.map(({ id }) => id) : [],
@@ -283,6 +284,60 @@ export const EditProjectForm = ({ project, stacks, tools }: EditProjectFormProps
                     placeholder="Description"
                     isInvalid={!!fieldState.error}
                     errorMessage={fieldState.error?.message}
+                  />
+                )}
+              />
+            </div>
+          )}
+        />
+
+        <MultiItemField
+          label="Trade-offs"
+          name="tradeOffs"
+          form={form}
+          renderField={(index) => (
+            <div className="flex w-full flex-col gap-2">
+              <div className="flex gap-2">
+                <Controller
+                  control={form.control}
+                  name={`tradeOffs.${index}.chosen`}
+                  render={({ field, fieldState }) => (
+                    <Input
+                      {...field}
+                      label="Chosen"
+                      isInvalid={!!fieldState.error}
+                      errorMessage={fieldState.error?.message}
+                      size="sm"
+                    />
+                  )}
+                />
+                <Controller
+                  control={form.control}
+                  name={`tradeOffs.${index}.alternative`}
+                  render={({ field, fieldState }) => (
+                    <Input
+                      {...field}
+                      label="Alternative"
+                      isInvalid={!!fieldState.error}
+                      errorMessage={fieldState.error?.message}
+                      size="sm"
+                    />
+                  )}
+                />
+              </div>
+
+              <Controller
+                control={form.control}
+                name={`tradeOffs.${index}.reason`}
+                render={({ field, fieldState }) => (
+                  <Textarea
+                    {...field}
+                    label="Reasoning"
+                    placeholder="Why was this choice made?"
+                    isInvalid={!!fieldState.error}
+                    errorMessage={fieldState.error?.message}
+                    size="sm"
+                    minRows={2}
                   />
                 )}
               />

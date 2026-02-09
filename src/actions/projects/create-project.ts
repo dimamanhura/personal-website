@@ -20,6 +20,7 @@ export async function createProject(values: ProjectInput): Promise<ManageItemFor
       team: values.team,
       featured: values.featured,
       responsibilities: values.responsibilities,
+      tradeOffs: values.tradeOffs,
       integrations: values.integrations,
       achievements: values.achievements,
       stacks: values.stacks,
@@ -40,6 +41,11 @@ export async function createProject(values: ProjectInput): Promise<ManageItemFor
         team: result.team,
         featured: result.featured,
         responsibilities: result.responsibilities,
+        tradeOffs: result.tradeOffs?.map((tradeOff) => ({
+          chosen: tradeOff.chosen,
+          alternative: tradeOff.alternative,
+          reason: tradeOff.reason || '',
+        })),
         achievements: result.achievements?.map((achievement) => ({
           title: achievement.title,
           description: achievement.description || '',

@@ -20,6 +20,7 @@ export async function editProject(id: string, project: ProjectInput): Promise<Ma
       team: project.team,
       featured: project.featured,
       responsibilities: project.responsibilities,
+      tradeOffs: project.tradeOffs,
       integrations: project.integrations,
       achievements: project.achievements,
       stacks: project.stacks,
@@ -46,6 +47,11 @@ export async function editProject(id: string, project: ProjectInput): Promise<Ma
         achievements: result.achievements?.map((achievement) => ({
           title: achievement.title,
           description: achievement.description || '',
+        })),
+        tradeOffs: result.tradeOffs?.map((tradeOff) => ({
+          chosen: tradeOff.chosen,
+          alternative: tradeOff.alternative,
+          reason: tradeOff.reason || '',
         })),
         ...(result.stacks
           ? { stacks: { set: result.stacks.map((id) => ({ id })) } }

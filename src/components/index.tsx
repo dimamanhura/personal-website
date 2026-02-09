@@ -118,6 +118,7 @@ export { ProjectsTable } from './projects/projects-table';
 export { CreateProjectForm } from './projects/create-project-form';
 export { EditProjectForm } from './projects/edit-project-form';
 export { ProjectsImportButton } from './projects/projects-import-button';
+export { TradeOffsList } from './projects/trade-offs-list';
 
 // profile
 export { ProfileTable } from './profile/profile-table';

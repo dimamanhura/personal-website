@@ -13,6 +13,7 @@ model Project {
   featured         Boolean              @default(false)
   responsibilities String[]
   achievements     ProjectAchievement[]
+  tradeOffs        ProjectTradeOff[]
   stackIds         String[]             @db.ObjectId
   stacks           TechStack[]          @relation(fields: [stackIds], references: [id])
   integrationIds   String[]             @db.ObjectId

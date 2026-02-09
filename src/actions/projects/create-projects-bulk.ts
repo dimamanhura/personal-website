@@ -44,6 +44,12 @@ export async function createProjectsBulk(values: ProjectInput[]) {
                 title: achievement.title,
                 description: achievement.description || '',
               })) || [],
+            tradeOffs:
+              item.tradeOffs?.map((tradeOff) => ({
+                chosen: tradeOff.chosen,
+                alternative: tradeOff.alternative,
+                reason: tradeOff.reason || '',
+              })) || [],
             ...(item.stacks
               ? {
                   stacks: {

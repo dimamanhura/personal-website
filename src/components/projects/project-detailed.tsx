@@ -1,7 +1,7 @@
 import { Avatar, Chip, cn } from '@nextui-org/react';
 import { FaCalendar, FaUser } from 'react-icons/fa';
 import { ProjectWithTech } from '@/db/queries/projects';
-import { ItemsList, ChipsList, FeaturedFlag } from '@/components';
+import { ItemsList, ChipsList, FeaturedFlag, TradeOffsList } from '@/components';
 import { formatDateRange } from '@/utils';
 
 interface ProjectDetailedProps {
@@ -78,6 +78,10 @@ export const ProjectDetailed = async ({
           title="Challenges & Achievements"
           items={project.achievements.map((achievement) => achievement.title)}
         />
+      )}
+
+      {project.tradeOffs && project.tradeOffs.length > 0 && (
+        <TradeOffsList items={project.tradeOffs} />
       )}
     </div>
   );
