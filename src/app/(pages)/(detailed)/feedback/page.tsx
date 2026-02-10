@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { fetchReviews } from '@/db/queries/feedback';
 import { fetchAllFeedbackSections } from '@/db/queries/feedback-sections';
 import { FeedbackFilterBySection, FeedbackList, FeedbackListLoading, Header } from '@/components';
 import { SearchParams } from '@/types';
@@ -18,11 +17,6 @@ interface FeedbackPageProps {
 
 const FeedbackPage = async ({ searchParams }: FeedbackPageProps) => {
   const { search: section, page } = await searchParams;
-
-  const { items: reviews, count } = await fetchReviews({
-    where: section && section !== 'all' ? { feedbackSection: { type: section } } : undefined,
-    page: page ? parseInt(page) : 1,
-  });
 
   const feedbackSections = await fetchAllFeedbackSections();
 
