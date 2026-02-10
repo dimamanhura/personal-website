@@ -4,4 +4,5 @@ export interface SearchParams {
   page?: string;
   sortBy?: string;
   order?: Order;
+  search?: string;
 }

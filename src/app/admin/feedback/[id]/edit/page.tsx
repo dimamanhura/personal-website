@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchFeedbackById, fetchReviewSections } from '@/db/queries/feedback';
+import { fetchFeedbackById } from '@/db/queries/feedback';
+import { fetchAllFeedbackSections } from '@/db/queries/feedback-sections';
 import { deleteFeedback } from '@/actions';
 import { EditFeedbackForm, OverviewHeader } from '@/components';
 import paths from '@/paths';
@@ -22,7 +23,7 @@ const FeedbackEditPage = async ({ params }: FeedbackEditPageProps) => {
     return notFound();
   }
 
-  const sections = await fetchReviewSections();
+  const sections = await fetchAllFeedbackSections();
 
   return (
     <>

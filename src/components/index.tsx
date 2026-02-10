@@ -25,6 +25,10 @@ export { FeedbackCard } from './feedback/feedback-card';
 export { FeedbackTable } from './feedback/feedback-table';
 export { ReviewList } from './feedback/reviews-list';
 export { FeedbackImportButton } from './feedback/feedback-import-button';
+export { FeedbackFilterBySection } from './feedback/feedback-filter-by-section';
+export { FeedbackListPagination } from './feedback/feedback-list-pagination';
+export { FeedbackListLoading } from './feedback/feedback-list-loading';
+export { FeedbackList } from './feedback/feedback-list';
 
 // feedback sections
 export { CreateFeedbackSectionForm } from './feedback-sections/create-feedback-section-form';

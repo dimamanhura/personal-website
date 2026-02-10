@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import type { FeedbackSection, Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { Sort, PaginatedData } from '@/types';
@@ -23,24 +23,17 @@ export const fetchFeaturedReviews = cache((): Promise<ReviewWithFeedbackSection[
   });
 });
 
-export const fetchReviewSections = cache((): Promise<FeedbackSection[]> => {
-  return db.feedbackSection.findMany();
-});
-
-export const fetchReviewsBySection = cache((): Promise<FeedbackSectionWithReviews[]> => {
-  return db.feedbackSection.findMany({
-    include: {
-      reviews: true,
-    },
-  });
-});
-
 export const fetchReviews = cache(
   async (params?: {
     orderBy?: Sort;
+    where?: { feedbackSection: { type: string } };
     page?: number;
   }): Promise<PaginatedData<ReviewWithFeedbackSection>> => {
-    const { orderBy = { column: 'receivedAt', direction: 'descending' }, page = 1 } = params || {};
+    const {
+      where = {},
+      orderBy = { column: 'receivedAt', direction: 'descending' },
+      page = 1,
+    } = params || {};
 
     const items = await db.feedback.findMany({
       orderBy: {
@@ -49,11 +42,12 @@ export const fetchReviews = cache(
       include: {
         feedbackSection: true,
       },
+      where,
       take: DEFAULT_LIMIT,
       skip: (page - 1) * DEFAULT_LIMIT,
     });
 
-    const count = await db.feedback.count();
+    const count = await db.feedback.count({ where });
 
     return { items, count };
   },

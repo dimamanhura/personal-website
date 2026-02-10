@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import type { Prisma } from '@prisma/client';
+import type { FeedbackSection, Prisma } from '@prisma/client';
 import { DEFAULT_LIMIT } from '@/constants';
 import { db } from '@/db';
 import { PaginatedData, Sort } from '@/types';
@@ -42,3 +42,7 @@ export const fetchFeedbackSectionById = cache(
     });
   },
 );
+
+export const fetchAllFeedbackSections = cache((): Promise<FeedbackSection[]> => {
+  return db.feedbackSection.findMany();
+});

@@ -15,19 +15,21 @@ export const FeedbackCard = ({ feedback, withFeaturedFlag, withSection }: Feedba
       <div className="flex justify-between">
         <div className="flex flex-col gap-1">
           <h4 className="text-lg font-medium">{feedback.author}</h4>
-
-          {withSection && feedback.feedbackSection && (
-            <Chip variant="flat" color="primary">
-              {feedback.feedbackSection.title}
-            </Chip>
-          )}
-
           <p className="text-sm text-foreground-400">{formatDateFull(feedback.receivedAt)}</p>
         </div>
 
-        {withFeaturedFlag && <FeaturedFlag featured={feedback.featured} />}
-      </div>
+        {(withSection || withFeaturedFlag) && (
+          <div className="flex gap-2">
+            {withSection && feedback.feedbackSection && (
+              <Chip variant="flat" color="primary">
+                {feedback.feedbackSection.title}
+              </Chip>
+            )}
 
+            {withFeaturedFlag && <FeaturedFlag featured={feedback.featured} />}
+          </div>
+        )}
+      </div>
       <p className="text-sm">{feedback.review}</p>
     </div>
   );

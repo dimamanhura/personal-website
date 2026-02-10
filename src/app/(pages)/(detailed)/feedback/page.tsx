@@ -1,6 +1,9 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { fetchReviewsBySection } from '@/db/queries/feedback';
-import { FeedbackCard, Header } from '@/components';
+import { fetchReviews } from '@/db/queries/feedback';
+import { fetchAllFeedbackSections } from '@/db/queries/feedback-sections';
+import { FeedbackFilterBySection, FeedbackList, FeedbackListLoading, Header } from '@/components';
+import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Feedback',
@@ -9,28 +12,30 @@ export const metadata: Metadata = {
   keywords: ['Feedback', 'Reviews'],
 };
 
-const FeedbackPage = async () => {
-  const reviewsBySections = await fetchReviewsBySection();
+interface FeedbackPageProps {
+  searchParams: Promise<SearchParams>;
+}
+
+const FeedbackPage = async ({ searchParams }: FeedbackPageProps) => {
+  const { search: section, page } = await searchParams;
+
+  const { items: reviews, count } = await fetchReviews({
+    where: section && section !== 'all' ? { feedbackSection: { type: section } } : undefined,
+    page: page ? parseInt(page) : 1,
+  });
+
+  const feedbackSections = await fetchAllFeedbackSections();
 
   return (
     <>
       <Header title="Feedback" />
-      <div className="flex w-full flex-col gap-12">
-        {reviewsBySections.map((reviewsBySection) => {
-          return (
-            <section key={reviewsBySection.id}>
-              <h2 className="mb-6 text-xl">{reviewsBySection.title}</h2>
-              <div className="flex w-full flex-col gap-4">
-                {reviewsBySection.reviews.map((feedback) => (
-                  <FeedbackCard
-                    feedback={{ ...feedback, feedbackSection: reviewsBySection }}
-                    key={feedback.id}
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
+
+      <FeedbackFilterBySection sections={feedbackSections} />
+
+      <div className="flex w-full flex-col gap-4">
+        <Suspense key={`${section || 'all'}-${page || '1'}`} fallback={<FeedbackListLoading />}>
+          <FeedbackList section={section} page={page} />
+        </Suspense>
       </div>
     </>
   );
