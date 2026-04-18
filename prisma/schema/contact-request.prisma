@@ -3,6 +3,8 @@ model ContactRequest {
   email      String
   name       String
   message    String
+  status     String   @default("pending")
+  aiReason   String?
   resolved   Boolean  @default(false)
   resolution String?
   createdAt  DateTime @default(now())
