@@ -1,4 +1,5 @@
 import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
+import { z } from 'zod';
 
 const sqsClient = new SQSClient({
   region: process.env.AWS_REGION,
@@ -8,10 +9,21 @@ const sqsClient = new SQSClient({
   },
 });
 
-export const sendCommand = async (body: object) => {
+const sqsPayloadSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  email: z.email().min(10).max(255),
+  message: z.string().min(1),
+});
+
+type SQSPayload = z.infer<typeof sqsPayloadSchema>;
+
+export const sendCommand = async (body: SQSPayload) => {
+  const validData = sqsPayloadSchema.parse(body);
+
   const command = new SendMessageCommand({
     QueueUrl: process.env.AWS_SQS_QUEUE_URL,
-    MessageBody: JSON.stringify(body),
+    MessageBody: JSON.stringify(validData),
   });
 
   return await sqsClient.send(command);
