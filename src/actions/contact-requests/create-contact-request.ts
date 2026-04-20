@@ -32,7 +32,7 @@ export async function createContactRequest(
   }
 
   try {
-    await db.contactRequest.create({
+    const newRequest = await db.contactRequest.create({
       data: {
         message: result.data.message,
         email: result.data.email,
@@ -44,6 +44,7 @@ export async function createContactRequest(
       message: result.data.message,
       email: result.data.email,
       name: result.data.name,
+      id: newRequest.id,
     });
 
     revalidate.contactRequests();
