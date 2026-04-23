@@ -1,0 +1,8 @@
+enum ContactRequestClassification {
+  unclassified
+  spam
+  solicitation
+  general
+  critical
+  no_reply_needed
+}

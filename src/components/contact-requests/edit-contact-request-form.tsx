@@ -3,11 +3,11 @@
 import { useTransition } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
-import { ContactRequest } from '@prisma/client';
+import { Button, Checkbox, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { ContactRequest, ContactRequestClassification as ClassificationType } from '@prisma/client';
 import { toast } from 'sonner';
 import * as actions from '@/actions';
-import { ErrorMessage } from '@/components';
+import { ContactRequestClassification, ErrorMessage } from '@/components';
 import { ContactRequestInput, contactRequestInputSchema } from '@/schemas';
 
 interface EditContactRequestFormProps {
@@ -18,6 +18,8 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
   const form = useForm<ContactRequestInput>({
     resolver: zodResolver(contactRequestInputSchema),
     defaultValues: {
+      humanOverrideReason: contactRequest.humanOverrideReason || '',
+      classification: contactRequest.classification || ClassificationType.unclassified,
       resolution: contactRequest.resolution || '',
       resolved: !!contactRequest.resolved,
       message: contactRequest.message,
@@ -82,6 +84,60 @@ export const EditContactRequestForm = ({ contactRequest }: EditContactRequestFor
               errorMessage={fieldState.error?.message}
               placeholder="Message"
               label="Message"
+              type="message"
+            />
+          )}
+        />
+
+        <Controller
+          control={form.control}
+          name="classification"
+          render={({ field, fieldState }) => (
+            <Select
+              {...field}
+              defaultSelectedKeys={
+                contactRequest.classification ? [contactRequest.classification] : []
+              }
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Classification"
+              label="Classification"
+              renderValue={(items) => {
+                return items.map((item) => (
+                  <ContactRequestClassification
+                    key={item.key}
+                    classification={item.key as ClassificationType}
+                  />
+                ));
+              }}
+            >
+              {Object.values(ClassificationType).map((classificationType) => (
+                <SelectItem key={classificationType} value={classificationType}>
+                  <ContactRequestClassification classification={classificationType} />
+                </SelectItem>
+              ))}
+            </Select>
+          )}
+        />
+
+        <Textarea
+          placeholder="AI reason"
+          isDisabled
+          label="AI reason"
+          type="message"
+          value={contactRequest.reason || 'Not provided'}
+        />
+
+        <Controller
+          control={form.control}
+          name="humanOverrideReason"
+          render={({ field, fieldState }) => (
+            <Textarea
+              {...field}
+              isInvalid={!!fieldState.error}
+              errorMessage={fieldState.error?.message}
+              placeholder="Human override reason"
+              label="Human override reason"
               type="message"
             />
           )}

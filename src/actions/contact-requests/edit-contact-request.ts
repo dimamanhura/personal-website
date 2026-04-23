@@ -11,6 +11,8 @@ export async function editContactRequest(
 ): Promise<ManageItemFormState> {
   try {
     const result: ContactRequestOutput = contactRequestInputSchema.parse({
+      humanOverrideReason: contactRequest.humanOverrideReason,
+      classification: contactRequest.classification,
       resolution: contactRequest.resolution,
       resolved: contactRequest.resolved,
       message: contactRequest.message,
@@ -23,6 +25,8 @@ export async function editContactRequest(
         id,
       },
       data: {
+        humanOverrideReason: result.humanOverrideReason,
+        classification: result.classification,
         resolution: result.resolution,
         resolved: result.resolved,
         message: result.message,
