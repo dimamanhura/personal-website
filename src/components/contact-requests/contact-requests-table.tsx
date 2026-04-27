@@ -4,7 +4,13 @@ import { FunctionComponent, useCallback } from 'react';
 import type { ContactRequest } from '@prisma/client';
 import { deleteContactRequest } from '@/actions';
 import { contactRequestsColumns } from '@/columns';
-import { ItemsTable, TableActions, ContactRequestStatus, TruncatedText } from '@/components';
+import {
+  ContactRequestClassification,
+  ContactRequestStatus,
+  TruncatedText,
+  TableActions,
+  ItemsTable,
+} from '@/components';
 import paths from '@/paths';
 import { ColumnKey } from '@/types';
 
@@ -34,14 +40,11 @@ export const ContactRequestsTable: FunctionComponent<ContactRequestsTableProps> 
         case 'id':
           return <TruncatedText text={contactRequest.id} />;
 
-        case 'message':
-          return <TruncatedText text={contactRequest.message} />;
-
-        case 'resolution':
-          return <TruncatedText text={contactRequest.resolution} />;
-
         case 'createdAt':
           return contactRequest.createdAt.toLocaleDateString();
+
+        case 'classification':
+          return <ContactRequestClassification classification={contactRequest.classification} />;
 
         case 'resolved':
           return <ContactRequestStatus resolved={contactRequest.resolved} />;

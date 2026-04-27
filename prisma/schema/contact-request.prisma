@@ -1,9 +1,12 @@
 model ContactRequest {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  email      String
-  name       String
-  message    String
-  resolved   Boolean  @default(false)
-  resolution String?
-  createdAt  DateTime @default(now())
+  id                  String                       @id @default(auto()) @map("_id") @db.ObjectId
+  email               String
+  name                String
+  message             String
+  classification      ContactRequestClassification @default(unclassified)
+  reason              String?
+  humanOverrideReason String?
+  resolved            Boolean                      @default(false)
+  resolution          String?
+  createdAt           DateTime                     @default(now())
 }

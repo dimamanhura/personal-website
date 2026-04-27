@@ -1,8 +1,8 @@
 'use server';
 
 import { db } from '@/db';
+import { sendCommand } from '@/lib';
 import { createContactRequestSchema } from '@/schemas';
-import * as telegram from '@/telegram';
 import { revalidate } from '@/utils';
 
 interface CreateContactRequestFormState {
@@ -32,17 +32,19 @@ export async function createContactRequest(
   }
 
   try {
-    await db.contactRequest.create({
+    const newRequest = await db.contactRequest.create({
       data: {
         message: result.data.message,
         email: result.data.email,
         name: result.data.name,
       },
     });
-    await telegram.notifyAboutContactRequest({
+
+    await sendCommand({
       message: result.data.message,
       email: result.data.email,
       name: result.data.name,
+      id: newRequest.id,
     });
 
     revalidate.contactRequests();

@@ -14,6 +14,7 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md,scss,html}\""
   },
   "dependencies": {
+    "@aws-sdk/client-sqs": "^3.1032.0",
     "@hookform/resolvers": "^5.2.2",
     "@nextui-org/react": "2.2.9",
     "@prisma/client": "^5.22.0",

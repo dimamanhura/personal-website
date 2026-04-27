@@ -14,6 +14,7 @@ export { SignUpForm } from './auth/sign-up-form';
 // contact requests
 export { ContactRequestCard } from './contact-requests/contact-request-card';
 export { ContactRequestStatus } from './contact-requests/contact-request-status';
+export { ContactRequestClassification } from './contact-requests/contact-request-classification';
 export { ContactRequestsTable } from './contact-requests/contact-requests-table';
 export { CreateContactRequestForm } from './contact-requests/create-contact-request-form';
 export { EditContactRequestForm } from './contact-requests/edit-contact-request-form';
