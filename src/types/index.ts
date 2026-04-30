@@ -10,3 +10,5 @@ export { type ColumnKey } from './column-key';
 export { type PublicPaths } from './public-paths';
 export { AdminEntity } from './admin-entity';
 export { type AdminPaths } from './admin-paths';
+export { type SearchItem } from './search-item';
+export { SearchItemType } from './search-item-type';

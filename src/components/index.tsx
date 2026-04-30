@@ -81,7 +81,6 @@ export { TruncatedText } from './ui/truncated-text';
 export { ThemeSwitcher } from './ui/theme-switcher';
 export { SubmitButton } from './ui/submit-button';
 export { Section } from './ui/section';
-export { UserMenu } from './ui/user-menu';
 export { UploadImageButton } from './ui/upload-image-button';
 export { ErrorMessage } from './ui/error-message';
 export { OverviewHeader } from './ui/overview-header';
@@ -93,6 +92,13 @@ export { ItemError } from './ui/item-error';
 export { ImportInput } from './ui/import-input';
 export { TypeGeneratorField } from './ui/type-generator-field';
 export { TechProjectList } from './ui/tech-project-list';
+export { BackToAllLink } from './ui/back-to-all-link';
+export { GlobalSearch } from './ui/global-search';
+export { GlobalSearchInput } from './ui/global-search-input';
+export { GlobalSearchResult } from './ui/global-search-result';
+export { SearchResultSnippet } from './ui/search-result-snippet';
+export { SearchResultItemCard } from './ui/search-result-item-card';
+export { SearchAiOverview } from './ui/search-ai-overview';
 
 // table
 export { ItemsTable } from './table/items-table';

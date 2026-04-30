@@ -1,7 +1,14 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { fetchAllFeedbackSections } from '@/db/queries/feedback-sections';
-import { FeedbackFilterBySection, FeedbackList, FeedbackListLoading, Header } from '@/components';
+import {
+  BackToAllLink,
+  FeedbackFilterBySection,
+  FeedbackList,
+  FeedbackListLoading,
+  Header,
+} from '@/components';
+import paths from '@/paths';
 import { SearchParams } from '@/types';
 
 export const metadata: Metadata = {
@@ -16,19 +23,26 @@ interface FeedbackPageProps {
 }
 
 const FeedbackPage = async ({ searchParams }: FeedbackPageProps) => {
-  const { search: section, page } = await searchParams;
+  const { search: section, id, page } = await searchParams;
 
   const feedbackSections = await fetchAllFeedbackSections();
 
+  const key = `${section || 'all'}-${page || '1'}-${id || 'all'}`;
+
   return (
     <>
-      <Header title="Feedback" />
-
-      <FeedbackFilterBySection sections={feedbackSections} />
+      {id ? (
+        <BackToAllLink path={paths.feedback()} />
+      ) : (
+        <>
+          <Header title="Feedback" />
+          <FeedbackFilterBySection sections={feedbackSections} />
+        </>
+      )}
 
       <div className="flex w-full flex-col gap-4">
-        <Suspense key={`${section || 'all'}-${page || '1'}`} fallback={<FeedbackListLoading />}>
-          <FeedbackList section={section} page={page} />
+        <Suspense key={key} fallback={<FeedbackListLoading />}>
+          <FeedbackList section={section} page={page} id={id} />
         </Suspense>
       </div>
     </>

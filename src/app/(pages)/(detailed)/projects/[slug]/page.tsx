@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FaArrowLeft } from 'react-icons/fa';
 import { fetchSignificantProjectBySlug } from '@/db/queries/projects';
-import { ProjectDetailed } from '@/components';
+import { BackToAllLink, ProjectDetailed } from '@/components';
 import paths from '@/paths';
 
 interface ProjectBySlugPageProps {
@@ -37,12 +35,7 @@ const ProjectBySlugPage = async ({ params }: ProjectBySlugPageProps) => {
 
   return (
     <>
-      <div className="mb-6">
-        <Link className="flex items-center text-blue-500 underline" href={paths.projects()}>
-          <FaArrowLeft className="mr-1" />
-          Back
-        </Link>
-      </div>
+      <BackToAllLink path={paths.projects()} />
       <ProjectDetailed project={project} />
     </>
   );
