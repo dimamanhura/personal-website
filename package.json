@@ -14,10 +14,15 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md,scss,html}\""
   },
   "dependencies": {
+    "@ai-sdk/amazon-bedrock": "^4.0.98",
     "@aws-sdk/client-sqs": "^3.1032.0",
+    "@aws-sdk/credential-providers": "^3.1040.0",
     "@hookform/resolvers": "^5.2.2",
     "@nextui-org/react": "2.2.9",
+    "@opensearch-project/opensearch": "^3.6.0",
     "@prisma/client": "^5.22.0",
+    "ai": "^6.0.172",
+    "aws-sdk": "^2.1693.0",
     "axios": "^1.7.7",
     "bcrypt-ts-edge": "^3.0.1",
     "cloudinary": "^2.8.0",

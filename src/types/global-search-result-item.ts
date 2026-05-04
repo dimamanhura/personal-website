@@ -1,8 +1,8 @@
-import { SearchItemType } from '@/types';
+import { SearchEntityType } from '@/types';
 
-export interface SearchItem {
+export interface GlobalSearchResultItem {
   id: string;
-  type: SearchItemType;
+  type: SearchEntityType;
   title: string;
   subtitle: string;
   url?: string;

@@ -1,7 +1,7 @@
-import { SearchItem } from '@/types';
+import { GlobalSearchResultItem } from '@/types';
 
 interface SearchResultSnippetProps {
-  item: SearchItem;
+  item: GlobalSearchResultItem;
   searchTerm: string;
 }
 

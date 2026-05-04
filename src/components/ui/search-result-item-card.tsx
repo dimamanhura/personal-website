@@ -4,10 +4,10 @@ import { Avatar } from '@nextui-org/react';
 import Link from 'next/link';
 import { FaTrophy, FaCommentDots, FaCode, FaBuilding, FaProjectDiagram } from 'react-icons/fa';
 import { SearchResultSnippet } from '@/components';
-import { SearchItem, SearchItemType } from '@/types';
+import { GlobalSearchResultItem, SearchEntityType } from '@/types';
 
 interface SearchResultItemCardProps {
-  item: SearchItem;
+  item: GlobalSearchResultItem;
   searchTerm: string;
   onClose: () => void;
 }
@@ -15,15 +15,15 @@ interface SearchResultItemCardProps {
 export const SearchResultItemCard = ({ item, searchTerm, onClose }: SearchResultItemCardProps) => {
   const getFallbackIcon = () => {
     switch (item.type) {
-      case SearchItemType.achievement:
+      case SearchEntityType.achievement:
         return <FaTrophy className="text-default-500" />;
-      case SearchItemType.feedback:
+      case SearchEntityType.feedback:
         return <FaCommentDots className="text-default-500" />;
-      case SearchItemType.project:
+      case SearchEntityType.project:
         return <FaProjectDiagram className="text-default-500" />;
-      case SearchItemType.company:
+      case SearchEntityType.company:
         return <FaBuilding className="text-default-500" />;
-      case SearchItemType.technology:
+      case SearchEntityType.technology:
         return <FaCode className="text-default-500" />;
       default:
         return null;

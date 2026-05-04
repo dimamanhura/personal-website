@@ -1,17 +1,40 @@
 'use client';
 
+import { Spinner } from '@nextui-org/react';
 import { SearchResultItemCard } from '@/components';
-import { GLOBAL_SEARCH_SECTION_ORDER } from '@/constants';
-import { SearchItem } from '@/types';
+import { GLOBAL_SEARCH_SECTION_ORDER, MIN_SEARCH_LENGTH } from '@/constants';
+import { GlobalSearchResultItem } from '@/types';
 
 interface GlobalSearchResultProps {
+  isSearching: boolean;
   searchTerm: string;
-  items: SearchItem[];
+  items: GlobalSearchResultItem[];
   onClose: () => void;
 }
 
-export const GlobalSearchResult = ({ searchTerm, items, onClose }: GlobalSearchResultProps) => {
-  const groupedResults = items.reduce<Record<string, SearchItem[]>>((acc, item) => {
+export const GlobalSearchResult = ({
+  isSearching,
+  searchTerm,
+  items,
+  onClose,
+}: GlobalSearchResultProps) => {
+  if (isSearching) {
+    return (
+      <div className="flex w-full items-center justify-center p-10">
+        <Spinner size="lg" color="default" label="Searching..." />
+      </div>
+    );
+  }
+
+  if (!isSearching && searchTerm.length >= MIN_SEARCH_LENGTH && items.length === 0) {
+    return (
+      <div className="flex w-full flex-col items-center justify-center p-10 text-default-500">
+        <p>No results found for &quot;{searchTerm}&quot;</p>
+      </div>
+    );
+  }
+
+  const groupedResults = items.reduce<Record<string, GlobalSearchResultItem[]>>((acc, item) => {
     if (!acc[item.type]) {
       acc[item.type] = [];
     }

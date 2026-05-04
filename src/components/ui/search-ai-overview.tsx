@@ -1,22 +1,22 @@
 'use client';
 
 import { Button, Skeleton } from '@nextui-org/react';
-import { FaMagic } from 'react-icons/fa';
+import { FaMagic, FaRobot } from 'react-icons/fa';
 
 export interface SearchAiOverviewProps {
   isGenerating: boolean;
-  overviewHtml: string | null;
+  overviewText: string | null;
   onGenerate: () => void;
 }
 
 export const SearchAiOverview = ({
   isGenerating,
-  overviewHtml,
+  overviewText,
   onGenerate,
 }: SearchAiOverviewProps) => {
   return (
     <div className="flex flex-col gap-3 border-b border-divider bg-default-50/50 p-4">
-      {!isGenerating && !overviewHtml && (
+      {!isGenerating && !overviewText && (
         <Button
           size="sm"
           color="secondary"
@@ -47,11 +47,17 @@ export const SearchAiOverview = ({
         </div>
       )}
 
-      {overviewHtml && !isGenerating && (
-        <div
-          className="prose prose-sm dark:prose-invert"
-          dangerouslySetInnerHTML={{ __html: overviewHtml }}
-        />
+      {overviewText && !isGenerating && (
+        <div className="flex flex-col gap-2 rounded-medium bg-secondary-50/50 p-3 dark:bg-secondary-50/10">
+          <div className="flex items-center gap-2 text-xs font-semibold text-secondary">
+            <FaRobot />
+            AI Overview
+          </div>
+          <div
+            className="text-[13px] leading-relaxed text-default-700 dark:text-default-400"
+            dangerouslySetInnerHTML={{ __html: overviewText }}
+          />
+        </div>
       )}
     </div>
   );

@@ -1,11 +1,12 @@
 import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
 import { z } from 'zod';
+import { env } from './config';
 
 const sqsClient = new SQSClient({
-  region: process.env.AWS_REGION,
+  region: env.AWS_REGION,
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+    accessKeyId: env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
   },
 });
 
@@ -22,7 +23,7 @@ export const sendCommand = async (body: SQSPayload) => {
   const validData = sqsPayloadSchema.parse(body);
 
   const command = new SendMessageCommand({
-    QueueUrl: process.env.AWS_SQS_QUEUE_URL,
+    QueueUrl: env.AWS_SQS_QUEUE_URL,
     MessageBody: JSON.stringify(validData),
   });
 
