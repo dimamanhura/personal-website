@@ -20,6 +20,7 @@ export const GlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState<GlobalSearchResultItem[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [overviewText, setOverviewText] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -28,6 +29,7 @@ export const GlobalSearch = () => {
     setSearchTerm(query);
     setOverviewText(null);
     setIsGenerating(false);
+    setError(null);
 
     if (!query) {
       setItems([]);
@@ -42,10 +44,20 @@ export const GlobalSearch = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query }),
       });
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          setError('Too many requests. Please slow down.');
+        }
+        setItems([]);
+        return;
+      }
+
       const { results } = await response.json();
       setItems(results);
     } catch {
       setItems([]);
+      setError('Search failed. Try again later.');
     } finally {
       setIsSearching(false);
     }
@@ -56,6 +68,7 @@ export const GlobalSearch = () => {
 
     setIsGenerating(true);
     setOverviewText(null);
+    setError(null);
 
     try {
       const response = await fetch('/api/overview', {
@@ -63,10 +76,18 @@ export const GlobalSearch = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: searchTerm, results: items }),
       });
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          setError('AI generation limit reached. Wait a minute.');
+        }
+        return;
+      }
+
       const { overview } = await response.json();
       setOverviewText(overview);
     } catch {
-      setOverviewText('Failed to generate overview. Please try again.');
+      setOverviewText('Failed to generate overview.');
     } finally {
       setIsGenerating(false);
     }
@@ -76,6 +97,7 @@ export const GlobalSearch = () => {
     setSearchTerm('');
     setItems([]);
     setOverviewText(null);
+    setError(null);
     onClose();
   };
 
@@ -103,6 +125,12 @@ export const GlobalSearch = () => {
             <GlobalSearchInput onSearch={handleSearch} />
           </ModalHeader>
           <ModalBody className="min-h-24">
+            {error && (
+              <div className="mx-2 rounded-lg bg-danger-50 p-4 text-center text-sm font-medium text-danger">
+                {error}
+              </div>
+            )}
+
             {searchTerm.length >= MIN_SEARCH_LENGTH && items.length > 0 && !isSearching && (
               <SearchAiOverview
                 isGenerating={isGenerating}
