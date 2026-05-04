@@ -11,3 +11,4 @@ export { formatDateForInput } from './format-date-for-input';
 export { generateType } from './generate-type';
 export { revalidate } from './revalidate';
 export { getDurationInYears } from './get-duration-in-years';
+export { transformSearchResults } from './transform-search-results';

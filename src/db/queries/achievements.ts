@@ -15,11 +15,13 @@ export const fetchFeaturedAchievements = cache((): Promise<Achievement[]> => {
 export const fetchAchievements = cache(
   async (params?: {
     orderBy?: Sort;
+    where?: { id?: string };
     page?: number;
     all?: boolean;
   }): Promise<PaginatedData<Achievement>> => {
     const {
       orderBy = { column: 'id', direction: 'descending' },
+      where = {},
       page = 1,
       all = false,
     } = params || {};
@@ -28,6 +30,7 @@ export const fetchAchievements = cache(
       orderBy: {
         [orderBy.column]: orderBy.direction === 'descending' ? 'desc' : 'asc',
       },
+      where,
       take: all ? undefined : DEFAULT_LIMIT,
       skip: all ? 0 : (page - 1) * DEFAULT_LIMIT,
     });

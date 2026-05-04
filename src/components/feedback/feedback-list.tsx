@@ -1,9 +1,23 @@
 import { fetchReviews } from '@/db/queries/feedback';
 import { FeedbackCard, FeedbackListPagination } from '@/components';
 
-export const FeedbackList = async ({ section, page }: { section?: string; page?: string }) => {
+export const FeedbackList = async ({
+  section,
+  page,
+  id,
+}: {
+  section?: string;
+  page?: string;
+  id?: string;
+}) => {
+  const whereClause = id
+    ? { id }
+    : section && section !== 'all'
+      ? { feedbackSection: { type: section } }
+      : undefined;
+
   const { items: reviews, count } = await fetchReviews({
-    where: section && section !== 'all' ? { feedbackSection: { type: section } } : undefined,
+    where: whereClause,
     page: page ? parseInt(page) : 1,
   });
 
@@ -15,7 +29,7 @@ export const FeedbackList = async ({ section, page }: { section?: string; page?:
         ))}
       </div>
 
-      <FeedbackListPagination totalCount={count} page={Number(page) || 1} />
+      {!id && <FeedbackListPagination totalCount={count} page={Number(page) || 1} />}
     </>
   );
 };

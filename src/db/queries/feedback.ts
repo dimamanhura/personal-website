@@ -26,7 +26,7 @@ export const fetchFeaturedReviews = cache((): Promise<ReviewWithFeedbackSection[
 export const fetchReviews = cache(
   async (params?: {
     orderBy?: Sort;
-    where?: { feedbackSection: { type: string } };
+    where?: { id?: string; feedbackSection?: { type: string } };
     page?: number;
   }): Promise<PaginatedData<ReviewWithFeedbackSection>> => {
     const {

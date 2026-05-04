@@ -5,4 +5,5 @@ export interface SearchParams {
   sortBy?: string;
   order?: Order;
   search?: string;
+  id?: string;
 }

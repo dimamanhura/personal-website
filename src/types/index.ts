@@ -10,3 +10,7 @@ export { type ColumnKey } from './column-key';
 export { type PublicPaths } from './public-paths';
 export { AdminEntity } from './admin-entity';
 export { type AdminPaths } from './admin-paths';
+export { type GlobalSearchResultItem } from './global-search-result-item';
+export { SearchEntityType } from './search-entity-type';
+export { type OpenSearchDocument } from './open-search-document';
+export { type OpenSearchResponse } from './open-search-response';

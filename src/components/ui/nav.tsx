@@ -20,7 +20,7 @@ import {
 import RouterLink from 'next/link';
 import { usePathname, redirect } from 'next/navigation';
 import { FaChevronDown } from 'react-icons/fa';
-import { ThemeSwitcher, UserMenu } from '@/components';
+import { ThemeSwitcher, GlobalSearch } from '@/components';
 import paths from '@/paths';
 import { Page } from '@/types';
 
@@ -124,8 +124,8 @@ export const Nav = ({ pages }: NavProps) => {
 
       <NavbarContent justify="end">
         <div className="flex gap-2">
+          <GlobalSearch />
           <ThemeSwitcher />
-          <UserMenu />
         </div>
       </NavbarContent>
 
