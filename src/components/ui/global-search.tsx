@@ -126,7 +126,7 @@ export const GlobalSearch = () => {
           </ModalHeader>
           <ModalBody className="min-h-24">
             {error && (
-              <div className="mx-2 rounded-lg bg-danger-50 p-4 text-center text-sm font-medium text-danger">
+              <div className="rounded-lg bg-danger-50 p-4 text-center text-sm font-medium text-danger">
                 {error}
               </div>
             )}

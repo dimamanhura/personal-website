@@ -20,7 +20,7 @@ export const GlobalSearchResult = ({
 }: GlobalSearchResultProps) => {
   if (isSearching) {
     return (
-      <div className="flex w-full items-center justify-center p-10">
+      <div className="flex w-full items-center justify-center p-4">
         <Spinner size="lg" color="default" label="Searching..." />
       </div>
     );
@@ -28,7 +28,7 @@ export const GlobalSearchResult = ({
 
   if (!isSearching && searchTerm.length >= MIN_SEARCH_LENGTH && items.length === 0) {
     return (
-      <div className="flex w-full flex-col items-center justify-center p-10 text-default-500">
+      <div className="flex w-full flex-col items-center justify-center p-4 text-center text-default-500">
         <p>No results found for &quot;{searchTerm}&quot;</p>
       </div>
     );
